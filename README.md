@@ -11,8 +11,10 @@ Carlos Martín Hernández (c.martinh.2019@alumnos.urjc.es - carlosmartinhernande
 
 # TOPWER
 
+<p align="center">
+  <img src=![logoURJC](https://github.com/carlosmartinhernandez79/juegos_en_red/assets/100692817/1632efbb-9d4d-4f67-b0d4-dff980df6bfd) />
+</p>
 
-![logoURJC](https://github.com/carlosmartinhernandez79/juegos_en_red/assets/100692817/1632efbb-9d4d-4f67-b0d4-dff980df6bfd)
 
 
 
