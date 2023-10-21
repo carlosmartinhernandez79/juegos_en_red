@@ -229,7 +229,7 @@ A parte de las trampas a lo largo del nivel habrá diversos objetos con los que 
 <p align="center">
   <img src="https://github.com/carlosmartinhernandez79/juegos_en_red/assets/100692817/da192446-250e-4491-8c18-f6f85d07d528" />
 <br>
-	Botón de Minecraft de referenci
+	Botón de Minecraft de referencia
 <br>
 </p>
 
