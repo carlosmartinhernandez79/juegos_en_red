@@ -134,21 +134,24 @@ Unas de las imágenes de referencia que usaremos para la temática a tomar serí
 
 <p align="center">
   <img src="https://github.com/carlosmartinhernandez79/juegos_en_red/assets/100692817/02d81914-c403-4353-bcd7-f6d520b76c40" />
+	<br>
 	Portada del disco HyperPopular
 	<br>
 </p>
 
 <p align="center">
   <img src="https://github.com/carlosmartinhernandez79/juegos_en_red/assets/100692817/dce680c9-2243-4099-a3da-0d586cf0e77c" />
-Escena final The King of Dragons
-	<br>
+<br>
+	Escena final The King of Dragons
+<br>
 </p>
 
 
 <p align="center">
   <img src="https://github.com/carlosmartinhernandez79/juegos_en_red/assets/100692817/577af783-73fd-44ce-b8dd-5361ccb969ea" />
-Escena de Cuphead
-	<br>
+<br>
+	Escena de Cuphead
+<br>
 </p>
 
 
@@ -158,8 +161,9 @@ Los colores que se van a utilizar para el juego van a ser colores pasteles y pla
 
 <p align="center">
   <img src="https://github.com/carlosmartinhernandez79/juegos_en_red/assets/100692817/894e5cb3-7fec-4e3f-92fe-94f10b13b45c" />
-Referencias de paletas de colores a usar
-	<br>
+<br>
+	Referencias de paletas de colores a usar
+<br>
 </p>
 
 
@@ -168,8 +172,9 @@ En ambos personajes se utilizaran unos diseños simples pero expresivos, que a s
 
 <p align="center">
   <img src="https://github.com/carlosmartinhernandez79/juegos_en_red/assets/100692817/6f0281e3-3bb8-4abf-8736-9019edccf1d4" />
-Toma referencia colores personajes Hyper Popular
-	<br>
+<br>
+	Toma referencia colores personajes Hyper Popular
+<br>
 </p>
 
 
@@ -178,8 +183,9 @@ Un enano barbudo muy robusto. Posee un gorro de Gnomo que le cubre hasta la nari
 
 <p align="center">
   <img src="https://github.com/carlosmartinhernandez79/juegos_en_red/assets/100692817/db62a8c8-9943-4cd1-bcac-1239ed61ed84" />
-Gnomos de referencia diseño Tuk
-	<br>
+<br>
+	Gnomos de referencia diseño Tuk
+<br>
 </p>
 
 ### LIAL
@@ -187,8 +193,9 @@ Una elfa fina de pelo plateado, muy ágil y con la una corona de flores que le p
 
 <p align="center">
   <img src="https://github.com/carlosmartinhernandez79/juegos_en_red/assets/100692817/1bc45987-f547-4ee9-982f-2edd78eb0ad5" />
-Fanarts de referencia del diseño Lial
-	<br>
+<br>
+	Fanarts de referencia del diseño Lial
+<br>
 </p>
 
 
@@ -200,8 +207,9 @@ Las principales trampas que implementaremos en el jugo serán:
 
 <p align="center">
   <img src="https://github.com/carlosmartinhernandez79/juegos_en_red/assets/100692817/3080b669-1784-4cc7-8e61-a5bf930176dd" />
-Pinchos de referencia
-	<br>
+<br>
+	Pinchos de referencia
+<br>
 </p>
 
 **-Lava:** Con colores muy llamativos para que de la sensación de peligro
@@ -209,8 +217,9 @@ Pinchos de referencia
 
 <p align="center">
   <img src="https://github.com/carlosmartinhernandez79/juegos_en_red/assets/100692817/f999459f-d8e1-4d5c-808e-639aba56ef34" />
-Barriles de referencia
-	<br>
+<br>
+	Barriles de referencia
+<br>
 </p>
 
 
@@ -219,8 +228,9 @@ A parte de las trampas a lo largo del nivel habrá diversos objetos con los que 
 
 <p align="center">
   <img src="https://github.com/carlosmartinhernandez79/juegos_en_red/assets/100692817/da192446-250e-4491-8c18-f6f85d07d528" />
-Botón de Minecraft de referenci
-	<br>
+<br>
+	Botón de Minecraft de referenci
+<br>
 </p>
 
  
@@ -228,8 +238,9 @@ Botón de Minecraft de referenci
 
 <p align="center">
   <img src="https://github.com/carlosmartinhernandez79/juegos_en_red/assets/100692817/dc7a0f45-2d18-473a-8959-6b0a2cb9d589" />
-Palanca de Minecraft de referencia
-	<br>
+<br>
+	Palanca de Minecraft de referencia
+<br>
 </p>
  
 **-Placas de presión:** Desnivel en el mapa para su notoriedad
@@ -237,8 +248,9 @@ Palanca de Minecraft de referencia
 
  <p align="center">
   <img src="https://github.com/carlosmartinhernandez79/juegos_en_red/assets/100692817/31f9f4a6-2f31-494f-afc0-51c7183445c4" />
-Moneda ovalada sin logo de referencia
-	<br>
+<br>
+	 Moneda ovalada sin logo de referencia
+<br>
 </p>
 
 
@@ -257,8 +269,9 @@ Como se ha mencionado anteriormente, una de las condiciones de victoria es super
 
  <p align="center">
   <img src="https://github.com/carlosmartinhernandez79/juegos_en_red/assets/100692817/b21c8e68-b15a-44b6-9d3c-334ba6faf349" />
-Referencia tiempo nivel
-	<br>
+<br>
+	 Referencia tiempo nivel
+<br>
 </p>
 
 
@@ -280,12 +293,14 @@ Algunos de los escenarios que encontraremos, de abajo hacia arriba serán las ma
 
  <p align="center">
   <img src="https://github.com/carlosmartinhernandez79/juegos_en_red/assets/100692817/4fb3c73e-913b-4b6a-9cb8-261b98dc27e7" />
-Referencia mapa vertical (videojuego Rising hell)
-	<br>
+<br>
+	Referencia mapa vertical (videojuego Rising hell)
+<br>
 </p>
 
  <p align="center">
   <img src="https://github.com/carlosmartinhernandez79/juegos_en_red/assets/100692817/7da8e900-fccb-413f-b6aa-f37c970a98cd" />
-Referencia mapa vertical (Juego Donkey Kong)
-	<br>
+<br>
+	Referencia mapa vertical (Juego Donkey Kong)
+<br>
 </p>
