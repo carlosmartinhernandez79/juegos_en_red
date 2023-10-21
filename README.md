@@ -7,10 +7,11 @@ Juego de plataformas 2D para la asignatura de Juegos En Red
 Carlos Martín Hernández (c.martinh.2019@alumnos.urjc.es - carlosmartinhernandez79), Luis Mateos Sánchez (l.mateos.2020@alumnos.urjc.es - MrLuis33), Álvaro Redondo Molina (a.redondom.2021@alumnos.urjc.es - AlvaroRedondoURJC), Hugo Silva Gil (h.silva.2021@alumnos.urjc.es - HSilvaa).
 
 
+# GGD
 
 # TOPWER
 
-
+(/Imagenes/logoURJC.PNG)
 
 
 Game Design Document
