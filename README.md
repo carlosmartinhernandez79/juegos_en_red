@@ -20,35 +20,10 @@ Carlos Martín Hernández (c.martinh.2019@alumnos.urjc.es - carlosmartinhernande
 ### Juegos En Red
 
 
-Hugo Silva Gil
-Álvaro Redondo Molina
-Carlos Martín Hernández
-Luis Mateos Sánchez
-
-# ÍNDICE
-
-1.- EQUIPO Y CONCEPTO	
-_ 1.1 EQUIPO	
-1.2 CARACTERÍSTICAS DEL JUEGO	
-_ 1.2.1 HISTORIA	
-1.2.2 CONCEPTO	
-2.- MECÁNICAS Y CONTROLES	
-2.1 MECÁNICAS	
-2.2 CONTROLES	
-2.3 CONDICIONES DE VICTORIA Y DERROTA	
-2.3.1 VICTORIA	
-2.3.2 DERROTA	
-3.- DISEÑO Y REFERENCIAS	
-3.1 COLOR	
-3.2 PERSONAJES
-3.2.1 TUK	
-3.2.2 LIAL	
-3.3 TRAMPAS Y OBJETOS	
-3.4 TIEMPO, INTERFAZ Y CÁMARA	
-3.4.1 TIEMPO
-3.4.2 INTERFAZ	
-3.4.3 CÁMARA	
-3.5 ESCENARIOS	
+### Hugo Silva Gil
+### Álvaro Redondo Molina
+### Carlos Martín Hernández
+### Luis Mateos Sánchez
 
 # EQUIPO Y CONCEPTO
 
@@ -95,7 +70,7 @@ Pero un guardia se da cuenta de la ausencia de los prisioneros y da la voz de al
 
 El juego que desarrollaremos será un plataformas cooperativo en 2D, donde dos personajes deberán salir de un castillo cooperando y superando las distintas trampas y situaciones que se les presenten en su camino hasta llegar a la parte más alta del mismo.
 
- Si no consiguen llegar ambos arriba en el tiempo determinado o si uno de ellos muere, el juego termina,  son capturados por el enemigo y devueltos a su posición inicial. 
+Si no consiguen llegar ambos arriba en el tiempo determinado o si uno de ellos muere, el juego termina,  son capturados por el enemigo y devueltos a su posición inicial. 
 
 Desarrollaremos el juego tomando de referencia el juego Fireboy and Watergirl. 
 
@@ -118,12 +93,12 @@ Se construirá un sistema de recolección de monedas, meramente coleccionables. 
 
 
 ## CONTROLES
-Control en red
+**Control en red**
 El movimiento a los lados se hará con las teclas ⇐A		D⇒
 El salto se ejecuta con ⇑W
 La habilidad del personaje 1(hacerse pequeño)  se activa con E
 La habilidad del personaje 2 se activa (doble salto) se activa pulsando W en el aire
-Control en local
+**Control en local**
 Jugador 1
 El movimiento a los lados se hará con las teclas ⇐A		D⇒
 El salto se ejecuta con ⇑W
@@ -154,12 +129,12 @@ Unas de las imágenes de referencia que usaremos para la temática a tomar serí
 
 ![HyperPopular](https://github.com/carlosmartinhernandez79/juegos_en_red/assets/100692817/45df2028-094e-4875-8389-fffea91f7155)
 
- Portada del disco HyperPopular
+ **Portada del disco HyperPopular**
 
 
 ![KingOfDragons](https://github.com/carlosmartinhernandez79/juegos_en_red/assets/100692817/dce680c9-2243-4099-a3da-0d586cf0e77c)
 
-Escena final The King of Dragons
+**Escena final The King of Dragons**
 
 
 
@@ -169,14 +144,14 @@ Los colores que se van a utilizar para el juego van a ser colores pasteles y pla
 
 ![PaletasDeColor](https://github.com/carlosmartinhernandez79/juegos_en_red/assets/100692817/894e5cb3-7fec-4e3f-92fe-94f10b13b45c)
 
-Referencias de paletas de colores a usar
+**Referencias de paletas de colores a usar**
 
 ## PERSONAJES
 En ambos personajes se utilizaran unos diseños simples pero expresivos, que a su mismo tiempo estarán compuestos por colores pasteles y con pequeños detalles relacionados con sus poderes o habilidades especiales.
 
 ![Personajes](https://github.com/carlosmartinhernandez79/juegos_en_red/assets/100692817/6f0281e3-3bb8-4abf-8736-9019edccf1d4)
 
-Toma referencia colores personajes Hyper Popular
+**Toma referencia colores personajes Hyper Popular**
 
 
 
@@ -185,7 +160,7 @@ Un enano barbudo muy robusto. Posee un gorro de Gnomo que le cubre hasta la nari
 
  ![Gnomos](https://github.com/carlosmartinhernandez79/juegos_en_red/assets/100692817/db62a8c8-9943-4cd1-bcac-1239ed61ed84)
 
- Gnomos de referencia diseño Tuk
+ **Gnomos de referencia diseño Tuk**
 
 
 ### LIAL
@@ -193,7 +168,7 @@ Una elfa fina de pelo plateado, muy ágil y con la una corona de flores que le p
 
 ![Elfa](https://github.com/carlosmartinhernandez79/juegos_en_red/assets/100692817/1bc45987-f547-4ee9-982f-2edd78eb0ad5)
 
-Fanarts de referencia del diseño Lial 
+**Fanarts de referencia del diseño Lial** 
 
 
 
@@ -207,7 +182,7 @@ Las principales trampas que implementaremos en el jugo serán:
 
 ![Barriles](https://github.com/carlosmartinhernandez79/juegos_en_red/assets/100692817/f999459f-d8e1-4d5c-808e-639aba56ef34)
 
-Barriles referencia
+**Barriles referencia**
 
 A parte de las trampas a lo largo del nivel habrá diversos objetos con los que podremos interactuar o coleccionar:
 	-Botones: Los cuales tendrán una luz roja cuando estén apagados y verde, encendidos
@@ -217,7 +192,7 @@ A parte de las trampas a lo largo del nivel habrá diversos objetos con los que 
  
 ![Monedas](https://github.com/carlosmartinhernandez79/juegos_en_red/assets/100692817/31f9f4a6-2f31-494f-afc0-51c7183445c4)
 
-Moneda ovalada sin logo
+**Moneda ovalada sin logo**
 
 
 # TIEMPO, INTERFAZ Y CÁMARA
@@ -226,7 +201,7 @@ Como se ha mencionado anteriormente, una de las condiciones de victoria es super
 
 ![Tiempo](https://github.com/carlosmartinhernandez79/juegos_en_red/assets/100692817/b21c8e68-b15a-44b6-9d3c-334ba6faf349)
 
-Referencia tiempo nivel
+**Referencia tiempo nivel**
 
 ## INTERFAZ
 Para el apartado de la interfaz tendremos una pantalla de inicio simple donde podremos tanto elegir en qué modo de juego queremos jugar, configurar el sonido y ver los controles. Una vez iniciado el nivel, la interfaz se reducirá a un menú de pausa con un resume o quit (para seguir jugando o salir del nivel), un contador de las monedas que vayamos recolectando y el temporizador explicado previamente.
@@ -247,8 +222,8 @@ Algunos de los escenarios que encontraremos, de abajo hacia arriba serán las ma
 ![MapaVertical](https://github.com/carlosmartinhernandez79/juegos_en_red/assets/100692817/4fb3c73e-913b-4b6a-9cb8-261b98dc27e7)
 
 
-Referencia mapa vertical (videojuego Rising hell)
+**Referencia mapa vertical (videojuego Rising hell)**
 
 ![DonkeyKong](https://github.com/carlosmartinhernandez79/juegos_en_red/assets/100692817/7da8e900-fccb-413f-b6aa-f37c970a98cd)
 
-Referencia mapa vertical (Juego Donkey Kong)
+**Referencia mapa vertical (Juego Donkey Kong)**
