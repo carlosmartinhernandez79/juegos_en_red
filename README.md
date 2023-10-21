@@ -131,18 +131,23 @@ Los jugadores perderán si  se agota el tiempo antes de que hayan llegado a la m
 El juego principalmente será ambientado en una temática medieval y antigua, de la época del auge de los castillos y las mazmorras. Tendrá un toque místico y fantástico.
 Unas de las imágenes de referencia que usaremos para la temática a tomar serían las del disco de música “Hyper Popular” y temática del videojuego “The King of Dragons”, con ese ambiente medieval con enemigos y elementos fantásticos.
 
-![HyperPopular](https://github.com/carlosmartinhernandez79/juegos_en_red/assets/100692817/45df2028-094e-4875-8389-fffea91f7155)
 
- **Portada del disco HyperPopular**
+<p align="center">
+  <img src="https://github.com/carlosmartinhernandez79/juegos_en_red/assets/100692817/02d81914-c403-4353-bcd7-f6d520b76c40" />
+	Portada del disco HyperPopular
+</p>
+
+<p align="center">
+  <img src="https://github.com/carlosmartinhernandez79/juegos_en_red/assets/100692817/dce680c9-2243-4099-a3da-0d586cf0e77c" />
+Escena final The King of Dragons
+</p>
 
 
-![KingOfDragons](https://github.com/carlosmartinhernandez79/juegos_en_red/assets/100692817/dce680c9-2243-4099-a3da-0d586cf0e77c)
+<p align="center">
+  <img src="https://github.com/carlosmartinhernandez79/juegos_en_red/assets/100692817/577af783-73fd-44ce-b8dd-5361ccb969ea" />
+Escena de Cuphead
+</p>
 
-**Escena final The King of Dragons**
-
-![Cuphead](https://github.com/carlosmartinhernandez79/juegos_en_red/assets/100692817/577af783-73fd-44ce-b8dd-5361ccb969ea)
-
-**Escena de Cuphead**
 
 ## COLOR
 
