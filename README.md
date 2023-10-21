@@ -153,7 +153,9 @@ En ambos personajes se utilizaran unos diseños simples pero expresivos, que a s
 
 **Toma referencia colores personajes Hyper Popular**
 
+![Cuphead](https://github.com/carlosmartinhernandez79/juegos_en_red/assets/100692817/577af783-73fd-44ce-b8dd-5361ccb969ea)
 
+**Escena de Cuphead**
 
 ### TUK
 Un enano barbudo muy robusto. Posee un gorro de Gnomo que le cubre hasta la nariz y una frondosa barba que simboliza la cantidad de conocimientos y sabiduría que posee. De ropajes llevará un poncho mágico que se iluminará cuando active su poder de empequeñecimiento. 
@@ -176,23 +178,47 @@ Una elfa fina de pelo plateado, muy ágil y con la una corona de flores que le p
 
 ## TRAMPAS Y OBJETOS
 Las principales trampas que implementaremos en el jugo serán:
-	-Pinchos: Metálicos, afilados y puestos en línea para abarcar más terreno
--Lava: Con colores muy llamativos para que de la sensación de peligro
--Barriles: Diseño básico de barril con colores oscuros y un logo característico
+**-Pinchos:** Metálicos, afilados y puestos en línea para abarcar más terreno
+
+![Pinchos](https://github.com/carlosmartinhernandez79/juegos_en_red/assets/100692817/3080b669-1784-4cc7-8e61-a5bf930176dd)
+
+**Pinchos de referencia**
+
+**-Lava:** Con colores muy llamativos para que de la sensación de peligro
+**-Barriles:** Diseño básico de barril con colores oscuros y un logo característico
 
 ![Barriles](https://github.com/carlosmartinhernandez79/juegos_en_red/assets/100692817/f999459f-d8e1-4d5c-808e-639aba56ef34)
 
-**Barriles referencia**
+**Barriles de referencia**
 
 A parte de las trampas a lo largo del nivel habrá diversos objetos con los que podremos interactuar o coleccionar:
-	-Botones: Los cuales tendrán una luz roja cuando estén apagados y verde, encendidos
-	-Palancas: Diseño simple con dos estados (derecha/izquierda o arriba/abajo)
-	-Placas de presión: Desnivel en el mapa para su notoriedad
-	-Monedas: Diseño simple de moneda ovalada con el logo en el centro
+	**-Botones:** Los cuales tendrán una luz roja cuando estén apagados y verde, encendidos
+
+![Boton](https://github.com/carlosmartinhernandez79/juegos_en_red/assets/100692817/da192446-250e-4491-8c18-f6f85d07d528)
+
+**Botón de Minecraft de referencia**
+ 
+**-Palancas:** Diseño simple con dos estados (derecha/izquierda o arriba/abajo)
+
+![palanca](https://github.com/carlosmartinhernandez79/juegos_en_red/assets/100692817/dc7a0f45-2d18-473a-8959-6b0a2cb9d589)
+
+**Palanca de Minecraft de referencia**
+ 
+**-Placas de presión:** Desnivel en el mapa para su notoriedad
+**-Monedas:** Diseño simple de moneda ovalada con el logo en el centro
  
 ![Monedas](https://github.com/carlosmartinhernandez79/juegos_en_red/assets/100692817/31f9f4a6-2f31-494f-afc0-51c7183445c4)
 
-**Moneda ovalada sin logo**
+**Moneda ovalada sin logo de referencia**
+
+
+## MÚSICA Y SONIDO
+
+Respecto a la música, se contará con una de fondo frenética, con la intencionalidad de que nuestros jugadores se pongan nerviosos. Esta música aún no está definida, y se podrá ajustar el volúmen pero no quitarla, puesto que se considera algo necesario e importante en nuestro juego. 
+
+Por otro lado, los sonidos y efectos de sonido que se incluirán son sonido de muerte, de caída, de salto y de andar. Además de otros como las plataformas en movimiento o barriles rodando. 
+
+
 
 
 # TIEMPO, INTERFAZ Y CÁMARA
