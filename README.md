@@ -79,8 +79,6 @@ El diseño será sencillo, colores pastel con una temática medieval.
 
 
 
-
-
 ## HISTORIA
 
 Todo era armonía y felicidad en Grandheim, una rica tierra del norte de Tarin. Allí distintas razas compartían las tierras y entre ellos existía cordialidad y respeto.
@@ -154,12 +152,14 @@ Los jugadores perderán si  se agota el tiempo antes de que hayan llegado a la m
 El juego principalmente será ambientado en una temática medieval y antigua, de la época del auge de los castillos y las mazmorras. Tendrá un toque místico y fantástico.
 Unas de las imágenes de referencia que usaremos para la temática a tomar serían las del disco de música “Hyper Popular” y temática del videojuego “The King of Dragons”, con ese ambiente medieval con enemigos y elementos fantásticos.
 
-![HyperPopular](https://github.com/carlosmartinhernandez79/juegos_en_red/assets/100692817/45df2028-094e-4875-8389-fffea91f7155)"Portada del disco HyperPopular"
+![HyperPopular](https://github.com/carlosmartinhernandez79/juegos_en_red/assets/100692817/45df2028-094e-4875-8389-fffea91f7155)
+
+Portada del disco HyperPopular
 
 
+![KingOfDragons](https://github.com/carlosmartinhernandez79/juegos_en_red/assets/100692817/dce680c9-2243-4099-a3da-0d586cf0e77c)
 
-
-2: Escena final The King of Dragons
+Escena final The King of Dragons
 
 
 
@@ -167,17 +167,16 @@ Unas de las imágenes de referencia que usaremos para la temática a tomar serí
 
 Los colores que se van a utilizar para el juego van a ser colores pasteles y planos, para dar una impresión más de caricatura o cartoon y crear un espacio de juego más amigable y cercano. De esta forma aparte de hacer el juego más llamativo, se adecúa mejor al público al que va dirgido.
 
+![PaletasDeColor](https://github.com/carlosmartinhernandez79/juegos_en_red/assets/100692817/894e5cb3-7fec-4e3f-92fe-94f10b13b45c)
+
+Referencias de paletas de colores a usar
+
 ## PERSONAJES
 En ambos personajes se utilizaran unos diseños simples pero expresivos, que a su mismo tiempo estarán compuestos por colores pasteles y con pequeños detalles relacionados con sus poderes o habilidades especiales.
 
+![Personajes](https://github.com/carlosmartinhernandez79/juegos_en_red/assets/100692817/6f0281e3-3bb8-4abf-8736-9019edccf1d4)
 
-3: Toma referencia colores personajes Hyper Popular
-
-
-
-
-
-
+Toma referencia colores personajes Hyper Popular
 
 
 
@@ -185,15 +184,18 @@ En ambos personajes se utilizaran unos diseños simples pero expresivos, que a s
 
 ### TUK
 Un enano barbudo muy robusto. Posee un gorro de Gnomo que le cubre hasta la nariz y una frondosa barba que simboliza la cantidad de conocimientos y sabiduría que posee. De ropajes llevará un poncho mágico que se iluminará cuando active su poder de empequeñecimiento. 
- 
-4: Gnomos de referencia diseño Tuk
+
+ ![Gnomos](https://github.com/carlosmartinhernandez79/juegos_en_red/assets/100692817/db62a8c8-9943-4cd1-bcac-1239ed61ed84)
+
+ Gnomos de referencia diseño Tuk
 
 
 ### LIAL
 Una elfa fina de pelo plateado, muy ágil y con la una corona de flores que le proporciona la capacidad de realizar el doble salto y cambiará de color al estar activo. Su cuerpo estará cubierto con una hoja gigante procedente de una planta mágica para que no sea tan frágil como los demás elfos y pueda resistir tanto como su compañero Tuk.
 
+![Elfa](https://github.com/carlosmartinhernandez79/juegos_en_red/assets/100692817/1bc45987-f547-4ee9-982f-2edd78eb0ad5)
 
-5: Fanarts de referencia del diseño Lial 
+Fanarts de referencia del diseño Lial 
 
 
 
@@ -205,23 +207,29 @@ Las principales trampas que implementaremos en el jugo serán:
 -Lava: Con colores muy llamativos para que de la sensación de peligro
 -Barriles: Diseño básico de barril con colores oscuros y un logo característico
 
-6: Barriles referencia
+![Barriles](https://github.com/carlosmartinhernandez79/juegos_en_red/assets/100692817/f999459f-d8e1-4d5c-808e-639aba56ef34)
+
+Barriles referencia
 
 A parte de las trampas a lo largo del nivel habrá diversos objetos con los que podremos interactuar o coleccionar:
 	-Botones: Los cuales tendrán una luz roja cuando estén apagados y verde, encendidos
 	-Palancas: Diseño simple con dos estados (derecha/izquierda o arriba/abajo)
 	-Placas de presión: Desnivel en el mapa para su notoriedad
 	-Monedas: Diseño simple de moneda ovalada con el logo en el centro
+ 
+![Monedas](https://github.com/carlosmartinhernandez79/juegos_en_red/assets/100692817/31f9f4a6-2f31-494f-afc0-51c7183445c4)
 
-7: Moneda ovalada sin logo
+Moneda ovalada sin logo
 
 
 # TIEMPO, INTERFAZ Y CÁMARA
 ## TIEMPO
 Como se ha mencionado anteriormente, una de las condiciones de victoria es superar el nivel antes del tiempo establecido. Dicho tiempo se mostrará en pantalla en forma de una barra progresiva que irá disminuyendo y cuanto más se acerque al fin del mismo, irá cogiendo un tono más rojizo. Se está barajando la idea de poner temporizadores a lo largo del nivel para incrementar dicho tiempo.
 
+![Tiempo](https://github.com/carlosmartinhernandez79/juegos_en_red/assets/100692817/b21c8e68-b15a-44b6-9d3c-334ba6faf349)
 
-8: Referencia tiempo nivel
+Referencia tiempo nivel
+
 ## INTERFAZ
 Para el apartado de la interfaz tendremos una pantalla de inicio simple donde podremos tanto elegir en qué modo de juego queremos jugar, configurar el sonido y ver los controles. Una vez iniciado el nivel, la interfaz se reducirá a un menú de pausa con un resume o quit (para seguir jugando o salir del nivel), un contador de las monedas que vayamos recolectando y el temporizador explicado previamente.
 
@@ -238,9 +246,11 @@ Los escenarios serán, al igual que los personajes, de colores pastel y planos.
 
 Algunos de los escenarios que encontraremos, de abajo hacia arriba serán las mazmorras, puerta de entrada principal del castillo, el salón, habitaciones y, finalmente, la parte de las almenas del castillo, donde tienen que llegar nuestros personajes para escapar. 
 
-
-9: Referencia mapa vertical (videojuego Rising hell)
-
+![MapaVertical](https://github.com/carlosmartinhernandez79/juegos_en_red/assets/100692817/4fb3c73e-913b-4b6a-9cb8-261b98dc27e7)
 
 
-10: Referencia mapa vertical (Juego Donkey Kong)
+Referencia mapa vertical (videojuego Rising hell)
+
+![DonkeyKong](https://github.com/carlosmartinhernandez79/juegos_en_red/assets/100692817/7da8e900-fccb-413f-b6aa-f37c970a98cd)
+
+Referencia mapa vertical (Juego Donkey Kong)
