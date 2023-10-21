@@ -136,7 +136,9 @@ Unas de las imágenes de referencia que usaremos para la temática a tomar serí
 
 **Escena final The King of Dragons**
 
+![Cuphead](https://github.com/carlosmartinhernandez79/juegos_en_red/assets/100692817/577af783-73fd-44ce-b8dd-5361ccb969ea)
 
+**Escena de Cuphead**
 
 ## COLOR
 
@@ -153,9 +155,7 @@ En ambos personajes se utilizaran unos diseños simples pero expresivos, que a s
 
 **Toma referencia colores personajes Hyper Popular**
 
-![Cuphead](https://github.com/carlosmartinhernandez79/juegos_en_red/assets/100692817/577af783-73fd-44ce-b8dd-5361ccb969ea)
 
-**Escena de Cuphead**
 
 ### TUK
 Un enano barbudo muy robusto. Posee un gorro de Gnomo que le cubre hasta la nariz y una frondosa barba que simboliza la cantidad de conocimientos y sabiduría que posee. De ropajes llevará un poncho mágico que se iluminará cuando active su poder de empequeñecimiento. 
