@@ -11,7 +11,7 @@ Carlos Martín Hernández (c.martinh.2019@alumnos.urjc.es - carlosmartinhernande
 
 # TOPWER
 
-(/Imagenes/logoURJC.PNG)
+[!](/Imagenes/logoURJC.PNG)
 
 
 Game Design Document
