@@ -28,9 +28,9 @@ Luis Mateos Sánchez
 # ÍNDICE
 
 1.- EQUIPO Y CONCEPTO	
-_1.1 EQUIPO	
+_ 1.1 EQUIPO	
 1.2 CARACTERÍSTICAS DEL JUEGO	
-_1.2.1 HISTORIA	
+_ 1.2.1 HISTORIA	
 1.2.2 CONCEPTO	
 2.- MECÁNICAS Y CONTROLES	
 2.1 MECÁNICAS	
@@ -154,7 +154,7 @@ Unas de las imágenes de referencia que usaremos para la temática a tomar serí
 
 ![HyperPopular](https://github.com/carlosmartinhernandez79/juegos_en_red/assets/100692817/45df2028-094e-4875-8389-fffea91f7155)
 
-Portada del disco HyperPopular
+ Portada del disco HyperPopular
 
 
 ![KingOfDragons](https://github.com/carlosmartinhernandez79/juegos_en_red/assets/100692817/dce680c9-2243-4099-a3da-0d586cf0e77c)
@@ -177,8 +177,6 @@ En ambos personajes se utilizaran unos diseños simples pero expresivos, que a s
 ![Personajes](https://github.com/carlosmartinhernandez79/juegos_en_red/assets/100692817/6f0281e3-3bb8-4abf-8736-9019edccf1d4)
 
 Toma referencia colores personajes Hyper Popular
-
-
 
 
 
