@@ -9,6 +9,8 @@ class Palanca extends Phaser.GameObjects.Sprite{
     }
 
     activarPalanca(){
-        this.destroy();
+        //se triggerea la animación de la palanca
+        //se abre una muerta
+       this.setVisible(false);
     }
 }

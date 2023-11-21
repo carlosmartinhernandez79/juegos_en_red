@@ -54,10 +54,8 @@ class SceneJuego extends Phaser.Scene{
     this.physics.add.collider(this.playerR, platforms);
     this.physics.add.collider(this.playerA, platforms);
     this.physics.add.collider(this.playerA, this.playerR);
-    
 
-    
-    
+    this.physics.add.overlap(this.playerA, this.palanca, tocarPalanca, null, this);
 
     //this.cameras.main.startFollow(this.playerR);
 
@@ -82,16 +80,18 @@ class SceneJuego extends Phaser.Scene{
         repeat: -1
     });
 
-
-
+    this.palanca = new Palanca(this, 1100, window.innerHeight-100); //forma de instanciar las cossa
+    
     this.keySpace = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
+
+    this.wasd = this.input.keyboard.addKeys({ up: 'W', left: 'A', down: 'S', right: 'D' });
+    this.flechas = this.input.keyboard.createCursorKeys();
+
+
     }
 
     update(time, delta){
-      
-    var wasd = this.input.keyboard.addKeys({ up: 'W', left: 'A', down: 'S', right: 'D' });
-    var flechas = this.input.keyboard.createCursorKeys();
-
+    
     var speed = 400;
     var jump= 600;
 
@@ -101,66 +101,134 @@ class SceneJuego extends Phaser.Scene{
     var camaraPosY = (Math.abs(this.playerA.y+this.playerR.y)/2);
 
     this.cameras.main.centerOn(camaraPosX,camaraPosY-300);
-    
 
-    if(this.keySpace.isDown){
-        //añadir palanca
-    var palanca = new Palanca(this, 1100, window.innerHeight-100); //forma de instanciar las cossa
-    }
-
-   //-------MOVIMIENTO PLAYER ROJO-------
-    if (wasd.left.isDown)
+    //-------MOVIMIENTO PLAYER ROJO-------
+    if (this.wasd.left.isDown)
     {
         this.playerR.setVelocityX(-speed);
-    
+
         //this.playerR.anims.play("left", true);
     }
-    else if (wasd.right.isDown)
+    else if (this.wasd.right.isDown)
     {
         this.playerR.setVelocityX(speed);
-       
     
+
         //this.playerR.anims.play('right', true);
     }
     else
     {
         this.playerR.setVelocityX(0);
-    
+
         //this.playerR.anims.play('turn');
     }
-    
-    if (wasd.up.isDown && this.playerR.body.touching.down ) //
+
+    if (this.wasd.up.isDown && this.playerR.body.touching.down ) //
     {
         this.playerR.setVelocityY(-jump);
-    }
-
-
-    //-------MOVIMIENTO PLAYER AZUL-------
-
-
-    if (flechas.left.isDown)
+    }   
+        //-------MOVIMIENTO PLAYER AZUL-------
+    if (this.flechas.left.isDown)
     {
         this.playerA.setVelocityX(-speed);
-    
+
         //player.anims.play('left', true);
     }
-    else if (flechas.right.isDown)
+    else if (this.flechas.right.isDown)
     {
         this.playerA.setVelocityX(speed);
-    
+
         //player.anims.play('right', true);
     }
     else
     {
         this.playerA.setVelocityX(0);
-    
+
         //player.anims.play('turn');
     }
-    
-    if (flechas.up.isDown && this.playerA.body.touching.down ) //
+
+    if (this.flechas.up.isDown && this.playerA.body.touching.down ) //
     {
         this.playerA.setVelocityY(-jump);
     }
+        this.aux(); //llamo a la funcion con el this
     }
+
+
+     aux(){ //creo la funcion DENTRO del propio Scene
+        if(this.wasd.up.isDown){
+            console.log("hla")
+        }
+    }
+
 }
 
+
+function moverPersonajeR(){
+//-------MOVIMIENTO PLAYER ROJO-------
+if (this.wasd.left.isDown)
+{
+    this.playerR.setVelocityX(-speed);
+
+    //this.playerR.anims.play("left", true);
+}
+else if (this.wasd.right.isDown)
+{
+    this.playerR.setVelocityX(speed);
+   
+
+    //this.playerR.anims.play('right', true);
+}
+else
+{
+    this.playerR.setVelocityX(0);
+
+    //this.playerR.anims.play('turn');
+}
+
+if (this.wasd.up.isDown && this.playerR.body.touching.down ) //
+{
+    this.playerR.setVelocityY(-jump);
+}
+}
+
+
+function moverPersonajeA(){
+//-------MOVIMIENTO PLAYER AZUL-------
+
+
+if (this.flechas.left.isDown)
+{
+    this.playerA.setVelocityX(-speed);
+
+    //player.anims.play('left', true);
+}
+else if (flechas.right.isDown)
+{
+    this.playerA.setVelocityX(speed);
+
+    //player.anims.play('right', true);
+}
+else
+{
+    this.playerA.setVelocityX(0);
+
+    //player.anims.play('turn');
+}
+
+if (this.flechas.up.isDown && this.playerA.body.touching.down ) //
+{
+    this.playerA.setVelocityY(-jump);
+}
+
+}
+
+function tocarPalanca(){
+
+    if(this.keySpace.isDown){
+        //añadir palanca
+    //var palanca = new Palanca(this, 1100, window.innerHeight-100); //forma de instanciar las cossa
+    console.log("Gola");
+    this.palanca.setVisible(false);
+    }
+}
