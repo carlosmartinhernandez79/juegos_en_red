@@ -4,10 +4,10 @@ class SceneBootLoader extends Phaser.Scene{
     }
 
     preload(){
-    
-    this.load.on("complete",()=>{
-        this.scene.start("SceneJuego");
-    });
+
+        this.load.on("complete",()=>{
+            this.scene.start("SceneJuego");
+        });
 
     this.load.image("playerRojo", "./ImagesJS/circuloRojo.png");
     this.load.image("stick", "./ImagesJS/stick.png");

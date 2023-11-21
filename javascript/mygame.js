@@ -18,8 +18,8 @@ var config =
     },
 
     scene: [
-        SceneJuego,
-        SceneBootLoader
+        SceneBootLoader,
+        SceneJuego
     ]
 }
 
