@@ -1,3 +1,5 @@
+
+
 class SceneJuego extends Phaser.Scene{
     constructor(){
         super({key: "SceneJuego"});
@@ -40,8 +42,8 @@ class SceneJuego extends Phaser.Scene{
     this.playerR.setScale(2);
 
     //---PLAYER BLUE---
-    this.playerA = this.physics.add.image(window.innerWidth - 170, 110 , "playerAzul");
-    this.playerA.setScale(0.3);
+    this.playerA = this.physics.add.sprite(window.innerWidth - 170, 110, "dude");//this.physics.add.image(window.innerWidth - 170, 110 , "playerAzul");
+    this.playerA.setScale(2);
 
     //---------FISICAS------------
     this.playerR.setCollideWorldBounds(true);
@@ -53,31 +55,36 @@ class SceneJuego extends Phaser.Scene{
     this.physics.add.collider(this.playerA, platforms);
     this.physics.add.collider(this.playerA, this.playerR);
     
+
     
+    
+
     //this.cameras.main.startFollow(this.playerR);
 
     //ANIMATIONS
-
     this.anims.create({
-        key: "left",
-        frames: this.anims.generateFrameNumbers("dude", { start: 0, end: 3 }),
+        key: 'left',
+        frames: this.anims.generateFrameNumbers('dude', { start: 0, end: 3 }),
         frameRate: 10,
         repeat: -1
     });
     
     this.anims.create({
-        key: "turn",
-        frames: [ { key: "dude", frame: 4 } ],
+        key: 'turn',
+        frames: [ { key: 'dude', frame: 4 } ],
         frameRate: 20
     });
     
     this.anims.create({
-        key: "right",
-        frames: this.anims.generateFrameNumbers("dude", { start: 5, end: 8 }),
+        key: 'right',
+        frames: this.anims.generateFrameNumbers('dude', { start: 5, end: 8 }),
         frameRate: 10,
         repeat: -1
     });
 
+
+
+    this.keySpace = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
     }
 
     update(time, delta){
@@ -89,7 +96,17 @@ class SceneJuego extends Phaser.Scene{
     var jump= 600;
 
     //ACTUALIZACIÓN DE LA CAMARA
-    this.cameras.main.centerOn((Math.abs(this.playerA.x+this.playerR.x)/2), (Math.abs(this.playerA.y+this.playerR.y)/2) );
+
+    var camaraPosX = (Math.abs(this.playerA.x+this.playerR.x)/2);
+    var camaraPosY = (Math.abs(this.playerA.y+this.playerR.y)/2);
+
+    this.cameras.main.centerOn(camaraPosX,camaraPosY-300);
+    
+
+    if(this.keySpace.isDown){
+        //añadir palanca
+    var palanca = new Palanca(this, 1100, window.innerHeight-100); //forma de instanciar las cossa
+    }
 
    //-------MOVIMIENTO PLAYER ROJO-------
     if (wasd.left.isDown)
