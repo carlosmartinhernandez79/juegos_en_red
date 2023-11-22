@@ -2,9 +2,9 @@ var config  = {
     width: 1440,
     height: 810,
     backgroundColor: 0xFCF3CF,
+    scene:[StartScreen]
 }
 
 
-window.onload=function(){
-    var game = new Phaser.Game(config);
-}
+
+var game = new Phaser.Game(config);
