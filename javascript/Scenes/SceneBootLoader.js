@@ -1,6 +1,6 @@
 class SceneBootLoader extends Phaser.Scene{
     constructor(){
-        super({key: "SceneBootLoader", active : true});
+        super({key: "SceneBootLoader"});
     }
 
     preload(){

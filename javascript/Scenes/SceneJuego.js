@@ -34,6 +34,7 @@ class SceneJuego extends Phaser.Scene{
     }
 
     create(){
+    this.add.text(720, 20, "Level1", {font: "25px Arial", fill: "black"})
 
     this.physics.world.bounds.width = 4000;
     this.physics.world.bounds.height = 4000;
