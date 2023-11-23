@@ -14,8 +14,16 @@ var config  = {
         }
     },
 
-    scene:[StartScreen, LogIn, Credits, Options, LevelSelector, Level1,  SceneBootLoader,
-        SceneJuego]
+    scene:[
+        SceneBootLoader,
+        StartScreen, 
+        LogIn, 
+        Credits, 
+        Options, 
+        LevelSelector, 
+        Level1, 
+        SceneJuego
+        ]
 }
 
 
