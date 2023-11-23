@@ -131,6 +131,10 @@ class SceneJuego extends Phaser.Scene{
 
     //FISICAS DEL ELFO
     this.physics.add.collider(this.elfo, platforms);
+    this.physics.add.collider(this.elfo, platforms);
+    this.physics.add.collider(this.elfo, this.gnomo1);
+    this.physics.add.collider(this.elfo, this.platformsMovibles);
+    this.physics.add.overlap(this.elfo, this.palancas, this.aux); 
 
     }
 
@@ -138,13 +142,13 @@ class SceneJuego extends Phaser.Scene{
 
     //ACTUALIZACIÓN DE LA CAMARA
 
-    var camaraPosX = (Math.abs(this.playerA.x+this.playerR.x)/2);
-    var camaraPosY = (Math.abs(this.playerA.y+this.playerR.y)/2);
+    var camaraPosX = (Math.abs(this.elfo.x+this.gnomo1.x)/2);
+    var camaraPosY = (Math.abs(this.elfo.y+this.gnomo1.y)/2);
 
     this.cameras.main.centerOn(camaraPosX,camaraPosY-300);
 
     //MOVIMIENTO DEDL PERSONAJE
-    this.moverPersonajeA();
+    //this.moverPersonajeA();
     //this.moverPersonajeR();
 
     this.gnomo1.move();
@@ -165,63 +169,4 @@ class SceneJuego extends Phaser.Scene{
       console.log("has activado la palanca")
 
     }
-
-    moverPersonajeR(){
-        //-------MOVIMIENTO PLAYER ROJO-------
-        if (this.wasd.left.isDown)
-        {
-            this.playerR.setVelocityX(-this.speed);
-        
-            this.playerR.anims.play("left", true);
-        }
-        else if (this.wasd.right.isDown)
-        {
-            this.playerR.setVelocityX(this.speed);
-           
-        
-            this.playerR.anims.play('right', true);
-        }
-        else
-        {
-            this.playerR.setVelocityX(0);
-        
-            this.playerR.anims.play('turn');
-        }
-        
-        if (this.wasd.up.isDown && this.playerR.body.touching.down ) //
-        {
-            this.playerR.setVelocityY(-this.jump);
-        }
-    }
-
-    moverPersonajeA(){
-        //-------MOVIMIENTO PLAYER AZUL-------
-        
-        
-        if (this.flechas.left.isDown)
-        {
-            this.playerA.setVelocityX(-this.speed);
-        
-            this.playerA.anims.play('left', true);
-        }
-        else if (this.flechas.right.isDown)
-        {
-            this.playerA.setVelocityX(this.speed);
-        
-            this.playerA.anims.play('right', true);
-        }
-        else
-        {
-            this.playerA.setVelocityX(0);
-        
-            this.playerA.anims.play('turn');
-        }
-        
-        if (this.flechas.up.isDown && this.playerA.body.touching.down ) //
-        {
-            this.playerA.setVelocityY(-this.jump);
-        }
-        
-    }
-
 }

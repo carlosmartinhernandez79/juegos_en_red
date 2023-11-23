@@ -11,6 +11,11 @@ class Elfo extends Phaser.GameObjects.Sprite{
 
         this.flechas = scene.input.keyboard.createCursorKeys();
 
+        this.canDoubleJump = 0;
+
+
+        //const isJumpJustDown = Phaser.Input.Keyboard.JustDown(this.flechas.up)
+
         //ANIMATIONS DEL MUÑECO
         this.anims.create({
             key: 'left',
@@ -57,9 +62,18 @@ class Elfo extends Phaser.GameObjects.Sprite{
             this.elfo.anims.play('turn');
         }
         
-        if (this.flechas.up.isDown && this.body.touching.down ) //
+        //this.sp = Phaser.Input.Keyboard.JustDown(this.spacebar)
+
+        //DOBLE SALTO HECHO GRACIAS A: https://www.youtube.com/watch?v=j1Y75isZ1oM
+        if (this.flechas.up.isDown && (this.body.touching.down || this.canDoubleJump<=1)) //
         {
             this.body.setVelocityY(-600);
+            ++this.canDoubleJump;
+            console.log(this.canDoubleJump)
+
         }  
+        if(this.body.touching.down){
+            this.canDoubleJump = 0;
+        }
     }
 }
