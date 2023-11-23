@@ -1,6 +1,6 @@
 var config  = {
-    width: 1440,
-    height: 810,
+    width: 1800,
+    height: 1200,
     backgroundColor: 0xFCF3CF,
 
     type: Phaser.AUTO,
