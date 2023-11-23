@@ -1,4 +1,19 @@
+/*
+TO DO LIST:
 
+-Clase Elfo 
+-Clase Gnomo
+
+-Que puedan morir
+-Que detecten pinchos/x/y --> y que se mueran
+
+Funcionalidades de cada personaje
+Elfo doble salto
+Gnomo se hace pequeño 
+
+Que se mueran cuando uno de los dos salga de camara
+
+*/
 
 class SceneJuego extends Phaser.Scene{
     constructor(){
@@ -48,28 +63,30 @@ class SceneJuego extends Phaser.Scene{
     //---PLATAFORMAS---
     platforms = this.physics.add.staticGroup();
     platforms.setOrigin(0,1);
-    platforms.create(0, window.innerHeight-50, 'ground').setScale(100,2).refreshBody();;
-    platforms.create(50, 250, 'ground');
+    platforms.create(0, config.height, 'ground').setScale(10,2).refreshBody();;
+    //platforms.create(50, 250, 'ground');
     platforms.create(750, 200, 'ground');
 
     //---PLATAFORMAS MOVIBLES---
     this.platformsMovibles = this.add.group(); //creo un grupo de plataformasMovibles
 
     //creo dos instancia, da igual donde las guarde, porque se gestionará su funcionaldidad desde el grupo platformsMovibles (se añaden desde la propia clase)
-    this.platMovible = new PlataformaMovil(this, 50, 1200,"horizontal", 1000, 50, 400); 
-    this.platMovible2 = new PlataformaMovil(this, 1200, 1200,"vertical", 1200, 400, 400);
-
-    //---TREE---
-    this.tree = this.add.image(this.sys.game.config.width/2, 120 , "tree");
-    this.tree.setOrigin(0.5,0);
-    this.tree.setScale(0.25);
+    this.platMovible = new PlataformaMovil(this, 50, 200,"horizontal", 375, 0, 200); 
+    this.platMovible2 = new PlataformaMovil(this, 1200, 1150,"vertical", (config.height-50), 200, 200);
 
 
     //---PLAYER RED---
     //this.playerR = this.physics.add.image(100,100, "playerRojo");
 
+    this.gnomo1 = new Gnomo(this, 400, 400);
+    this.physics.add.collider(this.gnomo1, platforms);
+
+    this.elfo = new Elfo(this, 700, 400);
+
+    //this.gnomo1.setBounce(0.3);
+
     this.playerR = this.physics.add.sprite(100, 450, "dude");
-    this.playerR.setScale(2);
+    //this.playerR.setScale(2);
 
     //---PLAYER BLUE---
     this.playerA = this.physics.add.sprite(window.innerWidth - 170, 110, "dude");//this.physics.add.image(window.innerWidth - 170, 110 , "playerAzul");
@@ -86,10 +103,10 @@ class SceneJuego extends Phaser.Scene{
 
 
     //---------FISICAS------------
-    this.playerR.setCollideWorldBounds(true);
+   // this.playerR.setCollideWorldBounds(true);
     this.playerA.setCollideWorldBounds(true);
     this.playerA.setBounce(0.3);
-    this.playerR.setBounce(0.3);
+    //this.playerR.setBounce(0.3);
 
     this.physics.add.collider(this.playerR, platforms);
     this.physics.add.collider(this.playerA, platforms);
@@ -105,6 +122,16 @@ class SceneJuego extends Phaser.Scene{
 
     //this.cameras.main.startFollow(this.playerR);
 
+    //FISICAS DEL GNOMO
+    this.physics.add.collider(this.gnomo1, platforms);
+    this.physics.add.collider(this.gnomo1, platforms);
+    this.physics.add.collider(this.playerA, this.gnomo1);
+    this.physics.add.collider(this.gnomo1, this.platformsMovibles);
+    this.physics.add.overlap(this.gnomo1, this.palancas, this.aux); 
+
+    //FISICAS DEL ELFO
+    this.physics.add.collider(this.elfo, platforms);
+
     }
 
     update(time, delta){
@@ -118,7 +145,10 @@ class SceneJuego extends Phaser.Scene{
 
     //MOVIMIENTO DEDL PERSONAJE
     this.moverPersonajeA();
-    this.moverPersonajeR();
+    //this.moverPersonajeR();
+
+    this.gnomo1.move();
+    this.elfo.move();
 
     //MOVIMIENTO DE LA PLATAFORMA
     for(var i = 0; i < this.platformsMovibles.getChildren().length; i++){
@@ -129,8 +159,6 @@ class SceneJuego extends Phaser.Scene{
     //GESTION DE LAS PALANCAS
 
     }
-
-
 
     aux(){ //creo la funcion DENTRO del propio Scene
        
