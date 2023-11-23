@@ -8,7 +8,7 @@ class SceneJuego extends Phaser.Scene{
     preload(){
         console.log("Se ha cargado la escena del juego")
 
-         //ANIMATIONS
+         //ANIMATIONS DEL MUÑECO
     this.anims.create({
         key: 'left',
         frames: this.anims.generateFrameNumbers('dude', { start: 0, end: 3 }),
@@ -41,7 +41,7 @@ class SceneJuego extends Phaser.Scene{
     var playerR;
     var playerA;
     var platforms;
-
+    
     this.cameras.main.setBounds(0,0,4000,4000);
 
     //---PLATAFORMAS---
@@ -51,7 +51,12 @@ class SceneJuego extends Phaser.Scene{
     platforms.create(50, 250, 'ground');
     platforms.create(750, 200, 'ground');
 
-    this.platMovible = new PlataformaMovil(this, 50, window.innerHeight-200, 'ground');
+    //---PLATAFORMAS MOVIBLES---
+    this.platformsMovibles = this.add.group(); //creo un grupo de plataformasMovibles
+
+    //creo dos instancia, da igual donde las guarde, porque se gestionará su funcionaldidad desde el grupo platformsMovibles (se añaden desde la propia clase)
+    this.platMovible = new PlataformaMovil(this, 50, 1200,"horizontal", 1000, 50, 400); 
+    this.platMovible2 = new PlataformaMovil(this, 1200, 1200,"vertical", 1200, 400, 400);
 
     //---TREE---
     this.tree = this.add.image(this.sys.game.config.width/2, 120 , "tree");
@@ -67,11 +72,13 @@ class SceneJuego extends Phaser.Scene{
 
     //---PLAYER BLUE---
     this.playerA = this.physics.add.sprite(window.innerWidth - 170, 110, "dude");//this.physics.add.image(window.innerWidth - 170, 110 , "playerAzul");
-    this.playerA.setScale(2);
+    this.playerA.setScale(4);
 
-    //--CONTROLES Y PALANCAS--
-    this.palanca = new Palanca(this, 1100, window.innerHeight-100); //forma de instanciar las cossa
-
+    //--PALANCAS--
+    this.palancas = this.add.group();
+    this.p = new Palanca(this, 1200, window.innerHeight-300); //forma de instanciar las cossa
+    this.p = new Palanca(this, 40, window.innerHeight-300); //forma de instanciar las cossa
+    //---CONTROLES---
     this.wasd = this.input.keyboard.addKeys({ up: 'W', left: 'A', down: 'S', right: 'D' });
     this.flechas = this.input.keyboard.createCursorKeys();
     this.keySpace = this.input.keyboard.addKey("SPACE")
@@ -87,11 +94,13 @@ class SceneJuego extends Phaser.Scene{
     this.physics.add.collider(this.playerA, platforms);
     this.physics.add.collider(this.playerA, this.playerR);
 
-    this.physics.add.collider(this.playerA, this.platMovible);
-    this.physics.add.collider(this.playerR, this.platMovible);
+    //--CHOQUE CON LAS PLATSMOVIBLES
+    this.physics.add.collider(this.playerA, this.platformsMovibles);
+    this.physics.add.collider(this.playerR, this.platformsMovibles);
 
-    this.physics.add.overlap(this.playerA, this.palanca, this.tocarPalanca); //no fufa idk why
-    this.physics.add.overlap(this.playerR, this.palanca, this.tocarPalanca); //same here
+    //quiero que cuando esté encima, y pulse el espacio, se llame a la función activar palanca de la palanca sobre la que ha pulsado el espacio.
+    this.physics.add.overlap(this.playerA, this.palancas, this.aux); 
+    this.physics.add.overlap(this.playerR, this.palancas, this.aux); 
 
     //this.cameras.main.startFollow(this.playerR);
 
@@ -106,17 +115,26 @@ class SceneJuego extends Phaser.Scene{
 
     this.cameras.main.centerOn(camaraPosX,camaraPosY-300);
 
+    //MOVIMIENTO DEDL PERSONAJE
     this.moverPersonajeA();
     this.moverPersonajeR();
-    
+
+    //MOVIMIENTO DE LA PLATAFORMA
+    for(var i = 0; i < this.platformsMovibles.getChildren().length; i++){
+        var plat = this.platformsMovibles.getChildren()[i];
+        plat.update();
+    }
+
+    //GESTION DE LAS PALANCAS
+
     }
 
 
-    tocarPalanca(){ //creo la funcion DENTRO del propio Scene
-        
-        if(keySpace.isDown){
-            console.log("haha")
-        }
+
+    aux(){ //creo la funcion DENTRO del propio Scene
+       
+      console.log("has activado la palanca")
+
     }
 
     moverPersonajeR(){
