@@ -3,7 +3,7 @@ class SceneBootLoader extends Phaser.Scene{
         super({key: "SceneBootLoader"});
     }
 
-    preload(){
+    /*preload(){
 
         this.load.on("complete",()=>{
             this.scene.start("SceneJuego");
@@ -18,5 +18,5 @@ class SceneBootLoader extends Phaser.Scene{
         { frameWidth: 32, frameHeight: 48 }
     );
 
-    }
+    }*/
 }

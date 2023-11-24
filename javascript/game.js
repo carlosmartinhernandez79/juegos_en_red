@@ -15,14 +15,14 @@ var config  = {
     },
 
     scene:[
-        SceneBootLoader,
         StartScreen, 
         LogIn, 
         Credits, 
         Options, 
         LevelSelector, 
         Level1, 
-        SceneJuego
+        //SceneJuego,
+        SceneBootLoader
         ]
 }
 
@@ -30,10 +30,7 @@ var config  = {
 
 var game = new Phaser.Game(config);
 
-function preload() {
-    // Puedes precargar recursos aquí si es necesario
-}
-
-// Su puta madre
-
+/*function create(){
+    game.scene
+}*/
 
