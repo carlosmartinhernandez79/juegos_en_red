@@ -1,6 +1,6 @@
 var config  = {
-    width: 1200,
-    height: 600,
+    width: 3000,
+    height: 1000,
     backgroundColor: 0xFCF3CF,
 
     type: Phaser.AUTO,
@@ -22,7 +22,7 @@ var config  = {
         Options, 
         LevelSelector, 
         Level1, 
-        SceneJuego
+        SceneJuego,
         ]
 }
 

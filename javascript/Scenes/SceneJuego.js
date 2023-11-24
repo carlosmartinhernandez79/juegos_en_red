@@ -53,9 +53,7 @@ class SceneJuego extends Phaser.Scene{
 
     this.physics.world.bounds.width = 4000;
     this.physics.world.bounds.height = 4000;
-    
-    var playerR;
-    var playerA;
+
     var platforms;
     
     this.cameras.main.setBounds(0,0,4000,4000);
@@ -63,78 +61,52 @@ class SceneJuego extends Phaser.Scene{
     //---PLATAFORMAS---
     platforms = this.physics.add.staticGroup();
     platforms.setOrigin(0,1);
-    platforms.create(0, config.height, 'ground').setScale(10,2).refreshBody();;
+    platforms.create(0, 3800, 'ground').setScale(10,2).refreshBody();;
     //platforms.create(50, 250, 'ground');
-    platforms.create(750, 200, 'ground');
+    platforms.create(4000, 3800, 'ground');
+    platforms.create(140, 3300, 'ground');
 
     //---PLATAFORMAS MOVIBLES---
     this.platformsMovibles = this.add.group(); //creo un grupo de plataformasMovibles
 
     //creo dos instancia, da igual donde las guarde, porque se gestionará su funcionaldidad desde el grupo platformsMovibles (se añaden desde la propia clase)
-    this.platMovible = new PlataformaMovil(this, 50, 200,"horizontal", 375, 0, 200); 
-    this.platMovible2 = new PlataformaMovil(this, 1200, 1150,"vertical", (config.height-50), 200, 200);
+    this.platMovible = new PlataformaMovil(this, 50, 3500,"horizontal", 375, 0, 200); 
+    this.platMovible2 = new PlataformaMovil(this, 1200, 3800,"vertical", 3800, 3500, 200);
 
+    
+    //---JUGADORES--
 
-    //---PLAYER RED---
-    //this.playerR = this.physics.add.image(100,100, "playerRojo");
-
-    this.gnomo1 = new Gnomo(this, 400, 400);
-    this.physics.add.collider(this.gnomo1, platforms);
-
-    this.elfo = new Elfo(this, 700, 400);
-
-    //this.gnomo1.setBounce(0.3);
-
-    this.playerR = this.physics.add.sprite(100, 450, "dude");
-    //this.playerR.setScale(2);
-
-    //---PLAYER BLUE---
-    this.playerA = this.physics.add.sprite(window.innerWidth - 170, 110, "dude");//this.physics.add.image(window.innerWidth - 170, 110 , "playerAzul");
-    this.playerA.setScale(4);
+    this.gnomo1 = new Gnomo(this, 400, 3600);
+    this.elfo = new Elfo(this, 700, 3600);
 
     //--PALANCAS--
-    this.palancas = this.add.group();
-    this.p = new Palanca(this, 1200, window.innerHeight-300); //forma de instanciar las cossa
-    this.p = new Palanca(this, 40, window.innerHeight-300); //forma de instanciar las cossa
-    //---CONTROLES---
-    this.wasd = this.input.keyboard.addKeys({ up: 'W', left: 'A', down: 'S', right: 'D' });
-    this.flechas = this.input.keyboard.createCursorKeys();
-    this.keySpace = this.input.keyboard.addKey("SPACE")
-
+    this.misPalancas = this.add.group();
+    this.p = new Palanca(this, 1200, 3700); //forma de instanciar las cossa
+    console.log(this.misPalancas)
+    //this.p = new Palanca(this, 40, window.innerHeight-300); //forma de instanciar las cossa
 
     //---------FISICAS------------
-   // this.playerR.setCollideWorldBounds(true);
-    this.playerA.setCollideWorldBounds(true);
-    this.playerA.setBounce(0.3);
-    //this.playerR.setBounce(0.3);
-
-    this.physics.add.collider(this.playerR, platforms);
-    this.physics.add.collider(this.playerA, platforms);
-    this.physics.add.collider(this.playerA, this.playerR);
-
-    //--CHOQUE CON LAS PLATSMOVIBLES
-    this.physics.add.collider(this.playerA, this.platformsMovibles);
-    this.physics.add.collider(this.playerR, this.platformsMovibles);
-
-    //quiero que cuando esté encima, y pulse el espacio, se llame a la función activar palanca de la palanca sobre la que ha pulsado el espacio.
-    this.physics.add.overlap(this.playerA, this.palancas, this.aux); 
-    this.physics.add.overlap(this.playerR, this.palancas, this.aux); 
-
+ 
     //this.cameras.main.startFollow(this.playerR);
 
     //FISICAS DEL GNOMO
     this.physics.add.collider(this.gnomo1, platforms);
     this.physics.add.collider(this.gnomo1, platforms);
-    this.physics.add.collider(this.playerA, this.gnomo1);
+    this.physics.add.collider(this.elfo, this.gnomo1);
     this.physics.add.collider(this.gnomo1, this.platformsMovibles);
-    this.physics.add.overlap(this.gnomo1, this.palancas, this.aux); 
+    this.physics.add.overlap(this.gnomo1, this.misPalancas, this.aux); 
+    this.gnomo1.body.setCollideWorldBounds(true);
+    this.gnomo1.body.setBounce(0.3);
 
     //FISICAS DEL ELFO
     this.physics.add.collider(this.elfo, platforms);
     this.physics.add.collider(this.elfo, platforms);
     this.physics.add.collider(this.elfo, this.gnomo1);
     this.physics.add.collider(this.elfo, this.platformsMovibles);
-    this.physics.add.overlap(this.elfo, this.palancas, this.aux); 
+    this.physics.add.overlap(this.elfo, this.misPalancas, this.aux); 
+
+    this.elfo.body.setCollideWorldBounds(true);
+    this.elfo.body.setBounce(0.3);
 
     }
 
@@ -145,7 +117,7 @@ class SceneJuego extends Phaser.Scene{
     var camaraPosX = (Math.abs(this.elfo.x+this.gnomo1.x)/2);
     var camaraPosY = (Math.abs(this.elfo.y+this.gnomo1.y)/2);
 
-    this.cameras.main.centerOn(camaraPosX,camaraPosY-300);
+    this.cameras.main.centerOn(camaraPosX,camaraPosY);
 
     //MOVIMIENTO DEDL PERSONAJE
     //this.moverPersonajeA();
@@ -153,6 +125,7 @@ class SceneJuego extends Phaser.Scene{
 
     this.gnomo1.move();
     this.elfo.move();
+    this.die();
 
     //MOVIMIENTO DE LA PLATAFORMA
     for(var i = 0; i < this.platformsMovibles.getChildren().length; i++){
@@ -161,12 +134,47 @@ class SceneJuego extends Phaser.Scene{
     }
 
     //GESTION DE LAS PALANCAS
+   
 
     }
 
     aux(){ //creo la funcion DENTRO del propio Scene
        
-      console.log("has activado la palanca")
+        //NO DETECTA EL GROUPE MISPALANCAS AQUÍ
+        console.log(this.misPalancas)
+        for(var i = 0; i < this.misPalancas.getChildren().length; i++){
+            //var plat = this.palancas.getChildren()[i];
 
+           
+            console.log("hola")
+
+            //RECORRO TODOS Y ACTIVO SOLO AQUELLAS SOBRE LAS QUE ESTÉ ENCIMA, NO TODAS --> O AQUELLAS CUYA POS COINCIDA CON LA DEL MISTER
+        }
+    }
+
+    die(){
+        if(this.elfo.y>3900 || this.gnomo1.y>3900 || this.isTooFar()){
+            console.log("Elfo sa matao")
+            this.scene.start();
+        }
+    }
+
+    isTooFar(){
+
+        var itIs = false;
+
+        if(Math.abs(this.gnomo1.x - this.elfo.x)> 1300){
+            console.log("muy lejos")
+            this.scene.start();
+            itIs=true;
+        }
+
+        if(Math.abs(this.gnomo1.y - this.elfo.y)> 650){
+            console.log("muy lejos")
+            this.scene.start();
+            itIs=true;
+        }
+
+        return itIs;
     }
 }

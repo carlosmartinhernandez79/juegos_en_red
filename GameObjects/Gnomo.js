@@ -3,6 +3,8 @@ class Gnomo extends Phaser.GameObjects.Sprite{
 
         super(scene,x,y,"dude");
 
+        //
+
         this.gnomo = scene.add.existing(this);
 
         this.gnomo.scene.physics.world.enableBody(this);
@@ -67,15 +69,14 @@ class Gnomo extends Phaser.GameObjects.Sprite{
         //PREGUNTARLE ESTO
         if (this.wasd.q.isDown && this.gnomo.scale == 1)
         {
-            this.gnomo.setPosition(this.gnomo.x,this.gnomo.y-20); //subirle el tamaño del sprite
+            //this.gnomo.setPosition(this.gnomo.x,this.gnomo.y-20); //subirle el tamaño del sprite
+            this.body.setVelocityY(-300);
             this.gnomo.setScale(2);
         }
 
        if (this.wasd.e.isDown && this.gnomo.scale == 2)
         {     
             this.gnomo.setScale(1);
-        }
-      
-       
+        }   
     }
 }

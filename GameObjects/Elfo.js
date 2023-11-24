@@ -3,6 +3,8 @@ class Elfo extends Phaser.GameObjects.Sprite{
 
         super(scene,x,y,"dude");
 
+        this.scenav = scene;
+
         this.elfo = scene.add.existing(this);
 
         this.elfo.scene.physics.world.enableBody(this);
@@ -51,8 +53,7 @@ class Elfo extends Phaser.GameObjects.Sprite{
         else if (this.flechas.right.isDown)
         {
             this.body.setVelocityX(400);
-           
-        
+
             this.elfo.anims.play('right', true);
         }
         else

@@ -1,5 +1,5 @@
 class Palanca extends Phaser.GameObjects.Sprite{
-    constructor(scene,x,y,name){
+    constructor(scene,x,y){
 
         super(scene,x,y,"stick");
 
@@ -8,7 +8,7 @@ class Palanca extends Phaser.GameObjects.Sprite{
         scene.physics.world.enableBody(this);
         this.body.setAllowGravity(false) //workds;
         
-        scene.palancas.add(this)
+        scene.misPalancas.add(this)
         //scene.physics.add.existing(this, true); //lo hace static pero con physics
 
         //scene.physics.world.enableBody(this);
@@ -22,6 +22,5 @@ class Palanca extends Phaser.GameObjects.Sprite{
         //se triggerea la animación de la palanca
         //se abre una muerta
         console.log("muerta")
-       this.setVisible(false);
     }
 }

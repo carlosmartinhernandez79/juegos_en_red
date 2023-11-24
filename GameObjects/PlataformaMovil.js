@@ -45,7 +45,6 @@ class PlataformaMovil extends Phaser.GameObjects.Sprite{
 
             //para que no se puedan parar las plataformas con fuerzas dfe los personajes
             if(Math.abs(this.body.velocity.x)<this.velv){
-                console.log("ajaj")
                 this.body.setVelocityX(this.velv)
             }
         }
@@ -63,10 +62,5 @@ class PlataformaMovil extends Phaser.GameObjects.Sprite{
                 this.body.setVelocityY(this.velv)
             }
         }
-
-        
-        
-
-    }
-    
+    }   
 }
