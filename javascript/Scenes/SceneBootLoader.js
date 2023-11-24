@@ -3,7 +3,7 @@ class SceneBootLoader extends Phaser.Scene{
         super({key: "SceneBootLoader"});
     }
 
-    /*preload(){
+    preload(){
 
         this.load.on("complete",()=>{
             this.scene.start("SceneJuego");
@@ -14,9 +14,9 @@ class SceneBootLoader extends Phaser.Scene{
     this.load.image("playerAzul", "./ImagesJS/circuloAzul.png");
     this.load.image("tree", "./ImagesJS/tree.png");
     this.load.image("ground", "./ImagesJS/ground.png");
+    this.load.image("background", "./assets/fondoProvisional.jpg")
     this.load.spritesheet("dude", "./ImagesJS/dude.png",
         { frameWidth: 32, frameHeight: 48 }
     );
-
-    }*/
+    }
 }

@@ -21,8 +21,9 @@ var config  = {
         Options, 
         LevelSelector, 
         Level1, 
-        //SceneJuego,
-        SceneBootLoader
+        SceneJuego,
+        SceneBootLoader, 
+        TestGround
         ]
 }
 

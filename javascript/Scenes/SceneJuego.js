@@ -45,12 +45,19 @@ class SceneJuego extends Phaser.Scene{
     
     this.cameras.main.setBounds(0,0,4000,4000);
 
+
+    // --FONDO--
+    let fondo = this.add.image(0, 0, 'background').setOrigin(0, 0);
+
     //---PLATAFORMAS---
     platforms = this.physics.add.staticGroup();
     platforms.setOrigin(0,1);
-    platforms.create(0, window.innerHeight-50, 'ground').setScale(100,2).refreshBody();;
+    platforms.create(0, window.innerHeight-50, 'ground').setScale(50,2).refreshBody();;
     platforms.create(50, 250, 'ground');
     platforms.create(750, 200, 'ground');
+
+    // -- PAREDES--
+    
 
     //---PLATAFORMAS MOVIBLES---
     this.platformsMovibles = this.add.group(); //creo un grupo de plataformasMovibles
@@ -63,6 +70,7 @@ class SceneJuego extends Phaser.Scene{
     this.tree = this.add.image(this.sys.game.config.width/2, 120 , "tree");
     this.tree.setOrigin(0.5,0);
     this.tree.setScale(0.25);
+    //this.tree.sendToBack();
 
 
     //---PLAYER RED---
@@ -72,7 +80,7 @@ class SceneJuego extends Phaser.Scene{
     this.playerR.setScale(2);
 
     //---PLAYER BLUE---
-    this.playerA = this.physics.add.sprite(window.innerWidth - 170, 110, "dude");//this.physics.add.image(window.innerWidth - 170, 110 , "playerAzul");
+    this.playerA = this.physics.add.sprite(200, 450, "dude");//this.physics.add.image(window.innerWidth - 170, 110 , "playerAzul");
     this.playerA.setScale(4);
 
     //--PALANCAS--
@@ -96,8 +104,11 @@ class SceneJuego extends Phaser.Scene{
     this.physics.add.collider(this.playerA, this.playerR);
 
     //--CHOQUE CON LAS PLATSMOVIBLES
-    this.physics.add.collider(this.playerA, this.platformsMovibles);
-    this.physics.add.collider(this.playerR, this.platformsMovibles);
+    this.physics.add.collider(this.playerA, this.platformsMovibles, this.colisionHandler, null, this);
+    this.physics.add.collider(this.playerR, this.platformsMovibles, this.colisionHandler, null, this);
+    this.physics.world.checkCollision.down = false;
+    //         this.physics.add.collider(this.jugador, this.plataforma, this.colisionHandler, null, this);
+
 
     //quiero que cuando esté encima, y pulse el espacio, se llame a la función activar palanca de la palanca sobre la que ha pulsado el espacio.
     this.physics.add.overlap(this.playerA, this.palancas, this.aux); 
@@ -107,6 +118,14 @@ class SceneJuego extends Phaser.Scene{
 
     }
 
+    colisionHandler(playerA, platformsMovibles) {
+        // Verificar si el jugador está encima de la plataforma
+        if (playerA.y < platformsMovibles.y) {
+            // El jugador está encima de la plataforma, detener el movimiento hacia abajo
+            playerA.setVelocityY(0);
+        }
+    }
+
     update(time, delta){
 
     //ACTUALIZACIÓN DE LA CAMARA
@@ -114,7 +133,8 @@ class SceneJuego extends Phaser.Scene{
     var camaraPosX = (Math.abs(this.playerA.x+this.playerR.x)/2);
     var camaraPosY = (Math.abs(this.playerA.y+this.playerR.y)/2);
 
-    this.cameras.main.centerOn(camaraPosX,camaraPosY-300);
+    //this.cameras.main.centerOn(camaraPosX,camaraPosY-300);
+    this.cameras.main.centerOn(camaraPosX,camaraPosY);
 
     //MOVIMIENTO DEDL PERSONAJE
     this.moverPersonajeA();
