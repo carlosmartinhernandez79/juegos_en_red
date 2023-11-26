@@ -177,8 +177,7 @@ class SceneJuego extends Phaser.Scene{
 
     die(){
         if(this.elfo.y>3900 || this.gnomo1.y>3900 || this.isTooFar()){
-            console.log("Elfo sa matao")
-            this.scene.start();
+            this.resetGame();
         }
     }
 
@@ -199,5 +198,9 @@ class SceneJuego extends Phaser.Scene{
         }
 
         return itIs;
+    }
+
+    resetGame(){
+        this.scene.start();
     }
 }
