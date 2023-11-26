@@ -42,6 +42,7 @@ class SceneJuego extends Phaser.Scene{
     var playerR;
     var playerA;
     var platforms;
+    var walls;
     
     this.cameras.main.setBounds(0,0,4000,4000);
 
@@ -96,8 +97,8 @@ class SceneJuego extends Phaser.Scene{
     //---------FISICAS------------
     this.playerR.setCollideWorldBounds(true);
     this.playerA.setCollideWorldBounds(true);
-    this.playerA.setBounce(0.3);
-    this.playerR.setBounce(0.3);
+    this.playerA.setBounce(0.05);
+    this.playerR.setBounce(0.05);
 
     this.physics.add.collider(this.playerR, platforms);
     this.physics.add.collider(this.playerA, platforms);
