@@ -58,6 +58,23 @@ class SceneJuego extends Phaser.Scene{
     
     this.cameras.main.setBounds(0,0,4000,4000);
 
+    //---PLATAFORMAS MOVIBLES---
+    this.platformsMovibles = this.add.group(); //creo un grupo de plataformasMovibles
+
+    //creo dos instancia, da igual donde las guarde, porque se gestionará su funcionaldidad desde el grupo platformsMovibles (se añaden desde la propia clase)
+    this.platMovible = new PlataformaMovil(this, 50, 3500,"horizontal", 375, 0, 200); 
+    this.platMovible2 = new PlataformaMovil(this, 1200, 3800,"vertical", 3800, 3500, 0);
+    //this.platMovible3 = new PlataformaMovil(this, 1200, 3800,"vertical", 3800, 3500, 200);
+
+    //--PUERTAS--
+    this.doors = this.add.group()
+
+    this.puerta1 = new Puerta(this, 1500, 3500);
+
+    //--PALANCAS--
+    this.misPalancas = this.add.group();
+    this.p = new Palanca(this, 1200, 3700, this.platMovible2); //Instanciar las palancas enviándolas el objeto que quieren activar cuando las activen
+    this.p = new Palanca(this, 1500, 3400, this.puerta1); //Instanciar las palancas enviándolas el objeto que quieren activar cuando las activen
     //---PLATAFORMAS---
     platforms = this.physics.add.staticGroup();
     platforms.setOrigin(0,1);
@@ -65,25 +82,11 @@ class SceneJuego extends Phaser.Scene{
     //platforms.create(50, 250, 'ground');
     platforms.create(4000, 3800, 'ground');
     platforms.create(140, 3300, 'ground');
-
-    //---PLATAFORMAS MOVIBLES---
-    this.platformsMovibles = this.add.group(); //creo un grupo de plataformasMovibles
-
-    //creo dos instancia, da igual donde las guarde, porque se gestionará su funcionaldidad desde el grupo platformsMovibles (se añaden desde la propia clase)
-    this.platMovible = new PlataformaMovil(this, 50, 3500,"horizontal", 375, 0, 200); 
-    this.platMovible2 = new PlataformaMovil(this, 1200, 3800,"vertical", 3800, 3500, 200);
-
-    
+   
     //---JUGADORES--
 
     this.gnomo1 = new Gnomo(this, 400, 3600);
     this.elfo = new Elfo(this, 700, 3600);
-
-    //--PALANCAS--
-    this.misPalancas = this.add.group();
-    this.p = new Palanca(this, 1200, 3700); //forma de instanciar las cossa
-    console.log(this.misPalancas)
-    //this.p = new Palanca(this, 40, window.innerHeight-300); //forma de instanciar las cossa
 
     //---------FISICAS------------
  
@@ -94,7 +97,8 @@ class SceneJuego extends Phaser.Scene{
     this.physics.add.collider(this.gnomo1, platforms);
     this.physics.add.collider(this.elfo, this.gnomo1);
     this.physics.add.collider(this.gnomo1, this.platformsMovibles);
-    this.physics.add.overlap(this.gnomo1, this.misPalancas, this.aux); 
+    this.physics.add.collider(this.gnomo1, this.doors);
+    //this.physics.add.overlap(this.gnomo1, this.misPalancas, this.aux()); 
     this.gnomo1.body.setCollideWorldBounds(true);
     this.gnomo1.body.setBounce(0.3);
 
@@ -103,7 +107,8 @@ class SceneJuego extends Phaser.Scene{
     this.physics.add.collider(this.elfo, platforms);
     this.physics.add.collider(this.elfo, this.gnomo1);
     this.physics.add.collider(this.elfo, this.platformsMovibles);
-    this.physics.add.overlap(this.elfo, this.misPalancas, this.aux); 
+    this.physics.add.collider(this.elfo, this.doors);
+    //this.physics.add.overlap(this.elfo, this.misPalancas, this.aux()); 
 
     this.elfo.body.setCollideWorldBounds(true);
     this.elfo.body.setBounce(0.3);
@@ -134,22 +139,40 @@ class SceneJuego extends Phaser.Scene{
     }
 
     //GESTION DE LAS PALANCAS
-   
+    for(var i = 0; i < this.misPalancas.getChildren().length; i++){
+        //RECORRO TODOS Y ACTIVO SOLO AQUELLAS SOBRE LAS QUE ESTÉ ENCIMA
+        //Comprobaré eso comprobando por cada palanca si el personaje se encuentra en la misma x y en la misma y con una diferencia de +-5
+
+        if(this.misPalancas.getChildren()[i].isActive()){
+
+            var palancaX = this.misPalancas.getChildren()[i].x;
+            var palancaY = this.misPalancas.getChildren()[i].y;
+    
+            var gX = this.gnomo1.x;
+            var gY = this.gnomo1.y;
+    
+            var eX = this.elfo.x;
+            var eY = this.elfo.y;
+    
+            //Método de colisión por caja
+            if((gX < palancaX+10 && 
+                gX+10 > palancaX && 
+                gY < palancaY+20 && 
+                gY+10 > palancaY) ||
+                (eX < palancaX+10 && 
+                eX+10 > palancaX && 
+                eY < palancaY+20 && 
+                eY+10 > palancaY)
+                ){
+    
+                //play palanca animation
+                this.misPalancas.getChildren()[i].activarPalanca(); //activo la palanca
+                this.misPalancas.getChildren()[i].desactivarPalanca(); //la inutilizo
+            }
+        }
 
     }
 
-    aux(){ //creo la funcion DENTRO del propio Scene
-       
-        //NO DETECTA EL GROUPE MISPALANCAS AQUÍ
-        console.log(this.misPalancas)
-        for(var i = 0; i < this.misPalancas.getChildren().length; i++){
-            //var plat = this.palancas.getChildren()[i];
-
-           
-            console.log("hola")
-
-            //RECORRO TODOS Y ACTIVO SOLO AQUELLAS SOBRE LAS QUE ESTÉ ENCIMA, NO TODAS --> O AQUELLAS CUYA POS COINCIDA CON LA DEL MISTER
-        }
     }
 
     die(){

@@ -62,5 +62,9 @@ class PlataformaMovil extends Phaser.GameObjects.Sprite{
                 this.body.setVelocityY(this.velv)
             }
         }
-    }   
+    }  
+
+    activar(){
+        this.velv = 200;
+    }
 }
