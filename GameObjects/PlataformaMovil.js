@@ -7,6 +7,7 @@ class PlataformaMovil extends Phaser.GameObjects.Sprite{
         this.minv = min
         this.velv = vel;
         this.typev = type
+        this.active = true;
 
         var block = scene.add.existing(this);
 
@@ -35,7 +36,7 @@ class PlataformaMovil extends Phaser.GameObjects.Sprite{
     update(){
        
         //----------SI ES HORIZONTAL-------------
-        if(this.typev == "horizontal"){ //si es horizontal y pasa el max, negamos la velocidad en las X
+        if(this.typev == "horizontal" && this.active){ //si es horizontal y pasa el max, negamos la velocidad en las X
             if(this.x > this.maxv){
                 this.body.setVelocityX(-this.velv)
             }
@@ -50,7 +51,7 @@ class PlataformaMovil extends Phaser.GameObjects.Sprite{
         }
 
         //-----SI ES VERTICAL-----------
-        if(this.typev == "vertical"){//si es vertical y pasa el max, negamos la velocidad en las y
+        if(this.typev == "vertical" && this.active){//si es vertical y pasa el max, negamos la velocidad en las y
             if(this.y > this.maxv){
                 this.body.setVelocityY(-this.velv)
             }
@@ -66,5 +67,26 @@ class PlataformaMovil extends Phaser.GameObjects.Sprite{
 
     activar(){
         this.velv = 200;
+        this.active = true;
+
+        if(this.typev == "vertical" && this.active){//si es vertical y pasa el max, negamos la velocidad en las y
+            this.body.setVelocityY(this.velv)
+        }
+
+        if(this.typev == "horizontal" && this.active){//si es vertical y pasa el max, negamos la velocidad en las y
+            this.body.setVelocityX(this.velv)
+        }
+    }
+    desactivar(){
+        this.velv = 0;
+        this.active = false;
+
+        if(this.typev == "vertical"){//si es vertical y pasa el max, negamos la velocidad en las y
+            this.body.setVelocityY(this.velv)
+        }
+
+        if(this.typev == "horizontal"){//si es vertical y pasa el max, negamos la velocidad en las y
+            this.body.setVelocityX(this.velv)
+        }
     }
 }

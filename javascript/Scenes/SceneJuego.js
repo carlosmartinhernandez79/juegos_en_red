@@ -113,6 +113,8 @@ class SceneJuego extends Phaser.Scene{
     this.elfo.body.setCollideWorldBounds(true);
     this.elfo.body.setBounce(0.3);
 
+    this.spacebar = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
+
     }
 
     update(time, delta){
@@ -143,7 +145,7 @@ class SceneJuego extends Phaser.Scene{
         //RECORRO TODOS Y ACTIVO SOLO AQUELLAS SOBRE LAS QUE ESTÉ ENCIMA
         //Comprobaré eso comprobando por cada palanca si el personaje se encuentra en la misma x y en la misma y con una diferencia de +-5
 
-        if(this.misPalancas.getChildren()[i].isActive()){
+        //if(this.misPalancas.getChildren()[i].isActive()){
 
             var palancaX = this.misPalancas.getChildren()[i].x;
             var palancaY = this.misPalancas.getChildren()[i].y;
@@ -157,19 +159,19 @@ class SceneJuego extends Phaser.Scene{
             //Método de colisión por caja
             if((gX < palancaX+10 && 
                 gX+10 > palancaX && 
-                gY < palancaY+20 && 
-                gY+10 > palancaY) ||
+                gY < palancaY+30 && 
+                gY+30 > palancaY) ||
                 (eX < palancaX+10 && 
                 eX+10 > palancaX && 
-                eY < palancaY+20 && 
-                eY+10 > palancaY)
+                eY < palancaY+30 && 
+                eY+30 > palancaY)
                 ){
-    
-                //play palanca animation
-                this.misPalancas.getChildren()[i].activarPalanca(); //activo la palanca
-                this.misPalancas.getChildren()[i].desactivarPalanca(); //la inutilizo
+                    if(Phaser.Input.Keyboard.JustDown(this.spacebar)){
+                        //play palanca animation
+                        this.misPalancas.getChildren()[i].activarPalanca(); //activo la palanca
+                    }
             }
-        }
+       // }
 
     }
 
@@ -204,3 +206,4 @@ class SceneJuego extends Phaser.Scene{
         this.scene.start();
     }
 }
+

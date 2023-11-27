@@ -22,17 +22,24 @@ class Palanca extends Phaser.GameObjects.Sprite{
     }
 
     activarPalanca(){
-        
-        this.objectToInteract.activar(); //la palanca, que tiene como argumento el objeto que va a dar funcionalidad, llama a su método activar
-        //ES DECIR, TODOS LOS OBJETOS QUE VAYAMOS A METER CON FUNCIONALIDAD MEDIANTE UNA PALANCA TIENEN QUE TENER UN MÉTODO ACTIVAR
-        //Si es un PlataformaMovil --> su método activar le da una velocidad a la plataforma
-        //Si es una Puerta --> su método activar hace desaparecer la puerta
-        
+        if(this.active){ //si la palanca está activa, activa el objeto
+            this.objectToInteract.activar(); //la palanca, que tiene como argumento el objeto que va a dar funcionalidad, llama a su método activar
+            //ES DECIR, TODOS LOS OBJETOS QUE VAYAMOS A METER CON FUNCIONALIDAD MEDIANTE UNA PALANCA TIENEN QUE TENER UN MÉTODO ACTIVAR
+            //Si es un PlataformaMovil --> su método activar le da una velocidad a la plataforma
+            //Si es una Puerta --> su método activar hace desaparecer la puerta
+            console.log("Palanca Activada")
+            this.desactivarPalanca();
+        } 
+
+        else if(!this.active){//si no está activa, desactiva el objeto
+            console.log("Palanca Desactivada")
+            this.objectToInteract.desactivar();
+            this.desactivarPalanca();
+        }
     }
 
     desactivarPalanca(){
-        console.log("Desactivada")
-        this.active = false;
+        this.active = !this.active;
     }
 
     isActive(){
