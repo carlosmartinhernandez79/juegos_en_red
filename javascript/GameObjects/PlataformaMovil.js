@@ -34,7 +34,6 @@ class PlataformaMovil extends Phaser.GameObjects.Sprite{
     }
 
     update(){
-       
         //----------SI ES HORIZONTAL-------------
         if(this.typev == "horizontal" && this.active){ //si es horizontal y pasa el max, negamos la velocidad en las X
             if(this.x > this.maxv){
@@ -88,5 +87,9 @@ class PlataformaMovil extends Phaser.GameObjects.Sprite{
         if(this.typev == "horizontal"){//si es vertical y pasa el max, negamos la velocidad en las y
             this.body.setVelocityX(this.velv)
         }
+    }
+
+    getClass(){
+        return "platformMobile"
     }
 }

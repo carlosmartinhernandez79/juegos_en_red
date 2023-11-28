@@ -62,19 +62,24 @@ class Elfo extends Phaser.GameObjects.Sprite{
         
             this.elfo.anims.play('turn');
         }
-        
-        //this.sp = Phaser.Input.Keyboard.JustDown(this.spacebar)
 
         //DOBLE SALTO HECHO GRACIAS A: https://www.youtube.com/watch?v=j1Y75isZ1oM
-        if (this.flechas.up.isDown && (this.body.touching.down || this.canDoubleJump<=1)) //
-        {
-            this.body.setVelocityY(-600);
+        if (Phaser.Input.Keyboard.JustDown(this.flechas.up) && (this.body.touching.down || this.canDoubleJump<=1)) //
+        { 
+            if(this.canDoubleJump==0){
+            this.body.setVelocityY(-600); 
             ++this.canDoubleJump;
             console.log(this.canDoubleJump)
-
+            }
+            else if(this.canDoubleJump==1){
+                this.body.setVelocityY(-400);
+                console.log("Doble salto")
+                ++this.canDoubleJump;
+            }
+           
         }  
-        if(this.body.touching.down){
+        else if(this.body.touching.down){
             this.canDoubleJump = 0;
-        }
+            console.log("Reset")        }
     }
 }

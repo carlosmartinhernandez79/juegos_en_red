@@ -1,15 +1,11 @@
 class Gnomo extends Phaser.GameObjects.Sprite{
     constructor(scene,x,y){
 
-        super(scene,x,y,"dude");
-
-        //
+        super(scene,x,y,"enano");
 
         this.gnomo = scene.add.existing(this);
 
         this.gnomo.scene.physics.world.enableBody(this);
-
-        this.gnomo.setScale(2);
 
         this.wasd = scene.input.keyboard.addKeys({ up: 'W', left: 'A', down: 'S', right: 'D', e: "E", q: "Q"});
 
@@ -17,25 +13,17 @@ class Gnomo extends Phaser.GameObjects.Sprite{
 
         //ANIMATIONS DEL MUÑECO
         this.anims.create({
-            key: 'left',
-            frames: this.anims.generateFrameNumbers('dude', { start: 0, end: 3 }),
-            frameRate: 10,
+            key: 'walk',
+            frames: this.anims.generateFrameNumbers('enano', { start: 0, end: 15 }),
+            frameRate: 20,
             repeat: -1
         });
         
         this.anims.create({
             key: 'turn',
-            frames: [ { key: 'dude', frame: 4 } ],
+            frames: [ { key: 'enano', frame: 5 } ],
             frameRate: 20
         });
-        
-        this.anims.create({
-            key: 'right',
-            frames: this.anims.generateFrameNumbers('dude', { start: 5, end: 8 }),
-            frameRate: 10,
-            repeat: -1
-        });
-
     }
     
 
@@ -44,15 +32,18 @@ class Gnomo extends Phaser.GameObjects.Sprite{
         if (this.wasd.left.isDown)
         {
             this.body.setVelocityX(-400);
+
+            this.gnomo.flipX = true;
         
-            this.gnomo.anims.play("left", true);
+            this.gnomo.anims.play("walk", true);
         }
         else if (this.wasd.right.isDown)
         {
             this.body.setVelocityX(400);
            
-        
-            this.gnomo.anims.play('right', true);
+            this.gnomo.flipX = false;
+
+            this.gnomo.anims.play('walk', true);
         }
         else
         {
@@ -67,16 +58,16 @@ class Gnomo extends Phaser.GameObjects.Sprite{
         }
 
         //PREGUNTARLE ESTO
-        if (this.wasd.q.isDown && this.gnomo.scale == 1)
+        if (this.wasd.q.isDown && this.gnomo.scale == 0.5)
         {
-            //this.gnomo.setPosition(this.gnomo.x,this.gnomo.y-20); //subirle el tamaño del sprite
-            this.body.setVelocityY(-300);
-            this.gnomo.setScale(2);
+            this.gnomo.setPosition(this.gnomo.x,this.gnomo.y-30); //subirle el tamaño del sprite
+            //this.body.setVelocityY(-300);
+            this.gnomo.setScale(1);
         }
 
-       if (this.wasd.e.isDown && this.gnomo.scale == 2)
+       if (this.wasd.e.isDown && this.gnomo.scale == 1)
         {     
-            this.gnomo.setScale(1);
+            this.gnomo.setScale(0.5);
         }   
     }
 }

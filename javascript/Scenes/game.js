@@ -17,12 +17,15 @@ var config  = {
     scene:[
         SceneBootLoader,
         StartScreen, 
+        Tiempo_Monedas,
         LogIn, 
         Credits, 
         Options, 
         LevelSelector, 
         Level1, 
         SceneJuego,
+        PauseMenu, 
+        GameOver
         ]
 }
 

@@ -19,6 +19,10 @@ class Puerta extends Phaser.GameObjects.Sprite{
         //this.door.scene.physics.world.disableBody(this);
     }
 
+    getClass(){
+        return "door"
+    }
+
 
 
     /* activar(){
