@@ -23,7 +23,8 @@ var config  = {
         Level1, 
         SceneJuego,
         SceneBootLoader, 
-        TestGround
+        TestGround, 
+        TutorialLevel
         ]
 }
 

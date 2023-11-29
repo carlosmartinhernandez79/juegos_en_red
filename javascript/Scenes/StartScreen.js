@@ -10,7 +10,7 @@ class StartScreen extends Phaser.Scene{
 
     create() {
         // Lógica de inicialización de la escena
-        this.add.text(720, 20, "StartScreen", {font: "25px Arial", fill: "black"})
+        this.add.text(600, 20, "StartScreen", {font: "25px Arial", fill: "black"})
 
         
             // Botón Jugar
