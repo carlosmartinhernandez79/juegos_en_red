@@ -56,7 +56,9 @@ class SceneJuego extends Phaser.Scene{
     this.count = 0
 	this.interface = this.scene.run('Tiempo_Monedas')
     this.scene.bringToTop('Tiempo_Monedas') //la ponemos encima de todas
-
+    this.MiMusicaBase = this.sound.add("Musica_Base");
+    this.MiMusicaBase.loop = true;
+    this.MiMusicaBase.play();
     window.myScene = this;
 
 
@@ -258,6 +260,7 @@ class SceneJuego extends Phaser.Scene{
         this.scene.run('PauseMenu')
         this.scene.pause();
         this.scene.pause("Tiempo_Monedas");
+        this.MiMusicaBase.pause();
     }
 
     die(){

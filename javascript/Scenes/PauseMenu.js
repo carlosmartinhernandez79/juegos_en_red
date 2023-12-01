@@ -26,6 +26,7 @@ class PauseMenu extends Phaser.Scene{
             console.log("Resume")
             this.scene.resume("Tiempo_Monedas");
             var sceneMain = this.scene.resume("SceneJuego");
+            this.scene.get("SceneJuego").MiMusicaBase.resume();
         }
     }
 }

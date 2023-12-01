@@ -10,10 +10,7 @@ class SceneBootLoader extends Phaser.Scene{
         });
         
     this.load.image("moneda", "./ImagesJS/Moneda.png");
-    this.load.image("playerRojo", "./ImagesJS/circuloRojo.png");
     this.load.image("stick", "./ImagesJS/stick.png");
-    this.load.image("playerAzul", "./ImagesJS/circuloAzul.png");
-    this.load.image("tree", "./ImagesJS/tree.png");
     this.load.image("ground", "./ImagesJS/ground.png");
     this.load.image("pinchos", "./ImagesJS/pinchos.png");
     this.load.image("pocion", "./ImagesJS/pocion.png");
@@ -32,6 +29,10 @@ class SceneBootLoader extends Phaser.Scene{
     this.load.spritesheet("enano", "./ImagesJS/enanoSpritesheet.png",
         { frameWidth: 92.25, frameHeight: 108.25 }
     );
+
+    /////////////////////////////////Sonidos/////////////////////////////////
+        this.load.audio("Musica_Base", ["./Sonidos/Musica_Topwer.mp3"]); 
+
 
     }
 }
