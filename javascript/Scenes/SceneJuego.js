@@ -50,18 +50,7 @@ class SceneJuego extends Phaser.Scene{
     }
 
     create(){
-    //this.add.text(720, 20, "Level1", {font: "25px Arial", fill: "black"})
-
-        //PRUEBA POCIÓN
-        this.pot = this.physics.add.image(300,3700,"pocion")
-        this.pot.body.setAllowGravity(false);
-        this.pot.setScale(0.3)
-
-
-        this.desTransformarse = this.physics.add.image(900,3700,"pocion")
-        this.desTransformarse.body.setAllowGravity(false);
-        this.desTransformarse.setVisible(false);
-        this.desTransformarse.setScale(0.3)
+    //this.add.text(720, 20, "Level1", {font: "25px Arial", fill: "black"})    
 
     //CARGAMOS INTERFACES
     this.count = 0
@@ -109,8 +98,30 @@ class SceneJuego extends Phaser.Scene{
     platforms.create(140, 3300, 'ground');
     //---------------------------------
 
-    //---------MONEDAS------------
+    //---POCION---
+    this.pot = this.physics.add.image(300,3700,"pocion")
+    this.pot.body.setAllowGravity(false);
+    this.pot.setScale(0.3)
 
+    this.desTransformarse = this.physics.add.image(900,3700,"pocion")
+    this.desTransformarse.body.setAllowGravity(false);
+    this.desTransformarse.setVisible(false);
+    this.desTransformarse.setScale(0.3)
+
+    //----------------------------
+
+    //---BOX---
+    this.box = this.physics.add.group()
+    this.boxi = new Box(this,600,3700, "box")
+    this.boxi = new Box(this,800,3700, "box")
+    
+    this.physics.add.collider(this.box, platforms);
+    this.physics.add.collider(this.box, this.box);
+
+    //----------------------------
+
+
+    //---------MONEDAS------------
     this.misMonedas = this.physics.add.group({
         key: 'moneda',
         repeat: 11,
@@ -145,6 +156,7 @@ class SceneJuego extends Phaser.Scene{
     this.physics.add.collider(this.gnomo1, this.doors);
     this.physics.add.overlap(this.gnomo1, this.misMonedas, this.pickCoin, null, this);
     this.physics.add.overlap(this.gnomo1, this.pinchos, this.pinchosDeath, null, this);
+    this.physics.add.collider(this.gnomo1, this.box);
     //this.physics.add.overlap(this.gnomo1, this.misPalancas, this.aux()); 
     this.gnomo1.body.setCollideWorldBounds(true);
 
@@ -159,6 +171,7 @@ class SceneJuego extends Phaser.Scene{
     this.physics.add.overlap(this.elfo, this.pinchos, this.pinchosDeath, null, this);
     this.physics.add.overlap(this.elfo, this.pot, this.pickPotion, null, this);
     this.physics.add.overlap(this.elfo, this.desTransformarse, this.destransformarseFunc, null, this); 
+    this.physics.add.collider(this.elfo, this.box);
     //this.physics.add.overlap(this.elfo, this.misPalancas, this.aux()); 
 
 
@@ -197,6 +210,15 @@ class SceneJuego extends Phaser.Scene{
 	};
 
     this.die(); //check si han muerto constantemetne
+
+    //COMPROBANDO LAS CAJAS 
+
+    for(var i = 0; i < this.box.getChildren().length; i++){
+        var box = this.box.getChildren()[i];
+      
+       box.stop();
+    }
+
 
     //MOVIMIENTO DE LA PLATAFORMA
     for(var i = 0; i < this.platformsMovibles.getChildren().length; i++){

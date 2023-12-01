@@ -63,12 +63,11 @@ class Tiempo_Monedas extends Phaser.Scene{
     }
 
     getTime(){
-        if(this.seconds<10){
-            return ("0" +`${Math.round(this.minutes)}` + ":"+ "0" + `${Math.round(this.seconds)}`)
-        }
-       
-         else{
-            return ("0" +`${Math.round(this.minutes)}` + ":" + `${Math.round(this.seconds)}`)
-        }
+       if(this.seconds<10){
+        return ("0" +`${Math.round(this.minutes)}` + ":"+ "0" +`${Math.round(this.seconds)}`)
+       }
+       else{
+        return ("0" +`${Math.round(this.minutes)}` + ":"+ `${Math.round(this.seconds)}`)
+       }
     }
 }
