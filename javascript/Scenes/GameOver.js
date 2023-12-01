@@ -17,6 +17,9 @@ class GameOver extends Phaser.Scene{
 
         this.add.text(500, 300, "GAME OVER ", {font: "25px Arial", fill: "red"})
         this.add.text(420, 350, "Pulsa ESPACIO para continuar ", {font: "25px Arial", fill: "white"})
+
+        this.add.text(550, 500, this.scene.get("Tiempo_Monedas").getTime(), {font: "25px Arial", fill: "white"})
+
         this.space = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
     }
 

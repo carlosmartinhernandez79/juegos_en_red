@@ -57,6 +57,12 @@ class SceneJuego extends Phaser.Scene{
         this.pot.body.setAllowGravity(false);
         this.pot.setScale(0.3)
 
+
+        this.desTransformarse = this.physics.add.image(900,3700,"pocion")
+        this.desTransformarse.body.setAllowGravity(false);
+        this.desTransformarse.setVisible(false);
+        this.desTransformarse.setScale(0.3)
+
     //CARGAMOS INTERFACES
     this.count = 0
 	this.interface = this.scene.run('Tiempo_Monedas')
@@ -152,7 +158,9 @@ class SceneJuego extends Phaser.Scene{
     this.physics.add.overlap(this.elfo, this.misMonedas, this.pickCoin, null, this);
     this.physics.add.overlap(this.elfo, this.pinchos, this.pinchosDeath, null, this);
     this.physics.add.overlap(this.elfo, this.pot, this.pickPotion, null, this);
+    this.physics.add.overlap(this.elfo, this.desTransformarse, this.destransformarseFunc, null, this); 
     //this.physics.add.overlap(this.elfo, this.misPalancas, this.aux()); 
+
 
     this.elfo.body.setCollideWorldBounds(true);
 
@@ -277,9 +285,14 @@ class SceneJuego extends Phaser.Scene{
     }
 
     pickPotion(){
-        console.log("hola")
         this.elfo.hacerMetamorfosis();
         this.pot.destroy();
+
+    }
+
+    destransformarseFunc(){
+        this.elfo.hacerMetamorfosis();
+        this.desTransformarse.destroy();
 
     }
 
