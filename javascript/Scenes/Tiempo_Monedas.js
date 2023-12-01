@@ -8,14 +8,57 @@ class Tiempo_Monedas extends Phaser.Scene{
 
         this.count = 0;
 
-        this.label = this.add.text(100, 35, "0", {font: "25px Arial", fill: "black"})
+        this.labelMonedas = this.add.text(100, 35, "0", {font: "25px Arial", fill: "black"})
 
         miMoneda.setScale(0.13)
+
+
+        this.labelTimer = this.add.text(1125, 35, "0:00", {font: "25px Arial", fill: "black"})
+        this.seconds = 0;
+        this.minutes = 0;
     }
 
     updateCount()
 	{
         this.count+=1;
-		this.label.text = `${this.count}`
+		this.labelMonedas.text = `${this.count}`
 	}
+
+
+    update(time, delta){
+        this.seconds+=(delta/1000);
+        
+		this.labelTimer.text = this.updateTimer();
+
+        this.checkIfEnd();
+    }
+
+    updateTimer(){
+
+        var final;
+       
+       var aux = Math.round(this.seconds)
+
+        if(aux<10){
+            final = "0" +`${Math.round(this.minutes)}` + ":0" +  `${Math.round(this.seconds)}`
+        }
+        else{
+            final ="0" +`${Math.round(this.minutes)}`+ ":"  +  `${Math.round(this.seconds)}`
+        }
+
+
+        if(aux>59){
+            this.minutes += 1
+            this.seconds = 0;
+            final ="0" +`${Math.round(this.minutes)}` + ":"+ `${Math.round(this.seconds)}`
+        }
+        
+         return final;
+    }
+
+    checkIfEnd(){
+        if(this.minutes==3){
+            this.scene.start("GameOver");
+        }
+    }
 }

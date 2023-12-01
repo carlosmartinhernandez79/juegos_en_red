@@ -69,5 +69,6 @@ class Gnomo extends Phaser.GameObjects.Sprite{
         {     
             this.gnomo.setScale(0.5);
         }   
+        
     }
 }

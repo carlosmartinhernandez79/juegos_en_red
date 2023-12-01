@@ -15,8 +15,12 @@ class SceneBootLoader extends Phaser.Scene{
     this.load.image("playerAzul", "./ImagesJS/circuloAzul.png");
     this.load.image("tree", "./ImagesJS/tree.png");
     this.load.image("ground", "./ImagesJS/ground.png");
-
     this.load.image("pinchos", "./ImagesJS/pinchos.png");
+    this.load.image("pocion", "./ImagesJS/pocion.png");
+
+    this.load.spritesheet("cat", "./ImagesJS/catSpritesheet.png",
+        { frameWidth: 39.5, frameHeight: 40 }
+    );
 
 
     this.load.spritesheet("dude", "./ImagesJS/dude.png",
