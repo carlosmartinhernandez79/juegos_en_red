@@ -12,6 +12,7 @@ class GameOver extends Phaser.Scene{
         this.scene.bringToTop();
         const graphics = this.add.graphics();
         this.scene.get("SceneJuego").MiMusicaBase.pause();
+        this.scene.get("SceneJuego").MusicaHasPerdido.play();
 
         graphics.fillStyle(0x000000, 1);
         graphics.fillRect(0, 0, 1200, 600);

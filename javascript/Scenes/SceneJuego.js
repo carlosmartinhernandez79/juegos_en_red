@@ -57,6 +57,8 @@ class SceneJuego extends Phaser.Scene{
 	this.interface = this.scene.run('Tiempo_Monedas')
     this.scene.bringToTop('Tiempo_Monedas') //la ponemos encima de todas
     this.MiMusicaBase = this.sound.add("Musica_Base");
+    this.VivaElVino = this.sound.add("Viva_El_Vino");
+    this.MusicaHasPerdido = this.sound.add("Musica_Has_Perdido");
     this.MiMusicaBase.loop = true;
     this.MiMusicaBase.play();
     window.myScene = this;
@@ -312,13 +314,12 @@ class SceneJuego extends Phaser.Scene{
     pickPotion(){
         this.elfo.hacerMetamorfosis();
         this.pot.destroy();
-
+        this.VivaElVino.play();      
     }
 
     destransformarseFunc(){
         this.elfo.hacerMetamorfosis();
         this.desTransformarse.destroy();
-
     }
 
     isColliding(player, object, sizeX, sizeY){
