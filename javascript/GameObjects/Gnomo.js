@@ -11,6 +11,8 @@ class Gnomo extends Phaser.GameObjects.Sprite{
 
         this.body.setCollideWorldBounds(true);
 
+        this.SonidoSalto = this.scene.sound.add("Sonido_Salto");
+
         //ANIMATIONS DEL MUÑECO
         this.anims.create({
             key: 'walk',
@@ -54,6 +56,7 @@ class Gnomo extends Phaser.GameObjects.Sprite{
         
         if (this.wasd.up.isDown && this.body.touching.down ) //
         {
+            this.SonidoSalto.play();
             this.body.setVelocityY(-600);
         }
 

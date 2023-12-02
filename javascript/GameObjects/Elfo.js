@@ -17,7 +17,7 @@ class Elfo extends Phaser.GameObjects.Sprite{
 
         this.metamorfosis = false;
 
-
+        this.SonidoSalto = this.scene.sound.add("Sonido_Salto");
 
 
         
@@ -77,19 +77,18 @@ class Elfo extends Phaser.GameObjects.Sprite{
             else if (this.flechas.right.isDown)
             {
                 this.body.setVelocityX(400);
-                
                 this.elfo.anims.play('right', true);
             }
             else
             {
                 this.body.setVelocityX(0);
-            
                 this.elfo.anims.play('turn');
             }
     
             //DOBLE SALTO HECHO GRACIAS A: https://www.youtube.com/watch?v=j1Y75isZ1oM
             if (Phaser.Input.Keyboard.JustDown(this.flechas.up) && (this.body.touching.down || this.canDoubleJump<=1)) //
             { 
+                this.SonidoSalto.play();
                 if(this.canDoubleJump==0){
                 this.body.setVelocityY(-600); 
                 ++this.canDoubleJump;
