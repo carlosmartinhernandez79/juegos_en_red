@@ -91,7 +91,7 @@ class PauseMenu extends Phaser.Scene{
         })
 
         this.reiniciar.on('pointerdown', function () {
-            this.scene.start('SceneJuego');
+            this.scene.start('TutorialLevel');
         }, this);
 
         //-------------------------------------------------
@@ -137,8 +137,8 @@ class PauseMenu extends Phaser.Scene{
             this.scene.stop();
             console.log("Resume")
             this.scene.resume("Tiempo_Monedas");
-            var sceneMain = this.scene.resume("SceneJuego");
-            this.scene.get("SceneJuego").MiMusicaBase.resume();
+            var sceneMain = this.scene.resume("TutorialLevel");
+            this.scene.get("TutorialLevel").MiMusicaBase.resume();
         }
     }
 }

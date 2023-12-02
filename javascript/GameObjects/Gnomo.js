@@ -54,7 +54,7 @@ class Gnomo extends Phaser.GameObjects.Sprite{
             this.gnomo.anims.play('turn');
         }
         
-        if (this.wasd.up.isDown && this.body.touching.down ) //
+        if (this.wasd.up.isDown && this.gnomo.body.blocked.down)//this.body.touching.down ) //
         {
             this.SonidoSalto.play();
             this.body.setVelocityY(-600);

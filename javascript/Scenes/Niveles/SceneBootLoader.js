@@ -6,15 +6,17 @@ class SceneBootLoader extends Phaser.Scene {
     preload() {
 
         this.load.on("complete", () => {
-            this.scene.start("SceneJuego");
+            this.scene.start("TutorialLevel");
+            this.scene.bringToTop("TutorialLevel");
         });
         
     this.load.image("moneda", "./ImagesJS/Moneda.png");
-    this.load.image("stick", "./ImagesJS/stick.png");
+    this.load.image("palanca", "./ImagesJS/palanca.png");
     this.load.image("ground", "./ImagesJS/ground.png");
     this.load.image("pinchos", "./ImagesJS/pinchos.png");
     this.load.image("pocion", "./ImagesJS/pocion.png");
     this.load.image("box", "./ImagesJS/caja.png");
+    this.load.image("puerta", "./ImagesJS/puerta.jpg");
 
     //BOTONES
     this.load.image("menuOff", "./ImagesJS/Botones/Boton_Menu_Off.png");
@@ -72,12 +74,8 @@ class SceneBootLoader extends Phaser.Scene {
         this
 
 
-        this.load.image("playerRojo", "./ImagesJS/circuloRojo.png");
-        this.load.image("stick", "./ImagesJS/stick.png");
-        this.load.image("playerAzul", "./ImagesJS/circuloAzul.png");
-        this.load.image("tree", "./ImagesJS/tree.png");
+        this.load.image("palanca", "./ImagesJS/palanca.png");
         this.load.image("ground", "./ImagesJS/ground.png");
-        this.load.image("background", "./assets/fondoProvisional.jpg")
         this.load.spritesheet("dude", "./ImagesJS/dude.png",
             { frameWidth: 32, frameHeight: 48 }
         );

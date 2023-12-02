@@ -11,8 +11,8 @@ class GameOver extends Phaser.Scene{
     create() {
         this.scene.bringToTop();
         const graphics = this.add.graphics();
-        this.scene.get("SceneJuego").MiMusicaBase.pause();
-        this.scene.get("SceneJuego").MusicaHasPerdido.play();
+        this.scene.get("TutorialLevel").MiMusicaBase.pause();
+        this.scene.get("TutorialLevel").MusicaHasPerdido.play();
 
         graphics.fillStyle(0x000000, 1);
         graphics.fillRect(0, 0, 1200, 600);
@@ -30,8 +30,8 @@ class GameOver extends Phaser.Scene{
     update() {
         if(this.space.isDown){
             this.scene.stop();
-            var sceneMain = this.scene.start("SceneJuego");
-            this.scene.get("SceneJuego").MiMusicaBase.pause();
+            var sceneMain = this.scene.start("TutorialLevel");
+            this.scene.get("TutorialLevel").MiMusicaBase.pause();
         }
     }
 }

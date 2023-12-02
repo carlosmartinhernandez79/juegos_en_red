@@ -15,6 +15,7 @@ var config  = {
     },
 
     scene:[
+        SceneBootLoader, 
         StartScreen, 
         Tiempo_Monedas,
         LogIn, 
@@ -22,10 +23,9 @@ var config  = {
         Options, 
         LevelSelector, 
         Level1, 
-        SceneJuego,
+        //SceneJuego,
         PauseMenu, 
         GameOver,
-        SceneBootLoader, 
         TestGround, 
         TutorialLevel
         ]

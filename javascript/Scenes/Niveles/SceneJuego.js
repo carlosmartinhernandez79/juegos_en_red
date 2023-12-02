@@ -23,30 +23,6 @@ class SceneJuego extends Phaser.Scene{
     
     preload(){
         console.log("Se ha cargado la escena del juego")
-
-         //ANIMATIONS DEL MUÑECO
-    this.anims.create({
-        key: 'left',
-        frames: this.anims.generateFrameNumbers('dude', { start: 0, end: 3 }),
-        frameRate: 10,
-        repeat: -1
-    });
-    
-    this.anims.create({
-        key: 'turn',
-        frames: [ { key: 'dude', frame: 4 } ],
-        frameRate: 20
-    });
-    
-    this.anims.create({
-        key: 'right',
-        frames: this.anims.generateFrameNumbers('dude', { start: 5, end: 8 }),
-        frameRate: 10,
-        repeat: -1
-    });
-
-        this.speed = 400;
-        this.jump= 600;
     }
 
     create(){
@@ -56,6 +32,8 @@ class SceneJuego extends Phaser.Scene{
     this.count = 0
 	this.interface = this.scene.run('Tiempo_Monedas')
     this.scene.bringToTop('Tiempo_Monedas') //la ponemos encima de todas
+
+    //SONIDOS
     this.MiMusicaBase = this.sound.add("Musica_Base");
     this.VivaElVino = this.sound.add("Viva_El_Vino");
     this.IaMariano = this.sound.add("Ia_Mariano");
@@ -66,7 +44,7 @@ class SceneJuego extends Phaser.Scene{
     this.MiMusicaBase.loop = true;
     this.MiMusicaBase.play();
     window.myScene = this;
-
+    //---------------------------------
 
     //---------------------------------
     //CARACTERISTICAS DEL MUNDO

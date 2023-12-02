@@ -1,11 +1,13 @@
 class Puerta extends Phaser.GameObjects.Sprite{
     constructor(scene,x,y){
 
-        super(scene,x,y,"ground");
+        super(scene,x,y,"puerta");
 
         this.door = scene.add.existing(this);
 
         this.door.scene.physics.world.enableBody(this);
+
+        this.door.setScale(0.1,0.23)
 
         this.body.setAllowGravity(false) //workds;
         this.body.setImmovable(true)

@@ -9,7 +9,7 @@ class Elfo extends Phaser.GameObjects.Sprite{
 
         this.elfo.scene.physics.world.enableBody(this);
 
-        this.elfo.setScale(2);
+        this.elfo.setScale(2.5);
 
         this.flechas = scene.input.keyboard.createCursorKeys();
 
@@ -18,9 +18,6 @@ class Elfo extends Phaser.GameObjects.Sprite{
         this.metamorfosis = false;
 
         this.SonidoSalto = this.scene.sound.add("Sonido_Salto");
-
-
-        
 
 
         //const isJumpJustDown = Phaser.Input.Keyboard.JustDown(this.flechas.up)
@@ -86,7 +83,7 @@ class Elfo extends Phaser.GameObjects.Sprite{
             }
     
             //DOBLE SALTO HECHO GRACIAS A: https://www.youtube.com/watch?v=j1Y75isZ1oM
-            if (Phaser.Input.Keyboard.JustDown(this.flechas.up) && (this.body.touching.down || this.canDoubleJump<=1)) //
+            if (Phaser.Input.Keyboard.JustDown(this.flechas.up) && (this.elfo.body.blocked.down || this.canDoubleJump<=1)) //
             { 
                 this.SonidoSalto.play();
                 if(this.canDoubleJump==0){
@@ -100,7 +97,7 @@ class Elfo extends Phaser.GameObjects.Sprite{
                 }
                
             }  
-            else if(this.body.touching.down){
+            else if(this.elfo.body.blocked.down){ //this.elfo.body.blocked.down funciona con los tiles. El isTouching no
                 this.canDoubleJump = 0;
             }
         }

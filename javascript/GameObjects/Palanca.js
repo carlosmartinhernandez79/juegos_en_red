@@ -1,24 +1,23 @@
 class Palanca extends Phaser.GameObjects.Sprite{
     constructor(scene,x,y, objectToInteract){
 
-        super(scene,x,y,"stick");
+        super(scene,x,y,"palanca");
 
         this.active = true;
         this.objectToInteract = objectToInteract;
 
-        scene.add.existing(this).setScale(0.5);
+        scene.add.existing(this).setScale(0.2);
 
         scene.physics.world.enableBody(this);
         this.body.setAllowGravity(false) //workds;
-        this.setAngle(45);
 
         scene.misPalancas.add(this)
 
-       
+        this.SonidoPalanca = this.scene.sound.add("Sonido_Palanca");
         //scene.physics.add.existing(this, true); //lo hace static pero con physics
 
         //scene.physics.world.enableBody(this);
-        //scene.physics.add.image(x, y-500, "stick").setScale(0.5).setImmovable(true);
+        //scene.physics.add.image(x, y-500, "palanca").setScale(0.5).setImmovable(true);
         //scene.physics.world.enabled();
         //this.body.setInmovable = true;
      
@@ -33,6 +32,7 @@ class Palanca extends Phaser.GameObjects.Sprite{
             console.log("Palanca Activada")
             this.animarPalanca();
             this.desactivarPalanca();
+            this.SonidoPalanca.play();
         } 
 
         else if(!this.active && this.objectToInteract!=null){//si no está activa, desactiva el objeto
@@ -52,6 +52,9 @@ class Palanca extends Phaser.GameObjects.Sprite{
             this.objectToInteract = null;
             console.log( this.objectToInteract)
         }
+        else{
+            this.SonidoPalanca.play();
+        }
     }
 
     isActive(){
@@ -61,10 +64,10 @@ class Palanca extends Phaser.GameObjects.Sprite{
     animarPalanca(){
     
         if(this.active){
-            this.setAngle(-45)
+            //this.setAngle(-45)
         }
         else{
-            this.setAngle(45)
+            //this.setAngle(45)
         }
     }
 }

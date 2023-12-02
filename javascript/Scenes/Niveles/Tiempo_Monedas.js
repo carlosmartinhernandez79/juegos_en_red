@@ -8,12 +8,12 @@ class Tiempo_Monedas extends Phaser.Scene{
 
         this.count = 0;
 
-        this.labelMonedas = this.add.text(100, 35, "0", {font: "25px Arial", fill: "black"})
+        this.labelMonedas = this.add.text(100, 35, "0", {font: "25px Arial", fill: "white"})
 
         miMoneda.setScale(0.13)
 
 
-        this.labelTimer = this.add.text(1125, 35, "0:00", {font: "25px Arial", fill: "black"})
+        this.labelTimer = this.add.text(1125, 35, "0:00", {font: "25px Arial", fill: "white"})
         this.seconds = 0;
         this.minutes = 0;
     }
