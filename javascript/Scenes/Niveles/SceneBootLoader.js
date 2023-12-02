@@ -6,7 +6,7 @@ class SceneBootLoader extends Phaser.Scene {
     preload() {
 
         this.load.on("complete", () => {
-            this.scene.start("TutorialLevel");
+            this.scene.start("SceneJuego");
         });
         
     this.load.image("moneda", "./ImagesJS/Moneda.png");
