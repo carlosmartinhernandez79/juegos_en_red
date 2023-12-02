@@ -18,6 +18,11 @@ class Elfo extends Phaser.GameObjects.Sprite{
         this.metamorfosis = false;
 
 
+
+
+        
+
+
         //const isJumpJustDown = Phaser.Input.Keyboard.JustDown(this.flechas.up)
 
         //ANIMATIONS DEL ELFO
@@ -72,7 +77,7 @@ class Elfo extends Phaser.GameObjects.Sprite{
             else if (this.flechas.right.isDown)
             {
                 this.body.setVelocityX(400);
-    
+                
                 this.elfo.anims.play('right', true);
             }
             else
