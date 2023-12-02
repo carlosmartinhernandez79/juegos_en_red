@@ -60,6 +60,7 @@ class SceneJuego extends Phaser.Scene{
     this.VivaElVino = this.sound.add("Viva_El_Vino");
     this.MusicaHasPerdido = this.sound.add("Musica_Has_Perdido");
     this.SonidoMoneda = this.sound.add("Sonido_Moneda");
+    this.SonidoPalanca = this.sound.add("Sonido_Palanca");
     this.MiMusicaBase.loop = true;
     this.MiMusicaBase.play();
     window.myScene = this;
@@ -241,6 +242,7 @@ class SceneJuego extends Phaser.Scene{
                 if(Phaser.Input.Keyboard.JustDown(this.spacebar)){
                     //play palanca animation
                     this.misPalancas.getChildren()[i].activarPalanca(); //activo la palanca
+                    this.SonidoPalanca.play();
                  }
             }
 
@@ -248,6 +250,7 @@ class SceneJuego extends Phaser.Scene{
                 if(Phaser.Input.Keyboard.JustDown(this.control)){
                 //play palanca animation
                 this.misPalancas.getChildren()[i].activarPalanca(); //activo la palanca
+                this.SonidoPalanca.play();
                 }
             }
     }
