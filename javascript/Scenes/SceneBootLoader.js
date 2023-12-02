@@ -11,11 +11,22 @@ class SceneBootLoader extends Phaser.Scene {
 
 
         //Cargamos los tiles de nuestro mapa
-        this.load.image('tilesDungeon', './assets/tilesets/castle_tileset_part1.png');
-        this.load.image('pinchos', './assets/tilesets/pinchos.png');
-        this.load.image('escaleras', './assets/tilesets/escalera.png');
-        this.load.image('tilesBase', './assets/tilesets/Terrain (32x32).png');
-        this.load.tilemapTiledJSON('tilemapTry', './assets/tilesets/RMKLevel1.json');
+        //this.load.image('tilesDungeon', './assets/tilesets/Tiles/castle_tileset_part1.png');
+        this.load.image('pinchos', './assets/tilesets/Tiles/pinchos.png');
+        this.load.image('escaleras', './assets/tilesets/Tiles/escalera.png');
+        this.load.image('tilesBase', './assets/tilesets/Tiles/Terrain (32x32).png');
+
+        //this.load.image('tilesLvL1', './assets/tilesets/Tiles/Tileset1.png');
+        this.load.image('tilesLvL1', './assets/tilesets/Tiles/TilesFase1.jpeg');
+
+        this.load.image('Spikes', './assets/tilesets/Tiles/pinchos.png');
+        this.load.image('BarrelGenerator', './assets/tilesets/Tiles/BarrilGenerator.png');
+
+
+
+        //this.load.tilemapTiledJSON('tilemapTry', './assets/tilesets/LevelData/RMKLevel1.json');
+        //this.load.tilemapTiledJSON('tilemapLvL1', './assets/tilesets/LevelData/LvLTutorial.json');
+        this.load.tilemapTiledJSON('tilemapLvL1', './assets/tilesets/LevelData/LvLTutorialRMK.json');
 
        // this.load.tilemapTiledJSON('TutorialMap', './assets/tilesets/TuruotialMap.json');
         this
