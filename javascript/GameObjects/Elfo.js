@@ -17,6 +17,11 @@ class Elfo extends Phaser.GameObjects.Sprite{
 
         this.metamorfosis = false;
 
+        this.SonidoSalto = this.scene.sound.add("Sonido_Salto");
+
+
+        
+
 
         //const isJumpJustDown = Phaser.Input.Keyboard.JustDown(this.flechas.up)
 
@@ -72,19 +77,18 @@ class Elfo extends Phaser.GameObjects.Sprite{
             else if (this.flechas.right.isDown)
             {
                 this.body.setVelocityX(400);
-    
                 this.elfo.anims.play('right', true);
             }
             else
             {
                 this.body.setVelocityX(0);
-            
                 this.elfo.anims.play('turn');
             }
     
             //DOBLE SALTO HECHO GRACIAS A: https://www.youtube.com/watch?v=j1Y75isZ1oM
             if (Phaser.Input.Keyboard.JustDown(this.flechas.up) && (this.body.touching.down || this.canDoubleJump<=1)) //
             { 
+                this.SonidoSalto.play();
                 if(this.canDoubleJump==0){
                 this.body.setVelocityY(-600); 
                 ++this.canDoubleJump;
@@ -139,6 +143,9 @@ class Elfo extends Phaser.GameObjects.Sprite{
             
         this.elfo.setPosition(this.elfo.x,this.elfo.y-30); //subirle el tamaño del sprite
 
+        this.scene.add.text(this.scene.gnomo1.x, this.scene.gnomo1.y-100, "¡Que es casi tan bueno como Eduardo y Sergio!", {font: "25px Arial", fill: "black"})
+
+        this.scene.add.text(this.scene.elfo.x, this.scene.elfo.y-100, "¡Viva el vino!", {font: "25px Arial", fill: "black"})
         }
     }
 
