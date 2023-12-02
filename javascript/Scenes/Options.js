@@ -9,7 +9,7 @@ class Options extends Phaser.Scene{
 
     create() {
         // Lógica de inicialización de la escena
-        this.add.text(720, 20, "Options", {font: "25px Arial", fill: "black"})
+        this.add.text(600, 20, "Options", {font: "25px Arial", fill: "black"})
 
         var Volver = this.add.text(20, 20, '<---', { fill: 'red' })
                 .setInteractive()

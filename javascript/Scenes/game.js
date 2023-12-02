@@ -15,7 +15,6 @@ var config  = {
     },
 
     scene:[
-        SceneBootLoader,
         StartScreen, 
         Tiempo_Monedas,
         LogIn, 
@@ -25,7 +24,10 @@ var config  = {
         Level1, 
         SceneJuego,
         PauseMenu, 
-        GameOver
+        GameOver,
+        SceneBootLoader, 
+        TestGround, 
+        TutorialLevel
         ]
 }
 
@@ -33,10 +35,7 @@ var config  = {
 
 var game = new Phaser.Game(config);
 
-function preload() {
-    // Puedes precargar recursos aquí si es necesario
-}
-
-// Su puta madre
-
+/*function create(){
+    game.scene
+}*/
 
