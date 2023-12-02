@@ -59,6 +59,7 @@ class SceneJuego extends Phaser.Scene{
     this.MiMusicaBase = this.sound.add("Musica_Base");
     this.VivaElVino = this.sound.add("Viva_El_Vino");
     this.MusicaHasPerdido = this.sound.add("Musica_Has_Perdido");
+    this.SonidoMoneda = this.sound.add("Sonido_Moneda");
     this.MiMusicaBase.loop = true;
     this.MiMusicaBase.play();
     window.myScene = this;
@@ -307,6 +308,7 @@ class SceneJuego extends Phaser.Scene{
             {
                 this.scene.get("Tiempo_Monedas").updateCount();
                 this.misMonedas.getChildren()[i].destroy();
+                this.SonidoMoneda.play();
             }
         }
     }
