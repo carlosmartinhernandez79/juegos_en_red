@@ -11,6 +11,7 @@ class GameOver extends Phaser.Scene{
     create() {
         this.scene.bringToTop();
         const graphics = this.add.graphics();
+        this.scene.get("SceneJuego").MiMusicaBase.pause();
 
         graphics.fillStyle(0x000000, 1);
         graphics.fillRect(0, 0, 1200, 600);
@@ -21,12 +22,15 @@ class GameOver extends Phaser.Scene{
         this.add.text(550, 500, this.scene.get("Tiempo_Monedas").getTime(), {font: "25px Arial", fill: "white"})
 
         this.space = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
+
+
     }
 
     update() {
         if(this.space.isDown){
             this.scene.stop();
             var sceneMain = this.scene.start("SceneJuego");
+            this.scene.get("SceneJuego").MiMusicaBase.pause();
         }
     }
 }

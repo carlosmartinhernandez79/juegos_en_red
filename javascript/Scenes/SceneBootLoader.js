@@ -33,6 +33,5 @@ class SceneBootLoader extends Phaser.Scene{
     /////////////////////////////////Sonidos/////////////////////////////////
         this.load.audio("Musica_Base", ["./Sonidos/Musica_Topwer.mp3"]); 
 
-
     }
 }
