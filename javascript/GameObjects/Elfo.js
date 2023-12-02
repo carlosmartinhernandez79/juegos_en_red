@@ -139,9 +139,6 @@ class Elfo extends Phaser.GameObjects.Sprite{
             
         this.elfo.setPosition(this.elfo.x,this.elfo.y-30); //subirle el tamaño del sprite
 
-        this.scene.add.text(this.scene.gnomo1.x, this.scene.gnomo1.y-100, "¿¡QUEEEEEEE!?", {font: "25px Arial", fill: "black"})
-
-        this.scene.add.text(this.scene.elfo.x, this.scene.elfo.y-100, "¡TRAKAAAAAAAA!", {font: "25px Arial", fill: "black"})
         }
     }
 
