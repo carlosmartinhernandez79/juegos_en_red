@@ -66,7 +66,7 @@ class TutorialLevel extends Phaser.Scene{
         //---PLATAFORMAS MOVIBLES---
         this.platformsMovibles = this.add.group(); //creo un grupo de plataformasMovibles
         //creo dos instancia, da igual donde las guarde, porque se gestionará su funcionaldidad desde el grupo platformsMovibles (se añaden desde la propia clase)
-        this.platMovible = new PlataformaMovil(this, 1070, 1275,"horizontal", 1290, 1070, 200); 
+        this.platMovible = new PlataformaMovil(this, 970, 1275,"horizontal", 1380, 970, 200); 
         //this.platMovible2 = new PlataformaMovil(this, 1200, 3800,"vertical", 3800, 3500, 0);
         //this.platMovible3 = new PlataformaMovil(this, 1200, 3800,"vertical", 3800, 3500, 200);
         //---------------------------------
@@ -84,7 +84,7 @@ class TutorialLevel extends Phaser.Scene{
 
         //-----PUERTA SALIR----------
 
-        this.exitDoor = this.physics.add.image(2230,435,"puertaSalir").setScale(3.3)
+        this.exitDoor = this.physics.add.image(2230,435,"puertaSalir").setScale(1.55)
         this.exitDoor.body.setAllowGravity(false) //workds;
         this.exitDoor.body.setImmovable(true)
 
@@ -143,8 +143,8 @@ class TutorialLevel extends Phaser.Scene{
 
     //---JUGADORES--
 
-    this.gnomo1 = new Gnomo(this, 2108, 473);
-    this.elfo = new Elfo(this, 2108, 473);
+    this.gnomo1 = new Gnomo(this, 1070, 1000);
+    this.elfo = new Elfo(this, 1070, 1000);
     //---------------------------------
 
 
@@ -220,7 +220,11 @@ class TutorialLevel extends Phaser.Scene{
     
         for(var i = 0; i < this.box.getChildren().length; i++){
             var box = this.box.getChildren()[i];
-           box.stop();
+            box.stop();
+
+            if(this.isColliding(this.gnomo1, box, 50,110)){
+                this.gnomo1.canJump = true;
+            }
         }
     
     

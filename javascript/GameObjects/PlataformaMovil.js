@@ -16,6 +16,8 @@ class PlataformaMovil extends Phaser.GameObjects.Sprite{
         this.body.setAllowGravity(false) //workds;
         this.body.setImmovable(true)
 
+        this.setScale(2,2)
+
         scene.platformsMovibles.add(this);
 
         switch(this.typev){

@@ -125,7 +125,7 @@ class Elfo extends Phaser.GameObjects.Sprite{
                 this.elfo.anims.play('iddle');
             }
 
-            if (this.flechas.up.isDown && this.body.touching.down ) //
+            if (this.flechas.up.isDown && this.body.blocked.down ) //
             {
                 this.body.setVelocityY(-600);
             }
