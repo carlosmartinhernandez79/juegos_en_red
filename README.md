@@ -368,9 +368,9 @@ Para las animaciones de esta utilizando una técnica 2D de estilo tradicional.  
 Sin embargo,  en el caso de Lial, aunque el movimiento no es una caminata al uso, se han necesitado hasta 27 sprites, de forma que el movimiento sea más fluido. 
 
 <p align="center">
-  <img src="https://github.com/carlosmartinhernandez79/juegos_en_red/assets/100692817/f2a6a101-6769-4179-9a62-bc26ddc88d38" />
+  <img src="Imagenes/animacion lial.jpg" />
 <br>
-	Spritesheet de Tuk
+	Spritesheet de Lial
 <br>
 </p>
 
