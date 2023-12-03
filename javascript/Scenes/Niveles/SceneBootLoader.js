@@ -6,8 +6,28 @@ class SceneBootLoader extends Phaser.Scene {
     preload() {
 
         this.load.on("complete", () => {
-            this.scene.start("SceneJuego");
+            this.scene.start("StartScreen");
         });
+
+        //Interfaz escena principal
+        this.load.image("PantallaInicial", "./ImagesJS/Pantallas/Fondo_Pantalla_Principal_nublado.jpg");
+        this.load.image("BotonJugarOff", "./ImagesJS/Botones/Boton_Jugar_Off.png");
+        this.load.image("BotonOpcionesOff", "./ImagesJS/Botones/Boton_Opciones_Off.png");
+        this.load.image("BotonCreditosOff", "./ImagesJS/Botones/Boton_Creditos_Off.png");
+
+        this.load.image("BotonJugarOn", "./ImagesJS/Botones/Boton_Jugar_On.png");
+        this.load.image("BotonOpcionesOn", "./ImagesJS/Botones/Boton_Opciones_On.png");
+        this.load.image("BotonCreditosOn", "./ImagesJS/Botones/Boton_Creditos_On.png");
+        //////////////////////////////////////////////////////////////////////////////////
+        //Interfaz escena creditos
+        this.load.image("FondoOscuroVacio", "./ImagesJS/Pantallas/fondo oscuro vacio.jpg");
+        //////////////////////////////////////////////////////////////////////////////////
+        //Interfaz LogIn
+        this.load.image("ElfaPng", "./ImagesJS/Elfa_LogIn.png");
+        this.load.image("GnomoPng", "./ImagesJS/Gnomo_LogIn.png");
+        this.load.image("BotonNivelesOff", "./ImagesJS/Botones/Boton_Niveles_Off.png");
+        this.load.image("BotonNivelesOn", "./ImagesJS/Botones/Boton_Niveles_On.png");
+        //////////////////////////////////////////////////////////////////////////////////
         
     this.load.image("moneda", "./ImagesJS/Moneda.png");
     this.load.image("stick", "./ImagesJS/stick.png");

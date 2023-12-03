@@ -42,6 +42,9 @@ class PauseMenu extends Phaser.Scene{
 
         this.menu.on('pointerdown', function () {
             this.scene.start('StartScreen');
+            this.scene.bringToTop('StartScreen');
+            this.scene.sendToBack('SceneJuego');
+            this.scene.sendToBack('Tiempo_Monedas');
         }, this);
 
 
@@ -68,7 +71,10 @@ class PauseMenu extends Phaser.Scene{
         })
 
         this.opciones.on('pointerdown', function () {
-            this.scene.start('Opciones');
+            this.scene.start('Options');
+            this.scene.bringToTop('Options');
+            this.scene.sendToBack('SceneJuego');
+            this.scene.sendToBack('Tiempo_Monedas');
         }, this);
 
         //----------------------------------------------
@@ -117,6 +123,9 @@ class PauseMenu extends Phaser.Scene{
 
         this.niveles.on('pointerdown', function () {
             this.scene.start('LevelSelector');
+            this.scene.bringToTop('LevelSelector');
+            this.scene.sendToBack('SceneJuego');
+            this.scene.sendToBack('Tiempo_Monedas');
         }, this);
 
 
