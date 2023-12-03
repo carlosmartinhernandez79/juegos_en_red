@@ -5,6 +5,10 @@ var config  = {
 
     type: Phaser.AUTO,
     
+    dom: {
+        createContainer: true
+    },
+    
     physics:{
         default: "arcade",
         arcade:{
@@ -13,7 +17,7 @@ var config  = {
             }
         }
     },
-
+    
     scene:[
         StartScreen, 
         Tiempo_Monedas,

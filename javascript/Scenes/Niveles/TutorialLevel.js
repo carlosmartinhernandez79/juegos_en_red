@@ -30,14 +30,14 @@ class TutorialLevel extends Phaser.Scene{
 
         limites.setCollisionByProperty({colision:true});
         plataformas.setCollisionByProperty({colision:true});
-        pinchos.setCollisionByProperty({colision:true});
+        //pinchos.setCollisionByProperty({colision:true});
         generador.setCollisionByProperty({colision:true});
 
         //////////////////////////////////////////////////////////////////////////
 
         var playerR;
         var playerA;
-
+        this.physics.add.collider(this.elfo, platforms);
         this.cameras.main.setBounds(0,0,4000,4000);
 
     }

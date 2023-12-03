@@ -16,6 +16,7 @@ class Options extends Phaser.Scene{
                 .on('pointerdown', function () {
                     this.scene.start('StartScreen');
                 }, this);
+                
     }
 
     update() {
