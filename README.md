@@ -414,6 +414,13 @@ Como se ha mencionado anteriormente, una de las condiciones de victoria es super
 <br>
 </p>
 
+ <p align="center">
+  <img src="Imagenes/interfaz tiempo.jpg" />
+<br>
+	 Diseño inicial del temporizador
+<br>
+</p>
+
 
 ## INTERFAZ
 Para el apartado de la interfaz tendremos una pantalla de inicio donde podremos tanto elegir en qué modo de juego queremos jugar, configurar el sonido y ver los créditos. Una vez iniciado el nivel, la interfaz de pausa contará con un menú de opciones, reiniciar, volver al menú de inicio o salir del juego.
