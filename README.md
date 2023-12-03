@@ -277,8 +277,8 @@ A parte de las trampas a lo largo del nivel habrá diversos objetos con los que 
 <br>
 </p>
 
-## DISEÑOS FINALES
-# TUK
+# DISEÑOS FINALES
+## TUK
 Como teníamos previsto hemos usado una paleta de colores pasteles y un diseño más cartoon y familiar.
  <p align="center">
   <img src="Imagenes/GnomoEvolution.png" />
@@ -287,7 +287,7 @@ Como teníamos previsto hemos usado una paleta de colores pasteles y un diseño 
 <br>
 </p>
 
-# LIAL
+## LIAL
 Por otra parte el diseño de Lial se ve algo más realista, pero se mantiene esa estética familiar y colores pasteles al igual que en su compañero.
  <p align="center">
   <img src="Imagenes/evolucion elfa.jpg" />
@@ -296,10 +296,10 @@ Por otra parte el diseño de Lial se ve algo más realista, pero se mantiene esa
 <br>
 </p>
 
-# BOTONES BASE 
+## BOTONES BASE 
 Los botones han sido desarrollados vectorialmente para poder modificar su tamaño sin ningún problema para cada interfaz. A la izquierda aparece el botón que no está siendo pulsado y a la derecha el botón una vez se pone el cursor encima.
 
-# FONDO PANTALLA INICIO
+## FONDO PANTALLA INICIO
 Pantalla de inicio con el nombre del juego a la izquierda y espacio a la derecha irán los botones de esta primera pantalla.
 <p align="center">
   <img src="ImagesJS/Pantallas/Fondo_Pantalla_Principal_nublado.jpg" />
@@ -308,7 +308,7 @@ Pantalla de inicio con el nombre del juego a la izquierda y espacio a la derecha
 <br>
 </p>
 
-# TILES 
+## TILES 
 Esta paleta de tiles está cogida de Itch.io, y es de dominio público. Por ello, y para adaptarlo mejor a nuestro juego, la hemos retocado, de tal forma que tenga mayor apariencia de mazmorra.
 <p align="center">
   <img src="assets/tilesets/Tiles/tiles.jpg" />
@@ -317,7 +317,7 @@ Esta paleta de tiles está cogida de Itch.io, y es de dominio público. Por ello
 <br>
 </p>
 
-# LOGOS					
+## LOGOS					
 
 Por el logo del juego, se ha optado por una torre de un castillo, puesto que es de ahí de donde deben escapar nuestros jugadores. Además, el nombre del juego lo encontramos en vertical, paralelo a la torre. 
 
@@ -337,7 +337,7 @@ Logo del equipo
 <br>
 </p>
 
-# OBJETOS
+## OBJETOS
 Los principales objetos interactuables que se implementaran en el juego y se han diseñado han sido las monedas del juego, las palancas para interactuar con el entorno y el temporizador.
 <p align="center">
   <img src="ImagesJS/palanca.png" />
@@ -358,7 +358,7 @@ Los principales objetos interactuables que se implementaran en el juego y se han
 <br>
 </p>
 
-# ANIMACIONES
+## ANIMACIONES
 Para las animaciones de esta utilizando una técnica 2D de estilo tradicional.  Para la caminata de Tuk se han realizado 16 sprites para conseguir una animación fluida 
 <p align="center">
   <img src="https://github.com/carlosmartinhernandez79/juegos_en_red/assets/100692817/f2a6a101-6769-4179-9a62-bc26ddc88d38" />
@@ -381,7 +381,7 @@ En el siguiente paso se completarán las animaciones tanto en color para el caso
 
 
 
-## MÚSICA Y SONIDO
+# MÚSICA Y SONIDO
 
 Respecto a la música, se contará con una de fondo frenética, con la intencionalidad de que nuestros jugadores se pongan nerviosos. Esta música aún no está definida, y se podrá ajustar el volúmen pero no quitarla, puesto que se considera algo necesario e importante en nuestro juego. 
 
