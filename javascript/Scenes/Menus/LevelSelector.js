@@ -9,18 +9,20 @@ class LevelSelector extends Phaser.Scene{
 
     create() {
         // Lógica de inicialización de la escena
-        this.add.text(600, 20, "Level Selector", {font: "25px Arial", fill: "black"})
+        this.add.image(0,0, "FondoOscuroVacio").setOrigin(0,0);
 
-        var Volver = this.add.text(20, 20, '<---', { fill: 'red' })
+        this.add.text(600, 20, "Level Selector", {font: "25px Arial", fill: "white"})
+
+        var Volver = this.add.text(20, 20, '<---', { fill: 'cyan' })
                 .setInteractive()
                 .on('pointerdown', function () {
-                    this.scene.start('StartScreen');
+                    this.scene.start('LogIn');
                 }, this);
 
-                var Leve1 = this.add.text(600, 500, 'Nivel 1 Nivel', { fill: 'red' })
+                var Leve1 = this.add.text(600, 500, 'Nivel 1 Nivel', { fill: 'white' })
                 .setInteractive()
                 .on('pointerdown', function () {
-                    this.scene.start('SceneBootLoader');
+                    this.scene.start('SceneJuego');
                 }, this);
     }
 
