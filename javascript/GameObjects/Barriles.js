@@ -29,10 +29,7 @@ class Barriles extends Phaser.GameObjects.Sprite{
     update(time){
     
         this.actualCount= this.actualCount + time;
-        console.log("Contador: " +this.actualCount)
-
-        console.log(this.actualCount >= this.shotsPerSecond)
-
+    
         if(this.actualCount >= this.shotsPerSecond){
             this.shootBarrel();
             this.actualCount= this.actualCount - this.shotsPerSecond;

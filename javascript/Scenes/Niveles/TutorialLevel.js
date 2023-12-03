@@ -91,6 +91,9 @@ class TutorialLevel extends Phaser.Scene{
     this.desTransformarse.body.setAllowGravity(false);
     this.desTransformarse.setVisible(false);
     this.desTransformarse.setScale(0.3)
+        //-----PUERTA SALIR----------
+
+        //this.add.image("puertaSalir")
 
         //----------------------------
         //---BOX---
@@ -139,6 +142,7 @@ class TutorialLevel extends Phaser.Scene{
     this.elfo = new Elfo(this, 190, 600);
     //---------------------------------
 
+
     //---------FISICAS------------
     //FISICAS DEL GNOMO
     this.physics.add.collider(this.gnomo1, plataformas);//collisión con los tiles plataformas
@@ -184,7 +188,7 @@ class TutorialLevel extends Phaser.Scene{
     update(time, delta){
 
         //ACTUALIZACIÓN DE LA CAMARA
-        //console.log("X: " + this.gnomo1.x + " Y: "+ this.gnomo1.y)
+        console.log("X: " + this.gnomo1.x + " Y: "+ this.gnomo1.y)
         var camaraPosX = (Math.abs(this.elfo.x+this.gnomo1.x)/2);
         var camaraPosY = (Math.abs(this.elfo.y+this.gnomo1.y)/2);
     
