@@ -322,7 +322,7 @@ Por el logo del juego, se ha optado por una torre de un castillo, puesto que es 
 Por otro lado, encontramos el logo del equipo, que basado en la misma dinámica vertical que el anterior, y jugando con el nombre (UpDown Games), se ha dividido en dos colores, uno por palabra, con unas flechas apuntando hacia la dirección de las propias palabras: Up, con su flecha hacia arriba y Down, con su flecha hacia abajo.
 
 <p align="center">
-  <img src="Imagenes/Logo_Equipo.png.jpg" />
+  <img src="Imagenes/Logo_Equipo.png" />
 <br>
 Logo del equipo
 <br>
