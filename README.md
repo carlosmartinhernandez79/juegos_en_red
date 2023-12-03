@@ -429,8 +429,6 @@ Como se ha mencionado anteriormente, una de las condiciones de victoria es super
 Para el apartado de la interfaz tendremos una pantalla de inicio donde podremos tanto elegir en qué modo de juego queremos jugar, configurar el sonido y ver los créditos. Una vez iniciado el nivel, la interfaz de pausa contará con un menú de opciones, reiniciar, volver al menú de inicio o salir del juego.
 In-game, nos encontraremos con un contador de las monedas que vayamos recolectando y el temporizador explicado previamente.
 
-## CÁMARA
-Por último mencionar que ambos personajes se encontrarán en todo momento en la cámara del juego, y una mecánica de la cámara importante a destacar es que cuando uno de los dos jugadores avance más, dejando al otro atrás (fuera de cámara), ambos morirán y tendrán que empezar de nuevo. De esta forma ambos serán conscientes de lo que hace su compañero en todo momento y se fomentará el trabajo en equipo y colaboración de los usuarios.
 
  <p align="center">
   <img src="Imagenes/interfaz pantalla inicial.jpg" />
@@ -472,6 +470,8 @@ Por último mencionar que ambos personajes se encontrarán en todo momento en la
 </p>
 
 
+## CÁMARA
+Por último mencionar que ambos personajes se encontrarán en todo momento en la cámara del juego, y una mecánica de la cámara importante a destacar es que cuando uno de los dos jugadores avance más, dejando al otro atrás (fuera de cámara), ambos morirán y tendrán que empezar de nuevo. De esta forma ambos serán conscientes de lo que hace su compañero en todo momento y se fomentará el trabajo en equipo y colaboración de los usuarios.
 
 ## ESCENARIOS
 
