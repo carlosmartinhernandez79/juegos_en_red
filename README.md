@@ -508,3 +508,13 @@ Gracias a esto la pipeline de trabajo se acorta bastante y nos permite desarroll
 La pipeline de trabajo ha sido:
 Diseño del nivel “A papel” > Implementación del diseño en Tiled > Cargar mapa en el juego
 
+# DIAGRAMA DE FLUJO
+Desde el menú de inicio, el jugador podrá ver los créditos, meterse en opciones, donde podrá subir o bajar el volumen general, el de los efectos de sonido y la música,  o salir del propio juego. Evidentemente, también podrá jugar, lo que le llevará a elegir entre local u online.
+Independientemente de si está jugando en local o en online, podrá entrar en un menú de pausa. Aquí podrá reiniciar el nivel, entrar en opciones (un menú idéntico al que ya hemos mencionado), salir y volver al menú principal, que le llevará a la pantalla de inicio del juego. 
+
+# DIAGRAMA DE NAVEGACIÓN
+Se empieza el juego en la pantalla principal, en la que tenemos las posibilidades de acceder a jugar, opciones y créditos. Si accedemos a opciones en un futuro habrá un sistema de gestión de opciones de sonido. Si accedemos a créditos aparecerán unos créditos de los creadores del juego, nosotros, y una breve explicación del tipo de juego que es. Por último si accedemos a jugar, pasaremos a la pantalla de selección de personajes en la que aparecen los dos personajes jugables y un acceso al apartado de niveles, en el cual si accedemos a él nos saldrán los diversos niveles que posee el juego y al clicar en el nivel deseado accedemos a la pantalla de juego de dicho nivel. Además desde la pantalla de juego, pulsando la tecla escape se accedera a la pantalla de pausa con las posibilidades de volver al menú, abrir el apartado de opciones, reiniciar el nivel o volver al apartado de niveles en caso de querer jugar un nivel diferente. 
+Por último comentar que las pantallas de opciones, créditos, selección de personajes y niveles tienen la opción de volver a la pantalla anterior clicando en la flecha situada en la esquina superior izquierda.
+
+
+
