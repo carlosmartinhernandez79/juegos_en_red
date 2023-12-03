@@ -309,7 +309,7 @@ Pantalla de inicio con el nombre del juego a la izquierda y espacio a la derecha
 # TILES 
 Esta paleta de tiles está cogida de Itch.io, y es de dominio público. Por ello, y para adaptarlo mejor a nuestro juego, la hemos retocado, de tal forma que tenga mayor apariencia de mazmorra.
 <p align="center">
-  <img src="assets/tilesets/Tiles/Tileset1.png" />
+  <img src="assets/tilesets/Tiles/tiles.jpg" />
 <br>
 	Tiles modificados
 <br>
