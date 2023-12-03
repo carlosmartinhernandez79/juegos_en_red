@@ -278,6 +278,7 @@ A parte de las trampas a lo largo del nivel habrá diversos objetos con los que 
 </p>
 
 # DISEÑOS FINALES
+
 ## TUK
 Como teníamos previsto hemos usado una paleta de colores pasteles y un diseño más cartoon y familiar.
  <p align="center">
