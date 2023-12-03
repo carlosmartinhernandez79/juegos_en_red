@@ -14,7 +14,7 @@ Carlos Martín Hernández (c.martinh.2019@alumnos.urjc.es - carlosmartinhernande
 
 
 <p align="center">
-  <img src="https://github.com/carlosmartinhernandez79/juegos_en_red/assets/100692817/1632efbb-9d4d-4f67-b0d4-dff980df6bfd" />
+  <img src="Imagenes/Logo_Topwer.png" />
 </p>
 
 
@@ -123,12 +123,12 @@ La habilidad del personaje 2 se activa (doble salto) se activa pulsando ↑ en e
 ## CONDICIONES DE VICTORIA Y DERROTA
 
 ### VICTORIA
-Los jugadores ganarán cuando ambos lleguen a la parte más alta del castillo antes de que se acabe el tiempo. Por ello, perderán si no llegan en tiempo o si alguno de los dos muere. 
+Los jugadores ganarán cuando ambos lleguen a la parte más alta del castillo antes de que se acabe el tiempo. Deberán superar todos los obstáculos que se le presenten para ello, tanto puzzles como trampas mortales. No existe el concepto de checkpoint ya que se quiere que cada nivel suponga un reto para el jugador y piense muy bien qué acciones tomar en un tiempo limitado para conseguir avanzar en el nivel.
 
-Cuando uno de los dos muere, se le notificará al otro jugador y comenzarán de nuevo.
 
 ### DERROTA
-Los jugadores perderán si  se agota el tiempo antes de que hayan llegado a la meta del nivel, en cuyo caso volverán a empezar.
+Los jugadores perderán si  se agota el tiempo antes de que hayan llegado a la meta del nivel, en cuyo caso volverán a empezar; o cuando uno de los dos muere, lo cual se le notificará al otro jugador y comenzarán de nuevo. Las posibilidades de muerte de los personajes pueden ser tanto por trampas (pinchos o balas) o porque se alejen demasiado uno del otro.
+
 
 
 
@@ -165,6 +165,7 @@ Unas de las imágenes de referencia que usaremos para la temática a tomar serí
 
 Los colores que se van a utilizar para el juego van a ser colores pasteles y planos, para dar una impresión más de caricatura o cartoon y crear un espacio de juego más amigable y cercano. De esta forma aparte de hacer el juego más llamativo, se adecúa mejor al público al que va dirgido.
 
+
 <p align="center">
   <img src="https://github.com/carlosmartinhernandez79/juegos_en_red/assets/100692817/894e5cb3-7fec-4e3f-92fe-94f10b13b45c" />
 <br>
@@ -175,6 +176,7 @@ Los colores que se van a utilizar para el juego van a ser colores pasteles y pla
 
 ## PERSONAJES
 En ambos personajes se utilizaran unos diseños simples pero expresivos, que a su mismo tiempo estarán compuestos por colores pasteles y con pequeños detalles relacionados con sus poderes o habilidades especiales.
+
 
 <p align="center">
   <img src="https://github.com/carlosmartinhernandez79/juegos_en_red/assets/100692817/6f0281e3-3bb8-4abf-8736-9019edccf1d4" />
@@ -218,8 +220,8 @@ Las principales trampas que implementaremos en el jugo serán:
 <br>
 </p>
 
-**-Lava:** Con colores muy llamativos para que de la sensación de peligro
-**-Barriles:** Diseño básico de barril con colores oscuros y un logo característico
+**-Balas:** Las balas serán disparadas desde un cañón cada cierto tiempo. El jugador deberá saltarlas para esquivarlas.
+
 
 <p align="center">
   <img src="https://github.com/carlosmartinhernandez79/juegos_en_red/assets/100692817/f999459f-d8e1-4d5c-808e-639aba56ef34" />
@@ -259,12 +261,64 @@ A parte de las trampas a lo largo del nivel habrá diversos objetos con los que 
 <br>
 </p>
 
+## DISEÑOS FINALES
+# TUK
+Como teníamos previsto hemos usado una paleta de colores pasteles y un diseño más cartoon y familiar.
+# LIAL
+Por otra parte el diseño de Lial se ve algo más realista, pero se mantiene esa estética familiar y colores pasteles al igual que en su compañero.
+# BOTONES BASE
+Los botones han sido desarrollados vectorialmente para poder modificar su tamaño sin ningún problema para cada interfaz. A la izquierda aparece el botón que no está siendo pulsado y a la derecha el botón una vez se pone el cursor encima.
+# FONDO PANTALLA INICIO
+Pantalla de inicio con el nombre del juego a la izquierda y espacio a la derecha irán los botones de esta primera pantalla.
+# TILES 
+Esta paleta de tiles está cogida de Itch.io, y es de dominio público. Por ello, y para adaptarlo mejor a nuestro juego, la hemos retocado, de tal forma que tenga mayor apariencia de mazmorra.
+
+# LOGOS					
+
+Por el logo del juego, se ha optado por una torre de un castillo, puesto que es de ahí de donde deben escapar nuestros jugadores. Además, el nombre del juego lo encontramos en vertical, paralelo a la torre. 
+
+Por otro lado, encontramos el logo del equipo, que basado en la misma dinámica vertical que el anterior, y jugando con el nombre (UpDown Games), se ha dividido en dos colores, uno por palabra, con unas flechas apuntando hacia la dirección de las propias palabras: Up, con su flecha hacia arriba y Down, con su flecha hacia abajo.
+
+# OBJETOS
+Los principales objetos interactuables que se implementaran en el juego y se han diseñado han sido las monedas del juego, las palancas para interactuar con el entorno y el temporizador.
+
+# ANIMACIONES
+Para las animaciones de esta utilizando una técnica 2D de estilo tradicional.  Para la caminata de Tuk se han realizado 16 sprites para conseguir una animación fluida 
+
+---
+
+Sin embargo,  en el caso de Lial, aunque el movimiento no es una caminata al uso, se han necesitado hasta 27 sprites, de forma que el movimiento sea más fluido. 
+
+---
+
+En el siguiente paso se completarán las animaciones tanto en color para el caso de la elfa y, como mejora, se intentará ampliar los movimientos para ambos para enriquecer la experiencia. 
+
+
+
 
 ## MÚSICA Y SONIDO
 
 Respecto a la música, se contará con una de fondo frenética, con la intencionalidad de que nuestros jugadores se pongan nerviosos. Esta música aún no está definida, y se podrá ajustar el volúmen pero no quitarla, puesto que se considera algo necesario e importante en nuestro juego. 
 
-Por otro lado, los sonidos y efectos de sonido que se incluirán son sonido de muerte, de caída, de salto y de andar. Además de otros como las plataformas en movimiento o barriles rodando. 
+Por otro lado, los sonidos y efectos de sonido que se incluirán son sonido de muerte, de caída, de salto y de andar. Además de otros como las plataformas en movimiento, barriles rodando, palancas y botones. 
+
+Para la realización de la música base del juego se ha utilizado la aplicación LMMS y se ha generado una música que va aumentando su ritmo y la intensidad de los instrumentos. La canción ha sido creada de tal forma que se pueda establecer como un bucle y no se note demasiado el cambio.
+
+Para la implementación del audio que suena al perder en el juego, ha sido obtenido de la siguiente url: Musica_Derrota
+
+Para la implementación del audio que suena al recoger monedas, ha sido sacado de la siguiente url: Sonido_Moneda
+
+Para la implementación del audio que suena al saltar en el juego, ha sido obtenido de la siguiente url: Sonido_Salto
+
+Para la implementación del audio empleado para la interacción con la palanca ha sido obtenido de la siguiente url: Sonido_Palanca
+
+Por último, para la implementación del audio para la obtención de dos insignias, se ha utilizado un audio de mariano rajoy : Audio_Mariano
+y se ha empleado una ia para completar el audio para poder conseguir la segunda insignia de hacer la pelota:
+<p>
+  <a href="https://fakeyou.com/tts/result/TR:63nzkvqej6g791220kcxmr59v1mtw">FakeYou</a>.
+</p>
+
+
 
 
 
