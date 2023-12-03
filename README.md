@@ -297,17 +297,32 @@ Por otra parte el diseño de Lial se ve algo más realista, pero se mantiene esa
 </p>
 # BOTONES BASE
 Los botones han sido desarrollados vectorialmente para poder modificar su tamaño sin ningún problema para cada interfaz. A la izquierda aparece el botón que no está siendo pulsado y a la derecha el botón una vez se pone el cursor encima.
+
+<p align="center">
+  <img src="https://github.com/carlosmartinhernandez79/juegos_en_red/assets/147002686/e220e9f9-df16-4d9c-96fd-b24c19c15180"/>
+<br>
+Diseño del botón sin seleccionar y seleccionado	
+<br>
+</p>
+
 # FONDO PANTALLA INICIO
 Pantalla de inicio con el nombre del juego a la izquierda y espacio a la derecha irán los botones de esta primera pantalla.
 <p align="center">
   <img src="ImagesJS/Pantallas/Fondo_Pantalla_Principal_nublado.jpg" />
 <br>
-	Fondo de pantalla del incio
+Fondo de pantalla del incio
 <br>
 </p>
 
 # TILES 
 Esta paleta de tiles está cogida de Itch.io, y es de dominio público. Por ello, y para adaptarlo mejor a nuestro juego, la hemos retocado, de tal forma que tenga mayor apariencia de mazmorra.
+
+<p align="center">
+  <img src="https://github.com/carlosmartinhernandez79/juegos_en_red/assets/147002686/f91bc404-c153-4d8e-9e83-aadfe2da5e6d" />
+<br>
+Modificación de tiles (Izquierda original y a la derecha el nuestro)
+<br>
+</p>
 
 # LOGOS					
 
@@ -316,7 +331,7 @@ Por el logo del juego, se ha optado por una torre de un castillo, puesto que es 
 Por otro lado, encontramos el logo del equipo, que basado en la misma dinámica vertical que el anterior, y jugando con el nombre (UpDown Games), se ha dividido en dos colores, uno por palabra, con unas flechas apuntando hacia la dirección de las propias palabras: Up, con su flecha hacia arriba y Down, con su flecha hacia abajo.
 
 <p align="center">
-  <img src="Imagenes/Logo_Equipo.png.jpg" />
+  <img src="https://github.com/carlosmartinhernandez79/juegos_en_red/assets/147002686/04a37980-b582-4c09-988c-2f177fb0e43c" />
 <br>
 Logo del equipo
 <br>
@@ -362,9 +377,9 @@ Para las animaciones de esta utilizando una técnica 2D de estilo tradicional.  
 Sin embargo,  en el caso de Lial, aunque el movimiento no es una caminata al uso, se han necesitado hasta 27 sprites, de forma que el movimiento sea más fluido. 
 
 <p align="center">
-  <img src="https://github.com/carlosmartinhernandez79/juegos_en_red/assets/100692817/f2a6a101-6769-4179-9a62-bc26ddc88d38" />
+  <img src="https://github.com/carlosmartinhernandez79/juegos_en_red/assets/147002686/52fad75d-adeb-44a9-b216-ec29d0f5c14f" />
 <br>
-	Spritesheet de Tuk
+	Spritesheet de Lial
 <br>
 </p>
 
@@ -408,10 +423,51 @@ Como se ha mencionado anteriormente, una de las condiciones de victoria es super
 <br>
 </p>
 
+ <p align="center">
+  <img src="https://github.com/carlosmartinhernandez79/juegos_en_red/assets/147002686/880417ed-a198-450b-8425-39370ef69554" />
+<br>
+	 Diseño inicial del temporizador 
+<br>
+</p>
 
 ## INTERFAZ
 Para el apartado de la interfaz tendremos una pantalla de inicio donde podremos tanto elegir en qué modo de juego queremos jugar, configurar el sonido y ver los créditos. Una vez iniciado el nivel, la interfaz de pausa contará con un menú de opciones, reiniciar, volver al menú de inicio o salir del juego.
 In-game, nos encontraremos con un contador de las monedas que vayamos recolectando y el temporizador explicado previamente.
+
+<p align="center">
+  <img src="https://github.com/carlosmartinhernandez79/juegos_en_red/assets/147002686/65a05094-4414-4cbd-8991-6e6c944fa8b3" />
+<br>
+Interfaz pantalla inicial 
+<br>
+</p>
+
+<p align="center">
+  <img src="https://github.com/carlosmartinhernandez79/juegos_en_red/assets/147002686/3d5b0a63-904c-4acf-a8b4-81f88cada811" />
+<br>
+Interfaz selección de personaje
+<br>
+</p>
+
+<p align="center">
+  <img src="https://github.com/carlosmartinhernandez79/juegos_en_red/assets/147002686/5544b451-6409-4390-9b11-ea868050b151" />
+<br>
+Interfaz selección de nivel 
+<br>
+</p>
+
+<p align="center">
+  <img src="https://github.com/carlosmartinhernandez79/juegos_en_red/assets/147002686/53c44ebc-529f-42f2-9ed2-7f2a3ed6109b" />
+<br>
+Interfaz pantalla de juego
+<br>
+</p>
+
+<p align="center">
+  <img src="https://github.com/carlosmartinhernandez79/juegos_en_red/assets/147002686/3b88ab48-d769-4ddd-a59f-96e740c4f9c1" />
+<br>
+Interfaz pantalla de pausa
+<br>
+</p>
 
 ## CÁMARA
 Por último mencionar que ambos personajes se encontrarán en todo momento en la cámara del juego, y una mecánica de la cámara importante a destacar es que cuando uno de los dos jugadores avance más, dejando al otro atrás (fuera de cámara), ambos morirán y tendrán que empezar de nuevo. De esta forma ambos serán conscientes de lo que hace su compañero en todo momento y se fomentará el trabajo en equipo y colaboración de los usuarios.
@@ -449,8 +505,56 @@ Para poder hacer los mapas se ha decidido usar la herramienta Tiled, un software
 Se ha usado un tileset gratuito de <p><a href="https://pixelfrog-assets.itch.io/kings-and-pigs">Itch.io</a>. </p>
 Gracias a esto la pipeline de trabajo se acorta bastante y nos permite desarrollar varios niveles en menos tiempo.
 
-
+<p align="center">
+  <img src="https://github.com/carlosmartinhernandez79/juegos_en_red/assets/147002686/a077c226-dc6c-4d38-b439-0c6b8e07533d" />
+</p>
 
 La pipeline de trabajo ha sido:
 Diseño del nivel “A papel” > Implementación del diseño en Tiled > Cargar mapa en el juego
 
+ <p align="center">
+  <img src="https://github.com/carlosmartinhernandez79/juegos_en_red/assets/147002686/d371aa49-6013-44dc-96ec-8338904b79b1" />
+<br>
+Diseño del mapa
+<br>
+</p>
+
+ <p align="center">
+  <img src="https://github.com/carlosmartinhernandez79/juegos_en_red/assets/147002686/c2ecb44c-4eee-4884-89dc-c0ba377ae43e" />
+<br>
+Implementación en Tiled
+<br>
+</p>
+
+ <p align="center">
+  <img src="https://github.com/carlosmartinhernandez79/juegos_en_red/assets/147002686/936c6a54-2dea-4090-901b-7024b4afdd1d" />
+<br>
+Resultado final
+<br>
+</p>
+
+# DIAGRAMA DE FLUJO
+
+<p align="center">
+  <img src="https://github.com/carlosmartinhernandez79/juegos_en_red/assets/147002686/be53fc50-0268-49b8-a330-fd2b9c4a9abd" />
+<br>
+Diagrama de flujo
+<br>
+</p>
+
+Desde el menú de inicio, el jugador podrá ver los créditos, meterse en opciones, donde podrá subir o bajar el volumen general, el de los efectos de sonido y la música,  o salir del propio juego. Evidentemente, también podrá jugar, lo que le llevará a elegir entre local u online.
+
+Independientemente de si está jugando en local o en online, podrá entrar en un menú de pausa. Aquí podrá reiniciar el nivel, entrar en opciones (un menú idéntico al que ya hemos mencionado), salir y volver al menú principal, que le llevará a la pantalla de inicio del juego. 
+
+
+# DIAGRAMA DE NAVEGACIÓN
+
+Se empieza el juego en la pantalla principal, en la que tenemos las posibilidades de acceder a jugar, opciones y créditos. Si accedemos a opciones en un futuro habrá un sistema de gestión de opciones de sonido. Si accedemos a créditos aparecerán unos créditos de los creadores del juego, nosotros, y una breve explicación del tipo de juego que es. Por último si accedemos a jugar, pasaremos a la pantalla de selección de personajes en la que aparecen los dos personajes jugables y un acceso al apartado de niveles, en el cual si accedemos a él nos saldrán los diversos niveles que posee el juego y al clicar en el nivel deseado accedemos a la pantalla de juego de dicho nivel. Además desde la pantalla de juego, pulsando la tecla escape se accedera a la pantalla de pausa con las posibilidades de volver al menú, abrir el apartado de opciones, reiniciar el nivel o volver al apartado de niveles en caso de querer jugar un nivel diferente. 
+Por último comentar que las pantallas de opciones, créditos, selección de personajes y niveles tienen la opción de volver a la pantalla anterior clicando en la flecha situada en la esquina superior izquierda.
+
+ <p align="center">
+  <img src="https://github.com/carlosmartinhernandez79/juegos_en_red/assets/147002686/8eeb4303-c8cf-4144-86a8-a60df323a472" />
+<br>
+Diagrama de navegación
+<br>
+</p>
