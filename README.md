@@ -47,6 +47,12 @@ Encargado del diseño de personajes, elementos y escenarios. Apoyo en animación
 
 ### Luis:
 Encargado de la programación.
+<p align="center">
+  <img src="Imagenes/Logo_Equipo.png" />
+<br>
+	LOGO EQUIPO
+<br>
+</p>
 
 
 # CARACTERÍSTICAS DEL JUEGO
