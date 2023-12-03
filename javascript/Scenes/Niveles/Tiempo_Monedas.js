@@ -5,6 +5,9 @@ class Tiempo_Monedas extends Phaser.Scene{
 
     create(){
         var miMoneda=this.add.image(50, 50, 'moneda');
+        var miReloj=this.add.image(1090, 50, 'reloj');
+
+        miReloj.setScale(0.07)
 
         this.count = 0;
 

@@ -27,13 +27,13 @@ class TutorialLevel extends Phaser.Scene{
         var fondo = map.createLayer('Fondo', tilesetEscenario).setScale(1.5);
         var limites = map.createLayer('Limites', tilesetEscenario).setScale(2);
         var plataformas = map.createLayer('Plataformas', tilesetEscenario).setScale(1.5);
-        var pinchos = map.createLayer('Pinchos', tilesetPinchos).setScale(1.5);
-        var generador = map.createLayer('Generador', tilesetLauncher).setScale(1.5);
+       // var pinchos = map.createLayer('Pinchos', tilesetPinchos).setScale(1.5);
+        //var generador = map.createLayer('Generador', tilesetLauncher).setScale(1.5);
 
         limites.setCollisionByProperty({colision:true});
         plataformas.setCollisionByProperty({colision:true});
-        pinchos.setCollisionByProperty({colision:true});
-        generador.setCollisionByProperty({colision:true});
+       // pinchos.setCollisionByProperty({colision:true});
+       // generador.setCollisionByProperty({colision:true});
         map.setCollisionBetween(0, 1200);
 
         plataformas.setCollisionByExclusion([-1]);
@@ -58,7 +58,7 @@ class TutorialLevel extends Phaser.Scene{
         //---------------------------------
 
         //CARACTERISTICAS DEL MUNDO
-        this.physics.world.bounds.width = 2400;
+        this.physics.world.bounds.width = 2350;
         this.physics.world.bounds.height = 2100;
         this.cameras.main.setBounds(0,0,2400,2100);
         //---------------------------------
@@ -66,8 +66,8 @@ class TutorialLevel extends Phaser.Scene{
         //---PLATAFORMAS MOVIBLES---
         this.platformsMovibles = this.add.group(); //creo un grupo de plataformasMovibles
         //creo dos instancia, da igual donde las guarde, porque se gestionará su funcionaldidad desde el grupo platformsMovibles (se añaden desde la propia clase)
-        this.platMovible = new PlataformaMovil(this, 50, 3500,"horizontal", 375, 0, 200); 
-        this.platMovible2 = new PlataformaMovil(this, 1200, 3800,"vertical", 3800, 3500, 0);
+        this.platMovible = new PlataformaMovil(this, 1070, 1275,"horizontal", 1290, 1070, 200); 
+        //this.platMovible2 = new PlataformaMovil(this, 1200, 3800,"vertical", 3800, 3500, 0);
         //this.platMovible3 = new PlataformaMovil(this, 1200, 3800,"vertical", 3800, 3500, 200);
         //---------------------------------
 
@@ -110,30 +110,41 @@ class TutorialLevel extends Phaser.Scene{
             repeat: 11,
             setXY: { x: 50, y: 3700, stepX: 350 }
         });
-    
+
+        this.misMonedas.create(110,1580,"moneda")
+
         this.misMonedas.children.iterate(function (child) {
 
-        child.setScale(0.13);
+        child.setScale(0.2);
         child.body.setAllowGravity(false) //workds;
     
          });
         //---------------------------------
          //PINCHOS
     this.pinchos = this.physics.add.staticGroup();
-    this.pinchos.create(140, 3745, 'pinchos');
+    this.pinchos.create(650, 2040, 'pinchos');
+    this.pinchos.create(1315, 1610, 'pinchos');
+    this.pinchos.create(933, 1610, 'pinchos');
+    this.pinchos.create(800, 1225, 'pinchos');
+    this.pinchos.create(1553, 1225, 'pinchos');
     //--------------------------------- 
 
+    //GENERADOR DE BARRILES Y BALAS
+    this.generadorBarriles = new Barriles(this, 135, 790, "right", 2000)
+    this.misBalas = this.add.group()
+    //----------------------------------
+
     //---JUGADORES--
-    this.gnomo1 = new Gnomo(this, 2000, 2000);
-    this.elfo = new Elfo(this, 2000, 2000);
+    this.gnomo1 = new Gnomo(this, 190, 600);
+    this.elfo = new Elfo(this, 190, 600);
     //---------------------------------
 
     //---------FISICAS------------
     //FISICAS DEL GNOMO
     this.physics.add.collider(this.gnomo1, plataformas);//collisión con los tiles plataformas
     this.physics.add.collider(this.gnomo1, limites);//collisión con los tiles límites del mapa
-    this.physics.add.collider(this.elfo, this.gnomo1);
     this.physics.add.collider(this.gnomo1, this.platformsMovibles); //collisión con las plataformas móviles
+    this.physics.add.collider(this.gnomo1,  this.generadorBarriles);
     this.physics.add.collider(this.gnomo1, this.doors);
     this.physics.add.overlap(this.gnomo1, this.misMonedas, this.pickCoin, null, this);
     this.physics.add.overlap(this.gnomo1, this.pinchos, this.pinchosDeath, null, this);
@@ -145,8 +156,8 @@ class TutorialLevel extends Phaser.Scene{
     //FISICAS DEL ELFO
     this.physics.add.collider(this.elfo, plataformas); //collisión con los tiles plataformas
     this.physics.add.collider(this.elfo, limites);//collisión con los tiles límites del mapa
-    this.physics.add.collider(this.elfo, this.gnomo1); 
     this.physics.add.collider(this.elfo, this.platformsMovibles); //collisión con las plataformas móviles
+    this.physics.add.collider(this.elfo,  this.generadorBarriles);
     this.physics.add.collider(this.elfo, this.doors);
     this.physics.add.overlap(this.elfo, this.misMonedas, this.pickCoin, null, this);
     this.physics.add.overlap(this.elfo, this.pinchos, this.pinchosDeath, null, this);
@@ -173,7 +184,7 @@ class TutorialLevel extends Phaser.Scene{
     update(time, delta){
 
         //ACTUALIZACIÓN DE LA CAMARA
-    
+        //console.log("X: " + this.gnomo1.x + " Y: "+ this.gnomo1.y)
         var camaraPosX = (Math.abs(this.elfo.x+this.gnomo1.x)/2);
         var camaraPosY = (Math.abs(this.elfo.y+this.gnomo1.y)/2);
     
@@ -182,6 +193,9 @@ class TutorialLevel extends Phaser.Scene{
         //MOVIMIENTO DEDL PERSONAJE INDEPENDIENTEMENTE DE LA CPU --> https://phaser.discourse.group/t/different-game-speed-depending-on-monitor-refresh-rate/7231/4
         var f = (delta / (1000 / 120)); // 1000 ms / 60fps
         this.increment = this.increment + (2 * f);
+
+        //console.log("Incremento: " + this.increment)
+        //console.log("f : " + f)
     
         if (this.increment > 32) {
             this.increment = this.increment - 32;
@@ -195,7 +209,6 @@ class TutorialLevel extends Phaser.Scene{
     
         for(var i = 0; i < this.box.getChildren().length; i++){
             var box = this.box.getChildren()[i];
-          
            box.stop();
         }
     
@@ -205,7 +218,25 @@ class TutorialLevel extends Phaser.Scene{
             var plat = this.platformsMovibles.getChildren()[i];
             plat.update();
         }
-    
+        //-------------------------
+        //GESTIÓN DEL BARRIL Y BALAS
+        this.generadorBarriles.update(f);
+
+        for(var i = 0; i < this.misBalas.getChildren().length; i++){
+            if(this.isColliding(this.gnomo1, this.misBalas.getChildren()[i], 50, 50)){
+                
+                this.resetGame();
+            }
+
+            else if(this.isColliding(this.elfo, this.misBalas.getChildren()[i], 50, 50)){
+            
+                this.resetGame();
+            }
+
+           this.misBalas.getChildren()[i].kill();
+        }
+        //-------------------------
+
         //GESTION DE LAS PALANCAS
         //RECORRO TODOS Y ACTIVO SOLO AQUELLAS SOBRE LAS QUE ESTÉ ENCIMA
         //Comprobaré eso comprobando por cada palanca si el personaje se encuentra en la misma x y en la misma y con una diferencia de +-size
@@ -237,6 +268,7 @@ class TutorialLevel extends Phaser.Scene{
     
         pauseGame(){
             console.log("Pausar")
+            this.scene.bringToTop("PauseMenu")
             this.scene.run('PauseMenu')
             this.scene.pause();
             this.scene.pause("Tiempo_Monedas");

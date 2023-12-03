@@ -13,6 +13,8 @@ class Gnomo extends Phaser.GameObjects.Sprite{
 
         this.SonidoSalto = this.scene.sound.add("Sonido_Salto");
 
+        this.canJump = true;
+
         //ANIMATIONS DEL MUÑECO
         this.anims.create({
             key: 'walk',
@@ -54,10 +56,14 @@ class Gnomo extends Phaser.GameObjects.Sprite{
             this.gnomo.anims.play('turn');
         }
         
-        if (this.wasd.up.isDown && this.gnomo.body.blocked.down)//this.body.touching.down ) //
+        if (this.wasd.up.isDown && this.canJump)//this.body.touching.down ) //
         {
             this.SonidoSalto.play();
             this.body.setVelocityY(-600);
+            this.canJump = false;
+        }
+        else if(this.gnomo.body.blocked.down){ //this.elfo.body.blocked.down funciona con los tiles. El isTouching no
+            this.canJump = true;
         }
 
         //PREGUNTARLE ESTO

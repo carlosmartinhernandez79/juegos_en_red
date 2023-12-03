@@ -10,7 +10,8 @@ var config  = {
         arcade:{
             gravity:{
                 y: 700
-            }
+            },
+            //debug : true
         }
     },
 

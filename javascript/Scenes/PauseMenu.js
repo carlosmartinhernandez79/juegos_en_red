@@ -12,8 +12,6 @@ class PauseMenu extends Phaser.Scene{
         // Lógica de inicialización de la escena
         const graphics = this.add.graphics();
 
-        //2400 x 2100;
-
         graphics.fillStyle(0x000000, 1);
         graphics.fillRect(0, 0, 1200, 600);
         graphics.alpha = 0.5
@@ -24,7 +22,6 @@ class PauseMenu extends Phaser.Scene{
 
         this.menuOff = this.add.image(600,200,"menuOff").setScale(0.6);
         this.menuOn = this.add.image(600,200,"menuOn");
-    
         
         this.menu = this.menuOff
 
@@ -45,7 +42,6 @@ class PauseMenu extends Phaser.Scene{
 
         this.menu.on('pointerdown', function () {
             this.scene.start('StartScreen');
-            this.scene.bringToTop('StartScreen');
         }, this);
 
 
@@ -73,7 +69,6 @@ class PauseMenu extends Phaser.Scene{
 
         this.opciones.on('pointerdown', function () {
             this.scene.start('Opciones');
-            this.scene.bringToTop('Opciones');
         }, this);
 
         //----------------------------------------------
@@ -96,7 +91,7 @@ class PauseMenu extends Phaser.Scene{
         })
 
         this.reiniciar.on('pointerdown', function () {
-            this.scene.start('TutorialLevel');
+            this.scene.start('SceneJuego');
         }, this);
 
         //-------------------------------------------------
@@ -122,9 +117,8 @@ class PauseMenu extends Phaser.Scene{
 
         this.niveles.on('pointerdown', function () {
             this.scene.start('LevelSelector');
-            this.scene.bringToTop('LevelSelector');
-            
         }, this);
+
 
     }
 
@@ -143,8 +137,7 @@ class PauseMenu extends Phaser.Scene{
             this.scene.stop();
             console.log("Resume")
             this.scene.resume("Tiempo_Monedas");
-            var sceneMain = this.scene.resume("TutorialLevel");
-            this.scene.get("TutorialLevel").MiMusicaBase.resume();
+            var sceneMain = this.scene.resume("SceneJuego");
         }
     }
 }

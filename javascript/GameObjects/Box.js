@@ -11,6 +11,6 @@ class Box extends Phaser.GameObjects.Sprite{
     }
 
    stop(){
-  
+    this.box.body.setVelocityX(0)
    }
 }
