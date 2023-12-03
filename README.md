@@ -1,10 +1,17 @@
-#Juegos en Red
+#JUEGOS EN RED
+##NOMBRE DEL JUEGO:
+Topwer
+
+##DESCRIPCIÓN:
+Juego de plataformas 2D para la asignatura de Juegos En Red
+
+##MIEMBROS DEL GRUPO:
+Carlos Martín Hernández (c.martinh.2019@alumnos.urjc.es - carlosmartinhernandez79), Luis Mateos Sánchez (l.mateos.2020@alumnos.urjc.es - MrLuis33), Álvaro Redondo Molina (a.redondom.2021@alumnos.urjc.es - AlvaroRedondoURJC), Hugo Silva Gil (h.silva.2021@alumnos.urjc.es - HSilvaa).
 #GDD
 #Topwer
 
 <p align="center">
-  <img src="
-	  >
+  <img src="https://github.com/carlosmartinhernandez79/juegos_en_red/assets/147002686/60832de1-a9e1-4770-9e7c-5d19e603c342">
 <br>
 </p>
 #EQUIPO Y CONCEPTO
