@@ -27,6 +27,7 @@ var config  = {
         //SceneJuego,
         PauseMenu, 
         GameOver,
+        Victory,
         TestGround, 
         TutorialLevel
         ]

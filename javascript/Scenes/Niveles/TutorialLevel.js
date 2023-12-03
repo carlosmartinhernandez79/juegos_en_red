@@ -82,6 +82,14 @@ class TutorialLevel extends Phaser.Scene{
         this.p = new Palanca(this, 2300, 2030, this.puerta1); //Instanciar las palancas enviándolas el objeto que quieren activar cuando las activen
         //---------------------------------
 
+        //-----PUERTA SALIR----------
+
+        this.exitDoor = this.physics.add.image(2230,435,"puertaSalir").setScale(3.3)
+        this.exitDoor.body.setAllowGravity(false) //workds;
+        this.exitDoor.body.setImmovable(true)
+
+        //----------------------------
+
         //---POCION---
     this.pot = this.physics.add.image(300,3700,"pocion")
     this.pot.body.setAllowGravity(false);
@@ -91,11 +99,7 @@ class TutorialLevel extends Phaser.Scene{
     this.desTransformarse.body.setAllowGravity(false);
     this.desTransformarse.setVisible(false);
     this.desTransformarse.setScale(0.3)
-        //-----PUERTA SALIR----------
 
-        //this.add.image("puertaSalir")
-
-        //----------------------------
         //---BOX---
         this.box = this.physics.add.group()
         this.boxi = new Box(this,1700,1600, "box")
@@ -138,8 +142,9 @@ class TutorialLevel extends Phaser.Scene{
     //----------------------------------
 
     //---JUGADORES--
-    this.gnomo1 = new Gnomo(this, 190, 600);
-    this.elfo = new Elfo(this, 190, 600);
+
+    this.gnomo1 = new Gnomo(this, 2108, 473);
+    this.elfo = new Elfo(this, 2108, 473);
     //---------------------------------
 
 
@@ -153,6 +158,7 @@ class TutorialLevel extends Phaser.Scene{
     this.physics.add.overlap(this.gnomo1, this.misMonedas, this.pickCoin, null, this);
     this.physics.add.overlap(this.gnomo1, this.pinchos, this.pinchosDeath, null, this);
     this.physics.add.collider(this.gnomo1, this.box);
+    this.physics.add.overlap(this.gnomo1, this.exitDoor, this.canExit, null, this);
 
     this.gnomo1.body.setCollideWorldBounds(true);
 
@@ -168,6 +174,7 @@ class TutorialLevel extends Phaser.Scene{
     this.physics.add.overlap(this.elfo, this.pot, this.pickPotion, null, this);
     this.physics.add.overlap(this.elfo, this.desTransformarse, this.destransformarseFunc, null, this); 
     this.physics.add.collider(this.elfo, this.box);
+    this.physics.add.overlap(this.elfo, this.exitDoor, this.canExit, null, this);
 
     this.elfo.body.setCollideWorldBounds(true);
 
@@ -188,7 +195,7 @@ class TutorialLevel extends Phaser.Scene{
     update(time, delta){
 
         //ACTUALIZACIÓN DE LA CAMARA
-        console.log("X: " + this.gnomo1.x + " Y: "+ this.gnomo1.y)
+        //console.log("X: " + this.gnomo1.x + " Y: "+ this.gnomo1.y)
         var camaraPosX = (Math.abs(this.elfo.x+this.gnomo1.x)/2);
         var camaraPosY = (Math.abs(this.elfo.y+this.gnomo1.y)/2);
     
@@ -336,6 +343,15 @@ class TutorialLevel extends Phaser.Scene{
             this.elfo.hacerMetamorfosis();
             this.desTransformarse.destroy();
             this.IaMariano.play();
+        }
+
+        canExit(){
+        
+            if(this.isColliding(this.gnomo1, this.exitDoor, 50, 50) && this.isColliding(this.elfo, this.exitDoor, 50, 50))
+            {
+                this.scene.start("Victory");
+            }
+
         }
     
         isColliding(player, object, sizeX, sizeY){

@@ -73,4 +73,7 @@ class Tiempo_Monedas extends Phaser.Scene{
         return ("0" +`${Math.round(this.minutes)}` + ":"+ `${Math.round(this.seconds)}`)
        }
     }
+    getMonedas(){
+        return this.count
+     }
 }
