@@ -58,11 +58,12 @@ El diseño será sencillo, colores pastel con una temática medieval.
 
 <p align="center">
   <img src="ImagesJS/Pantallas/Fondo_Pantalla_Principal_nublado.jpg" />
-</p>
-
 <br>
 	PANTALLA PRINCIPAL
 <br>
+</p>
+
+
 
 ## HISTORIA
 
@@ -304,19 +305,16 @@ Por otro lado, los sonidos y efectos de sonido que se incluirán son sonido de m
 
 Para la realización de la música base del juego se ha utilizado la aplicación LMMS y se ha generado una música que va aumentando su ritmo y la intensidad de los instrumentos. La canción ha sido creada de tal forma que se pueda establecer como un bucle y no se note demasiado el cambio.
 
-Para la implementación del audio que suena al perder en el juego, ha sido obtenido de la siguiente url: Musica_Derrota
+Para la implementación del audio que suena al perder en el juego, ha sido obtenido de la siguiente url:  <p><a href="https://youtu.be/34jXc49Aj3Q?si=bNVNygs1jKt1VhT-">Musica_Derrota</a>. </p>
 
-Para la implementación del audio que suena al recoger monedas, ha sido sacado de la siguiente url: Sonido_Moneda
+Para la implementación del audio que suena al recoger monedas, ha sido sacado de la siguiente url: <p><a href="https://youtu.be/_LELiYg8WGI?si=1cS5-gahh-ybphrg">Sondio_Moneda</a>. </p>
 
-Para la implementación del audio que suena al saltar en el juego, ha sido obtenido de la siguiente url: Sonido_Salto
+Para la implementación del audio que suena al saltar en el juego, ha sido obtenido de la siguiente url:  <p><a href="https://youtu.be/561qHylVC_o?si=GmXFr5ON4mI5qbqm">Sonido_Salto</a>. </p>
 
-Para la implementación del audio empleado para la interacción con la palanca ha sido obtenido de la siguiente url: Sonido_Palanca
+Para la implementación del audio empleado para la interacción con la palanca ha sido obtenido de la siguiente url:  <p><a href="https://youtu.be/ZFFYSOLiS-M?si=bvGdT0rEE-pHXXOR">Sonido_Palanca</a>. </p>
 
-Por último, para la implementación del audio para la obtención de dos insignias, se ha utilizado un audio de mariano rajoy : Audio_Mariano
-y se ha empleado una ia para completar el audio para poder conseguir la segunda insignia de hacer la pelota:
-<p>
-  <a href="https://fakeyou.com/tts/result/TR:63nzkvqej6g791220kcxmr59v1mtw">FakeYou</a>.
-</p>
+Por último, para la implementación del audio para la obtención de dos insignias, se ha utilizado un audio de mariano rajoy : <p><a href="https://youtu.be/-nQgsEbU9C4?si=TpUrch66wgv_8zbH">Audio_Mariano</a>. </p>
+y se ha empleado una ia para completar el audio para poder conseguir la segunda insignia de hacer la pelota:<p><a href="https://fakeyou.com/tts/result/TR:63nzkvqej6g791220kcxmr59v1mtw">FakeYou</a>. </p>
 
 
 
