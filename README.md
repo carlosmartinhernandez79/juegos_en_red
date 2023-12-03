@@ -295,8 +295,10 @@ Por otra parte el diseño de Lial se ve algo más realista, pero se mantiene esa
 	 Evolución del diseño de Lial
 <br>
 </p>
-# BOTONES BASE
+
+# BOTONES BASE 
 Los botones han sido desarrollados vectorialmente para poder modificar su tamaño sin ningún problema para cada interfaz. A la izquierda aparece el botón que no está siendo pulsado y a la derecha el botón una vez se pone el cursor encima.
+
 # FONDO PANTALLA INICIO
 Pantalla de inicio con el nombre del juego a la izquierda y espacio a la derecha irán los botones de esta primera pantalla.
 <p align="center">
