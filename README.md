@@ -509,6 +509,13 @@ La pipeline de trabajo ha sido:
 Diseño del nivel “A papel” > Implementación del diseño en Tiled > Cargar mapa en el juego
 
  <p align="center">
+  <img src="Imagenes/diseño del mapa.jpg" />
+<br>
+	 Diseño del mapa
+<br>
+</p>
+
+ <p align="center">
   <img src="Imagenes/implementacion en tiled.jpg" />
 <br>
 	 Implementacion en tiled
