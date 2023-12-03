@@ -323,7 +323,7 @@ y se ha empleado una ia para completar el audio para poder conseguir la segunda 
 
 # TIEMPO, INTERFAZ Y CÁMARA
 ## TIEMPO
-Como se ha mencionado anteriormente, una de las condiciones de victoria es superar el nivel antes del tiempo establecido. Dicho tiempo se mostrará en pantalla en forma de una barra progresiva que irá disminuyendo y cuanto más se acerque al fin del mismo, irá cogiendo un tono más rojizo. Se está barajando la idea de poner temporizadores a lo largo del nivel para incrementar dicho tiempo.
+Como se ha mencionado anteriormente, una de las condiciones de victoria es superar el nivel antes del tiempo establecido. Anteriormente pensamos en el desarrollo de una barra de tiempo que nos muestre una idea de cuánto tiempo nos quedaba, sin embargo cambiamos la idea por una más precisa  e informativa y no tan visual. Dicho tiempo se mostrará en pantalla en un temporizador que aparecerá en la esquina superior derecha. Aún se está considerando cuánto tiempo límite  poner por nivel, de momento está establecido en un tiempo máximo de tres minutos. Se está barajando la idea de poner temporizadores a lo largo del nivel para incrementar dicho tiempo.
 
  <p align="center">
   <img src="https://github.com/carlosmartinhernandez79/juegos_en_red/assets/100692817/b21c8e68-b15a-44b6-9d3c-334ba6faf349" />
@@ -334,20 +334,25 @@ Como se ha mencionado anteriormente, una de las condiciones de victoria es super
 
 
 ## INTERFAZ
-Para el apartado de la interfaz tendremos una pantalla de inicio simple donde podremos tanto elegir en qué modo de juego queremos jugar, configurar el sonido y ver los controles. Una vez iniciado el nivel, la interfaz se reducirá a un menú de pausa con un resume o quit (para seguir jugando o salir del nivel), un contador de las monedas que vayamos recolectando y el temporizador explicado previamente.
+Para el apartado de la interfaz tendremos una pantalla de inicio donde podremos tanto elegir en qué modo de juego queremos jugar, configurar el sonido y ver los créditos. Una vez iniciado el nivel, la interfaz de pausa contará con un menú de opciones, reiniciar, volver al menú de inicio o salir del juego.
+In-game, nos encontraremos con un contador de las monedas que vayamos recolectando y el temporizador explicado previamente.
 
 ## CÁMARA
-Por último mencionar que ambos personajes se encontrarán en todo momento en la cámara del juego, y una mecánica de la cámara importante a destacar es que cuando uno de los dos jugadores intente avanzar y el otro se retrase, la cámara se quedará bloqueada y no permitirá avanzar a los jugadores a no ser de que vayan juntos en la aventura.
+Por último mencionar que ambos personajes se encontrarán en todo momento en la cámara del juego, y una mecánica de la cámara importante a destacar es que cuando uno de los dos jugadores avance más, dejando al otro atrás (fuera de cámara), ambos morirán y tendrán que empezar de nuevo. De esta forma ambos serán conscientes de lo que hace su compañero en todo momento y se fomentará el trabajo en equipo y colaboración de los usuarios.
+
 
 
 
 ## ESCENARIOS
+
 
 Los escenarios serán habitaciones dentro del castillo. Según los jugadores vayan subiendo, aumentará el nivel de dificultad: mayor cantidad de trampas y mayor complejidad de los puzzles. 
 
 Los escenarios serán, al igual que los personajes, de colores pastel y planos.
 
 Algunos de los escenarios que encontraremos, de abajo hacia arriba serán las mazmorras, puerta de entrada principal del castillo, el salón, habitaciones y, finalmente, la parte de las almenas del castillo, donde tienen que llegar nuestros personajes para escapar. 
+
+
 
  <p align="center">
   <img src="https://github.com/carlosmartinhernandez79/juegos_en_red/assets/100692817/4fb3c73e-913b-4b6a-9cb8-261b98dc27e7" />
@@ -362,3 +367,14 @@ Algunos de los escenarios que encontraremos, de abajo hacia arriba serán las ma
 	Referencia mapa vertical (Juego Donkey Kong)
 <br>
 </p>
+
+## IMPLEMENTACIÓN DEL MAPA
+Para poder hacer los mapas se ha decidido usar la herramienta Tiled, un software que permite de forma visual usar un tileset para diseñar un nivel de forma rápida dando propiedades como por ejemplo colisiones a las tiles desde el propio programa, para luego cargar estos mapas como formato json directamente en phaser.
+Se ha usado un tileset gratuito de <p><a href="https://pixelfrog-assets.itch.io/kings-and-pigs">Itch.io</a>. </p>
+Gracias a esto la pipeline de trabajo se acorta bastante y nos permite desarrollar varios niveles en menos tiempo.
+
+
+
+La pipeline de trabajo ha sido:
+Diseño del nivel “A papel” > Implementación del diseño en Tiled > Cargar mapa en el juego
+
