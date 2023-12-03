@@ -1,4 +1,4 @@
-# JUEGOS EN RED
+![image](https://github.com/carlosmartinhernandez79/juegos_en_red/assets/100692817/20b43fe9-aa56-4d47-bf80-322adb44a5d7)# JUEGOS EN RED
 ## NOMBRE DEL JUEGO: 
 Topwer
 ## DESCRIPCIÓN:
@@ -225,9 +225,9 @@ Las principales trampas que implementaremos en el jugo serán:
 
 
 <p align="center">
-  <img src="https://github.com/carlosmartinhernandez79/juegos_en_red/assets/100692817/f999459f-d8e1-4d5c-808e-639aba56ef34" />
+  <img src="Imagenes/Balas.jpg" />
 <br>
-	Barriles de referencia
+	Balas de referencia
 <br>
 </p>
 
@@ -262,15 +262,38 @@ A parte de las trampas a lo largo del nivel habrá diversos objetos con los que 
 <br>
 </p>
 
+**-Cajas:** Diseño de una caja que se podrá mover para ayudar a los jugadores a avanzar o resolver puzzles. 
+
+ <p align="center">
+  <img src="ImagesJS/caja.png" />
+<br>
+	Caja de referencia
+<br>
+</p>
+
 ## DISEÑOS FINALES
 # TUK
 Como teníamos previsto hemos usado una paleta de colores pasteles y un diseño más cartoon y familiar.
+ <p align="center">
+  <img src="Imagenes/GnomoEvolution.png" />
+<br>
+	 Evolución del diseño de Tuk
+<br>
+</p>
+
 # LIAL
 Por otra parte el diseño de Lial se ve algo más realista, pero se mantiene esa estética familiar y colores pasteles al igual que en su compañero.
 # BOTONES BASE
 Los botones han sido desarrollados vectorialmente para poder modificar su tamaño sin ningún problema para cada interfaz. A la izquierda aparece el botón que no está siendo pulsado y a la derecha el botón una vez se pone el cursor encima.
 # FONDO PANTALLA INICIO
 Pantalla de inicio con el nombre del juego a la izquierda y espacio a la derecha irán los botones de esta primera pantalla.
+<p align="center">
+  <img src="ImagesJS/Pantallas/Fondo_Pantalla_Principal_nublado.jpg" />
+<br>
+	Fondo de pantalla del incio
+<br>
+</p>
+
 # TILES 
 Esta paleta de tiles está cogida de Itch.io, y es de dominio público. Por ello, y para adaptarlo mejor a nuestro juego, la hemos retocado, de tal forma que tenga mayor apariencia de mazmorra.
 
@@ -280,17 +303,58 @@ Por el logo del juego, se ha optado por una torre de un castillo, puesto que es 
 
 Por otro lado, encontramos el logo del equipo, que basado en la misma dinámica vertical que el anterior, y jugando con el nombre (UpDown Games), se ha dividido en dos colores, uno por palabra, con unas flechas apuntando hacia la dirección de las propias palabras: Up, con su flecha hacia arriba y Down, con su flecha hacia abajo.
 
+<p align="center">
+  <img src="Imagenes/Logo_Equipo.png.jpg" />
+<br>
+Logo del equipo
+<br>
+</p>
+
+<p align="center">
+  <img src="Imagenes/Logo_Topwer.png" />
+<br>
+	Logo del juego
+<br>
+</p>
+
 # OBJETOS
 Los principales objetos interactuables que se implementaran en el juego y se han diseñado han sido las monedas del juego, las palancas para interactuar con el entorno y el temporizador.
+<p align="center">
+  <img src="ImagesJS/palanca.png" />
+<br>
+	Palanca
+<br>
+</p>
+<p align="center">
+  <img src="ImagesJS/Moneda.png" />
+<br>
+	Moneda
+<br>
+</p>
+<p align="center">
+  <img src="ImagesJS/reloj.png" />
+<br>
+	Reloj
+<br>
+</p>
 
 # ANIMACIONES
 Para las animaciones de esta utilizando una técnica 2D de estilo tradicional.  Para la caminata de Tuk se han realizado 16 sprites para conseguir una animación fluida 
-
----
+<p align="center">
+  <img src="https://github.com/carlosmartinhernandez79/juegos_en_red/assets/100692817/f2a6a101-6769-4179-9a62-bc26ddc88d38" />
+<br>
+	Spritesheet de Tuk
+<br>
+</p>
 
 Sin embargo,  en el caso de Lial, aunque el movimiento no es una caminata al uso, se han necesitado hasta 27 sprites, de forma que el movimiento sea más fluido. 
 
----
+<p align="center">
+  <img src="https://github.com/carlosmartinhernandez79/juegos_en_red/assets/100692817/f2a6a101-6769-4179-9a62-bc26ddc88d38" />
+<br>
+	Spritesheet de Tuk
+<br>
+</p>
 
 En el siguiente paso se completarán las animaciones tanto en color para el caso de la elfa y, como mejora, se intentará ampliar los movimientos para ambos para enriquecer la experiencia. 
 
