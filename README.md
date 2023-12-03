@@ -1,4 +1,4 @@
-![image](https://github.com/carlosmartinhernandez79/juegos_en_red/assets/100692817/20b43fe9-aa56-4d47-bf80-322adb44a5d7)# JUEGOS EN RED
+# JUEGOS EN RED
 ## NOMBRE DEL JUEGO: 
 Topwer
 ## DESCRIPCIÓN:
