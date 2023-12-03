@@ -56,7 +56,13 @@ El juego es un plataformas 2D vertical con puzzles que los jugadores deben poder
 El diseño será sencillo, colores pastel con una temática medieval. 
 
 
+<p align="center">
+  <img src="ImagesJS/Pantallas/Fondo_Pantalla_Principal_nublado.jpg" />
+</p>
 
+<br>
+	PANTALLA PRINCIPAL
+<br>
 
 ## HISTORIA
 
