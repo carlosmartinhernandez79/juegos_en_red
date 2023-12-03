@@ -429,6 +429,44 @@ In-game, nos encontraremos con un contador de las monedas que vayamos recolectan
 ## CÁMARA
 Por último mencionar que ambos personajes se encontrarán en todo momento en la cámara del juego, y una mecánica de la cámara importante a destacar es que cuando uno de los dos jugadores avance más, dejando al otro atrás (fuera de cámara), ambos morirán y tendrán que empezar de nuevo. De esta forma ambos serán conscientes de lo que hace su compañero en todo momento y se fomentará el trabajo en equipo y colaboración de los usuarios.
 
+ <p align="center">
+  <img src="Imagenes/interfaz pantalla inicial.jpg" />
+<br>
+	 Interfaz pantalla inicial
+<br>
+</p>
+
+
+ <p align="center">
+  <img src="Imagenes/interfaz seleccion personaje.jpg" />
+<br>
+	 Interfaz selección de personaje
+<br>
+</p>
+
+
+ <p align="center">
+  <img src="Imagenes/interfaz seleccion de nivel.jpg" />
+<br>
+	 Interfaz selección de nivel
+<br>
+</p>
+
+
+ <p align="center">
+  <img src="Imagenes/interfaz pantalla de juego.jpg" />
+<br>
+	 Interfaz pantalla de juego
+<br>
+</p>
+
+
+ <p align="center">
+  <img src="Imagenes/interfaz pantalla de pausa.jpg" />
+<br>
+	 Interfaz pantalla de pausa
+<br>
+</p>
 
 
 
