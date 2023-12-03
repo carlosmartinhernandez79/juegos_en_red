@@ -289,6 +289,12 @@ Como teníamos previsto hemos usado una paleta de colores pasteles y un diseño 
 
 # LIAL
 Por otra parte el diseño de Lial se ve algo más realista, pero se mantiene esa estética familiar y colores pasteles al igual que en su compañero.
+ <p align="center">
+  <img src="Imagenes/evolucion elfa.jpg" />
+<br>
+	 Evolución del diseño de Lial
+<br>
+</p>
 # BOTONES BASE
 Los botones han sido desarrollados vectorialmente para poder modificar su tamaño sin ningún problema para cada interfaz. A la izquierda aparece el botón que no está siendo pulsado y a la derecha el botón una vez se pone el cursor encima.
 # FONDO PANTALLA INICIO
