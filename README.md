@@ -34,10 +34,12 @@ Luis:
 Encargado de la programación.
 
 LOGO DEL EQUIPO
-
-
+<p align="center">
+  <img src="https://github.com/carlosmartinhernandez79/juegos_en_red/assets/147002686/15b39d08-f0ae-4e25-8e3a-f73e610dd0d9/>
+<br>
 1: Logotipo equipo UpDown-Games
-
+</p>
+	  
 ##CARACTERÍSTICAS DEL JUEGO
 
 El juego es un plataformas 2D vertical con puzzles que los jugadores deben poder resolver de forma cooperativa. Es un juego para todos los públicos, aunque está centrado en un público juvenil.
@@ -117,26 +119,32 @@ Los jugadores perderán si  se agota el tiempo antes de que hayan llegado a la m
 El juego principalmente será ambientado en una temática medieval y antigua, de la época del auge de los castillos y las mazmorras. Tendrá un toque místico y fantástico.
 Unas de las imágenes de referencia que usaremos para la temática a tomar serían las del disco de música “Hyper Popular” y temática del videojuego “The King of Dragons”, con ese ambiente medieval con enemigos y elementos fantásticos.
 
-
+<p align="center">
+  <img src="
 2: Portada Hyper Popular
 
-
+<p align="center">
+  <img src="
 3: Escena final The King of Dragons
 
+<p align="center">
+  <img src=" 
 4: Escena del juego Cuphead 
 
 
 ##COLOR
 
 Los colores que se van a utilizar para el juego van a ser colores pasteles y planos, para dar una impresión más de caricatura o cartoon y crear un espacio de juego más amigable y cercano. De esta forma aparte de hacer el juego más llamativo, se adecúa mejor al público al que va dirgido.
-
-     5: Paletas de color
+<p align="center">
+  <img src="
+5: Paletas de color
 
 
 ##PERSONAJES
 En ambos personajes se utilizaran unos diseños simples pero expresivos, que a su mismo tiempo estarán compuestos por colores pasteles y con pequeños detalles relacionados con sus poderes o habilidades especiales.
 
-
+<p align="center">
+  <img src="
 6: Toma referencia colores personajes Hyper Popular
 
 ###TUK
