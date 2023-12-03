@@ -28,6 +28,7 @@ var config  = {
         PauseMenu, 
         GameOver,
         Victory,
+        OptionsFromPause,
         TestGround, 
         TutorialLevel
         ]

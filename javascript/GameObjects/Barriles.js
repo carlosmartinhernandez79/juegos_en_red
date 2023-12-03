@@ -1,25 +1,27 @@
 class Barriles extends Phaser.GameObjects.Sprite{
     constructor(scene, x, y, dir, maxDist){
 
-        super(scene,x,y,"BarrelGenerator");
+        super(scene,x,y,"cannon");
 
         this.dir = dir;
         this.maxDist = maxDist;
         this.vel = dir == "left"? -200:200;
 
-        this.distance = dir == "left"? -100:100;
+        this.distance = dir == "left"? -40:40;
 
         this.x = x;
         this.y = y;
 
         this.actualCount = 0;
-        this.shotsPerSecond = 250;
+        this.shotsPerSecond = 15;
 
         var barrelGen = scene.add.existing(this);
 
+        dir == "left"? this.flipX=false:this.flipX=true;
+
         barrelGen.scene.physics.world.enableBody(this);
 
-        this.setScale(1.5)
+        this.setScale(4.5)
         this.body.setAllowGravity(false) //workds;
         this.body.setImmovable(true)
 
@@ -29,6 +31,8 @@ class Barriles extends Phaser.GameObjects.Sprite{
     update(time){
     
         this.actualCount= this.actualCount + time;
+
+        //console.log( this.actualCount)
     
         if(this.actualCount >= this.shotsPerSecond){
             this.shootBarrel();
@@ -49,6 +53,6 @@ class Barriles extends Phaser.GameObjects.Sprite{
     }
 
     shootBarrel(){
-        this.bala = new Bala(this.scene, this.x + this.distance,this.y, this.vel, this.maxDist)
+        this.bala = new Bala(this.scene, this.x + this.distance,this.y-20, this.vel, this.maxDist)
     }
 }

@@ -18,7 +18,7 @@ class Victory extends Phaser.Scene{
 
         this.add.text(850, 340, this.scene.get("Tiempo_Monedas").getTime(), {font: "30px Arial", fill: "white"})
 
-        this.add.text(520, 340, this.scene.get("Tiempo_Monedas").getMonedas(), {font: "30px Arial", fill: "white"})
+        this.add.text(520, 340, this.scene.get("Tiempo_Monedas").getMonedas()+ "/3", {font: "30px Arial", fill: "white"})
 
         this.space = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
 

@@ -10,7 +10,7 @@ class Bala extends Phaser.GameObjects.Sprite{
 
         block.scene.physics.world.enableBody(this);
 
-        block.setScale(0.1)
+        block.setScale(3)
 
         this.body.setAllowGravity(false) //workds;
         this.body.setImmovable(true)

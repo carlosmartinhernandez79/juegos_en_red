@@ -19,7 +19,7 @@ class Credits extends Phaser.Scene{
 
         var Creditos = this.add.text(100, 150, 'Este juego ha sido desarrollado por la empresa UpDown-Games, ', { fontSize:30 , fill: 'white' })
         var Creditos = this.add.text(100, 180, 'compuesta por Hugo Silva Gil, Álvaro Redondo Molina, ', { fontSize:30 , fill: 'white' })
-        var Creditos = this.add.text(100, 230, 'Carlos Martín Hernández y Luis Mateos Sánchez. ', { fontSize:30 , fill: 'white' })
+        var Creditos = this.add.text(100, 210, 'Carlos Martín Hernández y Luis Mateos Sánchez. ', { fontSize:30 , fill: 'white' })
         var Creditos = this.add.text(100, 260, 'El juego es un multiplataformas con temática medieval', { fontSize:30 , fill: 'white' })
         var Creditos = this.add.text(100, 290, 'cuya finalidad y objetivo principal es el trabajo principal', { fontSize:30 , fill: 'white' })
         var Creditos = this.add.text(100, 320, 'y cooperación para superar los niveles', { fontSize:30 , fill: 'white' })

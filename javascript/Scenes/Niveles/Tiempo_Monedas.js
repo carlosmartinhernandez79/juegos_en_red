@@ -16,7 +16,7 @@ class Tiempo_Monedas extends Phaser.Scene{
         miMoneda.setScale(0.13)
 
 
-        this.labelTimer = this.add.text(1125, 35, "0:00", {font: "25px Arial", fill: "white"})
+        this.labelTimer = this.add.text(1125, 35, "0:00", {font: "25px Arial", fill:  "white" })
         this.seconds = 0;
         this.minutes = 4;
     }
@@ -32,7 +32,7 @@ class Tiempo_Monedas extends Phaser.Scene{
         this.seconds-=(delta/1000);
         
 		this.labelTimer.text = this.updateTimer();
-
+        
         this.checkIfEnd();
     }
 
@@ -55,6 +55,10 @@ class Tiempo_Monedas extends Phaser.Scene{
             this.seconds = 59;
             final ="0" +`${Math.round(this.minutes)}` + ":"+ `${Math.round(this.seconds)}`
         }
+
+        if(this.minutes == 0 && this.seconds <30){
+            this.labelTimer.setTint(0xff0000)
+        }
         
          return final;
     }
@@ -73,6 +77,7 @@ class Tiempo_Monedas extends Phaser.Scene{
         return ("0" +`${Math.round(this.minutes)}` + ":"+ `${Math.round(this.seconds)}`)
        }
     }
+
     getMonedas(){
         return this.count
      }

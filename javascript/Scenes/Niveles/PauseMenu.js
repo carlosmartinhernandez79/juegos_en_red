@@ -16,6 +16,9 @@ class PauseMenu extends Phaser.Scene{
         graphics.fillRect(0, 0, 1200, 600);
         graphics.alpha = 0.5
 
+
+        
+
         this.add.text(560, 35, "PAUSE", {font: "25px Arial", fill: "white"})
         this.escape = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ESC);
 
@@ -28,7 +31,7 @@ class PauseMenu extends Phaser.Scene{
         this.menu.setInteractive();
         this.menuOn.setVisible(false);
 
-        this.menu.on('pointerover',()=>{
+        /*this.menu.on('pointerover',()=>{
             this.menuOff.setVisible(false);
             this.menuOn.setVisible(true);
             this.menu = this.menuOn;
@@ -38,12 +41,12 @@ class PauseMenu extends Phaser.Scene{
             this.menuOff.setVisible(true);
             this.menuOn.setVisible(false);
             this.menu = this.menuOff;
-        })
+        })*/
 
         this.menu.on('pointerdown', function () {
             this.scene.start('StartScreen');
             this.scene.bringToTop('StartScreen');
-            this.scene.sendToBack('SceneJuego');
+            this.scene.sendToBack('TutorialLevel');
             this.scene.sendToBack('Tiempo_Monedas');
         }, this);
 
@@ -58,7 +61,7 @@ class PauseMenu extends Phaser.Scene{
         this.opciones.setInteractive();
         this.opcionesOn.setVisible(false);
 
-        this.opciones.on('pointerover',()=>{
+      /*  this.opciones.on('pointerover',()=>{
             this.opcionesOff.setVisible(false);
             this.opcionesOn.setVisible(true);
             this.opciones = this.opcionesOn;
@@ -68,13 +71,14 @@ class PauseMenu extends Phaser.Scene{
             this.opcionesOff.setVisible(true);
             this.opcionesOn.setVisible(false);
             this.opciones = this.opcionesOff;
-        })
+        })*/
 
         this.opciones.on('pointerdown', function () {
-            this.scene.start('Options');
-            this.scene.bringToTop('Options');
-            this.scene.sendToBack('SceneJuego');
-            this.scene.sendToBack('Tiempo_Monedas');
+            this.scene.start('OptionsFromPause');
+            this.scene.bringToTop('OptionsFromPause'); //mostramos sobre todas esta escena
+            this.scene.pause('PauseMenu'); //dormimos la otra, porque no queremos perder lo que hagamos en el menu de pausa
+            this.scene.sendToBack('TutorialLevel'); //enviamos al fondo la de tutorial
+            //this.scene.sendToBack('Tiempo_Monedas');
         }, this);
 
         //----------------------------------------------
@@ -84,7 +88,7 @@ class PauseMenu extends Phaser.Scene{
         this.reiniciarOn.setVisible(false);
         this.reiniciar.setInteractive()
 
-        this.reiniciar.on('pointerover',()=>{
+       /* this.reiniciar.on('pointerover',()=>{
             this.reiniciarOff.setVisible(false);
             this.reiniciarOn.setVisible(true);
             this.reiniciar = this.reiniciarOn;
@@ -94,10 +98,10 @@ class PauseMenu extends Phaser.Scene{
             this.reiniciarOff.setVisible(true);
             this.reiniciarOn.setVisible(false);
             this.reiniciar = this.reiniciarOff;
-        })
+        })*/
 
         this.reiniciar.on('pointerdown', function () {
-            this.scene.start('SceneJuego');
+            this.scene.start('TutorialLevel');
         }, this);
 
         //-------------------------------------------------
@@ -109,7 +113,7 @@ class PauseMenu extends Phaser.Scene{
         this.nivelesOn.setVisible(false);
         this.niveles.setInteractive()
 
-        this.niveles.on('pointerover',()=>{
+       /* this.niveles.on('pointerover',()=>{
             this.nivelesOff.setVisible(false);
             this.nivelesOn.setVisible(true);
             this.niveles = this.nivelesOn;
@@ -119,12 +123,12 @@ class PauseMenu extends Phaser.Scene{
             this.nivelesOff.setVisible(true);
             this.nivelesOn.setVisible(false);
             this.niveles = this.nivelesOff;
-        })
+        })*/
 
         this.niveles.on('pointerdown', function () {
             this.scene.start('LevelSelector');
             this.scene.bringToTop('LevelSelector');
-            this.scene.sendToBack('SceneJuego');
+            this.scene.sendToBack('TutorialLevel');
             this.scene.sendToBack('Tiempo_Monedas');
         }, this);
 
@@ -146,8 +150,8 @@ class PauseMenu extends Phaser.Scene{
             this.scene.stop();
             console.log("Resume")
             this.scene.resume("Tiempo_Monedas");
-            var sceneMain = this.scene.resume("SceneJuego");
-            this.scene.get("SceneJuego").MiMusicaBase.resume();
+            var sceneMain = this.scene.resume("TutorialLevel");
+            this.scene.get("TutorialLevel").MiMusicaBase.resume();
         }
     }
 }

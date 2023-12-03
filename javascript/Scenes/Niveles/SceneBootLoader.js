@@ -41,9 +41,20 @@ class SceneBootLoader extends Phaser.Scene {
     this.load.image("pinchos", "./ImagesJS/pinchos.png");
     this.load.image("pocion", "./ImagesJS/pocion.png");
     this.load.image("box", "./ImagesJS/caja.png");
+    this.load.image("palanca", "./ImagesJS/palanca.png");
+    this.load.image("puerta", "./ImagesJS/puerta.jpg");
     this.load.image("bala", "./ImagesJS/bala.png");
+    this.load.image("cannon", "./ImagesJS/cannon.png");
     this.load.image("reloj", "./ImagesJS/reloj.png");
     this.load.image("puertaSalir", "./ImagesJS/PuertaSalir.png");
+    this.load.image("wasd", "./ImagesJS/wasdMovimiento.png");
+    this.load.image("flechas", "./ImagesJS/flechasMovimiento.png");
+    this.load.image("flechaUP", "./ImagesJS/flechaUpMovimiento.png");
+    this.load.image("estandarte", "./ImagesJS/estandarte.png");
+
+    this.load.image("muteOn", "./ImagesJS/MuteButton.png");
+    this.load.image("muteOff", "./ImagesJS/SoundButton.png");
+
 
     //BOTONES
     this.load.image("menuOff", "./ImagesJS/Botones/Boton_Menu_Off.png");

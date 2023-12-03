@@ -53,7 +53,7 @@ class TutorialLevel extends Phaser.Scene{
         this.SonidoMoneda = this.sound.add("Sonido_Moneda");
         this.SonidoSalto = this.sound.add("Sonido_Salto");
         this.MiMusicaBase.loop = true;
-       // this.MiMusicaBase.play();
+        this.MiMusicaBase.play();
         window.myScene = this;
         //---------------------------------
 
@@ -62,6 +62,23 @@ class TutorialLevel extends Phaser.Scene{
         this.physics.world.bounds.height = 2100;
         this.cameras.main.setBounds(0,0,2400,2100);
         //---------------------------------
+
+        //IMAGENES TUTORIAL
+
+        this.add.image(500,1900,"flechas").setScale(0.5).setTint(0xff0000)
+        this.add.image(500,2000,"wasd").setScale(0.5).setTint(0xff0000)
+
+        this.add.text(1797, 1925, "E para hacerte pequeño", {font: "17px Arial", fill: "white"})
+        this.add.text(1776, 1950, "Q para volver al tamaño normal", {font: "17px Arial", fill: "white"})
+
+        this.add.text(2200, 1975, "Espacio para activar", {font: "17px Arial", fill: "white"})
+
+        this.add.text(2070, 1650, "Doble salto", {font: "17px Arial", fill: "white"})
+        this.add.image(2200,1660,"flechaUP").setScale(0.5).setTint(0xff0000).setOrigin(0.5,0.5)
+        this.add.text(2225, 1650, "+", {font: "25px Arial", fill: "white"})
+        this.add.image(2270,1660,"flechaUP").setScale(0.5).setTint(0xff0000).setOrigin(0.5,0.5)
+
+        //-------------------------------
 
         //---PLATAFORMAS MOVIBLES---
         this.platformsMovibles = this.add.group(); //creo un grupo de plataformasMovibles
@@ -73,7 +90,7 @@ class TutorialLevel extends Phaser.Scene{
 
         //--PUERTAS--
         this.doors = this.add.group()
-        this.puerta1 = new Puerta(this, 2040, 1800)
+        this.puerta1 = new Puerta(this, 2035, 1800)
         //---------------------------------
 
         //--PALANCAS--
@@ -91,14 +108,14 @@ class TutorialLevel extends Phaser.Scene{
         //----------------------------
 
         //---POCION---
-    this.pot = this.physics.add.image(300,3700,"pocion")
-    this.pot.body.setAllowGravity(false);
-    this.pot.setScale(0.3)
+        this.pot = this.physics.add.image(800,1990,"pocion")
+        this.pot.body.setAllowGravity(false);
+        this.pot.setScale(0.08)
 
-    this.desTransformarse = this.physics.add.image(900,3700,"pocion")
-    this.desTransformarse.body.setAllowGravity(false);
-    this.desTransformarse.setVisible(false);
-    this.desTransformarse.setScale(0.3)
+        this.desTransformarse = this.physics.add.image(1700,2000,"pocion")
+        this.desTransformarse.body.setAllowGravity(false);
+        this.desTransformarse.setVisible(false);
+        this.desTransformarse.setScale(0.1)
 
         //---BOX---
         this.box = this.physics.add.group()
@@ -112,13 +129,10 @@ class TutorialLevel extends Phaser.Scene{
 
 
         //---------MONEDAS------------
-        this.misMonedas = this.physics.add.group({
-            key: 'moneda',
-            repeat: 11,
-            setXY: { x: 50, y: 3700, stepX: 350 }
-        });
-
+        this.misMonedas = this.physics.add.group()
         this.misMonedas.create(110,1580,"moneda")
+        this.misMonedas.create(1000,790,"moneda")
+        this.misMonedas.create(1000,200,"moneda")
 
         this.misMonedas.children.iterate(function (child) {
 
@@ -129,22 +143,29 @@ class TutorialLevel extends Phaser.Scene{
         //---------------------------------
          //PINCHOS
     this.pinchos = this.physics.add.staticGroup();
-    this.pinchos.create(650, 2040, 'pinchos');
-    this.pinchos.create(1315, 1610, 'pinchos');
-    this.pinchos.create(933, 1610, 'pinchos');
-    this.pinchos.create(800, 1225, 'pinchos');
-    this.pinchos.create(1553, 1225, 'pinchos');
+    this.pinchos.create(650, 2040, 'pinchos'); //pincho incio
+    this.pinchos.create(1315, 1610, 'pinchos');//pincho saltos
+    this.pinchos.create(933, 1610, 'pinchos');//pincho saltos
+    this.pinchos.create(808, 1225, 'pinchos'); //pincho cerca de la plataforma movil
+    this.pinchos.create(1546, 1225, 'pinchos');//pincho cerca de la plataforma movil
     //--------------------------------- 
 
     //GENERADOR DE BARRILES Y BALAS
-    this.generadorBarriles = new Barriles(this, 135, 790, "right", 2000)
+    this.generadorBarriles = new Barriles(this, 135, 820, "right", 2000)
     this.misBalas = this.add.group()
     //----------------------------------
 
+    //ESTANDARTE
+
+    this.add.image(900,1900,"estandarte").setScale(0.6)
+
+    this.add.image(1700,1900,"estandarte").setScale(0.6)
+
+    //----------------------------------
     //---JUGADORES--
 
-    this.gnomo1 = new Gnomo(this, 1070, 1000);
-    this.elfo = new Elfo(this, 1070, 1000);
+    this.gnomo1 = new Gnomo(this, 100,2000); //100, 2000 para aparecer abajo izq
+    this.elfo = new Elfo(this, 200,2000);
     //---------------------------------
 
 
@@ -196,12 +217,12 @@ class TutorialLevel extends Phaser.Scene{
 
         //ACTUALIZACIÓN DE LA CAMARA
         //console.log("X: " + this.gnomo1.x + " Y: "+ this.gnomo1.y)
+    
         var camaraPosX = (Math.abs(this.elfo.x+this.gnomo1.x)/2);
         var camaraPosY = (Math.abs(this.elfo.y+this.gnomo1.y)/2);
-    
+        
         this.cameras.main.centerOn(camaraPosX,camaraPosY);
-    
-        //MOVIMIENTO DEDL PERSONAJE INDEPENDIENTEMENTE DE LA CPU --> https://phaser.discourse.group/t/different-game-speed-depending-on-monitor-refresh-rate/7231/4
+        //UPDATE INDEPENDIENTEMENTE DE LA CPU --> https://phaser.discourse.group/t/different-game-speed-depending-on-monitor-refresh-rate/7231/4
         var f = (delta / (1000 / 120)); // 1000 ms / 60fps
         this.increment = this.increment + (2 * f);
 
@@ -210,82 +231,84 @@ class TutorialLevel extends Phaser.Scene{
     
         if (this.increment > 32) {
             this.increment = this.increment - 32;
+
             this.gnomo1.move();
             this.elfo.move();
-        };
-    
-        this.die(); //check si han muerto constantemetne
-    
-        //COMPROBANDO LAS CAJAS 
-    
-        for(var i = 0; i < this.box.getChildren().length; i++){
-            var box = this.box.getChildren()[i];
-            box.stop();
 
-            if(this.isColliding(this.gnomo1, box, 50,110)){
-                this.gnomo1.canJump = true;
+            this.die(); //check si han muerto constantemetne
+    
+            //COMPROBANDO LAS CAJAS 
+        
+            for(var i = 0; i < this.box.getChildren().length; i++){
+                var box = this.box.getChildren()[i];
+                box.stop();
+    
+                if(this.isColliding(this.gnomo1, box, 50,110)){
+                    this.gnomo1.canJump = true;
+                }
             }
-        }
+        
+        
+            //MOVIMIENTO DE LA PLATAFORMA
+            for(var i = 0; i < this.platformsMovibles.getChildren().length; i++){
+                var plat = this.platformsMovibles.getChildren()[i];
+                plat.update();
+            }
+            //-------------------------
+            //GESTIÓN DEL BARRIL Y BALAS
+            this.generadorBarriles.update(f);
     
+            for(var i = 0; i < this.misBalas.getChildren().length; i++){
+                if(this.isColliding(this.gnomo1, this.misBalas.getChildren()[i], 50, 50)){
+                    
+                    this.resetGame();
+                }
     
-        //MOVIMIENTO DE LA PLATAFORMA
-        for(var i = 0; i < this.platformsMovibles.getChildren().length; i++){
-            var plat = this.platformsMovibles.getChildren()[i];
-            plat.update();
-        }
-        //-------------------------
-        //GESTIÓN DEL BARRIL Y BALAS
-        this.generadorBarriles.update(f);
-
-        for(var i = 0; i < this.misBalas.getChildren().length; i++){
-            if(this.isColliding(this.gnomo1, this.misBalas.getChildren()[i], 50, 50)){
+                else if(this.isColliding(this.elfo, this.misBalas.getChildren()[i], 50, 50)){
                 
-                this.resetGame();
-            }
-
-            else if(this.isColliding(this.elfo, this.misBalas.getChildren()[i], 50, 50)){
-            
-                this.resetGame();
-            }
-
-           this.misBalas.getChildren()[i].kill();
-        }
-        //-------------------------
-
-        //GESTION DE LAS PALANCAS
-        //RECORRO TODOS Y ACTIVO SOLO AQUELLAS SOBRE LAS QUE ESTÉ ENCIMA
-        //Comprobaré eso comprobando por cada palanca si el personaje se encuentra en la misma x y en la misma y con una diferencia de +-size
+                    this.resetGame();
+                }
     
-        for(var i = 0; i < this.misPalancas.getChildren().length; i++){
-                //Método de colisión por caja
-                if(this.isColliding(this.gnomo1, this.misPalancas.getChildren()[i], 50, 100)){
-                    if(Phaser.Input.Keyboard.JustDown(this.spacebar)){
+               this.misBalas.getChildren()[i].kill();
+            }
+            //-------------------------
+    
+            //GESTION DE LAS PALANCAS
+            //RECORRO TODOS Y ACTIVO SOLO AQUELLAS SOBRE LAS QUE ESTÉ ENCIMA
+            //Comprobaré eso comprobando por cada palanca si el personaje se encuentra en la misma x y en la misma y con una diferencia de +-size
+        
+            for(var i = 0; i < this.misPalancas.getChildren().length; i++){
+                    //Método de colisión por caja
+                    if(this.isColliding(this.gnomo1, this.misPalancas.getChildren()[i], 50, 100)){
+                        if(Phaser.Input.Keyboard.JustDown(this.spacebar)){
+                            //play palanca animation
+                            this.misPalancas.getChildren()[i].activarPalanca(); //activo la palanca
+                          
+                         }
+                    }
+        
+                    else if(this.isColliding(this.elfo, this.misPalancas.getChildren()[i], 50, 100)){
+                        if(Phaser.Input.Keyboard.JustDown(this.control)){
                         //play palanca animation
                         this.misPalancas.getChildren()[i].activarPalanca(); //activo la palanca
-                      
-                     }
-                }
-    
-                else if(this.isColliding(this.elfo, this.misPalancas.getChildren()[i], 50, 100)){
-                    if(Phaser.Input.Keyboard.JustDown(this.control)){
-                    //play palanca animation
-                    this.misPalancas.getChildren()[i].activarPalanca(); //activo la palanca
-                    
+                        
+                        }
                     }
-                }
-        }
+            }
+        
+            if(this.escape.isDown){
+                this.pauseGame()
+            }
+        };
+    }
     
-        if(this.escape.isDown){
-            this.pauseGame()
-        }
-        }
+    
     
     
         pauseGame(){
-            console.log("Pausar")
-            this.scene.bringToTop("PauseMenu")
-            this.scene.run('PauseMenu')
-            this.scene.pause();
+            this.scene.bringToTop("PauseMenu") //mostramos sobre todas el menu de pausa
+            this.scene.run('PauseMenu') //y lo ejecutamos
+            this.scene.pause(); //pausamos el resto de escenas y la musica
             this.scene.pause("Tiempo_Monedas");
             this.MiMusicaBase.pause();
         }

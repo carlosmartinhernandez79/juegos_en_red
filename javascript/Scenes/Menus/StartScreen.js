@@ -32,7 +32,7 @@ class StartScreen extends Phaser.Scene{
                 this.JugarOn.setVisible(false);
                 this.BotonJugar.setInteractive()
                 
-                this.BotonJugar.on('pointerover',()=>{
+               /* this.BotonJugar.on('pointerover',()=>{
                     this.JugarOff.setVisible(false);
                     this.JugarOn.setVisible(true);
                     this.BotonJugar = this.JugarOn;
@@ -42,7 +42,7 @@ class StartScreen extends Phaser.Scene{
                     this.JugarOff.setVisible(true);
                     this.JugarOn.setVisible(false);
                     this.BotonJugar = this.JugarOff;
-                })
+                })*/
                 
                 this.BotonJugar.on('pointerdown', function () {
                     this.scene.start('LogIn');
@@ -54,7 +54,7 @@ class StartScreen extends Phaser.Scene{
                 this.OpcionesOn.setVisible(false);
                 this.BotonOpciones.setInteractive()
                 
-                this.BotonOpciones.on('pointerover',()=>{
+               /* this.BotonOpciones.on('pointerover',()=>{
                     this.OpcionesOff.setVisible(false);
                     this.OpcionesOn.setVisible(true);
                     this.BotonOpciones = this.OpcionesOn;
@@ -64,7 +64,7 @@ class StartScreen extends Phaser.Scene{
                     this.OpcionesOff.setVisible(true);
                     this.OpcionesOn.setVisible(false);
                     this.BotonOpciones = this.OpcionesOff;
-                })
+                })*/
                 
                 this.BotonOpciones.on('pointerdown', function () {
                     this.scene.start('Options');
@@ -76,7 +76,7 @@ class StartScreen extends Phaser.Scene{
                 this.CreditosOn.setVisible(false);
                 this.BotonCreditos.setInteractive()
                 
-                this.BotonCreditos.on('pointerover',()=>{
+               /* this.BotonCreditos.on('pointerover',()=>{
                     this.CreditosOff.setVisible(false);
                     this.CreditosOn.setVisible(true);
                     this.BotonCreditos = this.CreditosOn;
@@ -86,7 +86,7 @@ class StartScreen extends Phaser.Scene{
                     this.CreditosOff.setVisible(true);
                     this.CreditosOn.setVisible(false);
                     this.BotonCreditos = this.CreditosOff;
-                })
+                })*/
                 
                 this.BotonCreditos.on('pointerdown', function () {
                     this.scene.start('Credits');
