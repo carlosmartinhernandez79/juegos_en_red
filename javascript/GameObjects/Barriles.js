@@ -13,7 +13,7 @@ class Barriles extends Phaser.GameObjects.Sprite{
         this.y = y;
 
         this.actualCount = 0;
-        this.shotsPerSecond = 15;
+        this.shotsPerSecond = 400;
 
         var barrelGen = scene.add.existing(this);
 

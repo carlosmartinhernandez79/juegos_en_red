@@ -33,21 +33,19 @@ class LogIn extends Phaser.Scene{
         this.NivelesOn.setVisible(false);
         this.BotonNiveles.setInteractive()
         
-       /* this.BotonNiveles.on('pointerover',()=>{
-            this.NivelesOff.setVisible(false);
+        this.BotonNiveles.on('pointerover',()=>{
             this.NivelesOn.setVisible(true);
-            this.BotonNiveles = this.NivelesOn;
         })
         
         this.BotonNiveles.on('pointerout',()=>{
             this.NivelesOff.setVisible(true);
             this.NivelesOn.setVisible(false);
-            this.BotonNiveles = this.NivelesOff;
-        })*/
+        })
         
         this.BotonNiveles.on('pointerdown', function () {
             this.scene.start('LevelSelector');
         }, this);
+
     }
 
     update() {

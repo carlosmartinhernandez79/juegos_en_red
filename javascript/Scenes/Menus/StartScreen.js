@@ -13,9 +13,7 @@ class StartScreen extends Phaser.Scene{
         this.add.text(600, 20, "StartScreen", {font: "25px Arial", fill: "black"})
         this.add.image(0,0, "PantallaInicial").setOrigin(0,0);
 
-        this.add.image(0,0, "PantallaInicial").setOrigin(0,0);
-        this.add.image(0,0, "PantallaInicial").setOrigin(0,0);
-        this.add.image(0,0, "PantallaInicial").setOrigin(0,0);
+        this.opcionesClickado = false;
 
             // Botón Créditos
             var botonCreditos = this.add.image(1000, 450, "BotonCreditosOff").setScale(0.75)
@@ -32,17 +30,14 @@ class StartScreen extends Phaser.Scene{
                 this.JugarOn.setVisible(false);
                 this.BotonJugar.setInteractive()
                 
-               /* this.BotonJugar.on('pointerover',()=>{
-                    this.JugarOff.setVisible(false);
+                this.BotonJugar.on('pointerover',()=>{
                     this.JugarOn.setVisible(true);
-                    this.BotonJugar = this.JugarOn;
                 })
                 
                 this.BotonJugar.on('pointerout',()=>{
                     this.JugarOff.setVisible(true);
                     this.JugarOn.setVisible(false);
-                    this.BotonJugar = this.JugarOff;
-                })*/
+                })
                 
                 this.BotonJugar.on('pointerdown', function () {
                     this.scene.start('LogIn');
@@ -54,17 +49,15 @@ class StartScreen extends Phaser.Scene{
                 this.OpcionesOn.setVisible(false);
                 this.BotonOpciones.setInteractive()
                 
-               /* this.BotonOpciones.on('pointerover',()=>{
-                    this.OpcionesOff.setVisible(false);
+               this.BotonOpciones.on('pointerover',()=>{
                     this.OpcionesOn.setVisible(true);
-                    this.BotonOpciones = this.OpcionesOn;
                 })
                 
                 this.BotonOpciones.on('pointerout',()=>{
                     this.OpcionesOff.setVisible(true);
                     this.OpcionesOn.setVisible(false);
-                    this.BotonOpciones = this.OpcionesOff;
-                })*/
+
+                })
                 
                 this.BotonOpciones.on('pointerdown', function () {
                     this.scene.start('Options');
@@ -76,17 +69,16 @@ class StartScreen extends Phaser.Scene{
                 this.CreditosOn.setVisible(false);
                 this.BotonCreditos.setInteractive()
                 
-               /* this.BotonCreditos.on('pointerover',()=>{
-                    this.CreditosOff.setVisible(false);
+                this.BotonCreditos.on('pointerover',()=>{
                     this.CreditosOn.setVisible(true);
-                    this.BotonCreditos = this.CreditosOn;
                 })
                 
                 this.BotonCreditos.on('pointerout',()=>{
                     this.CreditosOff.setVisible(true);
                     this.CreditosOn.setVisible(false);
-                    this.BotonCreditos = this.CreditosOff;
-                })*/
+
+
+                })
                 
                 this.BotonCreditos.on('pointerdown', function () {
                     this.scene.start('Credits');
@@ -95,8 +87,8 @@ class StartScreen extends Phaser.Scene{
 
     }
 
-    update() {
-        // Lógica de actualización de la escena (se llama en cada fotograma)
+    update(delta, time) {
+        
     }
 }
 

@@ -164,8 +164,8 @@ class TutorialLevel extends Phaser.Scene{
     //----------------------------------
     //---JUGADORES--
 
-    this.gnomo1 = new Gnomo(this, 100,2000); //100, 2000 para aparecer abajo izq
-    this.elfo = new Elfo(this, 200,2000);
+    this.gnomo1 = new Gnomo(this,  135, 620); //100, 2000 para aparecer abajo izq
+    this.elfo = new Elfo(this,  135, 620);
     //---------------------------------
 
 
@@ -230,7 +230,7 @@ class TutorialLevel extends Phaser.Scene{
         //console.log("f : " + f)
     
         if (this.increment > 32) {
-            this.increment = this.increment - 32;
+            
 
             this.gnomo1.move();
             this.elfo.move();
@@ -256,7 +256,7 @@ class TutorialLevel extends Phaser.Scene{
             }
             //-------------------------
             //GESTIÓN DEL BARRIL Y BALAS
-            this.generadorBarriles.update(f);
+            this.generadorBarriles.update(this.increment);
     
             for(var i = 0; i < this.misBalas.getChildren().length; i++){
                 if(this.isColliding(this.gnomo1, this.misBalas.getChildren()[i], 50, 50)){
@@ -299,6 +299,7 @@ class TutorialLevel extends Phaser.Scene{
             if(this.escape.isDown){
                 this.pauseGame()
             }
+            this.increment = this.increment - 32;
         };
     }
     
