@@ -47,6 +47,8 @@ class PauseMenu extends Phaser.Scene{
             this.scene.start('StartScreen');
             this.scene.bringToTop('StartScreen');
             this.scene.sendToBack('TutorialLevel');
+            this.scene.sendToBack('PauseMenu');
+            this.scene.sendToBack('OptionsFromPause');
             this.scene.sendToBack('Tiempo_Monedas');
         }, this);
 
