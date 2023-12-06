@@ -150,6 +150,7 @@ class SceneBootLoader extends Phaser.Scene {
 
         this.load.on('progress', function (value) {
             console.log(value);
+            percentText.setText(parseInt(value * 100) + '%');
             progressBar.clear();
             progressBar.fillStyle(0xF34306, 1);
             progressBar.fillRect(440, 310, 300 * value, 30);

@@ -15,7 +15,7 @@ class OptionsFromPause extends Phaser.Scene{
         graphics.fillRect(0, 0, 1200, 600);
         graphics.alpha = 0.5
 
-        this.add.text(600, 20, "Opciones de Pausa", {font: "25px Arial", fill: "white"})
+        this.add.text(600, 20, "Opciones de pausa", {font: "25px Arial", fill: "white"})
 
         var Volver = this.add.text(20, 20, "Atrás", {font: "40px Arial", fill: 'white' })
                 .setInteractive()

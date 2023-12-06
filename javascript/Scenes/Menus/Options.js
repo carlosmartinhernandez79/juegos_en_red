@@ -11,7 +11,7 @@ class Options extends Phaser.Scene{
         // Lógica de inicialización de la escena
         this.add.image(0,0, "FondoOscuroVacio").setOrigin(0,0);
 
-        this.add.text(600, 20, "Options", {font: "25px Arial", fill: "white"})
+        this.add.text(600, 20, "Opciones", {font: "25px Arial", fill: "white"})
 
         var Volver = this.add.text(20, 20, '<---', { fill: 'cyan' })
                 .setInteractive()
