@@ -21,6 +21,8 @@ class LevelSelector extends Phaser.Scene{
         .setInteractive()
         .on('pointerdown', function () {
             this.scene.start('TutorialLevel');
+            //this.scene.get('StartScreen').sonido = false;
+            this.scene.get('StartScreen').checkSound(false);
         }, this);
 
         var level1 = this.add.graphics();

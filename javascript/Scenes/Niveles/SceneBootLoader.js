@@ -110,8 +110,8 @@ class SceneBootLoader extends Phaser.Scene {
     this.load.image("nivelesOn", "./ImagesJS/Botones/Boton_Niveles_On.png");
 
 
-    this.load.image("muteOn", "./ImagesJS/MuteButton.png");
-    this.load.image("muteOff", "./ImagesJS/SoundButton.png");
+    this.load.image("mute", "./ImagesJS/MuteButton.png");
+    this.load.image("unMute", "./ImagesJS/SoundButton.png");
 
 
     /////////////////////////////////Sonidos/////////////////////////////////
@@ -149,7 +149,6 @@ class SceneBootLoader extends Phaser.Scene {
         //PANTALLA DE CARGA https://gamedevacademy.org/creating-a-preloading-screen-in-phaser-3/?a=13
 
         this.load.on('progress', function (value) {
-            console.log(value);
             percentText.setText(parseInt(value * 100) + '%');
             progressBar.clear();
             progressBar.fillStyle(0xF34306, 1);
@@ -162,7 +161,12 @@ class SceneBootLoader extends Phaser.Scene {
             progressBar.destroy();
             progressBox.destroy();
             percentText.destroy();
-            this.scene.start("StartScreen");
+            this.scene.start("StartScreen", {sonido: true});
+
+            this.MiMusicaBase = this.sound.add("Musica_Base");
+            this.MiMusicaBase.loop = true;
+            this.MiMusicaBase.play();
+
         });
 
         /*this.load.on("complete", () => {

@@ -43,7 +43,7 @@ class LogIn extends Phaser.Scene{
         })
         
         this.BotonNiveles.on('pointerdown', function () {
-            this.scene.start('LevelSelector');
+            this.scene.start("LevelSelector")
         }, this);
     }
 

@@ -45,6 +45,7 @@ class PauseMenu extends Phaser.Scene{
 
         this.menu.on('pointerdown', function () {
             this.scene.start('StartScreen');
+            this.scene.get('SceneBootLoader').MiMusicaBase.play();
             this.scene.bringToTop('StartScreen');
             this.scene.sendToBack('TutorialLevel');
             this.scene.sendToBack('PauseMenu');
