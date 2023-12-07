@@ -14,11 +14,11 @@ class PauseMenu extends Phaser.Scene{
 
     create() {
         // Lógica de inicialización de la escena
-        /*const graphics = this.add.graphics();
+        const graphics = this.add.graphics();
 
         graphics.fillStyle(0x000000, 0.5);
         graphics.fillRect(0, 0, 1200, 600);
-        //graphics.alpha = 0.5     */
+        //graphics.alpha = 0.5     
 
         this.add.text(560, 35, "PAUSE", {font: "25px Arial", fill: "white"})
         this.escape = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ESC);

@@ -56,6 +56,8 @@ class TutorialLevel extends Phaser.Scene{
 
         this.sonido;
 
+        
+
         if(this.scene.get("StartScreen").isMusicOn()) {
             this.MiMusicaBase.play()
             this.sonido = true;
@@ -317,9 +319,9 @@ class TutorialLevel extends Phaser.Scene{
     }
     
         pauseGame(){
-            this.scene.start('PauseMenu',{sonido:this.sonido}) //y lo ejecutamos
-            this.scene.bringToTop('PauseMenu') //y lo ejecutamos
-            this.scene.pause("TutorialLevel"); //pausamos el resto de escenas y la musica
+            this.scene.bringToTop("PauseMenu") //mostramos sobre todas el menu de pausa
+            this.scene.run('PauseMenu') //y lo ejecutamos
+            this.scene.pause(); //pausamos el resto de escenas y la musica
             this.scene.pause("Tiempo_Monedas");
             this.MiMusicaBase.pause();
         }
