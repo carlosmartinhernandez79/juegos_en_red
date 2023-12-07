@@ -156,7 +156,6 @@ class SceneBootLoader extends Phaser.Scene {
         });
 
         this.load.on('complete', () => {
-            console.log('complete');
             loadingText.destroy();
             progressBar.destroy();
             progressBox.destroy();

@@ -6,7 +6,7 @@ class StartScreen extends Phaser.Scene{
     init(data){
         if(data){
             console.log(data.sonido)
-            //this.sonido = data.sonido;
+            this.sonido = data.sonido;
             this.checkSound(data.sonido);
         }
     }
@@ -92,13 +92,18 @@ class StartScreen extends Phaser.Scene{
     }
 
     checkSound(sound){
-        this.sound = sound;
-        if(sound){
+        this.sonido = sound;
+        if(this.sonido){
             this.scene.get("SceneBootLoader").MiMusicaBase.resume();
         }
         else{
             this.scene.get("SceneBootLoader").MiMusicaBase.pause();
         }
+    }
+
+    isMusicOn(){
+        console.log(this.sonido)
+        return this.sonido;
     }
 }
 

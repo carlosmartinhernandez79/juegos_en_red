@@ -2,7 +2,11 @@ class PauseMenu extends Phaser.Scene{
     constructor() {
         super({ key: 'PauseMenu' });
     }
-
+    init(data){
+        if(data){
+            this.sonido = data.sonido;
+        }
+    }
     preload() {
         // Puedes precargar recursos específicos de esta escena aquí
         console.log("pause")
@@ -10,14 +14,11 @@ class PauseMenu extends Phaser.Scene{
 
     create() {
         // Lógica de inicialización de la escena
-        const graphics = this.add.graphics();
+        /*const graphics = this.add.graphics();
 
-        graphics.fillStyle(0x000000, 1);
+        graphics.fillStyle(0x000000, 0.5);
         graphics.fillRect(0, 0, 1200, 600);
-        graphics.alpha = 0.5
-
-
-        
+        //graphics.alpha = 0.5     */
 
         this.add.text(560, 35, "PAUSE", {font: "25px Arial", fill: "white"})
         this.escape = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ESC);
@@ -44,11 +45,10 @@ class PauseMenu extends Phaser.Scene{
         })*/
 
         this.menu.on('pointerdown', function () {
-            this.scene.start('StartScreen');
-            this.scene.get('SceneBootLoader').MiMusicaBase.play();
+            this.scene.start('StartScreen',{sonido:this.sonido});
             this.scene.bringToTop('StartScreen');
             this.scene.sendToBack('TutorialLevel');
-            this.scene.sendToBack('PauseMenu');
+            this.scene.sleep('PauseMenu');
             this.scene.sendToBack('OptionsFromPause');
             this.scene.sendToBack('Tiempo_Monedas');
         }, this);
@@ -150,7 +150,7 @@ class PauseMenu extends Phaser.Scene{
 
     update() {
         if(this.escape.isDown){
-            this.scene.stop();
+            this.scene.sleep();
             console.log("Resume")
             this.scene.resume("Tiempo_Monedas");
             var sceneMain = this.scene.resume("TutorialLevel");

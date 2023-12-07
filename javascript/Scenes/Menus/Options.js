@@ -33,7 +33,7 @@ class Options extends Phaser.Scene{
                 this.unMute = this.add.image(600, 300,"unMute").setScale(0.75);
                 this.mute = this.add.image(600, 300,"mute").setScale(0.75);
                 
-                this.sonido ? this.unMute.setVisible(false) : this.mute.setVisible(false); //depende de si hay sonido o no, hacemos visible uno u otro
+                this.sonido ? this.mute.setVisible(false) : this.unMute.setVisible(false); //depende de si hay sonido o no, hacemos visible uno u otro
                 
                 this.unMute.setInteractive().
                 on('pointerdown', ()=> {

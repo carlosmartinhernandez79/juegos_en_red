@@ -53,7 +53,20 @@ class TutorialLevel extends Phaser.Scene{
         this.SonidoMoneda = this.sound.add("Sonido_Moneda");
         this.SonidoSalto = this.sound.add("Sonido_Salto");
         this.MiMusicaBase.loop = true;
-        this.MiMusicaBase.play();
+
+        this.sonido;
+
+        if(this.scene.get("StartScreen").isMusicOn()) {
+            this.MiMusicaBase.play()
+            this.sonido = true;
+        }
+        else{
+            this.sonido = false;
+            this.MiMusicaBase.pause();
+        }
+
+        this.scene.get('StartScreen').checkSound(false);
+
         window.myScene = this;
         //---------------------------------
 
@@ -303,13 +316,10 @@ class TutorialLevel extends Phaser.Scene{
         };
     }
     
-    
-    
-    
         pauseGame(){
-            this.scene.bringToTop("PauseMenu") //mostramos sobre todas el menu de pausa
-            this.scene.run('PauseMenu') //y lo ejecutamos
-            this.scene.pause(); //pausamos el resto de escenas y la musica
+            this.scene.start('PauseMenu',{sonido:this.sonido}) //y lo ejecutamos
+            this.scene.bringToTop('PauseMenu') //y lo ejecutamos
+            this.scene.pause("TutorialLevel"); //pausamos el resto de escenas y la musica
             this.scene.pause("Tiempo_Monedas");
             this.MiMusicaBase.pause();
         }
