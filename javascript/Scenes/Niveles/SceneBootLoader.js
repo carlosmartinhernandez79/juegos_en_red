@@ -85,13 +85,16 @@ class SceneBootLoader extends Phaser.Scene {
         { frameWidth: 39.5, frameHeight: 40 }
     );
 
-
-    this.load.spritesheet("dude", "./ImagesJS/dude.png",
-        { frameWidth: 32, frameHeight: 48 }
-    );
-
     this.load.spritesheet("enano", "./ImagesJS/enanoSpritesheet.png",
         { frameWidth: 92.25, frameHeight: 108.25 }
+    );
+
+    this.load.spritesheet("enanoIdle", "./ImagesJS/enanoIdle.png",
+        { frameWidth: 92.25, frameHeight: 108.25 }
+    );
+
+    this.load.spritesheet("elfita", "./ImagesJS/elfaSpritesheet.png",
+        { frameWidth:  92, frameHeight: 107.25 }
     );
 
 

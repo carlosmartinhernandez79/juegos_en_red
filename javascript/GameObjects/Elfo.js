@@ -1,7 +1,7 @@
 class Elfo extends Phaser.GameObjects.Sprite{
     constructor(scene,x,y){
 
-        super(scene,x,y,"dude");
+        super(scene,x,y,"elfita");
 
         this.scenav = scene;
 
@@ -9,7 +9,7 @@ class Elfo extends Phaser.GameObjects.Sprite{
 
         this.elfo.scene.physics.world.enableBody(this);
 
-        this.elfo.setScale(2.5);
+        this.elfo.setScale(1.3);
 
         this.flechas = scene.input.keyboard.createCursorKeys();
 
@@ -23,22 +23,16 @@ class Elfo extends Phaser.GameObjects.Sprite{
         //const isJumpJustDown = Phaser.Input.Keyboard.JustDown(this.flechas.up)
 
         //ANIMATIONS DEL ELFO
-        this.anims.create({
-            key: 'left',
-            frames: this.anims.generateFrameNumbers('dude', { start: 0, end: 3 }),
-            frameRate: 10,
-            repeat: -1
-        });
         
         this.anims.create({
             key: 'turn',
-            frames: [ { key: 'dude', frame: 4 } ],
+            frames: [ { key: 'elfita', frame: 0 } ],
             frameRate: 20
         });
         
         this.anims.create({
             key: 'right',
-            frames: this.anims.generateFrameNumbers('dude', { start: 5, end: 8 }),
+            frames: this.anims.generateFrameNumbers('elfita', { start: 1, end: 25 }),
             frameRate: 10,
             repeat: -1
         });
@@ -68,12 +62,15 @@ class Elfo extends Phaser.GameObjects.Sprite{
             if (this.flechas.left.isDown)
             {
                 this.body.setVelocityX(-400);
-            
-                this.elfo.anims.play("left", true);
+
+                this.elfo.flipX = true;
+
+                this.elfo.anims.play("right", true);
             }
             else if (this.flechas.right.isDown)
             {
                 this.body.setVelocityX(400);
+                this.elfo.flipX = false;
                 this.elfo.anims.play('right', true);
             }
             else
@@ -102,6 +99,9 @@ class Elfo extends Phaser.GameObjects.Sprite{
             }
         }
         else{ //modo gato
+
+            this.cat.move();
+
             if (this.flechas.left.isDown)
             {
                 this.body.setVelocityX(-400);
@@ -137,8 +137,14 @@ class Elfo extends Phaser.GameObjects.Sprite{
         this.metamorfosis = !this.metamorfosis;
 
         if(this.metamorfosis){
-            
+        this.cat = new Cat(this.scene, this.elfo.x,this.elfo.y+107)
+        this.elfo.setVisible(false);
+
         this.elfo.setPosition(this.elfo.x,this.elfo.y-30); //subirle el tamaño del sprite
+        }
+        else{
+            this.elfo.setVisible(true);
+            this.cat.destroy()
         }
     }
 

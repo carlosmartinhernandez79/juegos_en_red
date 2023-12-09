@@ -179,8 +179,9 @@ class TutorialLevel extends Phaser.Scene{
     //----------------------------------
     //---JUGADORES--
 
-    this.gnomo1 = new Gnomo(this,  135, 620); //100, 2000 para aparecer abajo izq
-    this.elfo = new Elfo(this,  135, 620);
+    this.gnomo1 = new Gnomo(this,  100, 2000); //100, 2000 para aparecer abajo izq
+    this.elfo = new Elfo(this,  100, 2000); //135 600 en los barriles
+    this.cat  = this.physics.add.group();
     //---------------------------------
 
 
@@ -197,6 +198,19 @@ class TutorialLevel extends Phaser.Scene{
     this.physics.add.overlap(this.gnomo1, this.exitDoor, this.canExit, null, this);
 
     this.gnomo1.body.setCollideWorldBounds(true);
+
+    //FISICAS DEL CAT
+    this.physics.add.collider(this.cat, plataformas);//collisión con los tiles plataformas
+    this.physics.add.collider(this.cat, limites);//collisión con los tiles límites del mapa
+    this.physics.add.collider(this.cat, this.platformsMovibles); //collisión con las plataformas móviles
+    this.physics.add.collider(this.cat,  this.generadorBarriles);
+    this.physics.add.collider(this.cat, this.doors);
+    this.physics.add.overlap(this.cat, this.misMonedas, this.pickCoin, null, this);
+    this.physics.add.overlap(this.cat, this.pinchos, this.pinchosDeath, null, this);
+    this.physics.add.collider(this.cat, this.box);
+    this.physics.add.overlap(this.cat, this.exitDoor, this.canExit, null, this);
+
+    //this.cat.body.setCollideWorldBounds(true);
 
 
     //FISICAS DEL ELFO
