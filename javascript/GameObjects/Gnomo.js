@@ -18,14 +18,14 @@ class Gnomo extends Phaser.GameObjects.Sprite{
         //ANIMATIONS DEL MUÑECO
         this.anims.create({
             key: 'walk',
-            frames: this.anims.generateFrameNumbers('enano', { start: 0, end: 15 }),
+            frames: this.anims.generateFrameNumbers('enano', { start: 1, end: 15 }),
             frameRate: 20,
             repeat: -1
         });
         
         this.anims.create({
             key: 'turn',
-            frames: [ { key: 'enano', frame: 5 } ],
+            frames: [ { key: 'enano', frame: 0 } ],
             frameRate: 20
         });
     }
