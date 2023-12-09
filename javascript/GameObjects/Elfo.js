@@ -101,34 +101,6 @@ class Elfo extends Phaser.GameObjects.Sprite{
         else{ //modo gato
 
             this.cat.move();
-
-            if (this.flechas.left.isDown)
-            {
-                this.body.setVelocityX(-400);
-
-                this.elfo.flipX = true;
-            
-                this.elfo.anims.play("walk", true);
-            }
-            else if (this.flechas.right.isDown)
-            {
-                this.body.setVelocityX(400);
-    
-                this.elfo.flipX = false;
-                
-                this.elfo.anims.play('walk', true);
-            }
-            else
-            {
-                this.body.setVelocityX(0);
-            
-                this.elfo.anims.play('iddle');
-            }
-
-            if (this.flechas.up.isDown && this.body.blocked.down ) //
-            {
-                this.body.setVelocityY(-600);
-            }
         }
     }
        
@@ -137,10 +109,11 @@ class Elfo extends Phaser.GameObjects.Sprite{
         this.metamorfosis = !this.metamorfosis;
 
         if(this.metamorfosis){
+            
         this.cat = new Cat(this.scene, this.elfo.x,this.elfo.y+107)
         this.elfo.setVisible(false);
-
         this.elfo.setPosition(this.elfo.x,this.elfo.y-30); //subirle el tamaño del sprite
+
         }
         else{
             this.elfo.setVisible(true);
