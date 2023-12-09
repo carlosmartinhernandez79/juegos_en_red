@@ -72,12 +72,12 @@ class SceneBootLoader extends Phaser.Scene {
     );
 
 
-    this.load.spritesheet("dude", "./ImagesJS/dude.png",
-        { frameWidth: 32, frameHeight: 48 }
+    this.load.spritesheet("elfa", "./ImagesJS/elfaSpritesheet.png",
+        { frameWidth: 151.5, frameHeight: 285.7 }
     );
 
     this.load.spritesheet("enano", "./ImagesJS/enanoSpritesheet.png",
-        { frameWidth: 92.25, frameHeight: 108.25 }
+        { frameWidth: 91.4, frameHeight: 107 }
     );
 
     /////////////////////////////////Sonidos/////////////////////////////////
@@ -109,11 +109,11 @@ class SceneBootLoader extends Phaser.Scene {
         this.load.tilemapTiledJSON('tilemapLvL1', './assets/tilesets/LevelData/LvLTutorialRMK.json');
 
        // this.load.tilemapTiledJSON('TutorialMap', './assets/tilesets/TuruotialMap.json');
-        this
+        //this
 
         this.load.image("ground", "./ImagesJS/ground.png");
-        this.load.spritesheet("dude", "./ImagesJS/dude.png",
-            { frameWidth: 32, frameHeight: 48 }
+        this.load.spritesheet("elfa", "./ImagesJS/elfaSpritesheet.png",
+            { frameWidth: 129.8, frameHeight: 214 }
         );
     }
 }
