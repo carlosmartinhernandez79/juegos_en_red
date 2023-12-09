@@ -42,7 +42,7 @@ class Options extends Phaser.Scene{
                     this.unMute.setVisible(!this.isMute);
                     this.mute.setVisible(this.isMute);
                     this.sonido = false;
-                    this.scene.get("StartScreen").checkSound(this.sonido)
+                    this.scene.get("StartScreen").checkSound(this.sonido,true)
                 }, this);
 
                 this.mute.setInteractive().
@@ -52,7 +52,7 @@ class Options extends Phaser.Scene{
                     this.unMute.setVisible(!this.isMute);
                     this.mute.setVisible(this.isMute);
                     this.sonido = true;
-                    this.scene.get("StartScreen").checkSound(this.sonido)
+                    this.scene.get("StartScreen").checkSound(this.sonido,true)
                 }, this);
     }
 

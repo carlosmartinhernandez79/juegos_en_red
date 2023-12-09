@@ -56,10 +56,10 @@ class TutorialLevel extends Phaser.Scene{
 
         this.sonido;
 
-        
-
+        this.MiMusicaBase.play()
+    
         if(this.scene.get("StartScreen").isMusicOn()) {
-            this.MiMusicaBase.play()
+        
             this.sonido = true;
         }
         else{
@@ -67,7 +67,7 @@ class TutorialLevel extends Phaser.Scene{
             this.MiMusicaBase.pause();
         }
 
-        this.scene.get('StartScreen').checkSound(false);
+        this.scene.get("SceneBootLoader").MiMusicaBase.pause();
 
         window.myScene = this;
         //---------------------------------
@@ -415,5 +415,23 @@ class TutorialLevel extends Phaser.Scene{
                 isColliding = true;
             }
             return isColliding;
+        }
+
+        checkSound(){
+            if(this.sonido){
+                this.MiMusicaBase.resume();
+                console.log("hola from checksound")
+            }
+            else{
+                this.MiMusicaBase.pause();
+            }
+        }
+
+        setSound(sound){
+            this.sonido = sound;
+        }
+
+        getSound(){
+            return this.sonido;
         }
 }

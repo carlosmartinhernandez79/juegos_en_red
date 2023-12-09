@@ -45,7 +45,7 @@ class PauseMenu extends Phaser.Scene{
         })*/
 
         this.menu.on('pointerdown', function () {
-            this.scene.start('StartScreen',{sonido:this.sonido});
+            this.scene.start('StartScreen',{sonido: this.scene.get("TutorialLevel").getSound()});
             this.scene.bringToTop('StartScreen');
             this.scene.sendToBack('TutorialLevel');
             this.scene.sleep('PauseMenu');
@@ -77,7 +77,8 @@ class PauseMenu extends Phaser.Scene{
         })*/
 
         this.opciones.on('pointerdown', function () {
-            this.scene.start('OptionsFromPause');
+            console.log(this.scene.get("StartScreen").isMusicOn()+ ": FROM PAUSE MENU")
+            this.scene.start('OptionsFromPause', {sonido: this.scene.get("StartScreen").isMusicOn()});
             this.scene.bringToTop('OptionsFromPause'); //mostramos sobre todas esta escena
             this.scene.pause('PauseMenu'); //dormimos la otra, porque no queremos perder lo que hagamos en el menu de pausa
             this.scene.sendToBack('TutorialLevel'); //enviamos al fondo la de tutorial
@@ -154,7 +155,9 @@ class PauseMenu extends Phaser.Scene{
             console.log("Resume")
             this.scene.resume("Tiempo_Monedas");
             var sceneMain = this.scene.resume("TutorialLevel");
-            this.scene.get("TutorialLevel").MiMusicaBase.resume();
+            this.scene.get("TutorialLevel").checkSound()
+            console.log(this.scene.get("TutorialLevel").getSound());
+
         }
     }
 }
