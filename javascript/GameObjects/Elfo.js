@@ -29,7 +29,7 @@ class Elfo extends Phaser.GameObjects.Sprite{
         this.anims.create({
             key: 'turnRight',
             frames: [ { key: 'elfa', frame: 0 } ],
-            frameRate: 20
+            frameRate: 24
         });
 
         this.anims.create({
