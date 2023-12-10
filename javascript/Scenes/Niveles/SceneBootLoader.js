@@ -73,11 +73,11 @@ class SceneBootLoader extends Phaser.Scene {
 
 
     this.load.spritesheet("elfa", "./ImagesJS/elfaSpritesheet.png",
-        { frameWidth: 151.5, frameHeight: 285.7 }
+        { frameWidth: 99.4, frameHeight: 187.5 }
     );
 
     this.load.spritesheet("enano", "./ImagesJS/enanoSpritesheet.png",
-        { frameWidth: 91.4, frameHeight: 107 }
+        { frameWidth: 319, frameHeight: 373 }
     );
 
     /////////////////////////////////Sonidos/////////////////////////////////
@@ -113,7 +113,7 @@ class SceneBootLoader extends Phaser.Scene {
 
         this.load.image("ground", "./ImagesJS/ground.png");
         this.load.spritesheet("elfa", "./ImagesJS/elfaSpritesheet.png",
-            { frameWidth: 129.8, frameHeight: 214 }
+            { frameWidth: 99.4, frameHeight: 187.5 }
         );
     }
 }

@@ -164,8 +164,8 @@ class TutorialLevel extends Phaser.Scene{
     //----------------------------------
     //---JUGADORES--
 
-    this.gnomo1 = new Gnomo(this,  135, 620); //100, 2000 para aparecer abajo izq
-    this.elfo = new Elfo(this,  135, 620);
+    this.gnomo1 = new Gnomo(this,  100, 2000); //100, 2000 para aparecer abajo izq
+    this.elfo = new Elfo(this,  100, 1600);
     //---------------------------------
 
 
