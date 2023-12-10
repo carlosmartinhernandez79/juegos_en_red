@@ -80,8 +80,8 @@ class TutorialLevel extends Phaser.Scene{
 
         //IMAGENES TUTORIAL
 
-        this.add.image(500,1900,"flechas").setScale(0.5).setTint(0xff0000)
-        this.add.image(500,2000,"wasd").setScale(0.5).setTint(0xff0000)
+        this.add.image(500,1900,"flechas").setScale(0.3)
+        this.add.image(500,2000,"wasd").setScale(0.3)
 
         this.add.text(1797, 1925, "E para hacerte pequeño", {font: "17px Arial", fill: "white"})
         this.add.text(1776, 1950, "Q para volver al tamaño normal", {font: "17px Arial", fill: "white"})
@@ -209,6 +209,7 @@ class TutorialLevel extends Phaser.Scene{
     this.physics.add.overlap(this.cat, this.pinchos, this.pinchosDeath, null, this);
     this.physics.add.collider(this.cat, this.box);
     this.physics.add.overlap(this.cat, this.exitDoor, this.canExit, null, this);
+    this.physics.add.overlap(this.cat, this.desTransformarse, this.destransformarseFunc, null, this); 
 
     //this.cat.body.setCollideWorldBounds(true);
 
@@ -222,7 +223,6 @@ class TutorialLevel extends Phaser.Scene{
     this.physics.add.overlap(this.elfo, this.misMonedas, this.pickCoin, null, this);
     this.physics.add.overlap(this.elfo, this.pinchos, this.pinchosDeath, null, this);
     this.physics.add.overlap(this.elfo, this.pot, this.pickPotion, null, this);
-    this.physics.add.overlap(this.elfo, this.desTransformarse, this.destransformarseFunc, null, this); 
     this.physics.add.collider(this.elfo, this.box);
     this.physics.add.overlap(this.elfo, this.exitDoor, this.canExit, null, this);
 
@@ -394,7 +394,7 @@ class TutorialLevel extends Phaser.Scene{
         }
     
         destransformarseFunc(){
-            this.elfo.hacerMetamorfosis();
+            this.elfo.deshacerMetamorfosis();
             this.desTransformarse.destroy();
             this.IaMariano.play();
         }

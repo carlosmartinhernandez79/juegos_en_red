@@ -15,9 +15,9 @@ class Elfo extends Phaser.GameObjects.Sprite{
 
         this.canDoubleJump = 0;
 
-        this.metamorfosis = false;
-
         this.SonidoSalto = this.scene.sound.add("Sonido_Salto");
+
+        this.metamorfosis = false;
 
 
         //const isJumpJustDown = Phaser.Input.Keyboard.JustDown(this.flechas.up)
@@ -58,7 +58,6 @@ class Elfo extends Phaser.GameObjects.Sprite{
 
     move(){
         //-------MOVIMIENTO elfo-------
-        if(!this.metamorfosis){ //modo persona
             if (this.flechas.left.isDown)
             {
                 this.body.setVelocityX(-400);
@@ -97,29 +96,27 @@ class Elfo extends Phaser.GameObjects.Sprite{
             else if(this.elfo.body.blocked.down){ //this.elfo.body.blocked.down funciona con los tiles. El isTouching no
                 this.canDoubleJump = 0;
             }
-        }
-        else{ //modo gato
-
+        
+        if(this.metamorfosis && this.cat){
+            console.log("moving")
             this.cat.move();
         }
     }
        
     hacerMetamorfosis(){
 
-        this.metamorfosis = !this.metamorfosis;
+        this.metamorfosis = true;
 
-        if(this.metamorfosis){
-            
         this.cat = new Cat(this.scene, this.elfo.x,this.elfo.y+107)
         this.elfo.setVisible(false);
         this.elfo.setPosition(this.elfo.x,this.elfo.y-30); //subirle el tamaño del sprite
-
-        }
-        else{
-            this.elfo.setVisible(true);
-            this.cat.destroy()
-        }
+        this.body.setVelocity(0);
     }
 
-
+    deshacerMetamorfosis(){
+        this.metamorfosis = false;
+        this.elfo.setVisible(true);
+        this.elfo.setPosition(this.cat.x,this.cat.y-50); //subirle el tamaño del sprite
+        this.cat.destroy()
+    }
 }
