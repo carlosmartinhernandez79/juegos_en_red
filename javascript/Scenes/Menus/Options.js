@@ -22,9 +22,9 @@ class Options extends Phaser.Scene{
         this.add.text(600, 20, "Opciones", {font: "25px Arial", fill: "white"})
 
         
+        var Volver = this.add.image(30, 35, "Flecha").setScale(0.2)
 
-        var Volver = this.add.text(20, 20, '<---', { fill: 'cyan' })
-                .setInteractive()
+        Volver.setInteractive()
                 .on('pointerdown', ()=> {
                    this.scene.start('StartScreen', {sonido: this.sonido}) ;
                 }, this);

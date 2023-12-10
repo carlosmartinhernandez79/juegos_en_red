@@ -89,9 +89,9 @@ class TutorialLevel extends Phaser.Scene{
         this.add.text(2200, 1975, "Espacio para activar", {font: "17px Arial", fill: "white"})
 
         this.add.text(2070, 1650, "Doble salto", {font: "17px Arial", fill: "white"})
-        this.add.image(2200,1660,"flechaUP").setScale(0.5).setTint(0xff0000).setOrigin(0.5,0.5)
+        this.add.image(2200,1660,"flechaUP").setScale(0.3).setOrigin(0.5,0.5)
         this.add.text(2225, 1650, "+", {font: "25px Arial", fill: "white"})
-        this.add.image(2270,1660,"flechaUP").setScale(0.5).setTint(0xff0000).setOrigin(0.5,0.5)
+        this.add.image(2270,1660,"flechaUP").setScale(0.3).setOrigin(0.5,0.5)
 
         //-------------------------------
 

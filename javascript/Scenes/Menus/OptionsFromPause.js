@@ -18,9 +18,10 @@ class OptionsFromPause extends Phaser.Scene{
         graphics.alpha = 0.5
 
         this.add.text(600, 20, "Opciones de pausa", {font: "25px Arial", fill: "white"})
+        
+        var Volver = this.add.image(30, 35, "Flecha").setScale(0.2)
 
-        var Volver = this.add.text(20, 20, "Atrás", {font: "40px Arial", fill: 'white' })
-                .setInteractive()
+        Volver.setInteractive()
                 .on('pointerdown', function () {
                     this.scene.bringToTop("PauseMenu") //mostramos sobre todas la de pausa
                     this.scene.run("PauseMenu") //la despertamos

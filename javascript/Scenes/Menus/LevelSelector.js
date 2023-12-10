@@ -55,9 +55,9 @@ class LevelSelector extends Phaser.Scene{
             this.scene.start('TutorialLevel');
         }, this);
 
+        var Volver = this.add.image(30, 35, "Flecha").setScale(0.2)
 
-        var Volver = this.add.text(20, 20, '<---', { fill: 'cyan' })
-                .setInteractive()
+        Volver.setInteractive()
                 .on('pointerdown', function () {
                     this.scene.start('LogIn');
                 }, this);     

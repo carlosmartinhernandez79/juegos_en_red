@@ -44,6 +44,7 @@ body {
   }
   .historiaContainer{
     background-color: brown;
+    border-radius: 4%;
     margin-right: 50%;
     padding-bottom: 1%;
     padding-top: 1%;
@@ -76,6 +77,7 @@ body {
 
   .Titulo{
     background-color: brown;
+    border-radius: 5%;
     margin-left: 40%;
     margin-right: 40%
   }
