@@ -1,12 +1,12 @@
 class Palanca extends Phaser.GameObjects.Sprite{
     constructor(scene,x,y, objectToInteract){
 
-        super(scene,x,y,"palanca");
+        super(scene,x,y,"palanca_mov");
 
         this.active = true;
         this.objectToInteract = objectToInteract;
 
-        scene.add.existing(this).setScale(0.2);
+        scene.add.existing(this).setScale(0.4);
 
         scene.physics.world.enableBody(this);
         this.body.setAllowGravity(false) //workds;
@@ -20,6 +20,19 @@ class Palanca extends Phaser.GameObjects.Sprite{
         //scene.physics.add.image(x, y-500, "palanca").setScale(0.5).setImmovable(true);
         //scene.physics.world.enabled();
         //this.body.setInmovable = true;
+
+        this.anims.create({
+            key: 'palanca_move',
+            frames: this.anims.generateFrameNumbers('palanca_mov', { start: 0, end: 7 }),
+            frameRate: 10,
+            repeat: -1
+        });
+
+        this.anims.create({
+            key: 'palanca_stop',
+            frames: [ { key: 'palanca_mov', frame: 0 } ],
+            frameRate: 10,
+        });
      
     }
 
@@ -64,9 +77,12 @@ class Palanca extends Phaser.GameObjects.Sprite{
     animarPalanca(){
     
         if(this.active){
+
+            //this.Palanca.anims.play('palanca_move');
             //this.setAngle(-45)
         }
         else{
+            //this.Palanca.anims.play('palanca_stop');
             //this.setAngle(45)
         }
     }
