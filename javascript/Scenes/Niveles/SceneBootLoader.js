@@ -46,6 +46,18 @@ class SceneBootLoader extends Phaser.Scene {
         this.load.image("BotonOpcionesOn", "./ImagesJS/Botones/Boton_Opciones_On.png");
         this.load.image("BotonCreditosOn", "./ImagesJS/Botones/Boton_Creditos_On.png");
         this.load.image("Flecha", "./ImagesJS/Botones/Interfaz_Boton_Flecha.png");
+        this.load.image("CreditosText", "./ImagesJS/Pantallas/Interfaz_Creditos.png");
+        this.load.image("NivelesText", "./ImagesJS/Pantallas/Interfaz_Niveles.png");
+        this.load.image("OpcionesText", "./ImagesJS/Pantallas/Interfaz_Opciones.png");
+        this.load.image("PausaText", "./ImagesJS/Pantallas/Interfaz_Pausa.png");
+        this.load.image("PersonajesText", "./ImagesJS/Pantallas/Interfaz_Personajes.png");
+
+        this.load.image("PantallaNivel1", "./ImagesJS/Pantallas/PantallaNivel1.png");
+
+        this.load.image("TutorialEnanoText", "./ImagesJS/Pantallas/Letras_Tutorial_Enano.png");
+        this.load.image("PalancaText", "./ImagesJS/Pantallas/Espacio_Para_Activar_Texto.png");
+        this.load.image("DobleSaltoText", "./ImagesJS/Pantallas/Doble_Salto_Texto.png");
+
         //---------------------------------------------------------------------------------
         //IINTERFAZ CRÉDITOS
         this.load.image("FondoOscuroVacio", "./ImagesJS/Pantallas/fondo oscuro vacio.jpg");

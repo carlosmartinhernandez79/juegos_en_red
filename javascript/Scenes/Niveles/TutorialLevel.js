@@ -83,15 +83,15 @@ class TutorialLevel extends Phaser.Scene{
         this.add.image(500,1900,"flechas").setScale(0.3)
         this.add.image(500,2000,"wasd").setScale(0.3)
 
-        this.add.text(1797, 1925, "E para hacerte pequeño", {font: "17px Arial", fill: "white"})
-        this.add.text(1776, 1950, "Q para volver al tamaño normal", {font: "17px Arial", fill: "white"})
+        this.add.image(1797, 1925, "TutorialEnanoText").setScale(0.4)
 
-        this.add.text(2200, 1975, "Espacio para activar", {font: "17px Arial", fill: "white"})
+        this.add.image(2170, 2020, "PalancaText").setScale(0.4)
 
-        this.add.text(2070, 1650, "Doble salto", {font: "17px Arial", fill: "white"})
-        this.add.image(2200,1660,"flechaUP").setScale(0.3).setOrigin(0.5,0.5)
-        this.add.text(2225, 1650, "+", {font: "25px Arial", fill: "white"})
-        this.add.image(2270,1660,"flechaUP").setScale(0.3).setOrigin(0.5,0.5)
+        this.add.image(2140, 1660, "DobleSaltoText").setScale(0.4)
+        
+        this.add.image(2240,1655,"flechaUP").setScale(0.3).setOrigin(0.5,0.5)
+        //this.add.text(2225, 1650, "+", {font: "25px Arial", fill: "white"})
+        this.add.image(2310,1655,"flechaUP").setScale(0.3).setOrigin(0.5,0.5)
 
         //-------------------------------
 
@@ -179,8 +179,8 @@ class TutorialLevel extends Phaser.Scene{
     //----------------------------------
     //---JUGADORES--
 
-    this.gnomo1 = new Gnomo(this,  100, 2000); //100, 2000 para aparecer abajo izq
-    this.elfo = new Elfo(this,  100, 2000); //135 600 en los barriles
+    this.gnomo1 = new Gnomo(this,  100, 1000); //100, 2000 para aparecer abajo izq
+    this.elfo = new Elfo(this, 100, 1000); //135, 600 en los barriles
     this.cat  = this.physics.add.group();
     //---------------------------------
 

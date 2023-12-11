@@ -19,7 +19,7 @@ class Options extends Phaser.Scene{
         // Lógica de inicialización de la escena
         this.add.image(0,0, "FondoOscuroVacio").setOrigin(0,0);
 
-        this.add.text(600, 20, "Opciones", {font: "25px Arial", fill: "white"})
+        this.add.image(600,70, "OpcionesText").setOrigin(0.5,0.5);
 
         
         var Volver = this.add.image(30, 35, "Flecha").setScale(0.2)

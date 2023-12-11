@@ -9,7 +9,7 @@ class Elfo extends Phaser.GameObjects.Sprite{
 
         this.elfo.scene.physics.world.enableBody(this);
 
-        this.elfo.setScale(1.3);
+        this.elfo.setScale(1.3)
 
         this.flechas = scene.input.keyboard.createCursorKeys();
 

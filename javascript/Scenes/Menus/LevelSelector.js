@@ -11,14 +11,11 @@ class LevelSelector extends Phaser.Scene{
         // Lógica de inicialización de la escena
         this.add.image(0,0, "FondoOscuroVacio").setOrigin(0,0);
 
-        this.add.text(500, 20, "Selección de niveles", {font: "25px Arial", fill: "white"})
+        this.add.image(600,70, "NivelesText").setOrigin(0.5,0.5);
 
-        var level0 = this.add.graphics();
-        level0.fillStyle(0xF0360E, 1);
-        level0.fillRect(200, 100, 200, 200);
+        var level1 = this.add.image(300, 250, "PantallaNivel1").setOrigin(0.5,0.5).setScale(0.15);
 
-        var level0Text = this.add.text(220, 320, 'Nivel 0: Tutorial', { fill: 'white' })
-        .setInteractive()
+        level1.setInteractive()
         .on('pointerdown', function () {
             this.scene.start('TutorialLevel');
             //this.scene.get('StartScreen').sonido = false;

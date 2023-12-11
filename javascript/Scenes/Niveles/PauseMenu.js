@@ -20,7 +20,7 @@ class PauseMenu extends Phaser.Scene{
         graphics.fillRect(0, 0, 1200, 600);
         //graphics.alpha = 0.5     
 
-        this.add.text(560, 35, "PAUSE", {font: "25px Arial", fill: "white"})
+        this.add.image(600,70, "PausaText").setOrigin(0.5,0.5);
         this.escape = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ESC);
 
 
