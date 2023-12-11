@@ -3,8 +3,10 @@ class OptionsFromPause extends Phaser.Scene{
         super({ key: 'OptionsFromPause' });
     }
 
-    preload() {
-        // Puedes precargar recursos específicos de esta escena aquí
+    init(data){
+        if(data){
+            this.sonido = data.sonido;
+        }
     }
 
     create() {
@@ -15,41 +17,45 @@ class OptionsFromPause extends Phaser.Scene{
         graphics.fillRect(0, 0, 1200, 600);
         graphics.alpha = 0.5
 
-        this.add.text(600, 20, "Opciones de Pausa", {font: "25px Arial", fill: "white"})
+        this.add.image(600,70, "OpcionesText").setOrigin(0.5,0.5);
+        
+        var Volver = this.add.image(30, 35, "Flecha").setScale(0.2)
 
-        var Volver = this.add.text(20, 20, "Atrás", {font: "40px Arial", fill: 'white' })
-                .setInteractive()
+        Volver.setInteractive()
                 .on('pointerdown', function () {
                     this.scene.bringToTop("PauseMenu") //mostramos sobre todas la de pausa
                     this.scene.run("PauseMenu") //la despertamos
                     this.scene.sendToBack("OptionsFromPause") //enviamos esta escena al fondo
                 }, this);
+        
+                
+                this.unMute = this.add.image(600, 300,"unMute").setScale(0.75);
+                this.mute = this.add.image(600, 300,"mute").setScale(0.75);
+                        
+                this.sonido ? this.mute.setVisible(false) : this.unMute.setVisible(false); //depende de si hay sonido o no, hacemos visible uno u otro
+                        
+                this.unMute.setInteractive().
+                on('pointerdown', ()=> {
+                        this.isMute = this.unMute.visible;
+                        this.isMute = this.isMute;
+                        this.unMute.setVisible(!this.isMute);
+                        this.mute.setVisible(this.isMute);
+                        this.sonido = false;
+                        this.scene.get("StartScreen").checkSound(this.sonido, false)
+                        this.scene.get("TutorialLevel").setSound(this.sonido)
+                }, this);
+        
+                this.mute.setInteractive().
+                on('pointerdown', ()=> {
+                        this.isMute = this.unMute.visible;
+                        this.isMute = this.isMute;
+                        this.unMute.setVisible(!this.isMute);
+                        this.mute.setVisible(this.isMute);
+                        this.sonido = true;
+                        this.scene.get("StartScreen").checkSound(this.sonido, false)
+                        this.scene.get("TutorialLevel").setSound(this.sonido)
+                }, this);
 
-
-        ///INTENTO DE IMPLEMENTAR UN MUTE DE LA MUSICA --> fail pero por la gestión de escenas, no se guarda bien el cambio
-        //puesto que runeo todo el rato, no hago pause y resume
-
-        /*var muteOn =this.add.image(600, 300, "muteOn").setScale(0.5)
-        var muteOff =this.add.image(600, 300, "muteOff").setVisible(false).setScale(0.5)
-    
-        muteOn.setInteractive()
-        .on('pointerdown', function () {
-
-            muteOff.setVisible(true)
-            muteOn.setVisible(false)
-
-            this.scene.get("TutorialLevel").MiMusicaBase.pause();
-            
-        }, this);
-
-        muteOff.setInteractive()
-        .on('pointerdown', function () {
-
-            muteOff.setVisible(false)
-            muteOn.setVisible(true)
-            this.scene.get("TutorialLevel").MiMusicaBase.resume();
-            
-        }, this);*/ 
     }
     
     update() {

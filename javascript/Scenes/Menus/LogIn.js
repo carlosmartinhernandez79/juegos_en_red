@@ -11,14 +11,15 @@ class LogIn extends Phaser.Scene{
         // Lógica de inicialización de la escena
         this.add.image(0,0, "FondoOscuroVacio").setOrigin(0,0);
 
-        this.add.text(600, 20, "LogIn", { font: "25px Arial", fill: "white" })
+        this.add.image(600,70, "PersonajesText").setOrigin(0.5,0.5);
 
         this.add.image(300, 300, "GnomoPng").setScale(0.1);
 
         this.add.image(700, 300, "ElfaPng").setScale(0.15);
 
-        var Volver = this.add.text(20, 20, '<---', { fill: 'cyan' })
-            .setInteractive()
+        var Volver = this.add.image(30, 35, "Flecha").setScale(0.2)
+
+        Volver.setInteractive()
             .on('pointerdown', function () {
                 this.scene.start('StartScreen');
             }, this);
@@ -43,9 +44,8 @@ class LogIn extends Phaser.Scene{
         })
         
         this.BotonNiveles.on('pointerdown', function () {
-            this.scene.start('LevelSelector');
+            this.scene.start("LevelSelector")
         }, this);
-
     }
 
     update() {

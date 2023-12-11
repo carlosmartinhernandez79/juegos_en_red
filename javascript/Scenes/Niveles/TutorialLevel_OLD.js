@@ -53,22 +53,7 @@ class TutorialLevel extends Phaser.Scene{
         this.SonidoMoneda = this.sound.add("Sonido_Moneda");
         this.SonidoSalto = this.sound.add("Sonido_Salto");
         this.MiMusicaBase.loop = true;
-
-        this.sonido;
-
-        this.MiMusicaBase.play()
-    
-        if(this.scene.get("StartScreen").isMusicOn()) {
-        
-            this.sonido = true;
-        }
-        else{
-            this.sonido = false;
-            this.MiMusicaBase.pause();
-        }
-
-        this.scene.get("SceneBootLoader").MiMusicaBase.pause();
-
+        this.MiMusicaBase.play();
         window.myScene = this;
         //---------------------------------
 
@@ -80,18 +65,18 @@ class TutorialLevel extends Phaser.Scene{
 
         //IMAGENES TUTORIAL
 
-        this.add.image(500,1900,"flechas").setScale(0.3)
-        this.add.image(500,2000,"wasd").setScale(0.3)
+        this.add.image(500,1900,"flechas").setScale(0.5).setTint(0xff0000)
+        this.add.image(500,2000,"wasd").setScale(0.5).setTint(0xff0000)
 
-        this.add.image(1797, 1925, "TutorialEnanoText").setScale(0.4)
+        this.add.text(1797, 1925, "E para hacerte pequeño", {font: "17px Arial", fill: "white"})
+        this.add.text(1776, 1950, "Q para volver al tamaño normal", {font: "17px Arial", fill: "white"})
 
-        this.add.image(2170, 2020, "PalancaText").setScale(0.4)
+        this.add.text(2200, 1975, "Espacio para activar", {font: "17px Arial", fill: "white"})
 
-        this.add.image(2140, 1660, "DobleSaltoText").setScale(0.4)
-        
-        this.add.image(2240,1655,"flechaUP").setScale(0.3).setOrigin(0.5,0.5)
-        //this.add.text(2225, 1650, "+", {font: "25px Arial", fill: "white"})
-        this.add.image(2310,1655,"flechaUP").setScale(0.3).setOrigin(0.5,0.5)
+        this.add.text(2070, 1650, "Doble salto", {font: "17px Arial", fill: "white"})
+        this.add.image(2200,1660,"flechaUP").setScale(0.5).setTint(0xff0000).setOrigin(0.5,0.5)
+        this.add.text(2225, 1650, "+", {font: "25px Arial", fill: "white"})
+        this.add.image(2270,1660,"flechaUP").setScale(0.5).setTint(0xff0000).setOrigin(0.5,0.5)
 
         //-------------------------------
 
@@ -111,16 +96,7 @@ class TutorialLevel extends Phaser.Scene{
         //--PALANCAS--
         this.misPalancas = this.add.group();
         //this.p = new Palanca(this, 1200, 3700, this.platMovible2); //Instanciar las palancas enviándolas el objeto que quieren activar cuando las activen
-        this.p = new Palanca(this, 2300, 2022, this.puerta1); //Instanciar las palancas enviándolas el objeto que quieren activar cuando las activen
-
-        this.anims.create({
-            key: 'palanca_move',
-            frames: this.anims.generateFrameNumbers('palanca_mov', { start: 0, end: 7 }),
-            frameRate: 10,
-            repeat: -1
-        });
-
-        
+        this.p = new Palanca(this, 2300, 2030, this.puerta1).setScale(0.5); //Instanciar las palancas enviándolas el objeto que quieren activar cuando las activen
         //---------------------------------
 
         //-----PUERTA SALIR----------
@@ -197,8 +173,7 @@ class TutorialLevel extends Phaser.Scene{
     //---JUGADORES--
 
     this.gnomo1 = new Gnomo(this,  100, 2000); //100, 2000 para aparecer abajo izq
-    this.elfo = new Elfo(this, 100, 1900); //135, 600 en los barriles
-    this.cat  = this.physics.add.group();
+    this.elfo1 = new Elfo(this,  100, 2000);
     //---------------------------------
 
 
@@ -216,34 +191,21 @@ class TutorialLevel extends Phaser.Scene{
 
     this.gnomo1.body.setCollideWorldBounds(true);
 
-    //FISICAS DEL CAT
-    this.physics.add.collider(this.cat, plataformas);//collisión con los tiles plataformas
-    this.physics.add.collider(this.cat, limites);//collisión con los tiles límites del mapa
-    this.physics.add.collider(this.cat, this.platformsMovibles); //collisión con las plataformas móviles
-    this.physics.add.collider(this.cat,  this.generadorBarriles);
-    this.physics.add.collider(this.cat, this.doors);
-    this.physics.add.overlap(this.cat, this.misMonedas, this.pickCoin, null, this);
-    this.physics.add.overlap(this.cat, this.pinchos, this.pinchosDeath, null, this);
-    this.physics.add.collider(this.cat, this.box);
-    this.physics.add.overlap(this.cat, this.exitDoor, this.canExit, null, this);
-    this.physics.add.overlap(this.cat, this.desTransformarse, this.destransformarseFunc, null, this); 
-
-    //this.cat.body.setCollideWorldBounds(true);
-
 
     //FISICAS DEL ELFO
-    this.physics.add.collider(this.elfo, plataformas); //collisión con los tiles plataformas
-    this.physics.add.collider(this.elfo, limites);//collisión con los tiles límites del mapa
-    this.physics.add.collider(this.elfo, this.platformsMovibles); //collisión con las plataformas móviles
-    this.physics.add.collider(this.elfo,  this.generadorBarriles);
-    this.physics.add.collider(this.elfo, this.doors);
-    this.physics.add.overlap(this.elfo, this.misMonedas, this.pickCoin, null, this);
-    this.physics.add.overlap(this.elfo, this.pinchos, this.pinchosDeath, null, this);
-    this.physics.add.overlap(this.elfo, this.pot, this.pickPotion, null, this);
-    this.physics.add.collider(this.elfo, this.box);
-    this.physics.add.overlap(this.elfo, this.exitDoor, this.canExit, null, this);
+    this.physics.add.collider(this.elfo1, plataformas); //collisión con los tiles plataformas
+    this.physics.add.collider(this.elfo1, limites);//collisión con los tiles límites del mapa
+    this.physics.add.collider(this.elfo1, this.platformsMovibles); //collisión con las plataformas móviles
+    this.physics.add.collider(this.elfo1,  this.generadorBarriles);
+    this.physics.add.collider(this.elfo1, this.doors);
+    this.physics.add.overlap(this.elfo1, this.misMonedas, this.pickCoin, null, this);
+    this.physics.add.overlap(this.elfo1, this.pinchos, this.pinchosDeath, null, this);
+    this.physics.add.overlap(this.elfo1, this.pot, this.pickPotion, null, this);
+    this.physics.add.overlap(this.elfo1, this.desTransformarse, this.destransformarseFunc, null, this); 
+    this.physics.add.collider(this.elfo1, this.box);
+    this.physics.add.overlap(this.elfo1, this.exitDoor, this.canExit, null, this);
 
-    this.elfo.body.setCollideWorldBounds(true);
+    this.elfo1.body.setCollideWorldBounds(true);
 
 
     //---------------------------------
@@ -264,8 +226,8 @@ class TutorialLevel extends Phaser.Scene{
         //ACTUALIZACIÓN DE LA CAMARA
         //console.log("X: " + this.gnomo1.x + " Y: "+ this.gnomo1.y)
     
-        var camaraPosX = (Math.abs(this.elfo.x+this.gnomo1.x)/2);
-        var camaraPosY = (Math.abs(this.elfo.y+this.gnomo1.y)/2);
+        var camaraPosX = (Math.abs(this.elfo1.x+this.gnomo1.x)/2);
+        var camaraPosY = (Math.abs(this.elfo1.y+this.gnomo1.y)/2);
         
         this.cameras.main.centerOn(camaraPosX,camaraPosY);
         //UPDATE INDEPENDIENTEMENTE DE LA CPU --> https://phaser.discourse.group/t/different-game-speed-depending-on-monitor-refresh-rate/7231/4
@@ -279,7 +241,7 @@ class TutorialLevel extends Phaser.Scene{
             
 
             this.gnomo1.move();
-            this.elfo.move();
+            this.elfo1.move();
 
             this.die(); //check si han muerto constantemetne
     
@@ -310,7 +272,7 @@ class TutorialLevel extends Phaser.Scene{
                     this.resetGame();
                 }
     
-                else if(this.isColliding(this.elfo, this.misBalas.getChildren()[i], 50, 50)){
+                else if(this.isColliding(this.elfo1, this.misBalas.getChildren()[i], 50, 50)){
                 
                     this.resetGame();
                 }
@@ -320,6 +282,7 @@ class TutorialLevel extends Phaser.Scene{
             //-------------------------
     
             //GESTION DE LAS PALANCAS
+
             //RECORRO TODOS Y ACTIVO SOLO AQUELLAS SOBRE LAS QUE ESTÉ ENCIMA
             //Comprobaré eso comprobando por cada palanca si el personaje se encuentra en la misma x y en la misma y con una diferencia de +-size
         
@@ -328,13 +291,12 @@ class TutorialLevel extends Phaser.Scene{
                     if(this.isColliding(this.gnomo1, this.misPalancas.getChildren()[i], 50, 100)){
                         if(Phaser.Input.Keyboard.JustDown(this.spacebar)){
                             //play palanca animation
-                            this.p.anims.play('palanca_move');
                             this.misPalancas.getChildren()[i].activarPalanca(); //activo la palanca
                           
                          }
                     }
         
-                    else if(this.isColliding(this.elfo, this.misPalancas.getChildren()[i], 50, 100)){
+                    else if(this.isColliding(this.elfo1, this.misPalancas.getChildren()[i], 50, 100)){
                         if(Phaser.Input.Keyboard.JustDown(this.control)){
                         //play palanca animation
                         this.misPalancas.getChildren()[i].activarPalanca(); //activo la palanca
@@ -350,6 +312,9 @@ class TutorialLevel extends Phaser.Scene{
         };
     }
     
+    
+    
+    
         pauseGame(){
             this.scene.bringToTop("PauseMenu") //mostramos sobre todas el menu de pausa
             this.scene.run('PauseMenu') //y lo ejecutamos
@@ -359,17 +324,17 @@ class TutorialLevel extends Phaser.Scene{
         }
     
         die(){
-            if(this.elfo.y>3900 || this.gnomo1.y>3900 || this.isTooFar()){
+            if(this.elfo1.y>3900 || this.gnomo1.y>3900 || this.isTooFar()){
                 this.resetGame();
             }
         }
     
         isTooFar(){
             var itIs = false;
-            if(Math.abs(this.gnomo1.x - this.elfo.x)> 1300){
+            if(Math.abs(this.gnomo1.x - this.elfo1.x)> 1300){
                 itIs=true;
             }
-            if(Math.abs(this.gnomo1.y - this.elfo.y)> 650){
+            if(Math.abs(this.gnomo1.y - this.elfo1.y)> 650){
                 itIs=true;
             }
             return itIs;
@@ -384,7 +349,7 @@ class TutorialLevel extends Phaser.Scene{
             char.setTint(0xff0000)
             //this.gnomo1.setTint(0xff0000)
     
-            //this.elfo.body.setVelocityY(-100);
+            //this.elfo1.body.setVelocityY(-100);
             char.body.setVelocityY(-400);
             
             setTimeout(()=>{
@@ -396,7 +361,7 @@ class TutorialLevel extends Phaser.Scene{
     
         pickCoin(){
             for(var i = 0; i < this.misMonedas.getChildren().length; i++){
-                if(this.isColliding(this.gnomo1, this.misMonedas.getChildren()[i], 50, 50) || this.isColliding(this.elfo, this.misMonedas.getChildren()[i], 50, 50))
+                if(this.isColliding(this.gnomo1, this.misMonedas.getChildren()[i], 50, 50) || this.isColliding(this.elfo1, this.misMonedas.getChildren()[i], 50, 50))
                 {
                     this.scene.get("Tiempo_Monedas").updateCount();
                     this.misMonedas.getChildren()[i].destroy();
@@ -406,20 +371,20 @@ class TutorialLevel extends Phaser.Scene{
         }
     
         pickPotion(){
-            this.elfo.hacerMetamorfosis();
+            this.elfo1.hacerMetamorfosis();
             this.pot.destroy();
             this.VivaElVino.play();      
         }
     
         destransformarseFunc(){
-            this.elfo.deshacerMetamorfosis();
+            this.elfo1.hacerMetamorfosis();
             this.desTransformarse.destroy();
             this.IaMariano.play();
         }
 
         canExit(){
         
-            if(this.isColliding(this.gnomo1, this.exitDoor, 50, 50) && this.isColliding(this.elfo, this.exitDoor, 50, 50))
+            if(this.isColliding(this.gnomo1, this.exitDoor, 50, 50) && this.isColliding(this.elfo1, this.exitDoor, 50, 50))
             {
                 this.scene.start("Victory");
             }
@@ -447,23 +412,5 @@ class TutorialLevel extends Phaser.Scene{
                 isColliding = true;
             }
             return isColliding;
-        }
-
-        checkSound(){
-            if(this.sonido){
-                this.MiMusicaBase.resume();
-                console.log("hola from checksound")
-            }
-            else{
-                this.MiMusicaBase.pause();
-            }
-        }
-
-        setSound(sound){
-            this.sonido = sound;
-        }
-
-        getSound(){
-            return this.sonido;
         }
 }

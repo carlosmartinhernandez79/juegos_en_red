@@ -10,9 +10,10 @@ class Credits extends Phaser.Scene{
     create() {
         // Lógica de inicialización de la escena
         this.add.image(0,0, "FondoOscuroVacio").setOrigin(0,0);
+        this.add.image(600,70, "CreditosText").setOrigin(0.5,0.5);
+        var Volver = this.add.image(30, 35, "Flecha").setScale(0.2)
 
-        var Volver = this.add.text(20, 20, '<---', { fill: 'cyan' })
-                .setInteractive()
+        Volver.setInteractive()
                 .on('pointerdown', function () {
                     this.scene.start('StartScreen');
                 }, this);

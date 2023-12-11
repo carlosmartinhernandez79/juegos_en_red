@@ -7,6 +7,8 @@ class Tiempo_Monedas extends Phaser.Scene{
         var miMoneda=this.add.image(50, 50, 'moneda');
         var miReloj=this.add.image(1090, 50, 'reloj');
 
+        //this.barraTiempo=this.add.image(1000, 300, 'ground').setScale(4,1).setOrigin(1,0.5);
+
         miReloj.setScale(0.07)
 
         this.count = 0;
@@ -33,12 +35,14 @@ class Tiempo_Monedas extends Phaser.Scene{
         
 		this.labelTimer.text = this.updateTimer();
         
+        //this.barraTiempo.setScale(this.toInt(), 1) --> si queremos que en vez de que sean numeros sea una barra
+
         this.checkIfEnd();
     }
 
     updateTimer(){
 
-        var final;
+       var final;
        
        var aux = Math.round(this.seconds)
 
@@ -80,5 +84,9 @@ class Tiempo_Monedas extends Phaser.Scene{
 
     getMonedas(){
         return this.count
+     }
+
+     toInt(){
+        return((this.minutes*60 + this.seconds)/100)
      }
 }

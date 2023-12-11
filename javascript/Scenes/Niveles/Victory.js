@@ -13,9 +13,7 @@ class Victory extends Phaser.Scene{
         this.scene.get("TutorialLevel").MiMusicaBase.pause();
 
         this.add.image(0,0, "PantallaVictoria").setOrigin(0,0);
-
-        this.add.text(420, 500, "Pulsa ESPACIO para continuar ", {font: "30px Arial", fill: "white"})
-
+        
         this.add.text(850, 340, this.scene.get("Tiempo_Monedas").getTime(), {font: "30px Arial", fill: "white"})
 
         this.add.text(520, 340, this.scene.get("Tiempo_Monedas").getMonedas()+ "/3", {font: "30px Arial", fill: "white"})

@@ -3,9 +3,12 @@ class StartScreen extends Phaser.Scene{
         super({ key: 'StartScreen' });
     }
 
-    preload() {
-        // Puedes precargar recursos específicos de esta escena aquí
-
+    init(data){
+        if(data){
+            console.log(data.sonido)
+            this.sonido = data.sonido;
+            this.checkSound(data.sonido, true);
+        }
     }
 
     create() {
@@ -15,13 +18,11 @@ class StartScreen extends Phaser.Scene{
 
         this.opcionesClickado = false;
 
+        //PRUEVA
+
+   
+
             // Botón Créditos
-            var botonCreditos = this.add.image(1000, 450, "BotonCreditosOff").setScale(0.75)
-                .setInteractive()
-                .on('pointerdown', function () {
-                    this.scene.start('Credits');
-                    this.scene.bringToTop('Credits');
-                }, this);
         
                 //////////////////////////////////////////////////////////////////////////
                 this.JugarOff = this.add.image(1000, 150,"BotonJugarOff").setScale(0.75);
@@ -60,7 +61,7 @@ class StartScreen extends Phaser.Scene{
                 })
                 
                 this.BotonOpciones.on('pointerdown', function () {
-                    this.scene.start('Options');
+                    this.scene.start('Options',{sonido : this.sonido});
                 }, this);
                 //////////////////////////////////////////////////////////////////////////
                 this.CreditosOff = this.add.image(1000, 450,"BotonCreditosOff").setScale(0.75);
@@ -76,8 +77,6 @@ class StartScreen extends Phaser.Scene{
                 this.BotonCreditos.on('pointerout',()=>{
                     this.CreditosOff.setVisible(true);
                     this.CreditosOn.setVisible(false);
-
-
                 })
                 
                 this.BotonCreditos.on('pointerdown', function () {
@@ -85,10 +84,26 @@ class StartScreen extends Phaser.Scene{
                 }, this);
                 //////////////////////////////////////////////////////////////////////////
 
+
     }
 
     update(delta, time) {
         
+    }
+
+    checkSound(sound, startMusic){
+        this.sonido = sound;
+        if(this.sonido && startMusic){
+            this.scene.get("SceneBootLoader").MiMusicaBase.resume();
+        }
+        else{
+            this.scene.get("SceneBootLoader").MiMusicaBase.pause();
+        }
+    }
+
+    isMusicOn(){
+        console.log(this.sonido)
+        return this.sonido;
     }
 }
 
