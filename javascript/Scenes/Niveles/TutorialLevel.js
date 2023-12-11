@@ -178,8 +178,8 @@ class TutorialLevel extends Phaser.Scene{
     //----------------------------------
     //---JUGADORES--
 
-    this.gnomo1 = new Gnomo(this,  1700, 2000 ); //100, 2000 para aparecer abajo izq la elfa aparece en 1970
-    this.elfo = new Elfo(this, 1700, 1970); //135, 600 en los barriles
+    this.gnomo1 = new Gnomo(this,  100, 2000 ); //100, 2000 para aparecer abajo izq la elfa aparece en 1970
+    this.elfo = new Elfo(this, 100, 1970); //135, 600 en los barriles
     this.cat  = this.physics.add.group();
     //---------------------------------
 
