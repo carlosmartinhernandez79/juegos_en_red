@@ -5,7 +5,6 @@ class Gnomo extends Phaser.GameObjects.Sprite{
 
         this.gnomo = scene.add.existing(this);
 
-
         this.gnomo.scene.physics.world.enableBody(this);
 
         this.wasd = scene.input.keyboard.addKeys({ up: 'W', left: 'A', down: 'S', right: 'D', e: "E", q: "Q"});

@@ -50,7 +50,6 @@ class TutorialLevel extends Phaser.Scene{
         this.VivaElVino = this.sound.add("Viva_El_Vino");
         this.IaMariano = this.sound.add("Ia_Mariano");
         this.MusicaHasPerdido = this.sound.add("Musica_Has_Perdido");
-        this.SonidoMoneda = this.sound.add("Sonido_Moneda");
         this.SonidoSalto = this.sound.add("Sonido_Salto");
         this.MiMusicaBase.loop = true;
 
@@ -145,16 +144,16 @@ class TutorialLevel extends Phaser.Scene{
 
         //---------MONEDAS------------
         this.misMonedas = this.physics.add.group()
-        this.misMonedas.create(110,1580,"moneda")
-        this.misMonedas.create(1000,790,"moneda")
-        this.misMonedas.create(1000,200,"moneda")
+        this.monedaX = new Monedas(this,110,1580)
+        this.monedaX = new Monedas(this,1000,790)
+        this.monedaX = new Monedas(this,1000,200)
 
         this.misMonedas.children.iterate(function (child) {
 
         child.setScale(0.2);
-        child.body.setAllowGravity(false) //workds;
-    
-         });
+        child.body.setAllowGravity(false) 
+        
+        });
         //---------------------------------
          //PINCHOS
     this.pinchos = this.physics.add.staticGroup();
@@ -179,8 +178,8 @@ class TutorialLevel extends Phaser.Scene{
     //----------------------------------
     //---JUGADORES--
 
-    this.gnomo1 = new Gnomo(this,  100, 1000); //100, 2000 para aparecer abajo izq
-    this.elfo = new Elfo(this, 100, 1000); //135, 600 en los barriles
+    this.gnomo1 = new Gnomo(this,  1700, 2000 ); //100, 2000 para aparecer abajo izq la elfa aparece en 1970
+    this.elfo = new Elfo(this, 1700, 1970); //135, 600 en los barriles
     this.cat  = this.physics.add.group();
     //---------------------------------
 
@@ -310,21 +309,21 @@ class TutorialLevel extends Phaser.Scene{
                     //Método de colisión por caja
                     if(this.isColliding(this.gnomo1, this.misPalancas.getChildren()[i], 50, 100)){
                         if(Phaser.Input.Keyboard.JustDown(this.spacebar)){
-                            //play palanca animation
+                            this.misPalancas.getChildren()[i].animarPalanca();
                             this.misPalancas.getChildren()[i].activarPalanca(); //activo la palanca
-                          
                          }
                     }
         
                     else if(this.isColliding(this.elfo, this.misPalancas.getChildren()[i], 50, 100)){
-                        if(Phaser.Input.Keyboard.JustDown(this.control)){
-                        //play palanca animation
-                        this.misPalancas.getChildren()[i].activarPalanca(); //activo la palanca
                         
+                        if(Phaser.Input.Keyboard.JustDown(this.control)){
+
+                        this.misPalancas.getChildren()[i].animarPalanca();
+                        this.misPalancas.getChildren()[i].activarPalanca(); //activo la palanca
                         }
                     }
             }
-        
+            
             if(this.escape.isDown){
                 this.pauseGame()
             }
@@ -381,8 +380,7 @@ class TutorialLevel extends Phaser.Scene{
                 if(this.isColliding(this.gnomo1, this.misMonedas.getChildren()[i], 50, 50) || this.isColliding(this.elfo, this.misMonedas.getChildren()[i], 50, 50))
                 {
                     this.scene.get("Tiempo_Monedas").updateCount();
-                    this.misMonedas.getChildren()[i].destroy();
-                    this.SonidoMoneda.play();
+                    this.misMonedas.getChildren()[i].pickUp()
                 }
             }
         }

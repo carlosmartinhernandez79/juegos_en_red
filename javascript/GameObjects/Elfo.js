@@ -9,7 +9,7 @@ class Elfo extends Phaser.GameObjects.Sprite{
 
         this.elfo.scene.physics.world.enableBody(this);
 
-        this.elfo.setScale(1.1)
+        this.elfo.setScale(0.8)
 
         this.flechas = scene.input.keyboard.createCursorKeys();
 
@@ -21,40 +21,10 @@ class Elfo extends Phaser.GameObjects.Sprite{
 
         this.lookLeft = false;
 
-
-        //const isJumpJustDown = Phaser.Input.Keyboard.JustDown(this.flechas.up)
-
-        //ANIMATIONS DEL ELFO
-        
-        /*this.anims.create({
-            key: 'turn',
-            frames: [ { key: 'elfita', frame: 0 } ],
-            frameRate: 20
-        });
-        
-        this.anims.create({
-            key: 'right',
-            frames: this.anims.generateFrameNumbers('elfita', { start: 1, end: 25 }),
-            frameRate: 10,
-            repeat: -1
-        });*/
+        console.log("From elfo  " + this)
 
 
-         //ANIMATIONS DEL GATO
-         this.anims.create({
-            key: 'walk',
-            frames: this.anims.generateFrameNumbers('cat', { start: 22, end: 28 }),
-            frameRate: 10,
-            repeat: -1
-        });
-        
-        
-        this.anims.create({
-            key: 'iddle',
-            frames: [ { key: 'cat', frame: 5 } ],
-            frameRate: 20
-        });
-
+        //ANIMATIONS ELFA
         this.anims.create({
             key: 'left',
             frames: this.anims.generateFrameNumbers('elfita', { start: 27, end: 53 }),

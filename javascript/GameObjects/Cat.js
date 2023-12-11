@@ -21,7 +21,7 @@
 
     //ANIMATIONS DEL GATO
   this.anims.create({
-    key: 'walk',
+    key: 'walkCat',
     frames: this.anims.generateFrameNumbers('cat', { start: 22, end: 28 }),
     frameRate: 10,
     repeat: -1
@@ -42,7 +42,7 @@ this.anims.create({
 
             this.cat.flipX = true;
         
-            this.cat.anims.play("walk", true);
+            this.cat.anims.play("walkCat", true);
         }
         else if (this.flechas.right.isDown)
         {
@@ -50,7 +50,7 @@ this.anims.create({
 
             this.cat.flipX = false;
             
-            this.cat.anims.play('walk', true);
+            this.cat.anims.play('walkCat', true);
         }
         else
         {

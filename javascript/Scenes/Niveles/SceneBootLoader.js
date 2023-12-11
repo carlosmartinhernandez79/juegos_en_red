@@ -106,9 +106,6 @@ class SceneBootLoader extends Phaser.Scene {
         { frameWidth: 92.25, frameHeight: 108.25 }
     );
 
-    /*this.load.spritesheet("elfita", "./ImagesJS/elfaSpritesheet.png",
-        { frameWidth:  92, frameHeight: 107.25 }
-    );*/
     this.load.spritesheet("elfita", "./ImagesJS/elfa_spritesheet_2.png",
         { frameWidth: 100, frameHeight: 188.6 }
     );
@@ -117,7 +114,7 @@ class SceneBootLoader extends Phaser.Scene {
         { frameWidth: 200, frameHeight: 200 }
     );
 
-    this.load.spritesheet("money", "./ImagesJS/moneda_Spritesheet.png",
+    this.load.spritesheet("moneyAnimation", "./ImagesJS/moneda_Spritesheet.png",
         { frameWidth: 200, frameHeight: 200 }
     );
 
