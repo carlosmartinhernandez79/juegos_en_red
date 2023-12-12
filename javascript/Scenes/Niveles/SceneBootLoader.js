@@ -195,7 +195,10 @@ class SceneBootLoader extends Phaser.Scene {
             this.MiMusicaBase = this.sound.add("Musica_Base");
             this.MiMusicaBase.loop = true;
             this.MiMusicaBase.play();*/
-
+            
+            this.MiMusicaBase = this.sound.add("Musica_Base");
+            this.MiMusicaBase.loop = true;
+            this.MiMusicaBase.play();
         });
 
         /*this.load.on("complete", () => {
