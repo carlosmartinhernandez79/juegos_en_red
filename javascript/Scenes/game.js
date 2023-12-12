@@ -23,6 +23,7 @@ var config  = {
         Credits, 
         Options, 
         LevelSelector, 
+        LogScreen,
         //SceneJuego,
         PauseMenu, 
         GameOver,
