@@ -14,9 +14,9 @@ class LogScreen extends Phaser.Scene{
 
         this.add.image(0,0, "FondoOscuroVacio").setOrigin(0,0);
 
-        this.add.text(530,340,"CONTRASEÑA").setOrigin(0,0);    
-        this.add.text(540,190,"USUARIO").setOrigin(0,0); 
-        
+        this.fondoLogin = this.add.image(600,300, "fondoLogin").setScale(0.7)
+        this.fondoRegistrar = this.add.image(600,300, "fondoRegistrar").setScale(0.7).setVisible(false)
+
         var myUser = [];
 
         var contador = 0;
@@ -45,6 +45,8 @@ class LogScreen extends Phaser.Scene{
         this.changePassword = document.getElementById("changePassword")
 		this.changePassword.style.display = "none"
 
+
+
         username.value = null;
         password.value = null;
 
@@ -54,8 +56,15 @@ class LogScreen extends Phaser.Scene{
             this.registrarse.style.display = "block"
             this.aceptar.style.display = "none"
             this.goToRegister.style.display = "none"
+            this.forgetPassword.style.display = "none"
+            this.fondoLogin.setVisible(false)
+            this.fondoRegistrar.setVisible(true)
 
+            username.value = null;
+            password.value = null;
         })
+        
+
 
 
         this.registrarse.addEventListener("click", ()=>{
@@ -63,8 +72,13 @@ class LogScreen extends Phaser.Scene{
             this.registrarse.style.display = "none"
             this.aceptar.style.display = "block"
             this.goToRegister.style.display = "block"
-            this.changePassword.style.display = "block"
+            this.changePassword.style.display = "none"
+            this.forgetPassword.style.display = "block"
+            this.fondoLogin.setVisible(true)
+            this.fondoRegistrar.setVisible(false)
 
+            username.value = null;
+            password.value = null;
 
         })
         
@@ -74,25 +88,32 @@ class LogScreen extends Phaser.Scene{
             this.aceptar.style.display = "none"
             this.goToRegister.style.display = "none"
             this.changePassword.style.display = "block"
-            
-            alert("HAS CLICKADO FORGETPASSWORD")
+            this.forgetPassword.style.display = "none"
+            password.placeholder="Nueva contraseña"
+
+            username.value = null;
+            password.value = null;
 
         })
         
         this.changePassword.addEventListener("click", ()=>{
 
-            this.registrarse.style.display = "block"
+            this.registrarse.style.display = "none"
             this.aceptar.style.display = "block"
             this.goToRegister.style.display = "block"
             this.forgetPassword.style.display = "block"
             this.changePassword.style.display = "none"
+            password.placeholder="Contraseña"
+
+            username.value = null;
+            password.value = null;
 
         })
 
 		var myScene = this.scene;
 
             
-              $(document).ready(function() {
+        /*      $(document).ready(function() {
 				   	
   					$('#registrarse').click(registrarse);
   					$('#aceptar').click(aceptarFun);
@@ -181,7 +202,7 @@ class LogScreen extends Phaser.Scene{
                         
                         console.log("Usuario o contraseña incorrecta");
                      })
-		}
+		}*/
 			 
     }
 }
