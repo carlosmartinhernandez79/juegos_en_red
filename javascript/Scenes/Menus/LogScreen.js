@@ -4,23 +4,30 @@ class LogScreen extends Phaser.Scene{
 
        this.logged = false;
     }
-    preload(){
 
+    
+    preload(){
+		console.log(this.scene)
     }
     
     create(){
+
         this.add.image(0,0, "FondoOscuroVacio").setOrigin(0,0);
 
         this.add.text(530,340,"CONTRASEÑA").setOrigin(0,0);    
-        this.add.text(540,190,"USUARIO").setOrigin(0,0);   
+        this.add.text(540,190,"USUARIO").setOrigin(0,0); 
+        
+        var myUser = [];
+
+        var contador = 0;
 
         this.LogThings = document.getElementById("LogThings")
         this.LogThings.style.display = "block"
 
-        this.username = document.getElementById("utext")
+        var username = document.getElementById("utext")
         //this.username.style.display = "block"
 
-        this.password = document.getElementById("ptext")
+        var password = document.getElementById("ptext")
         //this.password.style.display = "block"
 
         this.aceptar = document.getElementById("aceptar")
@@ -28,62 +35,153 @@ class LogScreen extends Phaser.Scene{
         
         this.registrarse = document.getElementById("registrarse")
        // this.registrarse.style.display = "block"
+       
+       this.registrarse.style.display = "none"
+
+        this.goToRegister = document.getElementById("goToRegister")
+        
+        this.forgetPassword = document.getElementById("forgetPassword")
+     
+        this.changePassword = document.getElementById("changePassword")
+		this.changePassword.style.display = "none"
+
+        username.value = null;
+        password.value = null;
 
 
-        this.aceptar.addEventListener("click", ()=>{
+        this.goToRegister.addEventListener("click", ()=>{
 
+            this.registrarse.style.display = "block"
+            this.aceptar.style.display = "none"
+            this.goToRegister.style.display = "none"
+
+        })
+
+
+        this.registrarse.addEventListener("click", ()=>{
+
+            this.registrarse.style.display = "none"
+            this.aceptar.style.display = "block"
+            this.goToRegister.style.display = "block"
+            this.changePassword.style.display = "block"
+
+
+        })
+        
+         this.forgetPassword.addEventListener("click", ()=>{
+
+            this.registrarse.style.display = "none"
+            this.aceptar.style.display = "none"
+            this.goToRegister.style.display = "none"
+            this.changePassword.style.display = "block"
+            
+            alert("HAS CLICKADO FORGETPASSWORD")
+
+        })
+        
+        this.changePassword.addEventListener("click", ()=>{
+
+            this.registrarse.style.display = "block"
+            this.aceptar.style.display = "block"
+            this.goToRegister.style.display = "block"
+            this.forgetPassword.style.display = "block"
+            this.changePassword.style.display = "none"
+
+        })
+
+		var myScene = this.scene;
+
+            
+              $(document).ready(function() {
+				   	
+  					$('#registrarse').click(registrarse);
+  					$('#aceptar').click(aceptarFun);
+  					//$('#changePassword').click(forgetPassword);
+			});
+			
+			function forgetPassword(){
+				
+				
+			}
+
+			function registrarse() {
 		
-            $.ajax({
+                checkValues();
+				
+  				$.ajax({
                 method: "POST",
                 
-  				url: "http://10.0.79.116:8080/Usuarios",
+  				url: "http://127.0.0.1:8080/Usuarios",
   				
-  				data: JSON.stringify({ username: this.username.value, password: this.password.value }),
+  				data: JSON.stringify({ username: username.value, password: password.value }),
   				
   				contentType: "application/json"
   				
               }).done(function(data) {
-                alert(data.username + " " + data.password); // imprimimos la respuesta
-
-    			this.changeScene();
-    			
-
-              }).fail(function() {
-                alert("Algo salió mal");
-              });
-              
-          
-
-
-           /* if(this.password.value && this.username.value){
-                alert(this.password.value) //forma de obtener info de los estos
-
-
-                this.scene.sendToBack("LogScreen");
-                this.scene.start("StartScreen", {sonido: true});
-                
-
-                this.LogThings.style.display = "none"
-
-            }
-            else{
-
-            
-            }*/
-        });
-    }
-    
-    
-    changeScene(){
-		
-		if(this.logged){
 				 
-				console.log("He cambiado de escena")
-				 
-				this.scene.sendToBack("LogScreen");
-                this.scene.start("StartScreen", {sonido: true});
+				console.log(data)
+                console.log("Se ha añadido correctamente: " + data.username + " " + data.password + "ID: " + data.id); // imprimimos la respuesta
+                username.value = null;
+                password.value = null;
+
+                myUser[contador]=data.username;
+                contador++;
+
+			 }).fail(function(data) {
+				
+                alert("No ha salido bien"); // imprimimos la respuesta
                 
-                this.LogThings.style.display = "none"
+			 })
+    	}
+    		
+    		function myThings(myScene){
+				 
+				myScene.sendToBack("LogScreen");
+                myScene.start("StartScreen", {sonido: true});
+               	myScene.get("SceneBootLoader").MiMusicaBase.play();
+                
+                LogThings.style.display = "none"
+			}
+			
+			function checkValues(){
+				console.log(username.value + " " + password.value)
+			}
+			
+			function aceptarFun() {
+                alert("El elemento a buscar es: " + username.value + ", " +password.value)
+                
+                    $.ajax({
+                        method: "GET",
+                
+  				        url: "http://127.0.0.1:8080/Usuarios/" + username.value,
+  			
+  				
+                        processData: false,
+        
+                        headers: {
+                            "Content-type":"application/json"
+                        }
+                          
+                      }).done(function(data) {
+                        console.log("Se ha encontrado un usuario con el nombre: "+ data.username );
+                        if(data.username == username.value && data.password == password.value ){
+							console.log("Usuario y contraseña correctas");
+							     myThings(myScene)
+						} 
+						else{
+							  console.log("Pero la contraseña es incorrecta");
+							  alert("Contraseña incorrecta")
+						}
+
+                        
+                        
+                     }).fail(function(data) {
+                          
+                        alert("El usuario no existe"); 
+                        
+                        console.log("Usuario o contraseña incorrecta");
+                     })
 		}
-	}
+			 
+    }
 }
