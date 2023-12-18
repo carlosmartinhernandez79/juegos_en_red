@@ -80,7 +80,9 @@ class StartScreen extends Phaser.Scene{
                 })
                 
                 this.BotonCreditos.on('pointerdown', function () {
-                    this.scene.start('Credits');
+                    // Descomentar cuando haga el 
+                    //this.scene.start('Credits');
+                    this.scene.start('Records')
                 }, this);
                 //////////////////////////////////////////////////////////////////////////
 
