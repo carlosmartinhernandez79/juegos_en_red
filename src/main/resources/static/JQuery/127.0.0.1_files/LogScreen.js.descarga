@@ -1,0 +1,97 @@
+class LogScreen extends Phaser.Scene{
+    constructor() {
+        super({ key: 'LogScreen' });
+
+       this.logged = false;
+    }
+    preload(){
+
+    }
+    
+    create(){
+        this.add.image(0,0, "FondoOscuroVacio").setOrigin(0,0);
+
+        this.add.text(530,340,"CONTRASEÑA").setOrigin(0,0);    
+        this.add.text(540,190,"USUARIO").setOrigin(0,0);   
+
+        this.LogThings = document.getElementById("LogThings")
+        this.LogThings.style.display = "block"
+
+        this.username = document.getElementById("utext")
+        //this.username.style.display = "block"
+
+        this.password = document.getElementById("ptext")
+        //this.password.style.display = "block"
+
+        this.aceptar = document.getElementById("aceptar")
+        //this.aceptar.style.display = "block"
+        
+        this.registrarse = document.getElementById("registrarse")
+       // this.registrarse.style.display = "block"
+
+		
+
+        this.aceptar.addEventListener("click", ()=>{
+
+		this.myUsername = this.username.value;
+		this.myPassword = this.password.value;
+		console.log(this.myUsername +" "+ this.myPassword)
+		
+			$( document ).ready(function() {
+   				$.ajax({
+                method: "POST",
+                
+  				//url: "http://127.0.0.1:8080/Usuarios",
+  				url: "http://192.168.1.62:8080/Usuarios",
+  				
+  				data: JSON.stringify({ username: this.myUsername, password: this.myPassword }),
+  				
+  				contentType: "application/json"
+  				
+              }).done(function(data) {
+                alert(data.username + " " + data.password); // imprimimos la respuesta
+
+    			this.scene.sendToBack("LogScreen");
+
+              }).fail(function() {
+                alert("Algo salió mal");
+              });
+         });
+              
+		});
+            
+          
+
+
+           /* if(this.password.value && this.username.value){
+                alert(this.password.value) //forma de obtener info de los estos
+
+
+                this.scene.sendToBack("LogScreen");
+                this.scene.start("StartScreen", {sonido: true});
+                
+
+                this.LogThings.style.display = "none"
+
+            }
+            else{
+
+            
+            }*/
+       
+    }
+    
+    
+    changeScene(){
+		
+		if(this.logged){
+				 
+				console.log("He cambiado de escena")
+				 
+				this.scene.sendToBack("LogScreen");
+                this.scene.start("StartScreen", {sonido: true});
+                
+                this.LogThings.style.display = "none"
+		}
+	}
+}
