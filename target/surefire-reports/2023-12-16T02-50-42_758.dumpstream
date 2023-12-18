@@ -1,0 +1,5 @@
+# Created at 2023-12-16T02:50:44.381
+Boot Manifest-JAR contains absolute paths in classpath 'D:\Carlos\Universidad\Curso_3\Juegos en Red\Práctica\chat\API NUEVA_2.0\API NUEVA\ApiLogIn\target\test-classes'
+Hint: <argLine>-Djdk.net.URLClassPath.disableClassPathURLCheck=true</argLine>
+'other' has different root
+
