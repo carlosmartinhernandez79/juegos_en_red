@@ -636,6 +636,6 @@ Como nueva funcionalidad y forma de implementar la API Rest en nuestro juego, se
  <p align="center">
   <img src="Imagenes/INTERFAZ LOGIN DENTRO DEL JUEGO.png" />
 <br>
-	 Resultado final
+	 Pantalla login completa
 <br>
 </p>
