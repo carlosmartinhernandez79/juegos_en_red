@@ -621,6 +621,12 @@ Por último comentar que las pantallas de opciones, créditos, selección de per
 <br>
 </p>
 
+# INSTRUCCIONES DE EJECUCIÓN
+Primero, se deberá levantar el servidor desde Spring Boot. Puesto que la implementación de la API detecta desde qué red lo estás lanzando, lo único que tendremos que hacer es cerciorarnos a qué red estamos conectados. Eso se sabrá con ipconfig en la CMD. Posteriormente, deberemos pegar esa ip seguido de nuestro puerto, :8080 por defecto. 
+
+Ya se podrá disfrutar de Topwer.
+
+
 # CHAT
 Como funcionalidad nueva, se ha incluido un chat para poder comunicarse durante la partida. Ambos jugadores pueden escribir comentarios en una ventana fija en la parte inferior derecha y se actualizará en ambos equipos a la vez. Para ello se ha establecido una API REST que envía el mensaje junto al nombre del jugador (por el momento solo "Player") a memoria y se actualiza en ambos periódicamente cada 2 segundos. Al ser un chat de partida, no se ve el sentido de generar persistencia, puesto que al cerrar el servidor y levantarlo de nuevo, se presupone una partida nueva y por tanto una nueva conversación. No obstante, si durante la partida se conectase un nuevo jugador, automáticamente verá descargada toda la conversación hasta ese momento.
  <p align="center">
