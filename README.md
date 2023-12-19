@@ -524,7 +524,7 @@ Otro aspecto que queríamos mejorar de nuestro juego, era dar consciencia al usu
 Por último, se ha desarrollado el diseño de un recuadro para implementar en el apartado del LogIn, ya que con las posibilidades que ofrecía el HTML no quedaba acorde con nuestra temática del juego, por ello, se han desarrollado varios recuadros para poder iniciar sesión en ellos:
 
  <p align="center">
-  <img src="Fondo login.png" />
+  <img src="Imagenes/Fondo login.png" />
 <br>
 	 Interfaz Login
 <br>
@@ -534,7 +534,7 @@ Por último, se ha desarrollado el diseño de un recuadro para implementar en el
 Por último comentar que fuera de la parte de diseño y creación de interfaces, se han creado distintos textos con una fuente mejor adaptada al juego para implementar tanto en el tutorial cómo en las pantallas de navegación:
 
  <p align="center">
-  <img src="texto_usuario_registrado.png" />
+  <img src="Imagenes/texto_usuario_registrado.png" />
 <br>
 	 Texto para informar del registro de un usuario
  
@@ -633,3 +633,10 @@ Como funcionalidad nueva, se ha incluido un chat para poder comunicarse durante 
 
 # PANTALLA DE LOGIN
 Como nueva funcionalidad y forma de implementar la API Rest en nuestro juego, se ha desarrollado una pantalla de login en la cual se podrá registrar un usuario en caso de que no se posea cuenta o se quiera crear una nueva (utilizando métodos post), en caso de ya tener un usuario creado, mediante el uso de métodos get, se ha creado la opción de iniciar sesión, destacar que la información de los usuarios persiste y se mantiene aun cerrando el servidor. Por otra parte se ha implementado un apartado para actualizar la contraseña en caso de que se te haya olvidado (utilizando métodos put). Por último se ha implementado la opción de eliminar usuario, para en caso de querer eliminar alguna cuenta que ya no se vaya a utilizar, sea posible (para ello se han utilizado métodos delete).
+
+ <p align="center">
+  <img src="Imagenes/INTERFAZ LOGIN DENTRO DEL JUEGO.png" />
+<br>
+	 Resultado final
+<br>
+</p>
