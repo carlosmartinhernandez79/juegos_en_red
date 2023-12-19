@@ -502,8 +502,23 @@ Se ha creado un botón con forma de flecha para implementar en las interfaces en
 ### 2- BOTONES MÚSICA
 Otra implementación nueva tanto en términos de programación como de diseño desarrollados en esta entrega, es dar funcionalidad al apartado de ajustes, ofreciendo la posibilidad de desactivar o reactivar la música del juego. Para ello, se ha creado un botón que cambia entre dos estados dependiendo del estado de la música:
 
+ <p align="center">
+  <img src="Imagenes/Boton_SinMute.png" />
+	 <img src="Imagenes/Boton_ConMute.png" />
+<br>
+	 Botón activar y desactivar música
+<br>
+</p>
+
 ### 3- INTERFAZ IDENTIFICADOR DE PANTALLA
 Otro aspecto que queríamos mejorar de nuestro juego, era dar consciencia al usuario en qué pantalla se encuentra en todo momento, para ello se ha diseñado un pequeño identificador acorde con la estética del juego para incluir en todas las posibles pantallas del flujograma de navegación:
+
+ <p align="center">
+  <img src="Imagenes/Interfaz_Opciones" />
+<br>
+	 Botón flecha volver
+<br>
+</p>
 
 ### 4- INTERFAZ PARA EL APARTADO DE LOGIN
 Por último, se ha desarrollado el diseño de un recuadro para implementar en el apartado del LogIn, ya que con las posibilidades que ofrecía el HTML no quedaba acorde con nuestra temática del juego, por ello, se han desarrollado varios recuadros para poder iniciar sesión en ellos:
