@@ -159,14 +159,16 @@ class SceneBootLoader extends Phaser.Scene {
         this.load.image("regOff", "./ImagesJS/LogIn/Boton_Registrar_Off.png");
         this.load.image("regOn", "./ImagesJS/LogIn/Boton_Registrar_On.png");
 
-        this.load.image("fondoLogin", "./ImagesJS/LogIn/Fondo_login.png");
+        this.load.image("fondoLog", "./ImagesJS/LogIn/Fondo_login.png");
         this.load.image("fondoOpciones", "./ImagesJS/LogIn/Fondo_opciones.png");
-        this.load.image("fondoRegistrar", "./ImagesJS/LogIn/Fondo_registrar.png");
+        this.load.image("fondoReg", "./ImagesJS/LogIn/Fondo_registrar.png");
+      
 
         this.load.image("intLog", "./ImagesJS/LogIn/Interfaz_LogIn.png");
         this.load.image("intReg", "./ImagesJS/LogIn/Interfaz_Registrar.png");
 
         this.load.image("forgotPassword", "./ImagesJS/LogIn/Letras_HasOlvidadoLaContrasena.png");
+
 
     //---------------------------------------------------------------------------------
     //MAPA
@@ -216,6 +218,7 @@ class SceneBootLoader extends Phaser.Scene {
             this.MiMusicaBase = this.sound.add("Musica_Base");
             this.MiMusicaBase.loop = true;
             this.MiMusicaBase.play();
+            this.MiMusicaBase.pause();
         });
 
         /*this.load.on("complete", () => {

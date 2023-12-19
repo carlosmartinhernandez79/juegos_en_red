@@ -5,12 +5,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet" href="css/styles.css">
+   <link rel="stylesheet" href="css/css.css">
 
     <script type = "text/javascript" src = "javascript/Scenes/phaser.min.js"></script>
 
     <!-- JQUERY -->
-    <script type = "text/javascript" src="javascript/Scenes/JQuery/jquery-3.7.1.min.js"></script>
+    <script type = "text/javascript" src="JQuery/jquery-3.7.1.min.js"></script>
 
     
     <script type = "text/javascript" src="javascript/Scenes/Menus/StartScreen.js"></script>
@@ -44,6 +44,8 @@
     <script type = "text/javascript" src="javascript/Scenes/Menus/LogScreen.js"></script>
 
     <script type = "text/javascript" src="javascript/Scenes/game.js"></script>
+     <script type = "text/javascript" src="javascript/Scenes/chat.js"></script>
+
 
 </head>
 <body>
@@ -52,8 +54,8 @@
   <div class="topnav" id="nav">
     <a class="active" href="#Home">Home</a>
     <a href="#Historia">Historia</a>
-    <a href="#Juego">Juego</a>
-    <a href="#Créditos">Créditos</a>
+    <a href="#myGame">Juego</a>
+    <a href="#Creditos">Créditos</a>
   </div>
   
   <h1 class = "Titulo" id="Home">TOPWER</h1>
@@ -78,8 +80,6 @@
     </div>
 </div>
 
-<!--<button type="button" id="aceptar" style="background: url(/ImagesJS/LogIn/Boton_Iniciar_Sesion_Off.png);width: 100px; height: 26px; border: none"></button>-->
-
 <div class="Log" id="LogThings" style=" display: none;">
 
   <input type="text" name="username" id="utext" placeholder="Usuario" style="position:absolute; top:900px; left: 600px; ">
@@ -88,12 +88,39 @@
   <button type="button" id="aceptar" style="position:absolute; top:1070px; left: 555px;"></button>
   <button type="button" id="goToRegister" style="position:absolute; top:1068px; left: 765px; "></button>
   <button type="button" id="registrarse" style="position:absolute; top:1070px; left: 650px; "></button>
-  <button type="button" id="forgetPassword" style="position:absolute; top:1150px; left: 620px; "></button>
+  <button type="button" id="forgetPassword" style="position:absolute; top:1023px; left: 600px; "></button>
   <button type="button" id="changePassword" style="position:absolute; top:1070px; left: 650px;"></button>
-
+  <button type="button" id="deleteUser" style="position:absolute; top:1140px; left: 650px;"></button>
+  <button type="button" id="aceptar2" style="position:absolute; top:1070px; left: 650px; display: none;"></button>
+   <button type="button" id="aceptarBorrar" style="position:absolute; top:1070px; left: 650px; display: none;"></button>
 </div>
 
-<div class="juego" id ="Juego"></div>
+
+
+<div class="Chat" id="ChatThings" style=" background-color: yellowgreen;display:none">
+<div class="Mensajes" id="chat-message" style=" background-color: rgb(255, 0, 255);">
+	
+	<p>CHAT</p>
+
+	
+</div>
+  <input type="text" name="chatWrite" id="message-input" placeholder="Escribir mensaje">
+  <button type="button" id="chatSend"style="width: 60px; height:60px">Enviar</button>
+</div>
+
+<div class="myGame" id="myGame" style = "background-color: blue;">
+	<p>HOGLA</p>
+	
+	
+</div>
+
+<div class="Creditos" id="Creditos" style = "background-color: rgb(255, 255, 128);">
+	<p>JUEGO HECHO POR</p>
+	
+	
+</div>
+
+
 <br>
 <br>
 </body>
