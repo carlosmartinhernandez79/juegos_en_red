@@ -514,17 +514,32 @@ Otra implementación nueva tanto en términos de programación como de diseño d
 Otro aspecto que queríamos mejorar de nuestro juego, era dar consciencia al usuario en qué pantalla se encuentra en todo momento, para ello se ha diseñado un pequeño identificador acorde con la estética del juego para incluir en todas las posibles pantallas del flujograma de navegación:
 
  <p align="center">
-  <img src="Imagenes/Interfaz_Opciones" />
+  <img src="Imagenes/Interfaz_Opciones.png" />
 <br>
-	 Botón flecha volver
+	 Identificador de apartado opciones
 <br>
 </p>
 
 ### 4- INTERFAZ PARA EL APARTADO DE LOGIN
 Por último, se ha desarrollado el diseño de un recuadro para implementar en el apartado del LogIn, ya que con las posibilidades que ofrecía el HTML no quedaba acorde con nuestra temática del juego, por ello, se han desarrollado varios recuadros para poder iniciar sesión en ellos:
 
+ <p align="center">
+  <img src="Fondo login.png" />
+<br>
+	 Interfaz Login
+<br>
+</p>
+
 ### 5- MEJORAS DE TEXTO
 Por último comentar que fuera de la parte de diseño y creación de interfaces, se han creado distintos textos con una fuente mejor adaptada al juego para implementar tanto en el tutorial cómo en las pantallas de navegación:
+
+ <p align="center">
+  <img src="texto_usuario_registrado.png" />
+<br>
+	 Texto para informar del registro de un usuario
+ 
+<br>
+</p>
 
 ## CÁMARA
 Por último mencionar que ambos personajes se encontrarán en todo momento en la cámara del juego, y una mecánica de la cámara importante a destacar es que cuando uno de los dos jugadores avance más, dejando al otro atrás (fuera de cámara), ambos morirán y tendrán que empezar de nuevo. De esta forma ambos serán conscientes de lo que hace su compañero en todo momento y se fomentará el trabajo en equipo y colaboración de los usuarios.
