@@ -360,7 +360,7 @@ Los principales objetos interactuables que se implementaran en el juego y se han
 </p>
 
 ## ANIMACIONES
-Para las animaciones de esta utilizando una técnica 2D de estilo tradicional.  Para la caminata de Tuk se han realizado 16 sprites para conseguir una animación fluida 
+Para las animaciones de esta utilizando una técnica 2D de estilo tradicional.  Para la caminata de Tuk se han realizado 59 sprites para conseguir una animación fluida 
 <p align="center">
   <img src="ImagesJS/enano_Spritesheet_3.png" />
 
@@ -369,7 +369,7 @@ Para las animaciones de esta utilizando una técnica 2D de estilo tradicional.  
 <br>
 </p>
 
-Sin embargo,  en el caso de Lial, aunque el movimiento no es una caminata al uso, se han necesitado hasta 27 sprites, de forma que el movimiento sea más fluido. 
+Sin embargo,  en el caso de Lial, aunque el movimiento no es una caminata al uso, se han necesitado hasta 63 sprites, de forma que el movimiento sea más fluido. 
 
 <p align="center">
   <img src="ImagesJS/elfa_spritesheet_2.png" />
