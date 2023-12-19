@@ -615,7 +615,7 @@ Se empieza el juego en la pantalla principal, en la que tenemos las posibilidade
 Por último comentar que las pantallas de opciones, créditos, selección de personajes y niveles tienen la opción de volver a la pantalla anterior clicando en la flecha situada en la esquina superior izquierda.
 
  <p align="center">
-  <img src="Imagenes/diagrama de navegacion.jpg" />
+  <img src="Imagenes/diagrama de navegacion 2.jpg" />
 <br>
 	 Diagrama de navegacion
 <br>
