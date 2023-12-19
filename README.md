@@ -487,6 +487,29 @@ In-game, nos encontraremos con un contador de las monedas que vayamos recolectan
 <br>
 </p>
 
+Por otra parte, se han realizado unos diseños generales para mejorar la calidad y diseño de las interfaces de navegación del juego. En la entrega tres la parte de diseño se ha basado principalmente en la mejora de algunos sprites del propio nivel y juego en sí, pero sobre todo se ha basado en el diseño y creación de objetos que se han añadido a las pantallas de navegación y pantallas base del juego. Los objetos creados son:
+
+### 1- BOTÓN VOLVER
+Se ha creado un botón con forma de flecha para implementar en las interfaces en las que se ofrezca la posibilidad de volver atrás. La evolución ha sido la siguiente:
+
+ <p align="center">
+  <img src="Imagenes/Interfaz_Boton_Flecha.png" />
+<br>
+	 Botón flecha volver
+<br>
+</p>
+
+### 2- BOTONES MÚSICA
+Otra implementación nueva tanto en términos de programación como de diseño desarrollados en esta entrega, es dar funcionalidad al apartado de ajustes, ofreciendo la posibilidad de desactivar o reactivar la música del juego. Para ello, se ha creado un botón que cambia entre dos estados dependiendo del estado de la música:
+
+### 3- INTERFAZ IDENTIFICADOR DE PANTALLA
+Otro aspecto que queríamos mejorar de nuestro juego, era dar consciencia al usuario en qué pantalla se encuentra en todo momento, para ello se ha diseñado un pequeño identificador acorde con la estética del juego para incluir en todas las posibles pantallas del flujograma de navegación:
+
+### 4- INTERFAZ PARA EL APARTADO DE LOGIN
+Por último, se ha desarrollado el diseño de un recuadro para implementar en el apartado del LogIn, ya que con las posibilidades que ofrecía el HTML no quedaba acorde con nuestra temática del juego, por ello, se han desarrollado varios recuadros para poder iniciar sesión en ellos:
+
+### 5- MEJORAS DE TEXTO
+Por último comentar que fuera de la parte de diseño y creación de interfaces, se han creado distintos textos con una fuente mejor adaptada al juego para implementar tanto en el tutorial cómo en las pantallas de navegación:
 
 ## CÁMARA
 Por último mencionar que ambos personajes se encontrarán en todo momento en la cámara del juego, y una mecánica de la cámara importante a destacar es que cuando uno de los dos jugadores avance más, dejando al otro atrás (fuera de cámara), ambos morirán y tendrán que empezar de nuevo. De esta forma ambos serán conscientes de lo que hace su compañero en todo momento y se fomentará el trabajo en equipo y colaboración de los usuarios.
@@ -577,3 +600,6 @@ Como funcionalidad nueva, se ha incluido un chat para poder comunicarse durante 
 	 Ventana del chat durante la partida
 <br>
 </p>
+
+# PANTALLA DE LOGIN
+Como nueva funcionalidad y forma de implementar la API Rest en nuestro juego, se ha desarrollado una pantalla de login en la cual se podrá registrar un usuario en caso de que no se posea cuenta o se quiera crear una nueva (utilizando métodos post), en caso de ya tener un usuario creado, mediante el uso de métodos get, se ha creado la opción de iniciar sesión, destacar que la información de los usuarios persiste y se mantiene aun cerrando el servidor. Por otra parte se ha implementado un apartado para actualizar la contraseña en caso de que se te haya olvidado (utilizando métodos put). Por último se ha implementado la opción de eliminar usuario, para en caso de querer eliminar alguna cuenta que ya no se vaya a utilizar, sea posible (para ello se han utilizado métodos delete).
