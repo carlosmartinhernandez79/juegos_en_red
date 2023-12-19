@@ -1,0 +1,37 @@
+/*body{
+    background-image: url("fondo.png");
+}*/
+#chat-container {
+    font-family: Arial, Helvetica, sans-serif;
+    width: 235px;
+    height: 300px;
+    overflow: hidden;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: rgba(0, 0, 0, .3);
+    border-radius: 10px;
+}
+
+#textBarr {
+
+    position: absolute;
+    bottom: 0px;;
+}
+
+#textBarr button {
+    background-color: brown;
+    border-radius: 5px;
+    color: white;
+    border: 0px solid brown;
+}
+
+#chat-messages {
+    /*min-height: 1rem;*/
+    position: absolute;
+    bottom: 15px;
+    padding: 10px;
+    color: white;
+    font-size: 0.7rem;
+    letter-spacing: 0.6px;
+}
