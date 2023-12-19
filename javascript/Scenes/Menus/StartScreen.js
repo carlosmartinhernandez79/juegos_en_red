@@ -5,8 +5,8 @@ class StartScreen extends Phaser.Scene{
 
     init(data){
         if(data){
-            console.log(data.sonido)
             this.sonido = data.sonido;
+           
             this.checkSound(data.sonido, true);
         }
     }
@@ -81,10 +81,13 @@ class StartScreen extends Phaser.Scene{
                 
                 this.BotonCreditos.on('pointerdown', function () {
                     this.scene.start('Credits');
-                }, this);
+                    
+			 
+			 
+            }, this);
                 //////////////////////////////////////////////////////////////////////////
 
-
+				
     }
 
     update(delta, time) {
@@ -93,8 +96,11 @@ class StartScreen extends Phaser.Scene{
 
     checkSound(sound, startMusic){
         this.sonido = sound;
+        console.log("PLAY MSIC")
         if(this.sonido && startMusic){
-            this.scene.get("SceneBootLoader").MiMusicaBase.resume();
+			 
+            this.scene.get("SceneBootLoader").MiMusicaBase.play();
+          
         }
         else{
             this.scene.get("SceneBootLoader").MiMusicaBase.pause();
