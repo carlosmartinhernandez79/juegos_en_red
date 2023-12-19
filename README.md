@@ -524,9 +524,9 @@ Otro aspecto que queríamos mejorar de nuestro juego, era dar consciencia al usu
 Por último, se ha desarrollado el diseño de un recuadro para implementar en el apartado del LogIn, ya que con las posibilidades que ofrecía el HTML no quedaba acorde con nuestra temática del juego, por ello, se han desarrollado varios recuadros para poder iniciar sesión en ellos:
 
  <p align="center">
-  <img src="Imagenes/Fondo login.png" />
+  <img src="Imagenes/Interfaz_Opciones.png" />
 <br>
-	 Interfaz Login
+	 Identificador de apartado opciones
 <br>
 </p>
 
@@ -537,7 +537,6 @@ Por último comentar que fuera de la parte de diseño y creación de interfaces,
   <img src="Imagenes/texto_usuario_registrado.png" />
 <br>
 	 Texto para informar del registro de un usuario
- 
 <br>
 </p>
 
