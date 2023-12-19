@@ -625,7 +625,7 @@ Por último comentar que las pantallas de opciones, créditos, selección de per
 Para esta nueva iteraación se han generado 6 clases nuevas, 2 para el chat, 2 para usuarios y otras 2 para los records, sin independencias entre los pares. No obstante, cada uno se compone de una classe para cada objeto enviado y una clase @Controller para recibir y procesar los mensajes recibidos para cada parte.
 
  <p align="center">
-  <img src="Imagenes/UML2.png" />
+  <img src="Imagenes/UML_2.png" />
 <br>
 	 Diagrama de clases
 <br>
