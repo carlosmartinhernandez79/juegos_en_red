@@ -362,7 +362,8 @@ Los principales objetos interactuables que se implementaran en el juego y se han
 ## ANIMACIONES
 Para las animaciones de esta utilizando una técnica 2D de estilo tradicional.  Para la caminata de Tuk se han realizado 16 sprites para conseguir una animación fluida 
 <p align="center">
-  <img src="https://github.com/carlosmartinhernandez79/juegos_en_red/assets/100692817/f2a6a101-6769-4179-9a62-bc26ddc88d38" />
+  <img src="ImagesJS/enano_Spritesheet_3.png" />
+
 <br>
 	Spritesheet de Tuk
 <br>
@@ -371,16 +372,37 @@ Para las animaciones de esta utilizando una técnica 2D de estilo tradicional.  
 Sin embargo,  en el caso de Lial, aunque el movimiento no es una caminata al uso, se han necesitado hasta 27 sprites, de forma que el movimiento sea más fluido. 
 
 <p align="center">
-  <img src="Imagenes/animacion lial.jpg" />
+  <img src="ImagesJS/elfa_spritesheet_2.png" />
 <br>
 	Spritesheet de Lial
 <br>
 </p>
 
-En el siguiente paso se completarán las animaciones tanto en color para el caso de la elfa y, como mejora, se intentará ampliar los movimientos para ambos para enriquecer la experiencia. 
+Además de esta ampliación de movimientos y animaciones, se han implementado en el juego, de forma que ambos personajes cuentan con diferentes poses de parado mirando a un lado y al otro, se desplazan a ambos lados con animaciones propias y tienen otros movimientos al saltar o al activar su poder personal.
 
+También se ha incluido una animación de las monedas:
 
+<p align="center">
+  <img src="ImagesJS/moneda_Spritesheet.png" />
+<br>
+	Spritesheet de las monedas
+<br>
+</p>
 
+Por último, se han generado sprites para la puerta de salida y las palancas, que se intentarán implementar en la última iteración como mejora.
+
+<p align="center">
+  <img src="ImagesJS/palanca_Spritesheet.png" />
+<br>
+	Spritesheet de la palanca
+<br>
+</p>
+<p align="center">
+  <img src="ImagesJS/puerta_Spritesheet.png" />
+<br>
+	Spritesheet de la puerta de salida
+<br>
+</p>
 
 # MÚSICA Y SONIDO
 
@@ -400,10 +422,6 @@ Para la implementación del audio empleado para la interacción con la palanca h
 
 Por último, para la implementación del audio para la obtención de dos insignias, se ha utilizado un audio de mariano rajoy : <p><a href="https://youtu.be/-nQgsEbU9C4?si=TpUrch66wgv_8zbH">Audio_Mariano</a>. </p>
 y se ha empleado una ia para completar el audio para poder conseguir la segunda insignia de hacer la pelota:<p><a href="https://fakeyou.com/tts/result/TR:63nzkvqej6g791220kcxmr59v1mtw">FakeYou</a>. </p>
-
-
-
-
 
 
 # TIEMPO, INTERFAZ Y CÁMARA
@@ -551,3 +569,11 @@ Por último comentar que las pantallas de opciones, créditos, selección de per
 <br>
 </p>
 
+# CHAT
+Como funcionalidad nueva, se ha incluido un chat para poder comunicarse durante la partida. Ambos jugadores pueden escribir comentarios en una ventana fija en la parte inferior derecha y se actualizará en ambos equipos a la vez. Para ello se ha establecido una API REST que envía el mensaje junto al nombre del jugador (por el momento solo "Player") a memoria y se actualiza en ambos periódicamente cada 2 segundos. Al ser un chat de partida, no se ve el sentido de generar persistencia, puesto que al cerrar el servidor y levantarlo de nuevo, se presupone una partida nueva y por tanto una nueva conversación. No obstante, si durante la partida se conectase un nuevo jugador, automáticamente verá descargada toda la conversación hasta ese momento.
+ <p align="center">
+  <img src="Imagenes/Chat.PNG" />
+<br>
+	 Ventana del chat durante la partida
+<br>
+</p>
