@@ -634,6 +634,8 @@ Para esta nueva iteraación se han generado 6 clases nuevas, 2 para el chat, 2 p
 # INSTRUCCIONES DE EJECUCIÓN
 Primero, se deberá levantar el servidor desde Spring Boot. Puesto que la implementación de la API detecta desde qué red lo estás lanzando, lo único que tendremos que hacer es cerciorarnos a qué red estamos conectados. Eso se sabrá con ipconfig en la CMD. Posteriormente, deberemos pegar esa ip seguido de nuestro puerto, :8080 por defecto. 
 
+En caso de errores, puesto que Spring Boot a veces no detecta ciertos archivos, se deberán buscar los más importantes: el index.html, los archivos css, el SceneBootLoader, y finalmente, el LogScreen y el UsuariosController, puesto que gestionan dinámicamente la IP.
+
 Ya se podrá disfrutar de Topwer.
 
 
