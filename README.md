@@ -621,6 +621,16 @@ Por último comentar que las pantallas de opciones, créditos, selección de per
 <br>
 </p>
 
+# Diagrama de clases
+Para esta nueva iteraación se han generado 6 clases nuevas, 2 para el chat, 2 para usuarios y otras 2 para los records, sin independencias entre los pares. No obstante, cada uno se compone de una classe para cada objeto enviado y una clase @Controller para recibir y procesar los mensajes recibidos para cada parte.
+
+ <p align="center">
+  <img src="Imagenes/UML.png" />
+<br>
+	 Diagrama de clases
+<br>
+</p>
+
 # INSTRUCCIONES DE EJECUCIÓN
 Primero, se deberá levantar el servidor desde Spring Boot. Puesto que la implementación de la API detecta desde qué red lo estás lanzando, lo único que tendremos que hacer es cerciorarnos a qué red estamos conectados. Eso se sabrá con ipconfig en la CMD. Posteriormente, deberemos pegar esa ip seguido de nuestro puerto, :8080 por defecto. 
 
