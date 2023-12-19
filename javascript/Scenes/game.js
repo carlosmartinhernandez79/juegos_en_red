@@ -1,9 +1,17 @@
 var config  = {
+	
+	autocenter: Phaser.Scale.CENTER_BOTH,
+	
     width: 1200,
     height: 600,
     backgroundColor: 0x000000,
 
     type: Phaser.AUTO,
+    
+    domCreateContainer: true,
+        
+    parent: 'myGame',
+
     
     physics:{
         default: "arcade",
@@ -23,6 +31,7 @@ var config  = {
         Credits, 
         Options, 
         LevelSelector, 
+        LogScreen,
         //SceneJuego,
         PauseMenu, 
         GameOver,

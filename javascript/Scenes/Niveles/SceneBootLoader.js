@@ -138,8 +138,8 @@ class SceneBootLoader extends Phaser.Scene {
     this.load.image("nivelesOn", "./ImagesJS/Botones/Boton_Niveles_On.png");
 
 
-    this.load.image("mute", "./ImagesJS/MuteButton.png");
-    this.load.image("unMute", "./ImagesJS/SoundButton.png");
+    this.load.image("mute", "./ImagesJS/LogIn/Boton_ConMute.png");
+    this.load.image("unMute", "./ImagesJS/LogIn/Boton_SinMute.png");
 
 
     /////////////////////////////////Sonidos/////////////////////////////////
@@ -150,6 +150,25 @@ class SceneBootLoader extends Phaser.Scene {
         this.load.audio("Sonido_Moneda", ["./Sonidos/Sonido_Moneda.mp3"]); 
         this.load.audio("Sonido_Palanca", ["./Sonidos/Sonido_Palanca.mp3"]); 
         this.load.audio("Sonido_Salto", ["./Sonidos/Sonido_Salto.mp3"]); 
+
+    /////////////////////////////////LOGIN/////////////////////////////////
+
+        this.load.image("logOff", "./ImagesJS/LogIn/Boton_Iniciar_Sesion_Off.png");
+        this.load.image("logOn", "./ImagesJS/LogIn/Boton_Iniciar_Sesion_On.png");
+
+        this.load.image("regOff", "./ImagesJS/LogIn/Boton_Registrar_Off.png");
+        this.load.image("regOn", "./ImagesJS/LogIn/Boton_Registrar_On.png");
+
+        this.load.image("fondoLog", "./ImagesJS/LogIn/Fondo_login.png");
+        this.load.image("fondoOpciones", "./ImagesJS/LogIn/Fondo_opciones.png");
+        this.load.image("fondoReg", "./ImagesJS/LogIn/Fondo_registrar.png");
+      
+
+        this.load.image("intLog", "./ImagesJS/LogIn/Interfaz_LogIn.png");
+        this.load.image("intReg", "./ImagesJS/LogIn/Interfaz_Registrar.png");
+
+        this.load.image("forgotPassword", "./ImagesJS/LogIn/Letras_HasOlvidadoLaContrasena.png");
+
 
     //---------------------------------------------------------------------------------
     //MAPA
@@ -188,12 +207,18 @@ class SceneBootLoader extends Phaser.Scene {
             progressBar.destroy();
             progressBox.destroy();
             percentText.destroy();
-            this.scene.start("StartScreen", {sonido: true});
+            
+            this.scene.start("LogScreen");
+            /*this.scene.start("StartScreen", {sonido: true});
 
             this.MiMusicaBase = this.sound.add("Musica_Base");
             this.MiMusicaBase.loop = true;
+            this.MiMusicaBase.play();*/
+            
+            this.MiMusicaBase = this.sound.add("Musica_Base");
+            this.MiMusicaBase.loop = true;
             this.MiMusicaBase.play();
-
+            this.MiMusicaBase.pause();
         });
 
         /*this.load.on("complete", () => {

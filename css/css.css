@@ -106,8 +106,8 @@ body {
 
   #forgetPassword{
     background: url(/ImagesJS/LogIn/Letras_HasOlvidadoLaContrasena.png);
-    width: 300px; 
-    height: 22px; 
+    width: 150px; 
+    height: 11px; 
     border: none
   }
 
@@ -130,12 +130,47 @@ body {
   }
 
    #changePassword{
-    background: url(/ImagesJS/LogIn/Boton_Registrar_Off.png);
+    background: url(/ImagesJS/LogIn/Boton_Aceptar_Off.png);
     width: 200px; 
     height: 48px; 
     border: none
   }
 
   #changePassword:hover {
-    background: url(/ImagesJS/LogIn/Boton_Registrar_On.png);
+    background: url(/ImagesJS/LogIn/Boton_Aceptar_On.png);
   }
+  
+  #deleteUser{
+	    background: url(/ImagesJS/LogIn/Boton_Borrar_Off.png);
+	    width: 200px; 
+    	height:50px; 
+	    border: none
+  }
+  
+  #deleteUser:hover {
+    background: url(/ImagesJS/LogIn/Boton_Borrar_On.png);
+  }
+  
+  #aceptar2{
+	   background: url(/ImagesJS/LogIn/Boton_Aceptar_Off.png);
+	    width: 200px; 
+    	height:50px; 
+	    border: none
+  }
+  
+  #aceptar2:hover {
+    background: url(/ImagesJS/LogIn/Boton_Aceptar_On.png);
+  }
+  
+  
+    #aceptarBorrar{
+	   background: url(/ImagesJS/LogIn/Boton_Aceptar_Off.png);
+	    width: 200px; 
+    	height:50px; 
+	    border: none
+  }
+  
+  #aceptarBorrar:hover {
+    background: url(/ImagesJS/LogIn/Boton_Aceptar_On.png);
+  }
+  
