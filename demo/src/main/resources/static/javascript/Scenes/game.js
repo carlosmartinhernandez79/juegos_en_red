@@ -1,3 +1,5 @@
+import { stompClient } from './websocket.js';
+
 var config  = {
 	
 	autocenter: Phaser.Scale.CENTER_BOTH,
