@@ -19,8 +19,8 @@ public class DemoApplication implements WebSocketConfigurer{
 			.setAllowedOrigins("*");
 	}
 	@Bean
-	public WebSocketHandler gameDataHandler() {
-		return new WebSocketHandler();
+	public GameDataHandler gameDataHandler() {
+		return new GameDataHandler();
 	}
 	public static void main(String[] args) {
 		SpringApplication.run(DemoApplication.class, args);
