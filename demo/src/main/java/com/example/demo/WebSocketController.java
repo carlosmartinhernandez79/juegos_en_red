@@ -1,10 +1,10 @@
 package com.example.demo;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.messaging.handler.annotation.MessageMapping;
+import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.MessageMapping;
-import org.springframework.web.bind.annotation.SendTo;
 
 @Controller
 public class WebSocketController {
@@ -19,10 +19,17 @@ public class WebSocketController {
     @MessageMapping("/updateGameData")
     @SendTo("/topic/gameData")
     public GameData updateGameData(GameData gameData) {
+        System.out.println("estoy en UpdateData");
         // Procesa la actualización de GameData
         // Puedes hacer las operaciones necesarias aquí
 
         // Envía la actualización a todos los clientes suscritos al topic "/topic/gameData"
         return gameData;
+    }
+    
+    @MessageMapping("/prueba")
+    @SendTo("/topic/gameData")
+    public void prueba() {
+        System.out.println("estoy en PRUEBA");
     }
 }
