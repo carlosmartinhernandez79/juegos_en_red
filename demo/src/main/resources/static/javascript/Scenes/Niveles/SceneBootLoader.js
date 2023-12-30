@@ -211,7 +211,7 @@ class SceneBootLoader extends Phaser.Scene {
             percentText.destroy();
             
             
-            this.scene.start("TutorialLevelOnlineGnomo");
+            this.scene.start("LogIn");
             //this.scene.start("LogScreen");
             /*this.scene.start("StartScreen", {sonido: true});
 

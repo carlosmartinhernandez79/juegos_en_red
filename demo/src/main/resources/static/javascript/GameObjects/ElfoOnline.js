@@ -20,6 +20,8 @@ class ElfoOnline extends Phaser.GameObjects.Sprite{
         this.metamorfosis = false;
 
         this.lookLeft = false;
+        
+        this.hasMove = false;
 
 
         //ANIMATIONS ELFA
@@ -74,20 +76,28 @@ class ElfoOnline extends Phaser.GameObjects.Sprite{
 	 	this.elfo.x, this.elfo.y
 	 	)*/
 	 	
+	 	
+	 	
             if (this.wasd.left.isDown)
             {
+				console.log("MOVE DEL ELFO LEFT")
                 this.body.setVelocityX(-400);
                 
                 this.elfo.anims.play("left", true);
 
                 this.elfo.lookLeft = true;
+                
+                this.hasMove = true;
             }
             else if (this.wasd.right.isDown)
             {
+				console.log("MOVE DEL ELFO RIGHT")
                 this.body.setVelocityX(400);
                 this.elfo.anims.play('right', true);
 
                 this.elfo.lookLeft = false;
+                
+                this.hasMove = true;
             }
             else if (this.elfo.lookLeft)
             {
@@ -127,11 +137,47 @@ class ElfoOnline extends Phaser.GameObjects.Sprite{
             console.log("moving")
             this.cat.move();
         }
+        
+        
+        if(this.hasMove){ //SI HA HABIDO MOVIMIENTO ENVIO INFO DE ESE MOVIMIENTO AL SERVIDOR
+			stompClient.send("/game/setPosElfo", //llamar a un método con parámetros (es una string basic)
+	 		{},
+			JSON.stringify({x: this.elfo.x, y: this.elfo.y})
+	 	)
+	 	console.log("ACTUALIZO POSICIÓN DEL ELFO PORQYE HA HABIDO MOVIMIENTO")
+	 	this.hasMove=false
+		}
+        
+        
     }
     
     actualizarElfo(newX, newY){
-		this.elfo.x= newX
-		this.elfo.y= newY
+	
+	console.log("POSICIÓN DEL ELFO: " + this.elfo.x + " POSNUEVA" + newX)
+	//PARA QUE HAYA ANIMACIONES, TENGO QUE DETECTAR SI SE MUEVE HACIA LEFT OR RIGHT UP OR DOWN
+	
+	//COMO HAY LAG, TENGO QUE PONER QUE ESTE EN UN RANGO, NO ESTÁ SIEMPRE EXACTO PERO WHO CARES MOTHERFUCKERS
+	if (this.elfo.x <= newX + 10  && this.elfo.x >= newX-10  && this.elfo.lookLeft){
+		this.body.setVelocityX(0);
+		this.elfo.anims.play('turnLeft');
+     }
+     else if(this.elfo.x <= newX + 10  && this.elfo.x >= newX-10 && !this.elfo.lookLeft){
+		this.body.setVelocityX(0);
+		this.elfo.anims.play('turnRight');
+
+	}
+	
+	else if(this.elfo.x<newX){//se mueve hacia la derecha
+		this.body.setVelocityX(400);
+        this.elfo.anims.play('right', true);
+        this.elfo.lookLeft = false;
+	}
+	
+	else if(this.elfo.x>newX){ //se mueve hacia la izquierda
+		this.body.setVelocityX(-400);
+		this.elfo.anims.play("left", true);
+		this.elfo.lookLeft = true;
+	}
 	}
        
     hacerMetamorfosis(){

@@ -181,9 +181,9 @@ class TutorialLevelOnlineElfo extends Phaser.Scene{
 
     //----------------------------------
     //---JUGADORES--
-
-    this.player = new GnomoOnline(this,  135.0, 600.0 ); //100, 2000 para aparecer abajo izq la elfa aparece en 1970
-    this.elfo = new ElfoOnline(this, 135.0, 600.0); //135, 600 en los barriless
+	alert("ESTAS EN EL SCRIPT DEL gnomo")
+    this.gnomo = new GnomoOnline(this,  100, 2000 ); //100, 2000 para aparecer abajo izq la elfa aparece en 1970
+    this.player = new ElfoOnline(this, 100, 2000); //135, 600 en los barriless
     //instancio a ambos, pero solo muevo mi player 
     this.cat  = this.physics.add.group();
   
@@ -192,7 +192,7 @@ class TutorialLevelOnlineElfo extends Phaser.Scene{
 
 
     //---------FISICAS------------
-    //FISICAS DEL GNOMO
+    //FISICAS DEL PLAYER
     this.physics.add.collider(this.player, plataformas);//collisión con los tiles plataformas
     this.physics.add.collider(this.player, limites);//collisión con los tiles límites del mapa
     this.physics.add.collider(this.player, this.platformsMovibles); //collisión con las plataformas móviles
@@ -220,19 +220,19 @@ class TutorialLevelOnlineElfo extends Phaser.Scene{
     //this.cat.body.setCollideWorldBounds(true);
 
 
-    //FISICAS DEL ELFO
-    this.physics.add.collider(this.elfo, plataformas); //collisión con los tiles plataformas
-    this.physics.add.collider(this.elfo, limites);//collisión con los tiles límites del mapa
-    this.physics.add.collider(this.elfo, this.platformsMovibles); //collisión con las plataformas móviles
-    this.physics.add.collider(this.elfo,  this.generadorBarriles);
-    this.physics.add.collider(this.elfo, this.doors);
-    this.physics.add.overlap(this.elfo, this.misMonedas, this.pickCoin, null, this);
-    this.physics.add.overlap(this.elfo, this.pinchos, this.pinchosDeath, null, this);
-    this.physics.add.overlap(this.elfo, this.pot, this.pickPotion, null, this);
-    this.physics.add.collider(this.elfo, this.box);
-    this.physics.add.overlap(this.elfo, this.exitDoor, this.canExit, null, this);
+    //FISICAS DEL OTRO
+    this.physics.add.collider(this.gnomo, plataformas); //collisión con los tiles plataformas
+    this.physics.add.collider(this.gnomo, limites);//collisión con los tiles límites del mapa
+    this.physics.add.collider(this.gnomo, this.platformsMovibles); //collisión con las plataformas móviles
+    this.physics.add.collider(this.gnomo,  this.generadorBarriles);
+    this.physics.add.collider(this.gnomo, this.doors);
+    this.physics.add.overlap(this.gnomo, this.misMonedas, this.pickCoin, null, this);
+    this.physics.add.overlap(this.gnomo, this.pinchos, this.pinchosDeath, null, this);
+    this.physics.add.overlap(this.gnomo, this.pot, this.pickPotion, null, this);
+    this.physics.add.collider(this.gnomo, this.box);
+    this.physics.add.overlap(this.gnomo, this.exitDoor, this.canExit, null, this);
 
-    this.elfo.body.setCollideWorldBounds(true);
+    this.gnomo.body.setCollideWorldBounds(true);
 
 
     //---------------------------------
@@ -255,7 +255,7 @@ class TutorialLevelOnlineElfo extends Phaser.Scene{
         //ACTUALIZACIÓN DE LA CAMARA
         //console.log("X: " + this.player.x + " Y: "+ this.player.y)
     
-    	//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! NECESITO UNA REFERENCIA DEL ELFO AQUI
+    	//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! NECESITO UNA REFERENCIA DEL gnomo AQUI
         var camaraPosX = (Math.abs(this.player.x+this.player.x)/2);
         var camaraPosY = (Math.abs(this.player.y+this.player.y)/2);
         
@@ -268,23 +268,12 @@ class TutorialLevelOnlineElfo extends Phaser.Scene{
         //console.log("f : " + f)
     
         if (this.increment > 32) {
-            
-
-        this.player.move();
 
            
-    	stompClient.send("/game/setPosElfo", //llamar a un método con parámetros (es una string basic)
-	 		{},
-			JSON.stringify({x: this.player.x, y: this.player.y})
-	 	)
-	 	
-	 		console.log(posElfo)
-			if(posElfo){
-				
-			 	this.elfo.actualizarElfo(posElfo.x, posElfo.y);
-			}
+    	this.player.move(); //MUEVO AL ELFO
+    						//RECIBO EL MOVIMIENTO DEL GNOMO
 
-            //this.elfo.move();
+            //this.gnomo.move();
 
             //this.die(); //check si han muerto constantemetne
     
@@ -340,10 +329,10 @@ class TutorialLevelOnlineElfo extends Phaser.Scene{
         };
     }
     
-    getPosElfo(payload){ //SI LO QUE ENVIAMOS TIENE UN RETURN LLEGA AQUÍ Y CON PONER MES.VARAIBLE VALE
+    getPosgnomo(payload){ //SI LO QUE ENVIAMOS TIENE UN RETURN LLEGA AQUÍ Y CON PONER MES.VARAIBLE VALE
 	 //var mes = JSON.parse(payload.body);
-	 //this.elfo.actualizarElfo(mes.getX(), mes.getY())
-	 console.log("MENSAJE DEL ELFO RECIVIDO")
+	 //this.gnomo.actualizargnomo(mes.getX(), mes.getY())
+	 console.log("MENSAJE DEL gnomo RECIVIDO")
 	 
  }
  
@@ -360,19 +349,19 @@ console.log("MENSAJE DEL GNOMO RECIVIDO")
         }
     
     
-    ////!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!11 REFERENCIA DEL ELFOOOOO
+    ////!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!11 REFERENCIA DEL gnomoOOOO
         /*die(){
-            if(this.elfo.y>3900 || this.player.y>3900 || this.isTooFar()){
+            if(this.gnomo.y>3900 || this.player.y>3900 || this.isTooFar()){
                 this.resetGame();
             }
         }
     
         isTooFar(){
             var itIs = false;
-            if(Math.abs(this.player.x - this.elfo.x)> 1300){
+            if(Math.abs(this.player.x - this.gnomo.x)> 1300){
                 itIs=true;
             }
-            if(Math.abs(this.player.y - this.elfo.y)> 650){
+            if(Math.abs(this.player.y - this.gnomo.y)> 650){
                 itIs=true;
             }
             return itIs;
@@ -387,7 +376,7 @@ console.log("MENSAJE DEL GNOMO RECIVIDO")
             char.setTint(0xff0000)
             //this.player.setTint(0xff0000)
     
-            //this.elfo.body.setVelocityY(-100);
+            //this.gnomo.body.setVelocityY(-100);
             char.body.setVelocityY(-400);
             
             setTimeout(()=>{
@@ -409,15 +398,15 @@ console.log("MENSAJE DEL GNOMO RECIVIDO")
         
     
     
-    //////////////!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1 REFERENCIA ELFO
+    //////////////!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1 REFERENCIA gnomo
         pickPotion(){
-           // this.elfo.hacerMetamorfosis();
+           // this.gnomo.hacerMetamorfosis();
             this.pot.destroy();
             this.VivaElVino.play();      
         }
     
         destransformarseFunc(){
-            //this.elfo.deshacerMetamorfosis();
+            //this.gnomo.deshacerMetamorfosis();
             this.desTransformarse.destroy();
             this.IaMariano.play();
         }
@@ -475,17 +464,6 @@ console.log("MENSAJE DEL GNOMO RECIVIDO")
 
 }
 
- function getPosElfo(payload){ //SI LO QUE ENVIAMOS TIENE UN RETURN LLEGA AQUÍ Y CON PONER MES.VARAIBLE VALE
-	 var mes = JSON.parse(payload.body);
-	 console.log("hola desde funcPosElfo")
-	 
- }
- 
- function getPosGnomo(payload){ //SI LO QUE ENVIAMOS TIENE UN RETURN LLEGA AQUÍ Y CON PONER MES.VARAIBLE VALE
-	 var mes = JSON.parse(payload.body);
-	  console.log("hola desde getPosGnomo")
-
- }
 
 
 

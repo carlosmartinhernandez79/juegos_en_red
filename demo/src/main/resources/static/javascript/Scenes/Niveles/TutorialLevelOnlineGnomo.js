@@ -182,8 +182,8 @@ class TutorialLevelOnlineGnomo extends Phaser.Scene{
     //----------------------------------
     //---JUGADORES--
 
-    this.player = new GnomoOnline(this,  135.0, 600.0 ); //100, 2000 para aparecer abajo izq la elfa aparece en 1970
-    this.elfo = new ElfoOnline(this, 135.0, 600.0); //135, 600 en los barriless
+    this.player = new GnomoOnline(this,  100, 2000 ); //100, 2000 para aparecer abajo izq la elfa aparece en 1970
+    this.elfo = new ElfoOnline(this, 100, 2000); //135, 600 en los barriless
     //instancio a ambos, pero solo muevo mi player 
     this.cat  = this.physics.add.group();
   
@@ -218,7 +218,7 @@ class TutorialLevelOnlineGnomo extends Phaser.Scene{
     this.physics.add.overlap(this.cat, this.desTransformarse, this.destransformarseFunc, null, this); 
 
     //this.cat.body.setCollideWorldBounds(true);
-
+alert("ESTAS EN EL SCRIPT DEL GNOMO")
 
     //FISICAS DEL ELFO
     this.physics.add.collider(this.elfo, plataformas); //collisión con los tiles plataformas
@@ -270,18 +270,17 @@ class TutorialLevelOnlineGnomo extends Phaser.Scene{
         if (this.increment > 32) {
             
 
-        this.player.move();
+        this.player.move(); //MUEVO AL GONOMO
 
            
-    	stompClient.send("/game/setPosElfo", //llamar a un método con parámetros (es una string basic)
+    	/*stompClient.send("/game/setPosGnomo", //llamar a un método con parámetros (es una string basic)
 	 		{},
 			JSON.stringify({x: this.player.x, y: this.player.y})
-	 	)
-	 	
-	 		console.log(posElfo)
-			if(posElfo){
-				
+	 	)*/
+	 	 		
+			if(posElfo){ //RECIBO EL MOVIMIENTO DEL ELFO
 			 	this.elfo.actualizarElfo(posElfo.x, posElfo.y);
+			 	console.log("MOVIMIENTO DEL ELFO DETECTADO")
 			}
 
             //this.elfo.move();
@@ -339,17 +338,8 @@ class TutorialLevelOnlineGnomo extends Phaser.Scene{
             this.increment = this.increment - 32;
         };
     }
-    
-    getPosElfo(payload){ //SI LO QUE ENVIAMOS TIENE UN RETURN LLEGA AQUÍ Y CON PONER MES.VARAIBLE VALE
-	 //var mes = JSON.parse(payload.body);
-	 //this.elfo.actualizarElfo(mes.getX(), mes.getY())
-	 console.log("MENSAJE DEL ELFO RECIVIDO")
-	 
- }
  
- getPosGnomo(payload){ //SI LO QUE ENVIAMOS TIENE UN RETURN LLEGA AQUÍ Y CON PONER MES.VARAIBLE VALE
-console.log("MENSAJE DEL GNOMO RECIVIDO")
- }
+
     
         pauseGame(){
             this.scene.bringToTop("PauseMenu") //mostramos sobre todas el menu de pausa
@@ -474,19 +464,6 @@ console.log("MENSAJE DEL GNOMO RECIVIDO")
         
 
 }
-
- function getPosElfo(payload){ //SI LO QUE ENVIAMOS TIENE UN RETURN LLEGA AQUÍ Y CON PONER MES.VARAIBLE VALE
-	 var mes = JSON.parse(payload.body);
-	 console.log("hola desde funcPosElfo")
-	 
- }
- 
- function getPosGnomo(payload){ //SI LO QUE ENVIAMOS TIENE UN RETURN LLEGA AQUÍ Y CON PONER MES.VARAIBLE VALE
-	 var mes = JSON.parse(payload.body);
-	  console.log("hola desde getPosGnomo")
-
- }
-
 
 
 
