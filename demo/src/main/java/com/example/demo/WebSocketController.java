@@ -2,7 +2,9 @@ package com.example.demo;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.handler.annotation.MessageMapping;
+import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.messaging.handler.annotation.SendTo;
+import org.springframework.messaging.simp.SimpMessageHeaderAccessor;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Controller;
 
@@ -27,9 +29,36 @@ public class WebSocketController {
         return gameData;
     }
     
+    //WORKS ME CAGO EN DIOS SIUUUUUUUUUUUUUUUUUUUUUUUUUU
     @MessageMapping("/prueba")
     @SendTo("/topic/gameData")
     public void prueba() {
         System.out.println("estoy en PRUEBA");
+    }
+    
+    
+    @MessageMapping("/prueba2")
+    @SendTo("/topic/gameData")
+    public void prueba2(String s) {
+        System.out.println("estoy en PRUEBA: ha llegado la palabra " + s );
+    }
+    
+    @MessageMapping("/prueba3")
+    @SendTo("/topic/gameData")
+    public void prueba3(Mensajes m) {
+        System.out.println("estoy en PRUEBA: ha llegado el mensaje " + m.getMessage() + " escrito por " + m.getName() );
+    }
+    
+
+    @MessageMapping("/prueba4")
+    @SendTo("/topic/gameData")
+    public Mensajes prueba4(@Payload Mensajes m, SimpMessageHeaderAccessor HA) {
+        System.out.println("estoy en PRUEBA 4: ha llegado el mensaje " + m.getMessage() + " escrito por " + m.getName() );
+        Object o = HA.getSessionAttributes().put("name",m.getName());
+        System.out.println("Los atributos: " + HA.getSessionAttributes().put("name",m.getName()));
+        System.out.println("Los atributos: " + HA.getSessionAttributes().get("name"));
+        
+        return m;
+    
     }
 }
