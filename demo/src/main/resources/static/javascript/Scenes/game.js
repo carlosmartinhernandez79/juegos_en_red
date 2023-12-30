@@ -1,5 +1,3 @@
-import { stompClient } from './websocket.js';
-
 var config  = {
 	
 	autocenter: Phaser.Scale.CENTER_BOTH,
@@ -41,7 +39,9 @@ var config  = {
         OptionsFromPause,
         TestGround, 
         TutorialLevel,
-        Records
+        Records,
+        TutorialLevelOnlineElfo,
+        TutorialLevelOnlineGnomo
         ]
 }
 

@@ -10,6 +10,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.util.List;
 import java.util.Scanner;
 import java.util.concurrent.CopyOnWriteArrayList;
@@ -22,6 +24,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import jakarta.servlet.http.HttpServletRequest;
@@ -32,10 +35,32 @@ public class UsuariosController {
 	
 	List<Usuario> myUsers = new CopyOnWriteArrayList<Usuario>();
 	
+	
+	public void doSomething(HttpServletRequest request){
+		System.out.print(request.getRemoteAddr()); // Prints ip address 
+		}
+	
+	
 	@GetMapping("Usuarios/getIp")
     public String getClientIp(HttpServletRequest request) {
         String ip = request.getRemoteAddr();
         return ip;
+
+    }
+	
+	@GetMapping("Usuarios/getServerIp")
+    @ResponseBody
+    public String getServerIp() {
+        try {
+            // Obtiene la dirección IP del servidor
+            InetAddress inetAddress = InetAddress.getLocalHost();
+            String serverIp = inetAddress.getHostAddress();
+            System.out.println("La IP es " + inetAddress);
+            return serverIp;
+        } catch (UnknownHostException e) {
+            e.printStackTrace();
+            return "No se pudo obtener la dirección IP del servidor.";
+        }
     }
 
 	

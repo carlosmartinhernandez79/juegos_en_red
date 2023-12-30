@@ -36,8 +36,6 @@ class Records extends Phaser.Scene{
                     console.error('Error al obtener registros:', error);
                 }
             });
-
-        
        
     }
 

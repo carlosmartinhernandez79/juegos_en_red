@@ -9,18 +9,9 @@ import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Controller;
 
 @Controller
-public class WebSocketController {
-
-    private final SimpMessagingTemplate messagingTemplate;
-
-    @Autowired
-    public WebSocketController(SimpMessagingTemplate messagingTemplate) {
-        this.messagingTemplate = messagingTemplate;
-    }
+public class gameState {
   
-    
-    //WORKS ME CAGO EN DIOS SIUUUUUUUUUUUUUUUUUUUUUUUUUU
-    @MessageMapping("/prueba")
+    /*@MessageMapping("/prueba")
     @SendTo("/topic")
     public void prueba() {
         System.out.println("estoy en PRUEBA");
@@ -51,5 +42,42 @@ public class WebSocketController {
         
         return m;
     
+    }*/
+	
+
+    
+    private Vex posElfo;
+    private Vex posGnomo;
+   
+
+    private final SimpMessagingTemplate messagingTemplate;
+
+    @Autowired
+    public gameState(SimpMessagingTemplate messagingTemplate) {
+        this.messagingTemplate = messagingTemplate;
+        posElfo = new Vex(0,0);
+        posGnomo = new Vex(0,0);
+    }
+  
+    
+    //SETTERS Y GETTERS DE LAS POSICIONES DE LOS PERSONAJES
+    //Basicamente, llega información actualizada y actualiza las posiciones
+    @MessageMapping("/setPosElfo")
+    @SendTo("/topic/getPosElfo")
+    public Vex setPosElfo(@Payload Vex v, SimpMessageHeaderAccessor HA) {
+	   posElfo.setX(v.getX());
+	   posElfo.setY(v.getY());
+	   System.out.println("El mensaje ha llegado correctamente: x = " + v.getX());
+	   return v;
+    }
+    
+   
+    @MessageMapping("/setPosGnomo")
+    @SendTo("/topic/getPosGnomo")
+    public Vex setPosGnomo(@Payload Vex v, SimpMessageHeaderAccessor HA) {
+    	
+    	posGnomo.setX(v.getX());
+    	posGnomo.setY(v.getY());
+    	return v;
     }
 }
