@@ -218,7 +218,7 @@ class TutorialLevelOnlineGnomo extends Phaser.Scene{
     this.physics.add.overlap(this.cat, this.desTransformarse, this.destransformarseFunc, null, this); 
 
     //this.cat.body.setCollideWorldBounds(true);
-alert("ESTAS EN EL SCRIPT DEL GNOMO")
+//alert("ESTAS EN EL SCRIPT DEL GNOMO")
 
     //FISICAS DEL ELFO
     this.physics.add.collider(this.elfo, plataformas); //collisión con los tiles plataformas
@@ -256,8 +256,8 @@ alert("ESTAS EN EL SCRIPT DEL GNOMO")
         //console.log("X: " + this.player.x + " Y: "+ this.player.y)
     
     	//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! NECESITO UNA REFERENCIA DEL ELFO AQUI
-        var camaraPosX = (Math.abs(this.player.x+this.player.x)/2);
-        var camaraPosY = (Math.abs(this.player.y+this.player.y)/2);
+        var camaraPosX = (Math.abs(this.player.x+this.elfo.x)/2);
+        var camaraPosY = (Math.abs(this.player.y+this.elfo.y)/2);
         
         this.cameras.main.centerOn(camaraPosX,camaraPosY);
         //UPDATE INDEPENDIENTEMENTE DE LA CPU --> https://phaser.discourse.group/t/different-game-speed-depending-on-monitor-refresh-rate/7231/4
@@ -273,19 +273,18 @@ alert("ESTAS EN EL SCRIPT DEL GNOMO")
         this.player.move(); //MUEVO AL GONOMO
 
            
-    	/*stompClient.send("/game/setPosGnomo", //llamar a un método con parámetros (es una string basic)
+    	stompClient.send("/game/setPosGnomo", //llamar a un método con parámetros (es una string basic)
 	 		{},
 			JSON.stringify({x: this.player.x, y: this.player.y})
-	 	)*/
+	 	)
 	 	 		
 			if(posElfo){ //RECIBO EL MOVIMIENTO DEL ELFO
 			 	this.elfo.actualizarElfo(posElfo.x, posElfo.y);
 			 	console.log("MOVIMIENTO DEL ELFO DETECTADO")
 			}
 
-            //this.elfo.move();
 
-            //this.die(); //check si han muerto constantemetne
+            this.die(); //check si han muerto constantemetne
     
             //COMPROBANDO LAS CAJAS 
         
@@ -335,23 +334,32 @@ alert("ESTAS EN EL SCRIPT DEL GNOMO")
             if(this.escape.isDown){
                 this.pauseGame()
             }
+            
+            
+            if(reiniciar){
+				this.scene.start("TutorialLevelOnlineGnomo"); //whoever le de, reinicia su pantall
+				reiniciar = false;
+			}
+            
+             if(gameOver){
+				 this.scene.start("GameOver",{pantalla: "TutorialLevelOnlineGnomo"});
+				 gameOver = false;
+			}
+            
             this.increment = this.increment - 32;
         };
     }
  
 
-    
         pauseGame(){
             this.scene.bringToTop("PauseMenu") //mostramos sobre todas el menu de pausa
-            this.scene.run('PauseMenu') //y lo ejecutamos
-            this.scene.pause(); //pausamos el resto de escenas y la musica
-            this.scene.pause("Tiempo_Monedas");
+            this.scene.run('PauseMenu', {sonido: this.sonido, pantalla: "TutorialLevelOnlineGnomo"}) //y lo ejecutamos
             this.MiMusicaBase.pause();
         }
     
     
     ////!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!11 REFERENCIA DEL ELFOOOOO
-        /*die(){
+        die(){
             if(this.elfo.y>3900 || this.player.y>3900 || this.isTooFar()){
                 this.resetGame();
             }
@@ -366,12 +374,24 @@ alert("ESTAS EN EL SCRIPT DEL GNOMO")
                 itIs=true;
             }
             return itIs;
-        }*/
+        }
     
         resetGame(){
             //this.scene.run(Tiempo_Monedas)
-            this.scene.start("GameOver");
+              this.scene.start("GameOver",{pantalla: "TutorialLevelOnlineGnomo"});
+             
         }
+        
+        
+        endGame(){
+
+	 		stompClient.send("/game/gameOver",  //envia un mensaje al servidor de que ha muerto
+	 			{},
+				true
+	 		)
+	 		
+		}
+        
     
         pinchosDeath(char){
             char.setTint(0xff0000)
@@ -381,7 +401,8 @@ alert("ESTAS EN EL SCRIPT DEL GNOMO")
             char.body.setVelocityY(-400);
             
             setTimeout(()=>{
-                this.scene.start("GameOver");
+                  this.scene.start("GameOver",{pantalla: "TutorialLevelOnlineGnomo"});
+                  
             }, 200);
     
         }

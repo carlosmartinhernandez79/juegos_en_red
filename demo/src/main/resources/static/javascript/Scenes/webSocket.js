@@ -2,12 +2,22 @@ var socket = new SockJS('/ws');
 var stompClient = Stomp.over(socket);
 var posElfo;
 var posGnomo;
+var stateGnomo;
+var reiniciar = false;
+var gameOver = false;
+var webSocketOpen = false;
+
  stompClient.connect({}, onConnect,onError);
  
  function onConnect(){
-	 alert("Te has conectado bien")
+	 //alert("Te has conectado bien")
 	 stompClient.subscribe("/topic/getPosElfo", getPosElfo)//si tras llamar a algo tiene return, ese mensaje irá a onMessageRecived
 	 stompClient.subscribe("/topic/getPosGnomo", getPosGnomo)//si tras llamar a algo tiene return, ese mensaje irá a onMessageRecived
+	 stompClient.subscribe("/topic/getStateGnomo", getStateGnomo)
+	 stompClient.subscribe("/topic/getReiniciarGame", getReiniciarGame)
+	  stompClient.subscribe("/topic/getGameOver", getGameOver)
+	 webSocketOpen = true;
+	 
 	 //--------------IMPORTANTE ESE COMENTARIO DE ARRIBA------------------
 	 /*
 	 - Esto me permite enviar info a un sitio en específico: 
@@ -51,5 +61,16 @@ var posGnomo;
  function getPosElfo(payload){ //SI LO QUE ENVIAMOS TIENE UN RETURN LLEGA AQUÍ Y CON PONER MES.VARAIBLE VALE
 	posElfo = JSON.parse(payload.body);
  }
+ function getStateGnomo(payload){ //SI LO QUE ENVIAMOS TIENE UN RETURN LLEGA AQUÍ Y CON PONER MES.VARAIBLE VALE
+	stateGnomo = JSON.parse(payload.body);
+	System.out.println(stateGnomo)
+ }
  
+ function getReiniciarGame(payload){
+	 reiniciar = JSON.parse(payload.body);
+ }
+ 
+ function getGameOver(payload){
+	 gameOver = JSON.parse(payload.body);
+ }
  

@@ -333,7 +333,7 @@ class TutorialLevel extends Phaser.Scene{
     
         pauseGame(){
             this.scene.bringToTop("PauseMenu") //mostramos sobre todas el menu de pausa
-            this.scene.run('PauseMenu') //y lo ejecutamos
+           this.scene.run('PauseMenu', {sonido: this.sonido, pantalla: "TutorialLevel"}) //y lo ejecutamos
             this.scene.pause(); //pausamos el resto de escenas y la musica
             this.scene.pause("Tiempo_Monedas");
             this.MiMusicaBase.pause();

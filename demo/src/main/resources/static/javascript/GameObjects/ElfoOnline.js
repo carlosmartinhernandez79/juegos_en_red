@@ -21,7 +21,7 @@ class ElfoOnline extends Phaser.GameObjects.Sprite{
 
         this.lookLeft = false;
         
-        this.hasMove = false;
+        this.lastJumpPos;
 
 
         //ANIMATIONS ELFA
@@ -87,7 +87,7 @@ class ElfoOnline extends Phaser.GameObjects.Sprite{
 
                 this.elfo.lookLeft = true;
                 
-                this.hasMove = true;
+
             }
             else if (this.wasd.right.isDown)
             {
@@ -97,7 +97,7 @@ class ElfoOnline extends Phaser.GameObjects.Sprite{
 
                 this.elfo.lookLeft = false;
                 
-                this.hasMove = true;
+
             }
             else if (this.elfo.lookLeft)
             {
@@ -116,16 +116,20 @@ class ElfoOnline extends Phaser.GameObjects.Sprite{
                 this.SonidoSalto.play();
                 
                 this.elfo.anims.play('elfa_jump', true);
+                
+
 
                 if(this.canDoubleJump==0){
                 this.body.setVelocityY(-600); 
                 ++this.canDoubleJump;
                 console.log(this.canDoubleJump)
+
                 }
                 else if(this.canDoubleJump==1){
                     this.body.setVelocityY(-400);
                     this.elfo.anims.play('elfa_jump_doble', true);
                     ++this.canDoubleJump;
+
                 }
                
             }  
@@ -136,24 +140,14 @@ class ElfoOnline extends Phaser.GameObjects.Sprite{
         if(this.metamorfosis && this.cat){
             console.log("moving")
             this.cat.move();
-        }
-        
-        
-        if(this.hasMove){ //SI HA HABIDO MOVIMIENTO ENVIO INFO DE ESE MOVIMIENTO AL SERVIDOR
-			stompClient.send("/game/setPosElfo", //llamar a un método con parámetros (es una string basic)
-	 		{},
-			JSON.stringify({x: this.elfo.x, y: this.elfo.y})
-	 	)
-	 	console.log("ACTUALIZO POSICIÓN DEL ELFO PORQYE HA HABIDO MOVIMIENTO")
-	 	this.hasMove=false
-		}
-        
-        
+        }   
     }
     
+    
+    //PARTE DEL ELFO ONLINE
     actualizarElfo(newX, newY){
 	
-	console.log("POSICIÓN DEL ELFO: " + this.elfo.x + " POSNUEVA" + newX)
+	console.log("ElfoPos = (" + this.elfo.x + ", " + this.elfo.y + ") NewPos = ("+newX+ ", " + newY +")")
 	//PARA QUE HAYA ANIMACIONES, TENGO QUE DETECTAR SI SE MUEVE HACIA LEFT OR RIGHT UP OR DOWN
 	
 	//COMO HAY LAG, TENGO QUE PONER QUE ESTE EN UN RANGO, NO ESTÁ SIEMPRE EXACTO PERO WHO CARES MOTHERFUCKERS
@@ -178,8 +172,36 @@ class ElfoOnline extends Phaser.GameObjects.Sprite{
 		this.elfo.anims.play("left", true);
 		this.elfo.lookLeft = true;
 	}
+	
+	
+	if ((this.elfo.y > newY + 30 && (this.elfo.body.blocked.down || this.canDoubleJump<=1)) ) //
+            { 
+                this.SonidoSalto.play();
+                
+                this.elfo.anims.play('elfa_jump', true);
+				console.log("BUG")
+                if(this.canDoubleJump==0){
+                	this.body.setVelocityY(-600); 
+                	this.lastJumpPos = this.elfo.y;
+                	++this.canDoubleJump;
+                	console.log("Salto 1")
+                }
+                else if(this.canDoubleJump==1){ //PROBLEMA, ENTRA AQUÍ DE UNA, TENGO QUE BUSCAR UNA FORMA DE QUE NO, ASI PUEDA VERSE EL DOULE JUMP
+                    this.body.setVelocityY(-400);
+                    this.elfo.anims.play('elfa_jump_doble', true);
+                    ++this.canDoubleJump;
+                    console.log("Salto 2")
+                }
+               
+            }  
+            else if(this.elfo.body.blocked.down){ //this.elfo.body.blocked.down funciona con los tiles. El isTouching no
+                this.canDoubleJump = 0;
+                console.log("Touching suelo")
+            }
 	}
-       
+    
+    
+    //NO ESTÁ IMPLEMENTADO AÚN EN EL ONLINE
     hacerMetamorfosis(){
 
         this.metamorfosis = true;

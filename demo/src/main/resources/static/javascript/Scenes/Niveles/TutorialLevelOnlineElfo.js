@@ -181,7 +181,7 @@ class TutorialLevelOnlineElfo extends Phaser.Scene{
 
     //----------------------------------
     //---JUGADORES--
-	alert("ESTAS EN EL SCRIPT DEL gnomo")
+	//alert("ESTAS EN EL SCRIPT DEL gnomo")
     this.gnomo = new GnomoOnline(this,  100, 2000 ); //100, 2000 para aparecer abajo izq la elfa aparece en 1970
     this.player = new ElfoOnline(this, 100, 2000); //135, 600 en los barriless
     //instancio a ambos, pero solo muevo mi player 
@@ -256,8 +256,8 @@ class TutorialLevelOnlineElfo extends Phaser.Scene{
         //console.log("X: " + this.player.x + " Y: "+ this.player.y)
     
     	//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! NECESITO UNA REFERENCIA DEL gnomo AQUI
-        var camaraPosX = (Math.abs(this.player.x+this.player.x)/2);
-        var camaraPosY = (Math.abs(this.player.y+this.player.y)/2);
+        var camaraPosX = (Math.abs(this.player.x+this.gnomo.x)/2);
+        var camaraPosY = (Math.abs(this.player.y+this.gnomo.y)/2);
         
         this.cameras.main.centerOn(camaraPosX,camaraPosY);
         //UPDATE INDEPENDIENTEMENTE DE LA CPU --> https://phaser.discourse.group/t/different-game-speed-depending-on-monitor-refresh-rate/7231/4
@@ -272,10 +272,17 @@ class TutorialLevelOnlineElfo extends Phaser.Scene{
            
     	this.player.move(); //MUEVO AL ELFO
     						//RECIBO EL MOVIMIENTO DEL GNOMO
+    						
+			stompClient.send("/game/setPosElfo", //ACTUALIZO LA POS DE LOS PERSONAJES CONSNTANTEMENTE, HAYA CAMBIO O NO
+	 		{},
+			JSON.stringify({x: this.player.x, y: this.player.y})
+	 		)
+	 		
+            if(posGnomo){ //RECIBO EL MOVIMIENTO DEL ELFO
+			 	this.gnomo.actualizarGnomo(posGnomo.x, posGnomo.y);
+			}
 
-            //this.gnomo.move();
-
-            //this.die(); //check si han muerto constantemetne
+            this.die(); //check si han muerto constantemetne
     
             //COMPROBANDO LAS CAJAS 
         
@@ -325,32 +332,31 @@ class TutorialLevelOnlineElfo extends Phaser.Scene{
             if(this.escape.isDown){
                 this.pauseGame()
             }
+            
+            if(reiniciar){
+				this.scene.start("TutorialLevelOnlineElfo"); //whoever le de, reinicia su pantall
+				reiniciar = false;
+			}
+            
+            if(gameOver){
+				 this.scene.start("GameOver",{pantalla: "TutorialLevelOnlineElfo"});
+				  gameOver = false;
+			}
+            
+            
             this.increment = this.increment - 32;
         };
     }
-    
-    getPosgnomo(payload){ //SI LO QUE ENVIAMOS TIENE UN RETURN LLEGA AQUÍ Y CON PONER MES.VARAIBLE VALE
-	 //var mes = JSON.parse(payload.body);
-	 //this.gnomo.actualizargnomo(mes.getX(), mes.getY())
-	 console.log("MENSAJE DEL gnomo RECIVIDO")
-	 
- }
- 
- getPosGnomo(payload){ //SI LO QUE ENVIAMOS TIENE UN RETURN LLEGA AQUÍ Y CON PONER MES.VARAIBLE VALE
-console.log("MENSAJE DEL GNOMO RECIVIDO")
- }
-    
+   
         pauseGame(){
             this.scene.bringToTop("PauseMenu") //mostramos sobre todas el menu de pausa
-            this.scene.run('PauseMenu') //y lo ejecutamos
-            this.scene.pause(); //pausamos el resto de escenas y la musica
-            this.scene.pause("Tiempo_Monedas");
+            this.scene.run('PauseMenu', {sonido: this.sonido, pantalla: "TutorialLevelOnlineElfo"}) //y lo ejecutamos
             this.MiMusicaBase.pause();
         }
     
     
     ////!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!11 REFERENCIA DEL gnomoOOOO
-        /*die(){
+        die(){
             if(this.gnomo.y>3900 || this.player.y>3900 || this.isTooFar()){
                 this.resetGame();
             }
@@ -365,12 +371,25 @@ console.log("MENSAJE DEL GNOMO RECIVIDO")
                 itIs=true;
             }
             return itIs;
-        }*/
+        }
     
         resetGame(){
             //this.scene.run(Tiempo_Monedas)
-            this.scene.start("GameOver");
+            this.scene.start("GameOver",{pantalla: "TutorialLevelOnlineElfo"});
+           
+	 		
+	 		this.endGame();
+            
         }
+        
+        endGame(){
+			
+	 		stompClient.send("/game/gameOver",  //envia un mensaje al servidor de que ha muerto
+	 			{},
+				true
+	 		)
+	 		
+		}
     
         pinchosDeath(char){
             char.setTint(0xff0000)
@@ -380,7 +399,9 @@ console.log("MENSAJE DEL GNOMO RECIVIDO")
             char.body.setVelocityY(-400);
             
             setTimeout(()=>{
-                this.scene.start("GameOver");
+                this.scene.start("GameOver",{pantalla: "TutorialLevelOnlineElfo"});
+                
+             this.endGame();
             }, 200);
     
         }

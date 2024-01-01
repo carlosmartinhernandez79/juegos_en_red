@@ -6,6 +6,7 @@ class OptionsFromPause extends Phaser.Scene{
     init(data){
         if(data){
             this.sonido = data.sonido;
+            this.pantalla = data.pantalla
         }
     }
 
@@ -24,7 +25,7 @@ class OptionsFromPause extends Phaser.Scene{
         Volver.setInteractive()
                 .on('pointerdown', function () {
                     this.scene.bringToTop("PauseMenu") //mostramos sobre todas la de pausa
-                    this.scene.run("PauseMenu") //la despertamos
+                    this.scene.run('PauseMenu', {sonido: this.sonido, pantalla: this.pantalla}) //y lo ejecutamos
                     this.scene.sendToBack("OptionsFromPause") //enviamos esta escena al fondo
                 }, this);
         
@@ -42,7 +43,7 @@ class OptionsFromPause extends Phaser.Scene{
                         this.mute.setVisible(this.isMute);
                         this.sonido = false;
                         this.scene.get("StartScreen").checkSound(this.sonido, false)
-                        this.scene.get("TutorialLevel").setSound(this.sonido)
+                        this.scene.get(this.pantalla).setSound(this.sonido)
                 }, this);
         
                 this.mute.setInteractive().
@@ -53,7 +54,7 @@ class OptionsFromPause extends Phaser.Scene{
                         this.mute.setVisible(this.isMute);
                         this.sonido = true;
                         this.scene.get("StartScreen").checkSound(this.sonido, false)
-                        this.scene.get("TutorialLevel").setSound(this.sonido)
+                        this.scene.get(this.pantalla).setSound(this.sonido)
                 }, this);
 
     }

@@ -15,6 +15,7 @@ class GnomoOnline extends Phaser.GameObjects.Sprite{
 
         this.canJump = true;
         
+        this.state = 1;
         
 
 
@@ -85,22 +86,109 @@ class GnomoOnline extends Phaser.GameObjects.Sprite{
             this.canJump = true;
         }
 
-        //PREGUNTARLE ESTO
-        if (this.wasd.q.isDown && this.gnomo.scale == 0.5)
+        
+        if (this.wasd.q.isDown && this.gnomo.scale == 0.5) //hacer normal
         {
             this.gnomo.setPosition(this.gnomo.x,this.gnomo.y-30); //subirle el tamaño del sprite
             //this.body.setVelocityY(-300);
             this.gnomo.setScale(1);
 
             this.gnomo.anims.play('mini_enano', true);
+            
+            this.state = 1;
+            
+            stompClient.send("/game/setStateGnomo", //llamar a un método con parámetros (es una string basic)
+	 		{},
+			1
+	 		)
+            
         }
 
-       if (this.wasd.e.isDown && this.gnomo.scale == 1)
+       if (this.wasd.e.isDown && this.gnomo.scale == 1) //hacer chikito
         {     
             this.gnomo.setScale(0.5);
 
             this.gnomo.anims.play('mini_enano', true);
+            
+            this.state = 0;
+            
+            stompClient.send("/game/setStateGnomo", //llamar a un método con parámetros (es una string basic)
+	 		{},
+			0
+	 		)
         }   
         
     }
+    
+        //PARTE DEL ELFO ONLINE
+    actualizarGnomo(newX, newY){
+	
+	//PARA QUE HAYA ANIMACIONES, TENGO QUE DETECTAR SI SE MUEVE HACIA LEFT OR RIGHT UP OR DOWN
+	
+	//COMO HAY LAG, TENGO QUE PONER QUE ESTE EN UN RANGO, NO ESTÁ SIEMPRE EXACTO PERO WHO CARES MOTHERFUCKERS
+	    if(this.gnomo.x <= newX + 10  && this.gnomo.x >= newX-10)  //quieto
+        {
+            this.body.setVelocityX(0);
+        
+            this.gnomo.anims.play('turn');
+        }
+	    
+	    
+	    else if (this.gnomo.x>newX) //izq
+        {
+            this.body.setVelocityX(-400);
+
+            this.gnomo.flipX = true;
+        
+            this.gnomo.anims.play("walk", true);
+        }
+        else if (this.gnomo.x<newX) //der
+        {
+            this.body.setVelocityX(400);
+           
+            this.gnomo.flipX = false;
+
+            this.gnomo.anims.play('walk', true);
+        }
+        
+         if (this.gnomo.y > newY + 30 && this.gnomo.body.blocked.down)//this.body.touching.down ) //
+        {
+            this.SonidoSalto.play();
+
+            this.gnomo.anims.play('enano_jump', true);
+
+            this.body.setVelocityY(-600);
+            this.canJump = false;            
+        }
+        else if(this.gnomo.body.blocked.down){ //this.elfo.body.blocked.down funciona con los tiles. El isTouching no
+            this.canJump = true;
+        }
+        
+        
+        
+         if (stateGnomo==1 && stateGnomo != this.state) //hacer normal
+        {
+            this.gnomo.setPosition(this.gnomo.x,this.gnomo.y-30); //subirle el tamaño del sprite
+            //this.body.setVelocityY(-300);
+            this.gnomo.setScale(1);
+            
+            this.state = 1
+
+            this.gnomo.anims.play('mini_enano', true);
+        }
+
+       if (stateGnomo == 0 && stateGnomo != this.state) //hacer chikito
+        {     
+            this.gnomo.setScale(0.5);
+
+			this.state = 0;
+			
+            this.gnomo.anims.play('mini_enano', true);
+        } 
+	
+}
+    
+    
+    
+    
 }

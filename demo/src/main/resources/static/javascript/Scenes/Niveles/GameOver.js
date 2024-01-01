@@ -2,6 +2,13 @@ class GameOver extends Phaser.Scene{
     constructor() {
         super({ key: 'GameOver' });
     }
+    
+    
+    init(data){
+        if(data){
+            this.pantalla = data.pantalla;
+        }
+    }
 
     preload() {
         // Puedes precargar recursos específicos de esta escena aquí
@@ -11,8 +18,8 @@ class GameOver extends Phaser.Scene{
     create() {
         this.scene.bringToTop();
         const graphics = this.add.graphics();
-        this.scene.get("TutorialLevel").MiMusicaBase.pause();
-        this.scene.get("TutorialLevel").MusicaHasPerdido.play();
+        this.scene.get(this.pantalla).MiMusicaBase.pause();
+        this.scene.get(this.pantalla).MusicaHasPerdido.play();
 
         this.add.image(0,0, "PantallaDerrota").setOrigin(0,0);
 
@@ -28,9 +35,33 @@ this.myIPDerrota= ""
     update() {
         if(this.space.isDown){
             this.scene.stop();
-            var sceneMain = this.scene.start("TutorialLevel");
-            this.scene.get("TutorialLevel").MiMusicaBase.pause();
+           
+			var sceneMain = this.scene.start(this.pantalla); //comienzo de nuevo esta pantalla
+			
+			if(webSocketOpen){ //si el websocket its open, haz esto
+			stompClient.send("/game/reiniciarGame",  //envia un mensaje al servidor de que han reiniciado
+	 			{},
+				true
+	 		)
+	 		}
+			
+            this.scene.get(this.pantalla).MiMusicaBase.pause();
         }
+        
+        
+        if(reiniciar){ //como quiero que se reinicien a la vez
+        
+        /*Esto es complejo, muere el elfo, y aquí llegan el elfo y el gnomo. 
+        Aqui llegará el elfo o el gnomo, dependiendo de quien le haya dado antes al espacio. En caso de darle el gnomo, 
+        se reinicia arriba, manda una señal de reinciair al servidor e instantaneamente, se reinicia el elfo
+         */
+			if(this.pantalla == "TutorialLevelOnlineGnomo")  
+				this.scene.start("TutorialLevelOnlineGnomo");
+			else{
+				this.scene.start("TutorialLevelOnlineElfo"); 
+			}
+				reiniciar = false;
+			}
         
           if (!this.dataSended) {
             this.sendData(); // Llamar al método que envía los datos

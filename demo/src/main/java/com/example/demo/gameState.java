@@ -48,7 +48,7 @@ public class gameState {
     
     private Vex posElfo;
     private Vex posGnomo;
-   
+    private int stateGnomo; //0 chikito 1 normal
 
     private final SimpMessagingTemplate messagingTemplate;
 
@@ -67,7 +67,7 @@ public class gameState {
     public Vex setPosElfo(@Payload Vex v, SimpMessageHeaderAccessor HA) {
 	   posElfo.setX(v.getX());
 	   posElfo.setY(v.getY());
-	   System.out.println("El mensaje ha llegado correctamente: x = " + v.getX());
+	   System.out.println("El mensaje ha llegado correctamente: x = " + v.getX() +  ", " + v.getY());
 	   return v;
     }
     
@@ -79,5 +79,28 @@ public class gameState {
     	posGnomo.setX(v.getX());
     	posGnomo.setY(v.getY());
     	return v;
+    }
+    
+    
+    @MessageMapping("/setStateGnomo")
+    @SendTo("/topic/getStateGnomo")
+    public int setStateGnomo(@Payload int i, SimpMessageHeaderAccessor HA) {
+    	
+    	stateGnomo = i;
+    	return i;
+    }
+    
+    @MessageMapping("/reiniciarGame")
+    @SendTo("/topic/getReiniciarGame")
+    public boolean reiniciarGame(@Payload boolean reiniciar, SimpMessageHeaderAccessor HA) {
+    
+    	return reiniciar;
+    }
+    
+    @MessageMapping("/gameOver")
+    @SendTo("/topic/getGameOver")
+    public boolean gameOver(@Payload boolean gameOver, SimpMessageHeaderAccessor HA) {
+    
+    	return gameOver;
     }
 }
