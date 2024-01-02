@@ -41,7 +41,8 @@ var config  = {
         TutorialLevel,
         Records,
         TutorialLevelOnlineElfo,
-        TutorialLevelOnlineGnomo
+        TutorialLevelOnlineGnomo,
+        waitingForPlayer
         ]
 }
 

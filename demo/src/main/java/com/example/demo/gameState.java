@@ -1,5 +1,8 @@
 package com.example.demo;
 
+import java.net.InetAddress;
+import java.net.UnknownHostException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.Payload;
@@ -49,6 +52,8 @@ public class gameState {
     private Vex posElfo;
     private Vex posGnomo;
     private int stateGnomo; //0 chikito 1 normal
+    private PlayerChamp PlayerChamp1 = new PlayerChamp();
+    private PlayerChamp PlayerChamp2 = new PlayerChamp();
 
     private final SimpMessagingTemplate messagingTemplate;
 
@@ -57,10 +62,14 @@ public class gameState {
         this.messagingTemplate = messagingTemplate;
         posElfo = new Vex(0,0);
         posGnomo = new Vex(0,0);
+ 
+        
     }
+    
+ 
   
     
-    //SETTERS Y GETTERS DE LAS POSICIONES DE LOS PERSONAJES
+    //------------------SETTERS Y GETTERS DE LAS POSICIONES DE LOS PERSONAJES---------------------------
     //Basicamente, llega información actualizada y actualiza las posiciones
     @MessageMapping("/setPosElfo")
     @SendTo("/topic/getPosElfo")
@@ -89,6 +98,8 @@ public class gameState {
     	stateGnomo = i;
     	return i;
     }
+   //------------------------------------------------------------------------------
+  //------------------------REINCIAR JUEGO------------------------------------------
     
     @MessageMapping("/reiniciarGame")
     @SendTo("/topic/getReiniciarGame")
@@ -97,10 +108,53 @@ public class gameState {
     	return reiniciar;
     }
     
+  //------------------------------------------------------------------------------
+  //------------------------CASO DE DERROTA------------------------------------------
     @MessageMapping("/gameOver")
     @SendTo("/topic/getGameOver")
     public boolean gameOver(@Payload boolean gameOver, SimpMessageHeaderAccessor HA) {
     
     	return gameOver;
     }
+    
+  //------------------------------------------------------------------------------ 
+  //------------------------CASO DE VICTORIA------------------------------------------
+    @MessageMapping("/victory")
+    @SendTo("/topic/getVictory")
+    public int victory(@Payload int pointsToWin, SimpMessageHeaderAccessor HA) {
+    
+    	return pointsToWin;
+    }
+    
+    //------------------------------------------------------------------------------
+    //------------------------SELECCIÓN DE PERSONAJE/CAMBIAR DE PERSONAJE------------------------------------------
+    @MessageMapping("/setUser")
+    @SendTo("/topic/getUser")
+    public PlayerChamp setUser(@Payload PlayerChamp PC, SimpMessageHeaderAccessor HA) {
+    	
+    	if(PlayerChamp1.getPlayer().equals("")) { //el primero que se conecte al socket será player 1
+    		PlayerChamp1 = new PlayerChamp(PC.getPlayer(), PC.getChamp());
+    		
+    		System.out.println("FIRST TIME CHOSING PLAYER 1");
+    	}
+    	else if(!PlayerChamp1.getPlayer().equals(PC.getPlayer()) && PlayerChamp2.getPlayer().equals("")){ //el otro será player 2
+    		PlayerChamp2 = new PlayerChamp(PC.getPlayer(), PC.getChamp());
+    		System.out.println("FIRST TIME CHOSING PLAYER 2");
+    	}
+    	
+    	else if(PlayerChamp1.getPlayer().equals(PC.getPlayer())) { //si esto es así, es porque p1 quiere cambiarse de personaje
+    		PlayerChamp1.setChamp(PC.getChamp());
+    		System.out.println("switching name player 1");
+    	}
+    	
+    	else if(PlayerChamp2.getPlayer().equals(PC.getPlayer())) { //si esto es así, es porque p2 quiere cambiarse de personaje
+    		PlayerChamp2.setChamp(PC.getChamp());
+    		System.out.println("switching name player 2");
+    	}
+    	
+    	return PC;
+    	
+    }
+   
+    
 }

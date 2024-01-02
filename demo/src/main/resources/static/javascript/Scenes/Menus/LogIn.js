@@ -6,6 +6,14 @@ class LogIn extends Phaser.Scene{
     preload() {
         // Puedes precargar recursos específicos de esta escena aquí
     }
+    
+     init(data){
+        if(data){
+           	this.username = data.username;
+        }
+    }
+    
+    
 
     create() {
         // Lógica de inicialización de la escena
@@ -18,7 +26,9 @@ class LogIn extends Phaser.Scene{
         this.elfo=this.add.image(700, 300, "ElfaPng").setScale(0.15);
 
         var Volver = this.add.image(30, 35, "Flecha").setScale(0.2)
-
+        
+		this.playerSelected;
+		
         Volver.setInteractive()
             .on('pointerdown', function () {
                 this.scene.start('StartScreen');
@@ -26,12 +36,36 @@ class LogIn extends Phaser.Scene{
             
         this.gnomo.setInteractive()
             .on('pointerdown', function () {
-                this.scene.start('TutorialLevelOnlineGnomo');
+				
+			/*Cuando selecciono un personaje, asocio en el servidor usuario y personaje
+			 y cambio de pantalla a waiting for players que es un lobby
+			 */
+				
+			this.playerSelected = "gnomo"
+            this.scene.start('waitingForPlayer',{username: this.username, playerSelected:  this.playerSelected});
+                
+            stompClient.send("/game/setUser", //ACTUALIZO LA POS DE LOS PERSONAJES CONSNTANTEMENTE, HAYA CAMBIO O NO
+	 			{},
+				 JSON.stringify({player:this.username, champ: "gnomo"})
+	 		)
+                
+                
             }, this);
             
 		this.elfo.setInteractive()
             .on('pointerdown', function () {
-                this.scene.start('TutorialLevelOnlineElfo');
+				
+			this.playerSelected = "elfo"
+				
+           	this.scene.start('waitingForPlayer',{username: this.username, playerSelected:  this.playerSelected});
+                
+
+                
+            stompClient.send("/game/setUser", //ACTUALIZO LA POS DE LOS PERSONAJES CONSNTANTEMENTE, HAYA CAMBIO O NO
+	 			{},
+				JSON.stringify({player:this.username, champ: "elfo"})
+	 		)
+                
             }, this);
 
         this.data.set('NamePlayer1', "Player1");
@@ -61,6 +95,10 @@ class LogIn extends Phaser.Scene{
     update() {
         // Lógica de actualización de la escena (se llama en cada fotograma)
     }
+    
+    getPlayerSelected(){
+		return this.playerSelected;
+	}
 }
 
 //export default Escena2;

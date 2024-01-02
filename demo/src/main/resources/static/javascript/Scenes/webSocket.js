@@ -1,13 +1,38 @@
-var socket = new SockJS('/ws');
-var stompClient = Stomp.over(socket);
 var posElfo;
 var posGnomo;
 var stateGnomo;
 var reiniciar = false;
 var gameOver = false;
 var webSocketOpen = false;
+var gnomoReady = false;
+var elfoReady = false;
+var victoryPoints = 0;
+
+
+var PlayerChamp1 = [];
+var PlayerChamp2 = [];
+
+for(let i = 0; i<2; i++){
+	PlayerChamp1[i]="";
+	PlayerChamp2[i]="";
+}
+
+
+$(document).ready(function() {
+    // Realiza una solicitud al servidor para obtener la IP
+    $.get("/Usuarios/getServerIp", function(ip) {
+		//alert("La IP: " + ip)
+       // openSocket(ip);
+    });
+});
+
+
+var socket = new SockJS('/ws');
+var stompClient = Stomp.over(socket);
 
  stompClient.connect({}, onConnect,onError);
+ 
+
  
  function onConnect(){
 	 //alert("Te has conectado bien")
@@ -15,7 +40,12 @@ var webSocketOpen = false;
 	 stompClient.subscribe("/topic/getPosGnomo", getPosGnomo)//si tras llamar a algo tiene return, ese mensaje irá a onMessageRecived
 	 stompClient.subscribe("/topic/getStateGnomo", getStateGnomo)
 	 stompClient.subscribe("/topic/getReiniciarGame", getReiniciarGame)
-	  stompClient.subscribe("/topic/getGameOver", getGameOver)
+	 stompClient.subscribe("/topic/getGameOver", getGameOver)
+	 stompClient.subscribe("/topic/getVictory", getVictory)
+	 
+	 
+	 stompClient.subscribe("/topic/getUser", getUser)
+	 
 	 webSocketOpen = true;
 	 
 	 //--------------IMPORTANTE ESE COMENTARIO DE ARRIBA------------------
@@ -54,23 +84,52 @@ var webSocketOpen = false;
  function onError(){
 	 alert("ERROR")
  }
- function getPosGnomo(payload){ //SI LO QUE ENVIAMOS TIENE UN RETURN LLEGA AQUÍ Y CON PONER MES.VARAIBLE VALE
+ function getPosGnomo(payload){ //recibir la pos del gnomo del servidor
 	 posGnomo = JSON.parse(payload.body);
  }
  
- function getPosElfo(payload){ //SI LO QUE ENVIAMOS TIENE UN RETURN LLEGA AQUÍ Y CON PONER MES.VARAIBLE VALE
+ function getPosElfo(payload){ //recibir la pos del elfo del servidor
 	posElfo = JSON.parse(payload.body);
  }
- function getStateGnomo(payload){ //SI LO QUE ENVIAMOS TIENE UN RETURN LLEGA AQUÍ Y CON PONER MES.VARAIBLE VALE
+ function getStateGnomo(payload){ //recibir el estado del gnomo del servidor (pequeño o grande)
 	stateGnomo = JSON.parse(payload.body);
 	System.out.println(stateGnomo)
  }
  
- function getReiniciarGame(payload){
+ function getReiniciarGame(payload){    //si se quiere reinciiar el juego o no del servidor
 	 reiniciar = JSON.parse(payload.body);
  }
  
- function getGameOver(payload){
+ function getGameOver(payload){         //si se a perdido el juego o no del servidor
 	 gameOver = JSON.parse(payload.body);
+ }
+ 
+ function getVictory(payload){				//si se ha ganado
+	  victoryPoints += JSON.parse(payload.body);
+ }
+ 
+ function getUser(payload){  			//cambiar personaje/primera vez que se elige personaje
+	 let array = JSON.parse(payload.body);
+	 alert(array.player + ", " + array.champ)
+	
+	 if(PlayerChamp1[0] == ""){ //si player 1 está vacio, lo relleno. Si el nombre que me llega es igual al que habia en P1 --> es que quiero cambiar el champ
+		 PlayerChamp1[0]= array.player
+ 		 PlayerChamp1[1]= array.champ;
+ 		 
+	 }
+	 else if(PlayerChamp2[0] == ""  && array.player != PlayerChamp1[0]){ //si player2 está vacio y lo que llega es distinto de player 1
+		
+		 PlayerChamp2[0]= array.player
+ 		 PlayerChamp2[1]= array.champ
+	 }
+	 else if(array.player == PlayerChamp1[0]){
+		 
+		 PlayerChamp1[0]= array.player
+ 		 PlayerChamp1[1]= array.champ;
+	 }
+	 else if(array.player == PlayerChamp2[0]){
+		  PlayerChamp2[0]= array.player
+ 		 PlayerChamp2[1]= array.champ;
+	 }
  }
  

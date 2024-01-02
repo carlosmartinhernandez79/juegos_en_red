@@ -211,8 +211,8 @@ class SceneBootLoader extends Phaser.Scene {
             percentText.destroy();
             
             
-            this.scene.start("LogIn");
-            //this.scene.start("LogScreen");
+            //this.scene.start("LogIn");
+            this.scene.start("LogScreen");
             /*this.scene.start("StartScreen", {sonido: true});
 
             this.MiMusicaBase = this.sound.add("Musica_Base");

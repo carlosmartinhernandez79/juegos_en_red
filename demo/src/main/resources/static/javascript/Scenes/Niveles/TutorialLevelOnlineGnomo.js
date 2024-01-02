@@ -182,8 +182,8 @@ class TutorialLevelOnlineGnomo extends Phaser.Scene{
     //----------------------------------
     //---JUGADORES--
 
-    this.player = new GnomoOnline(this,  100, 2000 ); //100, 2000 para aparecer abajo izq la elfa aparece en 1970
-    this.elfo = new ElfoOnline(this, 100, 2000); //135, 600 en los barriless
+    this.player = new GnomoOnline(this,  300, 300 ); //100, 2000 para aparecer abajo izq la elfa aparece en 1970
+    this.elfo = new ElfoOnline(this,  300, 300); //135, 600 en los barriless
     //instancio a ambos, pero solo muevo mi player 
     this.cat  = this.physics.add.group();
   
@@ -378,21 +378,15 @@ class TutorialLevelOnlineGnomo extends Phaser.Scene{
     
         resetGame(){
             //this.scene.run(Tiempo_Monedas)
-              this.scene.start("GameOver",{pantalla: "TutorialLevelOnlineGnomo"});
-             
-        }
-        
-        
-        endGame(){
-
-	 		stompClient.send("/game/gameOver",  //envia un mensaje al servidor de que ha muerto
+              //this.scene.start("GameOver",{pantalla: "TutorialLevelOnlineGnomo"});
+              
+            stompClient.send("/game/gameOver",  //envia un mensaje al servidor de que ha muerto
 	 			{},
 				true
 	 		)
-	 		
-		}
+        }
         
-    
+  
         pinchosDeath(char){
             char.setTint(0xff0000)
             //this.player.setTint(0xff0000)
@@ -435,9 +429,17 @@ class TutorialLevelOnlineGnomo extends Phaser.Scene{
 
         canExit(){
         
-            if(this.isColliding(this.player, this.exitDoor, 50, 50))
+            if(this.isColliding(this.player, this.exitDoor, 50, 50) && victoryPoints == 1)
             {
-                this.scene.start("Victory");
+                //this.scene.start("Victory",{pantalla: "TutorialLevelOnlineGnomo"});
+                stompClient.send("/game/victory", //llamar a un método con parámetros (es una string basic)
+	 				{},
+	 				1
+	 			)
+	 			
+	 			if(victoryPoints == 2){
+					 this.scene.start("Victory",{pantalla: "TutorialLevelOnlineGnomo"});
+				 }
             }
 
         }

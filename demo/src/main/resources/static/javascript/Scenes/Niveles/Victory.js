@@ -3,6 +3,13 @@ class Victory extends Phaser.Scene{
         super({ key: 'Victory' });
     }
 
+	init(data){
+        if(data){
+            this.pantalla = data.pantalla;
+        }
+    }
+
+
     preload() {
 
     }
@@ -10,7 +17,7 @@ class Victory extends Phaser.Scene{
     create() {
         this.scene.bringToTop();
         const graphics = this.add.graphics();
-        this.scene.get("TutorialLevel").MiMusicaBase.pause();
+        this.scene.get(this.pantalla).MiMusicaBase.pause();
 
         this.add.image(0,0, "PantallaVictoria").setOrigin(0,0);
         
@@ -29,7 +36,7 @@ class Victory extends Phaser.Scene{
             this.scene.stop("Tiempo_Monedas");
             var sceneMain = this.scene.start("LevelSelector");
             this.scene.bringToTop("LevelSelector");
-            this.scene.get("TutorialLevel").MiMusicaBase.pause();
+            this.scene.get(this.pantalla).MiMusicaBase.pause();
             
              // Verificar si los datos ya se han enviado antes de actualizar
         if (!this.dataSended) {
