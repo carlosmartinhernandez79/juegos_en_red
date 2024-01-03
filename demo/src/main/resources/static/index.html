@@ -29,7 +29,6 @@
     <script type = "text/javascript" src="javascript/Scenes/Niveles/Victory.js"></script>
     <script type = "text/javascript" src="javascript/Scenes/Niveles/TutorialLevelOnlineElfo.js"></script>
     <script type = "text/javascript" src="javascript/Scenes/Niveles/TutorialLevelOnlineGnomo.js"></script>
-     <script type = "text/javascript" src="javascript/Scenes/Menus/waitingForPlayer.js"></script>
     <script src = "./javascript/Scenes/Niveles/SceneBootLoader.js"></script>
     <script src = "./javascript/Scenes/Niveles/SceneJuego.js"></script>
 
@@ -49,13 +48,16 @@
     <script type = "text/javascript" src="javascript/Scenes/Menus/LogScreen.js"></script>
 
     <script type = "text/javascript" src="javascript/Scenes/game.js"></script>
-     <script type = "text/javascript" src="javascript/Scenes/chat.js"></script>
+    
      
 		<!--WEBSOOOOOOOOOOOOOOOOOOOCKET-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.6.1/sockjs.min.js"></script>
     
     <script type = "text/javascript" src="javascript/Scenes/webSocket.js"></script>
+
+    <!--CHAT-->
+    <script type = "text/javascript" src="javascript/Scenes/chatOnline.js"></script>
 
 </head>
 <body>
@@ -145,10 +147,10 @@
     </div>
 </div>
 
-<div id="chat-container" style="display:none">
+<div id="chat-container">
   <div id="chat-messages"></div>
   <div id="textBarr">   
-      <input type="text" id="input" placeholder="Enviar mensaje...">
+      <input type="text" id="chat-input" placeholder="Enviar mensaje...">
       <button onclick="sendMessage()">Enviar</button>
 
   </div>
