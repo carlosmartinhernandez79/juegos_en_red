@@ -16,6 +16,7 @@ class GnomoOnline extends Phaser.GameObjects.Sprite{
         this.canJump = true;
         
         this.state = 1;
+        stateGnomo = 1;
         
 
 
@@ -157,7 +158,7 @@ class GnomoOnline extends Phaser.GameObjects.Sprite{
 
             this.gnomo.anims.play('enano_jump', true);
 
-            this.body.setVelocityY(-600);
+            this.body.setVelocityY(-620);//salta un poco más para que no haya bug
             this.canJump = false;            
         }
         else if(this.gnomo.body.blocked.down){ //this.elfo.body.blocked.down funciona con los tiles. El isTouching no

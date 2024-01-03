@@ -42,7 +42,7 @@ class TutorialLevel extends Phaser.Scene{
 
         //CARGAMOS INTERFACES
         this.count = 0
-	    this.interface = this.scene.run('Tiempo_Monedas')
+	    this.interface = this.scene.launch('Tiempo_Monedas', {pantalla: "TutorialLevel"})
         this.scene.bringToTop('Tiempo_Monedas') //la ponemos encima de todas
 
         //SONIDOS

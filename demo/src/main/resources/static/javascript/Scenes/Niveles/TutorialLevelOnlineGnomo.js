@@ -42,7 +42,7 @@ class TutorialLevelOnlineGnomo extends Phaser.Scene{
 
         //CARGAMOS INTERFACES
         this.count = 0
-	    this.interface = this.scene.run('Tiempo_Monedas')
+	    this.interface = this.scene.launch('Tiempo_Monedas',{pantalla: "TutorialLevelOnlineGnomo"})
         this.scene.bringToTop('Tiempo_Monedas') //la ponemos encima de todas
 
         //SONIDOS
@@ -57,7 +57,7 @@ class TutorialLevelOnlineGnomo extends Phaser.Scene{
 
         this.MiMusicaBase.play()
        
-    
+    	//Si se ha seleccionado que haya musica, pues aquí suena, si no, pues no
         if(this.scene.get("StartScreen").isMusicOn()) {
         
             this.sonido = true;
@@ -182,8 +182,8 @@ class TutorialLevelOnlineGnomo extends Phaser.Scene{
     //----------------------------------
     //---JUGADORES--
 
-    this.player = new GnomoOnline(this,  135, 600); //100, 2000 para aparecer abajo izq la elfa aparece en 1970
-    this.elfo = new ElfoOnline(this,  135, 600); //135, 600 en los barriless
+    this.player = new GnomoOnline(this,  100, 2000); //100, 2000 para aparecer abajo izq la elfa aparece en 1970
+    this.elfo = new ElfoOnline(this,  100, 2000); //135, 600 en los barriless
     //instancio a ambos, pero solo muevo mi player 
     this.cat  = this.physics.add.group();
   
@@ -198,7 +198,7 @@ class TutorialLevelOnlineGnomo extends Phaser.Scene{
     this.physics.add.collider(this.player, this.platformsMovibles); //collisión con las plataformas móviles
     this.physics.add.collider(this.player,  this.generadorBarriles);
     this.physics.add.collider(this.player, this.doors);
-    this.physics.add.overlap(this.player, this.misMonedas, this.pickCoin, null, this);
+    //this.physics.add.overlap(this.player, this.misMonedas, this.pickCoin, null, this);
     this.physics.add.overlap(this.player, this.pinchos, this.pinchosDeath, null, this);
     this.physics.add.collider(this.player, this.box);
     this.physics.add.overlap(this.player, this.exitDoor, this.canExit, null, this);
@@ -211,14 +211,11 @@ class TutorialLevelOnlineGnomo extends Phaser.Scene{
     this.physics.add.collider(this.cat, this.platformsMovibles); //collisión con las plataformas móviles
     this.physics.add.collider(this.cat,  this.generadorBarriles);
     this.physics.add.collider(this.cat, this.doors);
-    this.physics.add.overlap(this.cat, this.misMonedas, this.pickCoin, null, this);
+    //this.physics.add.overlap(this.cat, this.misMonedas, this.pickCoin, null, this);
     this.physics.add.overlap(this.cat, this.pinchos, this.pinchosDeath, null, this);
     this.physics.add.collider(this.cat, this.box);
     this.physics.add.overlap(this.cat, this.exitDoor, this.canExit, null, this);
     this.physics.add.overlap(this.cat, this.desTransformarse, this.destransformarseFunc, null, this); 
-
-    //this.cat.body.setCollideWorldBounds(true);
-//alert("ESTAS EN EL SCRIPT DEL GNOMO")
 
     //FISICAS DEL ELFO
     this.physics.add.collider(this.elfo, plataformas); //collisión con los tiles plataformas
@@ -226,7 +223,7 @@ class TutorialLevelOnlineGnomo extends Phaser.Scene{
     this.physics.add.collider(this.elfo, this.platformsMovibles); //collisión con las plataformas móviles
     this.physics.add.collider(this.elfo,  this.generadorBarriles);
     this.physics.add.collider(this.elfo, this.doors);
-    this.physics.add.overlap(this.elfo, this.misMonedas, this.pickCoin, null, this);
+    //this.physics.add.overlap(this.elfo, this.misMonedas, this.pickCoin, null, this);
     this.physics.add.overlap(this.elfo, this.pinchos, this.pinchosDeath, null, this);
     this.physics.add.overlap(this.elfo, this.pot, this.pickPotion, null, this);
     this.physics.add.collider(this.elfo, this.box);
@@ -239,7 +236,6 @@ class TutorialLevelOnlineGnomo extends Phaser.Scene{
 
     //---------CONTROLES------------
     this.spacebar = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
-    this.control = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.CTRL);
 
     this.escape = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ESC);
     //---------------------------------
@@ -269,11 +265,11 @@ class TutorialLevelOnlineGnomo extends Phaser.Scene{
     
         if (this.increment > 32) {
             
-
+		//--------------------MOVIMIENTO PLAYERS-------------------------------------
         this.player.move(); //MUEVO AL GONOMO
 
-           
-    	stompClient.send("/game/setPosGnomo", //llamar a un método con parámetros (es una string basic)
+        //Envío al servidor la posición del gnomo
+    	stompClient.send("/game/setPosGnomo", 
 	 		{},
 			JSON.stringify({x: this.player.x, y: this.player.y})
 	 	)
@@ -283,8 +279,8 @@ class TutorialLevelOnlineGnomo extends Phaser.Scene{
 			 	console.log("MOVIMIENTO DEL ELFO DETECTADO")
 			}
 
-
-            this.die(); //check si han muerto constantemetne
+			//check si han muerto constantemetne
+            this.die(); 
             
             if(isDirty){ //cambios que solo quiero notificar una vez
 				this.actStateByServerInfo();
@@ -341,6 +337,20 @@ class TutorialLevelOnlineGnomo extends Phaser.Scene{
 	 						)
                          }
                     }
+            }
+           //Envía la info al servidor, y lo gestiona en ambos abajo en actStateByServerInfo
+          for(var i = 0; i < this.misMonedas.getChildren().length; i++){
+                if(this.isColliding(this.player, this.misMonedas.getChildren()[i], 50, 50))
+                {
+                    /*this.scene.get("Tiempo_Monedas").updateCount();
+                    this.misMonedas.getChildren()[i].pickUp()*/
+                    
+                    stompClient.send("/game/actualizarMonedas", 
+                          {},
+						   i, 
+	 				)
+                    
+                }
             }
             
             if(this.escape.isDown){
@@ -413,22 +423,6 @@ class TutorialLevelOnlineGnomo extends Phaser.Scene{
     
         }
     
-    
-       pickCoin(){
-            for(var i = 0; i < this.misMonedas.getChildren().length; i++){
-                if(this.isColliding(this.player, this.misMonedas.getChildren()[i], 50, 50) || this.isColliding(this.gnomo, this.misMonedas.getChildren()[i], 50, 50))
-                {
-                    this.scene.get("Tiempo_Monedas").updateCount();
-                    this.misMonedas.getChildren()[i].pickUp()
-                    
-                    /*stompClient.send("/game/actualizarMonedas", 
-                          {},
-						   i, 
-	 				)*/
-                    
-                }
-            }
-        }
         
     
     
@@ -522,7 +516,7 @@ class TutorialLevelOnlineGnomo extends Phaser.Scene{
 			}	
 			if(monedaModificada != -1){ //valor centinela, si es -1, es que no hay cambio
 				this.scene.get("Tiempo_Monedas").updateCount();
-				this.misMonedas.getChildren()[monedaModificada].pick()
+				this.misMonedas.getChildren()[monedaModificada].pickUp()
                 monedaModificada =-1
 			}
 		}

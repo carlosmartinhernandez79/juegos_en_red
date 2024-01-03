@@ -218,7 +218,7 @@ class ElfoOnline extends Phaser.GameObjects.Sprite{
 
                 }    
                 
-                 else if(this.canDoubleJump==0){
+                else if(this.canDoubleJump==0){
                 this.body.setVelocityY(-900); 
                 ++this.canDoubleJump;
                 console.log(this.canDoubleJump)

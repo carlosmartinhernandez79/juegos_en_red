@@ -40,7 +40,6 @@ class LogIn extends Phaser.Scene{
 			/*Cuando selecciono un personaje, asocio en el servidor usuario y personaje
 			 y cambio de pantalla a waiting for players que es un lobby
 			 */
-				
 			this.playerSelected = "gnomo"
             this.scene.start('waitingForPlayer',{username: this.username, playerSelected:  this.playerSelected});
                 
@@ -55,8 +54,7 @@ class LogIn extends Phaser.Scene{
 		this.elfo.setInteractive()
             .on('pointerdown', function () {
 				
-			this.playerSelected = "elfo"
-				
+			this.playerSelected = "elfo"	
            	this.scene.start('waitingForPlayer',{username: this.username, playerSelected:  this.playerSelected});
                 
 

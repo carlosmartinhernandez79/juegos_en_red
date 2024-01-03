@@ -3,7 +3,7 @@ var posGnomo;
 var stateGnomo;
 var reiniciar = false;
 var gameOver = false;
-var webSocketOpen = false;
+var webSocketOpen = true; //MODIFICAR 
 var victoryElfo = false;
 var victoryGnomo = false;
 
@@ -32,6 +32,7 @@ $(document).ready(function() {
     });
 });
 
+if(webSocketOpen){
 
 var socket = new SockJS('/ws');
 var stompClient = Stomp.over(socket);
@@ -169,6 +170,6 @@ var stompClient = Stomp.over(socket);
 		   isDirty = true;
 	  }
 	  
-	  
+} 
  
  
