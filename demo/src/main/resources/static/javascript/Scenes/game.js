@@ -39,7 +39,9 @@ var config  = {
         OptionsFromPause,
         TestGround, 
         TutorialLevel,
-        Records
+        Records,
+        TutorialLevelOnlineElfo,
+        TutorialLevelOnlineGnomo
         ]
 }
 

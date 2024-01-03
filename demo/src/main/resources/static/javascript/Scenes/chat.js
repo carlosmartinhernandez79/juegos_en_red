@@ -16,8 +16,6 @@ function getMessages() {
         type: "GET",
         url: myIPchat + "Chat/getMessages",
         success: function (data) {
-
-            console.log(data);
             displayMessages(data);
         }
     });

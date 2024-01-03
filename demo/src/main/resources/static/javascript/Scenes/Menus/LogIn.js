@@ -13,15 +13,25 @@ class LogIn extends Phaser.Scene{
 
         this.add.image(600,70, "PersonajesText").setOrigin(0.5,0.5);
 
-        this.add.image(300, 300, "GnomoPng").setScale(0.1);
+        this.gnomo = this.add.image(300, 300, "GnomoPng").setScale(0.1);
 
-        this.add.image(700, 300, "ElfaPng").setScale(0.15);
+        this.elfo=this.add.image(700, 300, "ElfaPng").setScale(0.15);
 
         var Volver = this.add.image(30, 35, "Flecha").setScale(0.2)
 
         Volver.setInteractive()
             .on('pointerdown', function () {
                 this.scene.start('StartScreen');
+            }, this);
+            
+        this.gnomo.setInteractive()
+            .on('pointerdown', function () {
+                this.scene.start('TutorialLevelOnlineGnomo');
+            }, this);
+            
+		this.elfo.setInteractive()
+            .on('pointerdown', function () {
+                this.scene.start('TutorialLevelOnlineElfo');
             }, this);
 
         this.data.set('NamePlayer1', "Player1");

@@ -5,6 +5,8 @@ class PauseMenu extends Phaser.Scene{
     init(data){
         if(data){
             this.sonido = data.sonido;
+            this.pantalla = data.pantalla;
+            console.log(this.pantalla)
         }
     }
     preload() {
@@ -44,7 +46,7 @@ class PauseMenu extends Phaser.Scene{
         this.menu.on('pointerdown', function () {
             this.scene.start('StartScreen',{sonido: this.scene.get("TutorialLevel").getSound()});
             this.scene.bringToTop('StartScreen');
-            this.scene.sendToBack('TutorialLevel');
+            this.scene.sendToBack(this.pantalla);
             this.scene.sleep('PauseMenu');
             this.scene.sendToBack('OptionsFromPause');
             this.scene.sendToBack('Tiempo_Monedas');
@@ -72,10 +74,10 @@ class PauseMenu extends Phaser.Scene{
 
         this.opciones.on('pointerdown', function () {
             console.log(this.scene.get("StartScreen").isMusicOn()+ ": FROM PAUSE MENU")
-            this.scene.start('OptionsFromPause', {sonido: this.scene.get("StartScreen").isMusicOn()});
+            this.scene.start('OptionsFromPause', {sonido: this.scene.get("StartScreen").isMusicOn(), pantalla: this.pantalla});
             this.scene.bringToTop('OptionsFromPause'); //mostramos sobre todas esta escena
             this.scene.pause('PauseMenu'); //dormimos la otra, porque no queremos perder lo que hagamos en el menu de pausa
-            this.scene.sendToBack('TutorialLevel'); //enviamos al fondo la de tutorial
+            this.scene.sendToBack(this.pantalla); //enviamos al fondo la de tutorial
             //this.scene.sendToBack('Tiempo_Monedas');
         }, this);
 
@@ -97,7 +99,17 @@ class PauseMenu extends Phaser.Scene{
         })
 
         this.reiniciar.on('pointerdown', function () {
-            this.scene.start('TutorialLevel');
+            this.scene.start(this.pantalla); //whoever le de, reinicia su pantall
+            
+            
+            if(webSocketOpen){ //si el websocket its open, haz esto
+			stompClient.send("/game/reiniciarGame",  //envia un mensaje al servidor de que han reiniciado
+	 			{},
+				true
+	 		)
+			}
+            
+            
         }, this);
 
         //-------------------------------------------------
@@ -121,7 +133,7 @@ class PauseMenu extends Phaser.Scene{
         this.niveles.on('pointerdown', function () {
             this.scene.start('LevelSelector');
             this.scene.bringToTop('LevelSelector');
-            this.scene.sendToBack('TutorialLevel');
+            this.scene.sendToBack(this.pantalla);
             this.scene.sendToBack('Tiempo_Monedas');
         }, this);
     }
@@ -141,8 +153,8 @@ class PauseMenu extends Phaser.Scene{
             this.scene.sleep();
             console.log("Resume")
             this.scene.resume("Tiempo_Monedas");
-            var sceneMain = this.scene.resume("TutorialLevel");
-            this.scene.get("TutorialLevel").checkSound()
+            var sceneMain = this.scene.resume(this.pantalla);
+            this.scene.get(this.pantalla).checkSound()
 
         }
     }

@@ -1,19 +1,19 @@
-class TutorialLevel extends Phaser.Scene{
+class TutorialLevelOnlineGnomo extends Phaser.Scene{
     constructor(){
-        super({key: "TutorialLevel"});
+        super({key: "TutorialLevelOnlineGnomo"});
+
+
     }
     preload()
     {
-        console.log("TUTORIALLEVEL")
        
     }
     create(){
         //////////////////////////////////////////////////////////////////
         //  CREACION CON MAPA DE TILES
         /////////////////////////////////////////////////////////////
-
-
         /// VARIABLE MAPA LE PASAMOS EL KEY AL ARCHIVO JSON
+        console.log(stompClient)
         var map = this.make.tilemap({ key: 'tilemapLvL1', tileWidth:32, tileHeight:32});
 
         /// VARIABLE TILESET LE PASAMOS EL NOMBRE DEL TILESET EN LILED Y EL KEY DEL TILESET EN ASSETS
@@ -56,6 +56,7 @@ class TutorialLevel extends Phaser.Scene{
         this.sonido;
 
         this.MiMusicaBase.play()
+       
     
         if(this.scene.get("StartScreen").isMusicOn()) {
         
@@ -93,6 +94,9 @@ class TutorialLevel extends Phaser.Scene{
         this.add.image(2310,1655,"flechaUP").setScale(0.3).setOrigin(0.5,0.5)
 
         //-------------------------------
+        
+        
+        //COSAS DEL JUEGO INDIVIDUALES DE CADA JUGADOR
 
         //---PLATAFORMAS MOVIBLES---
         this.platformsMovibles = this.add.group(); //creo un grupo de plataformasMovibles
@@ -178,25 +182,28 @@ class TutorialLevel extends Phaser.Scene{
     //----------------------------------
     //---JUGADORES--
 
-    this.gnomo1 = new Gnomo(this,  135, 600 ); //100, 2000 para aparecer abajo izq la elfa aparece en 1970
-    this.elfo = new Elfo(this, 135, 600); //135, 600 en los barriles
+    this.player = new GnomoOnline(this,  100, 2000 ); //100, 2000 para aparecer abajo izq la elfa aparece en 1970
+    this.elfo = new ElfoOnline(this, 100, 2000); //135, 600 en los barriless
+    //instancio a ambos, pero solo muevo mi player 
     this.cat  = this.physics.add.group();
+  
+    
     //---------------------------------
 
 
     //---------FISICAS------------
     //FISICAS DEL GNOMO
-    this.physics.add.collider(this.gnomo1, plataformas);//collisión con los tiles plataformas
-    this.physics.add.collider(this.gnomo1, limites);//collisión con los tiles límites del mapa
-    this.physics.add.collider(this.gnomo1, this.platformsMovibles); //collisión con las plataformas móviles
-    this.physics.add.collider(this.gnomo1,  this.generadorBarriles);
-    this.physics.add.collider(this.gnomo1, this.doors);
-    this.physics.add.overlap(this.gnomo1, this.misMonedas, this.pickCoin, null, this);
-    this.physics.add.overlap(this.gnomo1, this.pinchos, this.pinchosDeath, null, this);
-    this.physics.add.collider(this.gnomo1, this.box);
-    this.physics.add.overlap(this.gnomo1, this.exitDoor, this.canExit, null, this);
+    this.physics.add.collider(this.player, plataformas);//collisión con los tiles plataformas
+    this.physics.add.collider(this.player, limites);//collisión con los tiles límites del mapa
+    this.physics.add.collider(this.player, this.platformsMovibles); //collisión con las plataformas móviles
+    this.physics.add.collider(this.player,  this.generadorBarriles);
+    this.physics.add.collider(this.player, this.doors);
+    this.physics.add.overlap(this.player, this.misMonedas, this.pickCoin, null, this);
+    this.physics.add.overlap(this.player, this.pinchos, this.pinchosDeath, null, this);
+    this.physics.add.collider(this.player, this.box);
+    this.physics.add.overlap(this.player, this.exitDoor, this.canExit, null, this);
 
-    this.gnomo1.body.setCollideWorldBounds(true);
+    this.player.body.setCollideWorldBounds(true);
 
     //FISICAS DEL CAT
     this.physics.add.collider(this.cat, plataformas);//collisión con los tiles plataformas
@@ -211,7 +218,7 @@ class TutorialLevel extends Phaser.Scene{
     this.physics.add.overlap(this.cat, this.desTransformarse, this.destransformarseFunc, null, this); 
 
     //this.cat.body.setCollideWorldBounds(true);
-
+//alert("ESTAS EN EL SCRIPT DEL GNOMO")
 
     //FISICAS DEL ELFO
     this.physics.add.collider(this.elfo, plataformas); //collisión con los tiles plataformas
@@ -238,16 +245,19 @@ class TutorialLevel extends Phaser.Scene{
     //---------------------------------
 
     this.increment = 0;  
+    
 
+ 
     }
 
     update(time, delta){
 
         //ACTUALIZACIÓN DE LA CAMARA
-        //console.log("X: " + this.gnomo1.x + " Y: "+ this.gnomo1.y)
+        //console.log("X: " + this.player.x + " Y: "+ this.player.y)
     
-        var camaraPosX = (Math.abs(this.elfo.x+this.gnomo1.x)/2);
-        var camaraPosY = (Math.abs(this.elfo.y+this.gnomo1.y)/2);
+    	//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! NECESITO UNA REFERENCIA DEL ELFO AQUI
+        var camaraPosX = (Math.abs(this.player.x+this.elfo.x)/2);
+        var camaraPosY = (Math.abs(this.player.y+this.elfo.y)/2);
         
         this.cameras.main.centerOn(camaraPosX,camaraPosY);
         //UPDATE INDEPENDIENTEMENTE DE LA CPU --> https://phaser.discourse.group/t/different-game-speed-depending-on-monitor-refresh-rate/7231/4
@@ -260,8 +270,19 @@ class TutorialLevel extends Phaser.Scene{
         if (this.increment > 32) {
             
 
-            this.gnomo1.move();
-            this.elfo.move();
+        this.player.move(); //MUEVO AL GONOMO
+
+           
+    	stompClient.send("/game/setPosGnomo", //llamar a un método con parámetros (es una string basic)
+	 		{},
+			JSON.stringify({x: this.player.x, y: this.player.y})
+	 	)
+	 	 		
+			if(posElfo){ //RECIBO EL MOVIMIENTO DEL ELFO
+			 	this.elfo.actualizarElfo(posElfo.x, posElfo.y);
+			 	console.log("MOVIMIENTO DEL ELFO DETECTADO")
+			}
+
 
             this.die(); //check si han muerto constantemetne
     
@@ -271,8 +292,8 @@ class TutorialLevel extends Phaser.Scene{
                 var box = this.box.getChildren()[i];
                 box.stop();
     
-                if(this.isColliding(this.gnomo1, box, 50,110)){
-                    this.gnomo1.canJump = true;
+                if(this.isColliding(this.player, box, 50,110)){
+                    this.player.canJump = true;
                 }
             }
         
@@ -287,13 +308,8 @@ class TutorialLevel extends Phaser.Scene{
             this.generadorBarriles.update(this.increment);
     
             for(var i = 0; i < this.misBalas.getChildren().length; i++){
-                if(this.isColliding(this.gnomo1, this.misBalas.getChildren()[i], 50, 50)){
+                if(this.isColliding(this.player, this.misBalas.getChildren()[i], 50, 50)){
                     
-                    this.resetGame();
-                }
-    
-                else if(this.isColliding(this.elfo, this.misBalas.getChildren()[i], 50, 50)){
-                
                     this.resetGame();
                 }
     
@@ -307,50 +323,54 @@ class TutorialLevel extends Phaser.Scene{
         
             for(var i = 0; i < this.misPalancas.getChildren().length; i++){
                     //Método de colisión por caja
-                    if(this.isColliding(this.gnomo1, this.misPalancas.getChildren()[i], 50, 100)){
+                    if(this.isColliding(this.player, this.misPalancas.getChildren()[i], 50, 100)){
                         if(Phaser.Input.Keyboard.JustDown(this.spacebar)){
                             this.misPalancas.getChildren()[i].animarPalanca();
                             this.misPalancas.getChildren()[i].activarPalanca(); //activo la palanca
                          }
-                    }
-        
-                    else if(this.isColliding(this.elfo, this.misPalancas.getChildren()[i], 50, 100)){
-                        
-                        if(Phaser.Input.Keyboard.JustDown(this.control)){
-
-                        this.misPalancas.getChildren()[i].animarPalanca();
-                        this.misPalancas.getChildren()[i].activarPalanca(); //activo la palanca
-                        }
                     }
             }
             
             if(this.escape.isDown){
                 this.pauseGame()
             }
+            
+            
+            if(reiniciar){
+				this.scene.start("TutorialLevelOnlineGnomo"); //whoever le de, reinicia su pantall
+				reiniciar = false;
+			}
+            
+             if(gameOver){
+				 this.scene.start("GameOver",{pantalla: "TutorialLevelOnlineGnomo"});
+				 gameOver = false;
+			}
+            
             this.increment = this.increment - 32;
         };
     }
-    
+ 
+
         pauseGame(){
             this.scene.bringToTop("PauseMenu") //mostramos sobre todas el menu de pausa
-           this.scene.run('PauseMenu', {sonido: this.sonido, pantalla: "TutorialLevel"}) //y lo ejecutamos
-            this.scene.pause(); //pausamos el resto de escenas y la musica
-            this.scene.pause("Tiempo_Monedas");
+            this.scene.run('PauseMenu', {sonido: this.sonido, pantalla: "TutorialLevelOnlineGnomo"}) //y lo ejecutamos
             this.MiMusicaBase.pause();
         }
     
+    
+    ////!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!11 REFERENCIA DEL ELFOOOOO
         die(){
-            if(this.elfo.y>3900 || this.gnomo1.y>3900 || this.isTooFar()){
+            if(this.elfo.y>3900 || this.player.y>3900 || this.isTooFar()){
                 this.resetGame();
             }
         }
     
         isTooFar(){
             var itIs = false;
-            if(Math.abs(this.gnomo1.x - this.elfo.x)> 1300){
+            if(Math.abs(this.player.x - this.elfo.x)> 1300){
                 itIs=true;
             }
-            if(Math.abs(this.gnomo1.y - this.elfo.y)> 650){
+            if(Math.abs(this.player.y - this.elfo.y)> 650){
                 itIs=true;
             }
             return itIs;
@@ -358,18 +378,31 @@ class TutorialLevel extends Phaser.Scene{
     
         resetGame(){
             //this.scene.run(Tiempo_Monedas)
-            this.scene.start("GameOver");
+              this.scene.start("GameOver",{pantalla: "TutorialLevelOnlineGnomo"});
+             
         }
+        
+        
+        endGame(){
+
+	 		stompClient.send("/game/gameOver",  //envia un mensaje al servidor de que ha muerto
+	 			{},
+				true
+	 		)
+	 		
+		}
+        
     
         pinchosDeath(char){
             char.setTint(0xff0000)
-            //this.gnomo1.setTint(0xff0000)
+            //this.player.setTint(0xff0000)
     
             //this.elfo.body.setVelocityY(-100);
             char.body.setVelocityY(-400);
             
             setTimeout(()=>{
-                this.scene.start("GameOver");
+                  this.scene.start("GameOver",{pantalla: "TutorialLevelOnlineGnomo"});
+                  
             }, 200);
     
         }
@@ -377,29 +410,32 @@ class TutorialLevel extends Phaser.Scene{
     
         pickCoin(){
             for(var i = 0; i < this.misMonedas.getChildren().length; i++){
-                if(this.isColliding(this.gnomo1, this.misMonedas.getChildren()[i], 50, 50) || this.isColliding(this.elfo, this.misMonedas.getChildren()[i], 50, 50))
+                if(this.isColliding(this.player, this.misMonedas.getChildren()[i], 50, 50))
                 {
                     this.scene.get("Tiempo_Monedas").updateCount();
                     this.misMonedas.getChildren()[i].pickUp()
                 }
             }
         }
+        
     
+    
+    //////////////!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1 REFERENCIA ELFO
         pickPotion(){
-            this.elfo.hacerMetamorfosis();
+           // this.elfo.hacerMetamorfosis();
             this.pot.destroy();
             this.VivaElVino.play();      
         }
     
         destransformarseFunc(){
-            this.elfo.deshacerMetamorfosis();
+            //this.elfo.deshacerMetamorfosis();
             this.desTransformarse.destroy();
             this.IaMariano.play();
         }
 
         canExit(){
         
-            if(this.isColliding(this.gnomo1, this.exitDoor, 50, 50) && this.isColliding(this.elfo, this.exitDoor, 50, 50))
+            if(this.isColliding(this.player, this.exitDoor, 50, 50))
             {
                 this.scene.start("Victory");
             }
@@ -446,4 +482,10 @@ class TutorialLevel extends Phaser.Scene{
         getSound(){
             return this.sonido;
         }
+        
+
 }
+
+
+
+ 

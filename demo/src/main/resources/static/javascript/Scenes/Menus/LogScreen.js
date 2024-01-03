@@ -29,13 +29,13 @@ class LogScreen extends Phaser.Scene{
 
 		var myIP;
 
-		fetch('/Usuarios/getIp')
+		fetch('/Usuarios/getServerIp')
                 .then(response => response.text())
                 .then(data => {
                 myIP = "http://"+data+":8080/"
                 console.log("La ip es: " + data); 
         });
-		
+        
 
 
         this.fo = this.add.image(0,0, "FondoOscuroVacio").setOrigin(0,0);
@@ -353,6 +353,7 @@ class LogScreen extends Phaser.Scene{
                 document.getElementById("chat-container").style.display = "block";
                 user = username.value;
                 myIPchat = myIP;
+               
                 
                	myScene.get("Victory").setIPVictoria(myIP);
                 myScene.get("GameOver").setIPDerrota(myIP);
