@@ -6,8 +6,7 @@ class StartScreen extends Phaser.Scene{
     init(data){
         if(data){
             this.sonido = data.sonido;
-           	this.username = data.username;
-           	//alert("USERNAME " + this.username + " FROM START SCREEN")
+           
             this.checkSound(data.sonido, true);
         }
     }
@@ -42,7 +41,7 @@ class StartScreen extends Phaser.Scene{
                 })
                 
                 this.BotonJugar.on('pointerdown', function () {
-                    this.scene.start('LogIn', {username: this.username});
+                    this.scene.start('LogIn');
                 }, this);
                 //////////////////////////////////////////////////////////////////////////
                 this.OpcionesOff = this.add.image(1000, 250,"BotonOpcionesOff").setScale(0.75);

@@ -346,14 +346,13 @@ class LogScreen extends Phaser.Scene{
     		function myThings(myScene){
 				 
 				myScene.sendToBack("LogScreen");
-                myScene.start("StartScreen", {sonido: true, username:username.value});
+                myScene.start("StartScreen", {sonido: true});
                	myScene.get("SceneBootLoader").MiMusicaBase.play();
                 
                 LogThings.style.display = "none"
                 document.getElementById("chat-container").style.display = "block";
                 user = username.value;
                 myIPchat = myIP;
-                  
                
                 
                	myScene.get("Victory").setIPVictoria(myIP);

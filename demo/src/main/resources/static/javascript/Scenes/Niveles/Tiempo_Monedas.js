@@ -2,12 +2,6 @@ class Tiempo_Monedas extends Phaser.Scene{
     constructor() {
         super({ key: 'Tiempo_Monedas' });
     }
-    
-    init(data){
-		if(data){
-			this.pantalla = data.pantalla;
-		}
-	}
 
     create(){
         var miMoneda=this.add.image(50, 50, 'moneda');
@@ -25,8 +19,8 @@ class Tiempo_Monedas extends Phaser.Scene{
 
 
         this.labelTimer = this.add.text(1125, 35, "0:00", {font: "25px Arial", fill:  "white" })
-        this.seconds = 0;//0
-        this.minutes = 4;//4
+        this.seconds = 0;
+        this.minutes = 4;
     }
 
     updateCount()
@@ -75,7 +69,7 @@ class Tiempo_Monedas extends Phaser.Scene{
 
     checkIfEnd(){
         if(this.minutes==0 && this.seconds < 1){
-			this.scene.start("GameOver",{pantalla: this.pantalla});
+            this.scene.start("GameOver");
         }
     }
 

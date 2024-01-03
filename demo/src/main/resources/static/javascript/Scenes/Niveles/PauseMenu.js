@@ -43,7 +43,7 @@ class PauseMenu extends Phaser.Scene{
             this.menuOn.setVisible(false);
         })
 
-        this.menu.on('pointerdown', function () { //HACER QUE CUANDO UNO LE DE A MENU, SE PIERDA LA CONEXIÓN DEL SOCKET
+        this.menu.on('pointerdown', function () {
             this.scene.start('StartScreen',{sonido: this.scene.get("TutorialLevel").getSound()});
             this.scene.bringToTop('StartScreen');
             this.scene.sendToBack(this.pantalla);
@@ -99,8 +99,9 @@ class PauseMenu extends Phaser.Scene{
         })
 
         this.reiniciar.on('pointerdown', function () {
-            this.scene.start(this.pantalla); //whoever le de, reinicia su pantalla
-
+            this.scene.start(this.pantalla); //whoever le de, reinicia su pantall
+            
+            
             if(webSocketOpen){ //si el websocket its open, haz esto
 			stompClient.send("/game/reiniciarGame",  //envia un mensaje al servidor de que han reiniciado
 	 			{},

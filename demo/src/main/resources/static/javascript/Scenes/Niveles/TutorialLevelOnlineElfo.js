@@ -42,7 +42,7 @@ class TutorialLevelOnlineElfo extends Phaser.Scene{
 
         //CARGAMOS INTERFACES
         this.count = 0
-	    this.interface = this.scene.launch('Tiempo_Monedas', {pantalla: "TutorialLevelOnlineElfo"})
+	    this.interface = this.scene.run('Tiempo_Monedas')
         this.scene.bringToTop('Tiempo_Monedas') //la ponemos encima de todas
 
         //SONIDOS
@@ -182,8 +182,8 @@ class TutorialLevelOnlineElfo extends Phaser.Scene{
     //----------------------------------
     //---JUGADORES--
 	//alert("ESTAS EN EL SCRIPT DEL gnomo")
-    this.gnomo = new GnomoOnline(this,   100, 2000); //100, 2000 para aparecer abajo izq la elfa aparece en 1970
-    this.player = new ElfoOnline(this,  100, 2000); //135, 600 en los barriless
+    this.gnomo = new GnomoOnline(this,  100, 2000 ); //100, 2000 para aparecer abajo izq la elfa aparece en 1970
+    this.player = new ElfoOnline(this, 100, 2000); //135, 600 en los barriless
     //instancio a ambos, pero solo muevo mi player 
     this.cat  = this.physics.add.group();
   
@@ -198,7 +198,7 @@ class TutorialLevelOnlineElfo extends Phaser.Scene{
     this.physics.add.collider(this.player, this.platformsMovibles); //collisión con las plataformas móviles
     this.physics.add.collider(this.player,  this.generadorBarriles);
     this.physics.add.collider(this.player, this.doors);
-    //this.physics.add.overlap(this.player, this.misMonedas, this.pickCoin, null, this);
+    this.physics.add.overlap(this.player, this.misMonedas, this.pickCoin, null, this);
     this.physics.add.overlap(this.player, this.pinchos, this.pinchosDeath, null, this);
     this.physics.add.collider(this.player, this.box);
     this.physics.add.overlap(this.player, this.exitDoor, this.canExit, null, this);
@@ -211,7 +211,7 @@ class TutorialLevelOnlineElfo extends Phaser.Scene{
     this.physics.add.collider(this.cat, this.platformsMovibles); //collisión con las plataformas móviles
     this.physics.add.collider(this.cat,  this.generadorBarriles);
     this.physics.add.collider(this.cat, this.doors);
-   //this.physics.add.overlap(this.cat, this.misMonedas, this.pickCoin, null, this);
+    this.physics.add.overlap(this.cat, this.misMonedas, this.pickCoin, null, this);
     this.physics.add.overlap(this.cat, this.pinchos, this.pinchosDeath, null, this);
     this.physics.add.collider(this.cat, this.box);
     this.physics.add.overlap(this.cat, this.exitDoor, this.canExit, null, this);
@@ -226,7 +226,7 @@ class TutorialLevelOnlineElfo extends Phaser.Scene{
     this.physics.add.collider(this.gnomo, this.platformsMovibles); //collisión con las plataformas móviles
     this.physics.add.collider(this.gnomo,  this.generadorBarriles);
     this.physics.add.collider(this.gnomo, this.doors);
-    //this.physics.add.overlap(this.gnomo, this.misMonedas, this.pickCoin, null, this);
+    this.physics.add.overlap(this.gnomo, this.misMonedas, this.pickCoin, null, this);
     this.physics.add.overlap(this.gnomo, this.pinchos, this.pinchosDeath, null, this);
     this.physics.add.overlap(this.gnomo, this.pot, this.pickPotion, null, this);
     this.physics.add.collider(this.gnomo, this.box);
@@ -253,6 +253,9 @@ class TutorialLevelOnlineElfo extends Phaser.Scene{
     update(time, delta){
 
         //ACTUALIZACIÓN DE LA CAMARA
+        //console.log("X: " + this.player.x + " Y: "+ this.player.y)
+    
+    	//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! NECESITO UNA REFERENCIA DEL gnomo AQUI
         var camaraPosX = (Math.abs(this.player.x+this.gnomo.x)/2);
         var camaraPosY = (Math.abs(this.player.y+this.gnomo.y)/2);
         
@@ -260,31 +263,29 @@ class TutorialLevelOnlineElfo extends Phaser.Scene{
         //UPDATE INDEPENDIENTEMENTE DE LA CPU --> https://phaser.discourse.group/t/different-game-speed-depending-on-monitor-refresh-rate/7231/4
         var f = (delta / (1000 / 120)); // 1000 ms / 60fps
         this.increment = this.increment + (2 * f);
+
+        //console.log("Incremento: " + this.increment)
+        //console.log("f : " + f)
     
         if (this.increment > 32) {
 
-        //--------------------MOVIMIENTO PLAYERS------------------------------------- 
+           
     	this.player.move(); //MUEVO AL ELFO
+    						//RECIBO EL MOVIMIENTO DEL GNOMO
     						
-			stompClient.send("/game/setPosElfo", //Envío la posicion del elfo al servidor
+			stompClient.send("/game/setPosElfo", //ACTUALIZO LA POS DE LOS PERSONAJES CONSNTANTEMENTE, HAYA CAMBIO O NO
 	 		{},
 			JSON.stringify({x: this.player.x, y: this.player.y})
 	 		)
 	 		
-            if(posGnomo){ //RECIBO EL MOVIMIENTO DEL GNOMO
-			 	this.gnomo.actualizarGnomo(posGnomo.x, posGnomo.y); //Llamo a actualizar Gnomo --> método especialmente creado para esto, moverlo con una pos que nos den
+            if(posGnomo){ //RECIBO EL MOVIMIENTO DEL ELFO
+			 	this.gnomo.actualizarGnomo(posGnomo.x, posGnomo.y);
 			}
-		//------------------------------------------------------------------------------------- 
-		//----------------------COMPRUEBO SI HA MUERTO----------------------------------------
-            this.die(); 
-    	//------------------------------------------------------------------------------------- 
-        //----------------------CAMBIOS DE UNA VEZ----------------------------------------
-            if(isDirty){ //cambios que solo quiero notificar una vez
-				this.actStateByServerInfo();
-				isDirty = false;
-			}
-		//------------------------------------------------------------------------------------- 
-        //------------------------COMPROBANDO LAS CAJAS -----------------------------------------
+
+            this.die(); //check si han muerto constantemetne
+    
+            //COMPROBANDO LAS CAJAS 
+        
             for(var i = 0; i < this.box.getChildren().length; i++){
                 var box = this.box.getChildren()[i];
                 box.stop();
@@ -293,19 +294,15 @@ class TutorialLevelOnlineElfo extends Phaser.Scene{
                     this.player.canJump = true;
                 }
             }
-        //------------------------------------------------------------------------------------- 
         
-        //------------------------MOVIMIENTO DE LA PLATAFORMA----------------------------------
-        	/*Esta información no se pasa al servidor, porque al ambos empezar a la vez, el movimiento debería ser el mismo. 
-        	Además, como va independientemente de la CPU, no debería generar desfase */
+        
+            //MOVIMIENTO DE LA PLATAFORMA
             for(var i = 0; i < this.platformsMovibles.getChildren().length; i++){
                 var plat = this.platformsMovibles.getChildren()[i];
                 plat.update();
             }
-        //------------------------------------------------------------------------------------- 
-        //------------------------GESTIÓN DEL BARRIL Y BALAS-----------------------------------
-            /*Esta información no se pasa al servidor, porque al ambos empezar a la vez, el movimiento debería ser el mismo. 
-        	Además, como va independientemente de la CPU, no debería generar desfase */
+            //-------------------------
+            //GESTIÓN DEL BARRIL Y BALAS
             this.generadorBarriles.update(this.increment);
     
             for(var i = 0; i < this.misBalas.getChildren().length; i++){
@@ -316,9 +313,9 @@ class TutorialLevelOnlineElfo extends Phaser.Scene{
     
                this.misBalas.getChildren()[i].kill();
             }
-         //------------------------------------------------------------------------------------- 
+            //-------------------------
     
-         //-----------------------GESTION DE LAS PALANCAS--------------------------------------
+            //GESTION DE LAS PALANCAS
             //RECORRO TODOS Y ACTIVO SOLO AQUELLAS SOBRE LAS QUE ESTÉ ENCIMA
             //Comprobaré eso comprobando por cada palanca si el personaje se encuentra en la misma x y en la misma y con una diferencia de +-size
         
@@ -328,44 +325,20 @@ class TutorialLevelOnlineElfo extends Phaser.Scene{
                         if(Phaser.Input.Keyboard.JustDown(this.spacebar)){
                             this.misPalancas.getChildren()[i].animarPalanca();
                             this.misPalancas.getChildren()[i].activarPalanca(); //activo la palanca
-                            
-                            //Envío esta info al servidor, para que le otro usuario sepa qué palanca es. 
-                            //Puesto que tienene el mismo array, envío solo un int, y luego ejecuto esa pos en el array
-                            stompClient.send("/game/actualizarPalancas", 
-                            	{},
-								i
-	 						)
-                            
                          }
                     }
             }
-            //------------------------------------------------------------------------------------- 
             
-           //-----------------------GESTION DE MONEDAS---------------------------------------------- (como las palancas)
-          for(var i = 0; i < this.misMonedas.getChildren().length; i++){
-                if(this.isColliding(this.player, this.misMonedas.getChildren()[i], 50, 50))
-                {
-                    //this.scene.get("Tiempo_Monedas").updateCount();
-                    //this.misMonedas.getChildren()[i].pickUp()
-                    
-                    stompClient.send("/game/actualizarMonedas", 
-                          {},
-						   i
-	 				)  
-                }
-            }
-            //------------------------------------------------------------------------------------- 
-            //---------------------------OTRAS COMPROBACIONES--------------------------------------
-            if(this.escape.isDown){//pausa
+            if(this.escape.isDown){
                 this.pauseGame()
             }
             
-            if(reiniciar){//método para reiniciar
+            if(reiniciar){
 				this.scene.start("TutorialLevelOnlineElfo"); //whoever le de, reinicia su pantall
 				reiniciar = false;
 			}
             
-            if(gameOver){ //método para perder
+            if(gameOver){
 				 this.scene.start("GameOver",{pantalla: "TutorialLevelOnlineElfo"});
 				  gameOver = false;
 			}
@@ -374,15 +347,15 @@ class TutorialLevelOnlineElfo extends Phaser.Scene{
             this.increment = this.increment - 32;
         };
     }
-   	//---------------------------PAUSE MENU--------------------------------------
+   
         pauseGame(){
             this.scene.bringToTop("PauseMenu") //mostramos sobre todas el menu de pausa
             this.scene.run('PauseMenu', {sonido: this.sonido, pantalla: "TutorialLevelOnlineElfo"}) //y lo ejecutamos
             this.MiMusicaBase.pause();
         }
-    //--------------------------------------------------------------------------
-    //---------------------------COMRPOBACIONES DEL DIE--------------------------------------
-
+    
+    
+    ////!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!11 REFERENCIA DEL gnomoOOOO
         die(){
             if(this.gnomo.y>3900 || this.player.y>3900 || this.isTooFar()){
                 this.resetGame();
@@ -399,17 +372,25 @@ class TutorialLevelOnlineElfo extends Phaser.Scene{
             }
             return itIs;
         }
-     //--------------------------------------------------------------------------
-    //-----------------------------GAME OVER--------------------------------------
+    
         resetGame(){
+            //this.scene.run(Tiempo_Monedas)
+            this.scene.start("GameOver",{pantalla: "TutorialLevelOnlineElfo"});
+           
+	 		
+	 		this.endGame();
+            
+        }
+        
+        endGame(){
+			
 	 		stompClient.send("/game/gameOver",  //envia un mensaje al servidor de que ha muerto
 	 			{},
 				true
 	 		)
-            
-        }
-  	//--------------------------------------------------------------------------       
-     //-----------------------------MUERTE POR PINCHOS--------------------------------------
+	 		
+		}
+    
         pinchosDeath(char){
             char.setTint(0xff0000)
             //this.player.setTint(0xff0000)
@@ -425,9 +406,20 @@ class TutorialLevelOnlineElfo extends Phaser.Scene{
     
         }
     
+    
+        pickCoin(){
+            for(var i = 0; i < this.misMonedas.getChildren().length; i++){
+                if(this.isColliding(this.player, this.misMonedas.getChildren()[i], 50, 50))
+                {
+                    this.scene.get("Tiempo_Monedas").updateCount();
+                    this.misMonedas.getChildren()[i].pickUp()
+                }
+            }
+        }
         
     
-     //-----------------------------ELFO-GATO (NOT IMPLEMENTED)--------------------------------------
+    
+    //////////////!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1 REFERENCIA gnomo
         pickPotion(){
            // this.gnomo.hacerMetamorfosis();
             this.pot.destroy();
@@ -439,37 +431,16 @@ class TutorialLevelOnlineElfo extends Phaser.Scene{
             this.desTransformarse.destroy();
             this.IaMariano.play();
         }
-		//--------------------------------------------------------------------------       
-		//-----------------------A WAY OUT----------------------------------------       
+
         canExit(){
         
-             if(this.isColliding(this.player, this.exitDoor, 50, 50))
+            if(this.isColliding(this.player, this.exitDoor, 50, 50))
             {
-                //this.scene.start("Victory",{pantalla: "TutorialLevelOnlineElfo"});
-                
-                
-                stompClient.send("/game/victoryElfo", //llamar a un método con parámetros (es una string basic)
-	 				{},
-	 				true
-	 			)
-	 			
-	 			if(victoryElfo && victoryGnomo){
-					 this.scene.start("Victory",{pantalla: "TutorialLevelOnlineElfo"});
-				 }
-                
+                this.scene.start("Victory");
             }
-            else{
-				stompClient.send("/game/victoryElfo", //llamar a un método con parámetros (es una string basic)
-	 				{},
-	 				false
-	 			)
-			}
 
         }
-    //--------------------------------------------------------------------------       
-    //-------------------------MÉTODOS AUXILIARES-------------------------------     
-    //--------------------------------------------------------------------------       
-    //------------------------SISTEMA DE COLISIÓN POR CAJA----------------------  
+    
         isColliding(player, object, sizeX, sizeY){
     
             //Con este método simplificamos si el personaje está encima o no, puesto que lo utilizamos tanto para recoger monedas como para mover palancas
@@ -492,12 +463,11 @@ class TutorialLevelOnlineElfo extends Phaser.Scene{
             }
             return isColliding;
         }
-        
-        //--------------------------------------------------------------------------   
-		 //-----------------------------EJECUTAR EL SONIDO BIEN--------------------------   
+
         checkSound(){
             if(this.sonido){
                 this.MiMusicaBase.resume();
+                console.log("hola from checksound")
             }
             else{
                 this.MiMusicaBase.pause();
@@ -511,24 +481,8 @@ class TutorialLevelOnlineElfo extends Phaser.Scene{
         getSound(){
             return this.sonido;
         }
-         //------------------INFORMACIÓN DEL SERVER QUE QUIERO QUE SE HAGA UNA VEZ------------------------   
-		//cosas que quiero actualizar una vez si ha habido un cambio --> quitamos trabajo a la CPU
-        //se si hay 10 cosas, se comrpobaran las 10 cosas, y solo se harán aquellas con un cambio
-        actStateByServerInfo(){
-			
-			//actualizo palancas si ha habido un cambio
-			if(palancaModificada != -1){ //valor centinela, si es -1, es que no hay cambio
-				this.misPalancas.getChildren()[palancaModificada].animarPalanca();
-                this.misPalancas.getChildren()[palancaModificada].activarPalanca(); //activo la palanca
-                palancaModificada =-1
-			}	
-			
-			if(monedaModificada != -1){ //valor centinela, si es -1, es que no hay cambio
-				this.scene.get("Tiempo_Monedas").updateCount();
-                this.misMonedas.getChildren()[monedaModificada].pickUp()
-                monedaModificada =-1
-			}	
-		}
+        
+
 }
 
 

@@ -39,7 +39,7 @@ this.myIPDerrota= ""
 			var sceneMain = this.scene.start(this.pantalla); //comienzo de nuevo esta pantalla
 			
 			if(webSocketOpen){ //si el websocket its open, haz esto
-			stompClient.send("/game/reiniciarGame",  //pone a ambos jugadores en la pantalla de gameOver, independientemente de quien pierda
+			stompClient.send("/game/reiniciarGame",  //envia un mensaje al servidor de que han reiniciado
 	 			{},
 				true
 	 		)
