@@ -32,4 +32,8 @@ class Monedas extends Phaser.GameObjects.Sprite{
         this.destroy();
         this.SonidoMoneda.play();
     }
+    pick(){
+		this.destroy();
+        this.SonidoMoneda.play();
+	}
 }   

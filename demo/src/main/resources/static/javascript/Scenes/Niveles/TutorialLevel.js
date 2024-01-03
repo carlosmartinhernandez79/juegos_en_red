@@ -358,7 +358,7 @@ class TutorialLevel extends Phaser.Scene{
     
         resetGame(){
             //this.scene.run(Tiempo_Monedas)
-            this.scene.start("GameOver");
+            this.scene.start("GameOver",{pantalla: "TutorialLevel"});
         }
     
         pinchosDeath(char){
@@ -369,7 +369,7 @@ class TutorialLevel extends Phaser.Scene{
             char.body.setVelocityY(-400);
             
             setTimeout(()=>{
-                this.scene.start("GameOver");
+                this.scene.start("GameOver",{pantalla: "TutorialLevel"});
             }, 200);
     
         }
@@ -401,7 +401,7 @@ class TutorialLevel extends Phaser.Scene{
         
             if(this.isColliding(this.gnomo1, this.exitDoor, 50, 50) && this.isColliding(this.elfo, this.exitDoor, 50, 50))
             {
-                this.scene.start("Victory");
+                this.scene.start("Victory",{pantalla:"TutorialLevel"});
             }
 
         }

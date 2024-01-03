@@ -182,8 +182,8 @@ class TutorialLevelOnlineGnomo extends Phaser.Scene{
     //----------------------------------
     //---JUGADORES--
 
-    this.player = new GnomoOnline(this,  300, 300 ); //100, 2000 para aparecer abajo izq la elfa aparece en 1970
-    this.elfo = new ElfoOnline(this,  300, 300); //135, 600 en los barriless
+    this.player = new GnomoOnline(this,  135, 600); //100, 2000 para aparecer abajo izq la elfa aparece en 1970
+    this.elfo = new ElfoOnline(this,  135, 600); //135, 600 en los barriless
     //instancio a ambos, pero solo muevo mi player 
     this.cat  = this.physics.add.group();
   
@@ -285,6 +285,13 @@ class TutorialLevelOnlineGnomo extends Phaser.Scene{
 
 
             this.die(); //check si han muerto constantemetne
+            
+            if(isDirty){ //cambios que solo quiero notificar una vez
+				this.actStateByServerInfo();
+				isDirty = false;
+			}
+            
+            
     
             //COMPROBANDO LAS CAJAS 
         
@@ -327,6 +334,11 @@ class TutorialLevelOnlineGnomo extends Phaser.Scene{
                         if(Phaser.Input.Keyboard.JustDown(this.spacebar)){
                             this.misPalancas.getChildren()[i].animarPalanca();
                             this.misPalancas.getChildren()[i].activarPalanca(); //activo la palanca
+                            
+                            stompClient.send("/game/actualizarPalancas", 
+                            	{},
+								i
+	 						)
                          }
                     }
             }
@@ -402,12 +414,18 @@ class TutorialLevelOnlineGnomo extends Phaser.Scene{
         }
     
     
-        pickCoin(){
+       pickCoin(){
             for(var i = 0; i < this.misMonedas.getChildren().length; i++){
-                if(this.isColliding(this.player, this.misMonedas.getChildren()[i], 50, 50))
+                if(this.isColliding(this.player, this.misMonedas.getChildren()[i], 50, 50) || this.isColliding(this.gnomo, this.misMonedas.getChildren()[i], 50, 50))
                 {
                     this.scene.get("Tiempo_Monedas").updateCount();
                     this.misMonedas.getChildren()[i].pickUp()
+                    
+                    /*stompClient.send("/game/actualizarMonedas", 
+                          {},
+						   i, 
+	 				)*/
+                    
                 }
             }
         }
@@ -429,18 +447,24 @@ class TutorialLevelOnlineGnomo extends Phaser.Scene{
 
         canExit(){
         
-            if(this.isColliding(this.player, this.exitDoor, 50, 50) && victoryPoints == 1)
+            if(this.isColliding(this.player, this.exitDoor, 50, 50))
             {
                 //this.scene.start("Victory",{pantalla: "TutorialLevelOnlineGnomo"});
-                stompClient.send("/game/victory", //llamar a un método con parámetros (es una string basic)
+                stompClient.send("/game/victoryGnomo", //llamar a un método con parámetros (es una string basic)
 	 				{},
-	 				1
+	 				true
 	 			)
 	 			
-	 			if(victoryPoints == 2){
+	 			if(victoryGnomo && victoryElfo){
 					 this.scene.start("Victory",{pantalla: "TutorialLevelOnlineGnomo"});
 				 }
             }
+            else{
+				stompClient.send("/game/victoryGnomo", //llamar a un método con parámetros (es una string basic)
+	 				{},
+	 				false
+	 			)
+			}
 
         }
     
@@ -484,6 +508,24 @@ class TutorialLevelOnlineGnomo extends Phaser.Scene{
         getSound(){
             return this.sonido;
         }
+        
+        
+        //cosas que quiero actualizar una vez si ha habido un cambio --> quitamos trabajo a la CPU
+        //se si hay 10 cosas, se comrpobaran las 10 cosas, y solo se harán aquellas con un cambio
+        actStateByServerInfo(){
+			
+			//actualizo palancas si ha habido un cambio
+			if(palancaModificada != -1){ //valor centinela, si es -1, es que no hay cambio
+				this.misPalancas.getChildren()[palancaModificada].animarPalanca();
+                this.misPalancas.getChildren()[palancaModificada].activarPalanca(); //activo la palanca
+                palancaModificada =-1
+			}	
+			if(monedaModificada != -1){ //valor centinela, si es -1, es que no hay cambio
+				this.scene.get("Tiempo_Monedas").updateCount();
+				this.misMonedas.getChildren()[monedaModificada].pick()
+                monedaModificada =-1
+			}
+		}
         
 
 }

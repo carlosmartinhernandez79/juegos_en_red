@@ -98,6 +98,16 @@ public class gameState {
     	stateGnomo = i;
     	return i;
     }
+    
+    @MessageMapping("/setDoubleJump")
+    @SendTo("/topic/getDoubleJump")
+    public boolean setDoubleJump(@Payload boolean i, SimpMessageHeaderAccessor HA) {
+    	
+    	return i;
+    }
+    
+    
+    
    //------------------------------------------------------------------------------
   //------------------------REINCIAR JUEGO------------------------------------------
     
@@ -119,11 +129,18 @@ public class gameState {
     
   //------------------------------------------------------------------------------ 
   //------------------------CASO DE VICTORIA------------------------------------------
-    @MessageMapping("/victory")
-    @SendTo("/topic/getVictory")
-    public int victory(@Payload int pointsToWin, SimpMessageHeaderAccessor HA) {
+    @MessageMapping("/victoryElfo")
+    @SendTo("/topic/getVictoryElfo")
+    public boolean victoryElfo(@Payload boolean v, SimpMessageHeaderAccessor HA) {
     
-    	return pointsToWin;
+    	return v;
+    }
+    
+    @MessageMapping("/victoryGnomo")
+    @SendTo("/topic/getVictoryGnomo")
+    public boolean  victoryGnomo(@Payload boolean v, SimpMessageHeaderAccessor HA) {
+    
+    	return v;
     }
     
     //------------------------------------------------------------------------------
@@ -155,6 +172,29 @@ public class gameState {
     	return PC;
     	
     }
+    
+  //------------------------------------------------------------------------------
+    //------------------------GESTOR DE PALANCAS------------------------------------------
    
+    @MessageMapping("/actualizarPalancas")
+    @SendTo("/topic/getPalancas")
+    //o que reciba el int donde se encuentra el cambio y que luego se acceda a ese int para cambiarlo
+    
+    public int actualizarPalancas(@Payload int palancaModificada, SimpMessageHeaderAccessor HA) {
+
+    	return palancaModificada;
+    }
+    
+    //------------------------------------------------------------------------------
+    //------------------------GESTOR DE MONEDAS------------------------------------------
+   
+    @MessageMapping("/actualizarMonedas")
+    @SendTo("/topic/getMonedas")
+    //o que reciba el int donde se encuentra el cambio y que luego se acceda a ese int para cambiarlo
+    
+    public int actualizarMonedas(@Payload int monedaModificada, SimpMessageHeaderAccessor HA) {
+
+    	return monedaModificada;
+    }
     
 }

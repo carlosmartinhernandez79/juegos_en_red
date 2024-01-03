@@ -44,7 +44,7 @@ class LogIn extends Phaser.Scene{
 			this.playerSelected = "gnomo"
             this.scene.start('waitingForPlayer',{username: this.username, playerSelected:  this.playerSelected});
                 
-            stompClient.send("/game/setUser", //ACTUALIZO LA POS DE LOS PERSONAJES CONSNTANTEMENTE, HAYA CAMBIO O NO
+            stompClient.send("/game/setUser", 
 	 			{},
 				 JSON.stringify({player:this.username, champ: "gnomo"})
 	 		)

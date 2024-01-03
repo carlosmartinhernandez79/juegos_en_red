@@ -182,8 +182,8 @@ class TutorialLevelOnlineElfo extends Phaser.Scene{
     //----------------------------------
     //---JUGADORES--
 	//alert("ESTAS EN EL SCRIPT DEL gnomo")
-    this.gnomo = new GnomoOnline(this,   300, 300 ); //100, 2000 para aparecer abajo izq la elfa aparece en 1970
-    this.player = new ElfoOnline(this,  300, 300); //135, 600 en los barriless
+    this.gnomo = new GnomoOnline(this,   135, 600); //100, 2000 para aparecer abajo izq la elfa aparece en 1970
+    this.player = new ElfoOnline(this,  135, 600); //135, 600 en los barriless
     //instancio a ambos, pero solo muevo mi player 
     this.cat  = this.physics.add.group();
   
@@ -285,6 +285,11 @@ class TutorialLevelOnlineElfo extends Phaser.Scene{
             this.die(); //check si han muerto constantemetne
     
             //COMPROBANDO LAS CAJAS 
+            
+            if(isDirty){ //cambios que solo quiero notificar una vez
+				this.actStateByServerInfo();
+				isDirty = false;
+			}
         
             for(var i = 0; i < this.box.getChildren().length; i++){
                 var box = this.box.getChildren()[i];
@@ -325,6 +330,12 @@ class TutorialLevelOnlineElfo extends Phaser.Scene{
                         if(Phaser.Input.Keyboard.JustDown(this.spacebar)){
                             this.misPalancas.getChildren()[i].animarPalanca();
                             this.misPalancas.getChildren()[i].activarPalanca(); //activo la palanca
+                            
+                            stompClient.send("/game/actualizarPalancas", 
+                            	{},
+								i
+	 						)
+                            
                          }
                     }
             }
@@ -408,6 +419,12 @@ class TutorialLevelOnlineElfo extends Phaser.Scene{
                 {
                     this.scene.get("Tiempo_Monedas").updateCount();
                     this.misMonedas.getChildren()[i].pickUp()
+                    
+                    stompClient.send("/game/actualizarMonedas", 
+                          {},
+						   i
+	 				)
+                    
                 }
             }
         }
@@ -429,22 +446,27 @@ class TutorialLevelOnlineElfo extends Phaser.Scene{
 
         canExit(){
         
-        console.log(victoryPoints)
-             if(this.isColliding(this.player, this.exitDoor, 50, 50) && victoryPoints==0)
+             if(this.isColliding(this.player, this.exitDoor, 50, 50))
             {
                 //this.scene.start("Victory",{pantalla: "TutorialLevelOnlineElfo"});
                 
                 
-                stompClient.send("/game/victory", //llamar a un método con parámetros (es una string basic)
+                stompClient.send("/game/victoryElfo", //llamar a un método con parámetros (es una string basic)
 	 				{},
-	 				1
+	 				true
 	 			)
 	 			
-	 			if(victoryPoints == 2){
+	 			if(victoryElfo && victoryGnomo){
 					 this.scene.start("Victory",{pantalla: "TutorialLevelOnlineElfo"});
 				 }
                 
             }
+            else{
+				stompClient.send("/game/victoryElfo", //llamar a un método con parámetros (es una string basic)
+	 				{},
+	 				false
+	 			)
+			}
 
         }
     
@@ -489,7 +511,23 @@ class TutorialLevelOnlineElfo extends Phaser.Scene{
             return this.sonido;
         }
         
-
+		//cosas que quiero actualizar una vez si ha habido un cambio --> quitamos trabajo a la CPU
+        //se si hay 10 cosas, se comrpobaran las 10 cosas, y solo se harán aquellas con un cambio
+        actStateByServerInfo(){
+			
+			//actualizo palancas si ha habido un cambio
+			if(palancaModificada != -1){ //valor centinela, si es -1, es que no hay cambio
+				this.misPalancas.getChildren()[palancaModificada].animarPalanca();
+                this.misPalancas.getChildren()[palancaModificada].activarPalanca(); //activo la palanca
+                palancaModificada =-1
+			}	
+			
+			if(monedaModificada != -1){ //valor centinela, si es -1, es que no hay cambio
+				this.scene.get("Tiempo_Monedas").updateCount();
+                this.misMonedas.getChildren()[monedaModificada].pick()
+                monedaModificada =-1
+			}	
+		}
 }
 
 

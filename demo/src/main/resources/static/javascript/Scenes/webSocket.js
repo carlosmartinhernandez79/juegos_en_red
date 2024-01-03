@@ -4,9 +4,15 @@ var stateGnomo;
 var reiniciar = false;
 var gameOver = false;
 var webSocketOpen = false;
-var gnomoReady = false;
-var elfoReady = false;
-var victoryPoints = 0;
+var victoryElfo = false;
+var victoryGnomo = false;
+
+var canDoubleJump = false;
+
+var palancaModificada = -1;
+var monedaModificada = -1;
+
+var isDirty = false;
 
 
 var PlayerChamp1 = [];
@@ -36,15 +42,27 @@ var stompClient = Stomp.over(socket);
  
  function onConnect(){
 	 //alert("Te has conectado bien")
-	 stompClient.subscribe("/topic/getPosElfo", getPosElfo)//si tras llamar a algo tiene return, ese mensaje irá a onMessageRecived
-	 stompClient.subscribe("/topic/getPosGnomo", getPosGnomo)//si tras llamar a algo tiene return, ese mensaje irá a onMessageRecived
-	 stompClient.subscribe("/topic/getStateGnomo", getStateGnomo)
+	 
+	 //-------------------COSAS DEL ELFO Y DEL GNOMO----------------------------------
+	 stompClient.subscribe("/topic/getPosElfo", getPosElfo)//Lo que llegue del servidor de este método irá a getPosElfo
+	 stompClient.subscribe("/topic/getPosGnomo", getPosGnomo)//Lo que llegue del servidor de este método irá a getPosGnomo
+	 stompClient.subscribe("/topic/getStateGnomo", getStateGnomo)//Lo que llegue del servidor de este método irá a getStateGnomo
+	 stompClient.subscribe("/topic/getDobuleJump", getDobuleJump)
+	  //-------------------CONDICIONES DE VICTORIA DERROTA Y RESET----------------------------------
 	 stompClient.subscribe("/topic/getReiniciarGame", getReiniciarGame)
 	 stompClient.subscribe("/topic/getGameOver", getGameOver)
-	 stompClient.subscribe("/topic/getVictory", getVictory)
-	 
-	 
+	 stompClient.subscribe("/topic/getVictoryElfo", getVictoryElfo)
+	 stompClient.subscribe("/topic/getVictoryGnomo", getVictoryGnomo)
+	
+	
+	 //-------------------TEMA GESTION USUARIOS/CHAMPIONS----------------------------------
 	 stompClient.subscribe("/topic/getUser", getUser)
+	 
+	  //-------------------PALANCAS----------------------------------
+	  stompClient.subscribe("/topic/getPalancas", getPalancas)
+	  
+	  //-------------------PALANCAS----------------------------------
+	  stompClient.subscribe("/topic/getMonedas", getMonedas)
 	 
 	 webSocketOpen = true;
 	 
@@ -84,6 +102,7 @@ var stompClient = Stomp.over(socket);
  function onError(){
 	 alert("ERROR")
  }
+ //COSAS DE LOS PERSONAJES
  function getPosGnomo(payload){ //recibir la pos del gnomo del servidor
 	 posGnomo = JSON.parse(payload.body);
  }
@@ -93,9 +112,12 @@ var stompClient = Stomp.over(socket);
  }
  function getStateGnomo(payload){ //recibir el estado del gnomo del servidor (pequeño o grande)
 	stateGnomo = JSON.parse(payload.body);
-	System.out.println(stateGnomo)
  }
  
+ function getDobuleJump(payload){
+	 canDoubleJump = JSON.parse(payload.body);
+ }
+ //-------------------------------------------------------------
  function getReiniciarGame(payload){    //si se quiere reinciiar el juego o no del servidor
 	 reiniciar = JSON.parse(payload.body);
  }
@@ -104,13 +126,16 @@ var stompClient = Stomp.over(socket);
 	 gameOver = JSON.parse(payload.body);
  }
  
- function getVictory(payload){				//si se ha ganado
-	  victoryPoints += JSON.parse(payload.body);
+ function getVictoryGnomo(payload){				//si se ha ganado
+	  victoryGnomo = JSON.parse(payload.body);
+ }
+ 
+  function getVictoryElfo(payload){				//si se ha ganado
+	  victoryElfo = JSON.parse(payload.body);
  }
  
  function getUser(payload){  			//cambiar personaje/primera vez que se elige personaje
 	 let array = JSON.parse(payload.body);
-	 alert(array.player + ", " + array.champ)
 	
 	 if(PlayerChamp1[0] == ""){ //si player 1 está vacio, lo relleno. Si el nombre que me llega es igual al que habia en P1 --> es que quiero cambiar el champ
 		 PlayerChamp1[0]= array.player
@@ -132,4 +157,18 @@ var stompClient = Stomp.over(socket);
  		 PlayerChamp2[1]= array.champ;
 	 }
  }
+ //---------------------PALANCAS---------------------------------	 
+	 function getPalancas(payload){				
+	  palancaModificada = JSON.parse(payload.body);
+	  isDirty = true;
+	  alert("PALACANAS RECIBIDAS " + palancaModificada);
+	  }
+//---------------------MONEDAS---------------------------------	 	  
+	  function getMonedas(payload){
+		   monedaModificada = JSON.parse(payload.body);
+		   isDirty = true;
+	  }
+	  
+	  
+ 
  
