@@ -17,36 +17,45 @@ public class WebSocketController {
     public WebSocketController(SimpMessagingTemplate messagingTemplate) {
         this.messagingTemplate = messagingTemplate;
     }
-  
+
+    @MessageMapping("/updateGameData")
+    @SendTo("/topic/gameData")
+    public GameData updateGameData(GameData gameData) {
+        System.out.println("estoy en UpdateData");
+        // Procesa la actualización de GameData
+        // Puedes hacer las operaciones necesarias aquí
+
+        // Envía la actualización a todos los clientes suscritos al topic "/topic/gameData"
+        return gameData;
+    }
     
     //WORKS ME CAGO EN DIOS SIUUUUUUUUUUUUUUUUUUUUUUUUUU
     @MessageMapping("/prueba")
-    @SendTo("/topic")
+    @SendTo("/topic/gameData")
     public void prueba() {
         System.out.println("estoy en PRUEBA");
     }
     
     
     @MessageMapping("/prueba2")
-    @SendTo("/topic")
+    @SendTo("/topic/gameData")
     public void prueba2(String s) {
         System.out.println("estoy en PRUEBA: ha llegado la palabra " + s );
     }
     
     @MessageMapping("/prueba3")
-    @SendTo("/topic")
-    public void prueba3(Message m) {
-        System.out.println("estoy en PRUEBA: ha llegado el mensaje " + m.getMessage() + " escrito por " + m.getSender());
+    @SendTo("/topic/gameData")
+    public void prueba3(Mensajes m) {
+        System.out.println("estoy en PRUEBA: ha llegado el mensaje " + m.getMessage() + " escrito por " + m.getName() );
     }
     
 
-    @MessageMapping("/prueba4") //para que llegue el mensaje tengo que poner esto
-    @SendTo("/topic/recibirPrueba4") //si el mensjae tiene return, se devolverá aquí
-    public Message prueba4(@Payload Message m, SimpMessageHeaderAccessor HA) {
-    	
-        System.out.println("estoy en PRUEBA 4: ha llegado el mensaje " + m.getMessage() + " escrito por " + m.getSender() );
-        Object o = HA.getSessionAttributes().put("name",m.getSender());
-        System.out.println("Los atributos: " + HA.getSessionAttributes().put("name",m.getSender()));
+    @MessageMapping("/prueba4")
+    @SendTo("/topic/prueba4")
+    public Mensajes prueba4(@Payload Mensajes m, SimpMessageHeaderAccessor HA) {
+        System.out.println("estoy en PRUEBA 4: ha llegado el mensaje " + m.getMessage() + " escrito por " + m.getName() );
+        Object o = HA.getSessionAttributes().put("name",m.getName());
+        System.out.println("Los atributos: " + HA.getSessionAttributes().put("name",m.getName()));
         System.out.println("Los atributos: " + HA.getSessionAttributes().get("name"));
         
         return m;

@@ -23,6 +23,10 @@ var config  = {
         }
     },
 
+    dom: {
+        createContainer: true
+    },
+
     scene:[
         SceneBootLoader, 
         StartScreen, 

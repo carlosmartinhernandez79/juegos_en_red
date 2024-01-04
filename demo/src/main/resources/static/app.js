@@ -7,6 +7,7 @@
  function onConnect(){
 	 alert("Te has conectado bien")
 	 stompClient.subscribe("/topic", onMessageRecived)
+	 stompClient.subscribe("/topic/prueba4", onPrueba4)
 	 
 	 stompClient.send("/app/prueba") //llamar a un metodo normal
 	 stompClient.send("/app/prueba2", //llamar a un método con parámetros (es una string basic)
@@ -34,4 +35,9 @@
  
  function onMessageRecived(){
 	 alert("MENSAJITOS")
+ }
+ 
+ function onPrueba4(payload){
+	 var mes = JSON.parse(payload.body)
+	 console.log(mes.name+ " ME la come")
  }

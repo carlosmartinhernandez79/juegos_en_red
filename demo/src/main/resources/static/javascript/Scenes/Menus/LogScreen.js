@@ -22,10 +22,19 @@ class LogScreen extends Phaser.Scene{
          this.load.image("usuRegis", "./ImagesJS/LogIn/texto_usuario_registrado.png");
          this.load.image("errorText", "./ImagesJS/LogIn/texto_error_operacion.png");
 
+         this.load.html('prueba', 'prueba.html');
     }
     
     create(){
 
+        const element = this.add.dom(400, 300).createFromCache('prueba');
+
+        const inputText = this.getChildByName('buttonPrueba');
+
+        inputText.addEventListener("click")
+        inputText.on("click", function(event){
+            alert("HAS CLICKAO")
+        })
 
 		var myIP;
 
