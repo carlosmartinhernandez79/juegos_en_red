@@ -76,7 +76,6 @@ public class gameState {
     public Vex setPosElfo(@Payload Vex v, SimpMessageHeaderAccessor HA) {
 	   posElfo.setX(v.getX());
 	   posElfo.setY(v.getY());
-	   System.out.println("El mensaje ha llegado correctamente: x = " + v.getX() +  ", " + v.getY());
 	   return v;
     }
     
@@ -100,9 +99,8 @@ public class gameState {
     }
     
     @MessageMapping("/setDoubleJump")
-    @SendTo("/topic/getDoubleJump")
+    @SendTo("/topic/getDobuleJump")
     public boolean setDoubleJump(@Payload boolean i, SimpMessageHeaderAccessor HA) {
-    	
     	return i;
     }
     
@@ -110,6 +108,21 @@ public class gameState {
     
    //------------------------------------------------------------------------------
   //------------------------REINCIAR JUEGO------------------------------------------
+    
+    @MessageMapping("/reiniciarElfo")
+    @SendTo("/topic/getReiniciarElfo")
+    public boolean reiniciarElfo(@Payload boolean reiniciar, SimpMessageHeaderAccessor HA) {
+    
+    	return reiniciar;
+    }
+    
+    
+    @MessageMapping("/reiniciarGnomo")
+    @SendTo("/topic/getReiniciarGnomo")
+    public boolean reiniciarGnomo(@Payload boolean reiniciar, SimpMessageHeaderAccessor HA) {
+    
+    	return reiniciar;
+    }
     
     @MessageMapping("/reiniciarGame")
     @SendTo("/topic/getReiniciarGame")
@@ -195,6 +208,18 @@ public class gameState {
     public int actualizarMonedas(@Payload int monedaModificada, SimpMessageHeaderAccessor HA) {
 
     	return monedaModificada;
+    }
+    
+  //------------------------------------------------------------------------------
+    //------------------------GESTOR DESCONEXIÓN------------------------------------------
+   
+    @MessageMapping("/desconectarUsuario")
+    @SendTo("/topic/getDesconectarUsuario")
+    //o que reciba el int donde se encuentra el cambio y que luego se acceda a ese int para cambiarlo
+    
+    public boolean desconectarUsuario(@Payload boolean desc, SimpMessageHeaderAccessor HA) {
+
+    	return desc;
     }
     
 }

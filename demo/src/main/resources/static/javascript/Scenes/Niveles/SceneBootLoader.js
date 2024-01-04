@@ -76,6 +76,24 @@ class SceneBootLoader extends Phaser.Scene {
         //PANTALLA VICTORIA
         this.load.image("PantallaVictoria", "./ImagesJS/Pantallas/Pantalla_Victoria.jpg");
         //---------------------------------------------------------------------------------
+        //IMAGENES WEBSOCKET
+        
+         this.load.image("BotonLial", "./ImagesJS/WebSocketThings/Boton_Lial.png");
+         this.load.image("BotonTuk", "./ImagesJS/WebSocketThings/Boton_Tuk.png");
+         this.load.image("BotonLocalOff", "./ImagesJS/WebSocketThings/Boton_Local_Off.png");
+         this.load.image("BotonLocalOn", "./ImagesJS/WebSocketThings/Boton_Local_On.png");
+         this.load.image("BotonOnlineOff", "./ImagesJS/WebSocketThings/Boton_Online_Off.png");
+         this.load.image("BotonOnlineOn", "./ImagesJS/WebSocketThings/Boton_Online_On.png");
+         this.load.image("InterfazPersonajes", "./ImagesJS/WebSocketThings/Interfaz_Personajes.png");
+         this.load.image("EsperandoLial", "./ImagesJS/WebSocketThings/Pantalla_Esperando_Lial.png");
+         this.load.image("EsperandoTuk", "./ImagesJS/WebSocketThings/Pantalla_Esperando_Tuk.png");
+         this.load.image("PantallaModo", "./ImagesJS/WebSocketThings/Pantalla_Seleccion_Modo.png");
+         this.load.image("AmbosIgualesTuk", "./ImagesJS/WebSocketThings/Pantalla_Ambos_Iguales_Tuk.png");
+         this.load.image("AmbosIgualesLial", "./ImagesJS/WebSocketThings/Pantalla_Ambos_Iguales_Lial.png");
+        
+        
+        
+        //---------------------------------------------------------------------------------
         
         //IMAGENES IN GAME
     this.load.image("moneda", "./ImagesJS/Moneda.png");

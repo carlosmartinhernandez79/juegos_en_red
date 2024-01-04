@@ -1,13 +1,17 @@
 var posElfo;
 var posGnomo;
 var stateGnomo;
+
 var reiniciar = false;
+var reiniciarElfo = false;
+var reiniciarGnomo = false;
+
 var gameOver = false;
-var webSocketOpen = true; //MODIFICAR 
+var webSocketOpen = false; //MANTENER A TRUE CUANDO SE ABRA EL SOCKET O ME CARGO MEDIO JUEGO 
 var victoryElfo = false;
 var victoryGnomo = false;
 
-var canDoubleJump = false;
+var canDoubleJumpServer = false;
 
 var palancaModificada = -1;
 var monedaModificada = -1;
@@ -17,6 +21,13 @@ var isDirty = false;
 
 var PlayerChamp1 = [];
 var PlayerChamp2 = [];
+
+var openSocket = true;
+
+var socket;
+var stompClient;
+
+var connexionLost = false;
 
 for(let i = 0; i<2; i++){
 	PlayerChamp1[i]="";
@@ -32,12 +43,24 @@ $(document).ready(function() {
     });
 });
 
+setInterval(webSocketThings, 100);
+
+function webSocketThings(){
+	
+console.log("WEB SOCKET CLOSE")
+	
 if(webSocketOpen){
 
-var socket = new SockJS('/ws');
-var stompClient = Stomp.over(socket);
+console.log("WEB SOCKET OPEN")
+
+if(openSocket){
+	socket = new SockJS('/ws');
+	stompClient = Stomp.over(socket);
 
  stompClient.connect({}, onConnect,onError);
+ openSocket = false
+}
+
  
 
  
@@ -50,7 +73,10 @@ var stompClient = Stomp.over(socket);
 	 stompClient.subscribe("/topic/getStateGnomo", getStateGnomo)//Lo que llegue del servidor de este método irá a getStateGnomo
 	 stompClient.subscribe("/topic/getDobuleJump", getDobuleJump)
 	  //-------------------CONDICIONES DE VICTORIA DERROTA Y RESET----------------------------------
-	 stompClient.subscribe("/topic/getReiniciarGame", getReiniciarGame)
+	 stompClient.subscribe("/topic/getReiniciarGnomo", getReiniciarGnomo)
+	 stompClient.subscribe("/topic/getReiniciarElfo", getReiniciarElfo)
+	  stompClient.subscribe("/topic/getReiniciarGame", getReiniciarGame)
+	 
 	 stompClient.subscribe("/topic/getGameOver", getGameOver)
 	 stompClient.subscribe("/topic/getVictoryElfo", getVictoryElfo)
 	 stompClient.subscribe("/topic/getVictoryGnomo", getVictoryGnomo)
@@ -64,48 +90,25 @@ var stompClient = Stomp.over(socket);
 	  
 	  //-------------------PALANCAS----------------------------------
 	  stompClient.subscribe("/topic/getMonedas", getMonedas)
-	 
+	  
+	  //--------------USUARIO DESCONECTADO---------------------------------
+	  stompClient.subscribe("/topic/getDesconectarUsuario", getDesconectarUsuario)
+	  
 	 webSocketOpen = true;
-	 
-	 //--------------IMPORTANTE ESE COMENTARIO DE ARRIBA------------------
-	 /*
-	 - Esto me permite enviar info a un sitio en específico: 
-	     Si hay movimiento, envío a x URL la posición del personaje.
-	 - SI hay cambios en el servidor, puedo devolverlos a una URL en específico de MI JUEGO.
-	  */
-	 	    
-	 
-	 //-------WAY TO SEND THINGS THROUGHT SOCKETS------------------
-	/* stompClient.send("/app/prueba") //llamar a un metodo normal
-	 stompClient.send("/app/prueba2", //llamar a un método con parámetros (es una string basic)
-	 {},
-	 "HOLA COÑITOS"
-	 )
-	 
-	 stompClient.send("/app/prueba3", //llamar a un método con parámetros (es una string basic)
-	 {},
-	 JSON.stringify({sender:"Hugo", content: "ESTOY CONTENTO COMO FUNCIONE"})
-	 )
-	 
-	 
-	 stompClient.send("/app/prueba4", //llamar a un método con parámetros (es una string basic)
-	 {},
-	 JSON.stringify({sender:"Alvaro", content: "A ver como va esto"})
-	 )*/
-	 setInterval(() => {
-  				 	stompClient.send("/game/getPosElfo")
-				}, 200);
 	 
  }
  
- 	 	stompClient.send("/game/getPosElfo")
- 
  function onError(){
-	 alert("ERROR")
+	 //alert("ERROR") //PONER LO DE QUE SE HA PERDIDO LA CONEXIÓN CON EL SERVIDOR Y QUE TE DEVUELVA AL MAIN
+	 connexionLost = true;
  }
  //COSAS DE LOS PERSONAJES
  function getPosGnomo(payload){ //recibir la pos del gnomo del servidor
 	 posGnomo = JSON.parse(payload.body);
+ }
+ 
+  function getDesconectarUsuario(payload){ //recibir la pos del gnomo del servidor
+	 connexionLost = JSON.parse(payload.body);
  }
  
  function getPosElfo(payload){ //recibir la pos del elfo del servidor
@@ -116,13 +119,21 @@ var stompClient = Stomp.over(socket);
  }
  
  function getDobuleJump(payload){
-	 canDoubleJump = JSON.parse(payload.body);
+	 canDoubleJumpServer = JSON.parse(payload.body);
  }
  //-------------------------------------------------------------
- function getReiniciarGame(payload){    //si se quiere reinciiar el juego o no del servidor
-	 reiniciar = JSON.parse(payload.body);
+ function getReiniciarGnomo(payload){    //si se quiere reinciiar el juego o no del servidor
+	 reiniciarGnomo = JSON.parse(payload.body);
  }
  
+  function getReiniciarElfo(payload){    //si se quiere reinciiar el juego o no del servidor
+	 reiniciarElfo = JSON.parse(payload.body);
+ }
+ 
+  function getReiniciarGame(payload){    //si se quiere reinciiar el juego o no del servidor
+	 reiniciar = JSON.parse(payload.body);
+ }
+ //----------------------------------------------
  function getGameOver(payload){         //si se a perdido el juego o no del servidor
 	 gameOver = JSON.parse(payload.body);
  }
@@ -162,7 +173,6 @@ var stompClient = Stomp.over(socket);
 	 function getPalancas(payload){				
 	  palancaModificada = JSON.parse(payload.body);
 	  isDirty = true;
-	  alert("PALACANAS RECIBIDAS " + palancaModificada);
 	  }
 //---------------------MONEDAS---------------------------------	 	  
 	  function getMonedas(payload){
@@ -173,3 +183,4 @@ var stompClient = Stomp.over(socket);
 } 
  
  
+}

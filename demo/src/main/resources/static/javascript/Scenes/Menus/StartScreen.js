@@ -42,7 +42,7 @@ class StartScreen extends Phaser.Scene{
                 })
                 
                 this.BotonJugar.on('pointerdown', function () {
-                    this.scene.start('LogIn', {username: this.username});
+                    this.scene.start('ModoDeJuego', {username: this.username});
                 }, this);
                 //////////////////////////////////////////////////////////////////////////
                 this.OpcionesOff = this.add.image(1000, 250,"BotonOpcionesOff").setScale(0.75);

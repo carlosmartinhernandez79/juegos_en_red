@@ -13,7 +13,6 @@ class TutorialLevelOnlineElfo extends Phaser.Scene{
         //  CREACION CON MAPA DE TILES
         /////////////////////////////////////////////////////////////
         /// VARIABLE MAPA LE PASAMOS EL KEY AL ARCHIVO JSON
-        console.log(stompClient)
         var map = this.make.tilemap({ key: 'tilemapLvL1', tileWidth:32, tileHeight:32});
 
         /// VARIABLE TILESET LE PASAMOS EL NOMBRE DEL TILESET EN LILED Y EL KEY DEL TILESET EN ASSETS
@@ -164,7 +163,7 @@ class TutorialLevelOnlineElfo extends Phaser.Scene{
     this.pinchos.create(650, 2040, 'pinchos'); //pincho incio
     this.pinchos.create(1315, 1610, 'pinchos');//pincho saltos
     this.pinchos.create(933, 1610, 'pinchos');//pincho saltos
-    this.pinchos.create(808, 1225, 'pinchos'); //pincho cerca de la plataforma movil
+    this.pinchos.create(800, 1225, 'pinchos'); //pincho cerca de la plataforma movil
     this.pinchos.create(1546, 1225, 'pinchos');//pincho cerca de la plataforma movil
     //--------------------------------- 
 
@@ -201,6 +200,7 @@ class TutorialLevelOnlineElfo extends Phaser.Scene{
     //this.physics.add.overlap(this.player, this.misMonedas, this.pickCoin, null, this);
     this.physics.add.overlap(this.player, this.pinchos, this.pinchosDeath, null, this);
     this.physics.add.collider(this.player, this.box);
+    this.physics.add.overlap(this.player, this.pot, this.pickPotion, null, this);
     this.physics.add.overlap(this.player, this.exitDoor, this.canExit, null, this);
 
     this.player.body.setCollideWorldBounds(true);
@@ -227,8 +227,7 @@ class TutorialLevelOnlineElfo extends Phaser.Scene{
     this.physics.add.collider(this.gnomo,  this.generadorBarriles);
     this.physics.add.collider(this.gnomo, this.doors);
     //this.physics.add.overlap(this.gnomo, this.misMonedas, this.pickCoin, null, this);
-    this.physics.add.overlap(this.gnomo, this.pinchos, this.pinchosDeath, null, this);
-    this.physics.add.overlap(this.gnomo, this.pot, this.pickPotion, null, this);
+    //this.physics.add.overlap(this.gnomo, this.pinchos, this.pinchosDeath, null, this);
     this.physics.add.collider(this.gnomo, this.box);
     this.physics.add.overlap(this.gnomo, this.exitDoor, this.canExit, null, this);
 
@@ -361,13 +360,23 @@ class TutorialLevelOnlineElfo extends Phaser.Scene{
             }
             
             if(reiniciar){//método para reiniciar
-				this.scene.start("TutorialLevelOnlineElfo"); //whoever le de, reinicia su pantall
+				this.MiMusicaBase.pause();
+				this.scene.start("TutorialLevelOnlineElfo");
 				reiniciar = false;
 			}
             
             if(gameOver){ //método para perder
 				 this.scene.start("GameOver",{pantalla: "TutorialLevelOnlineElfo"});
 				  gameOver = false;
+			}
+			
+			if(connexionLost){
+				connexionLost = false;
+				this.MiMusicaBase.pause();
+				this.scene.pause("Tiempo_Monedas")
+				this.scene.sendToBack("Tiempo_Monedas")
+				this.scene.start("StartScreen",{sonido : this.sonido, username : this.username});
+				webSocketOpen = false;
 			}
             
             
@@ -377,7 +386,7 @@ class TutorialLevelOnlineElfo extends Phaser.Scene{
    	//---------------------------PAUSE MENU--------------------------------------
         pauseGame(){
             this.scene.bringToTop("PauseMenu") //mostramos sobre todas el menu de pausa
-            this.scene.run('PauseMenu', {sonido: this.sonido, pantalla: "TutorialLevelOnlineElfo"}) //y lo ejecutamos
+            this.scene.run('PauseMenu', {sonido: this.sonido, pantalla: "TutorialLevelOnlineElfo",username:this.username}) //y lo ejecutamos
             this.MiMusicaBase.pause();
         }
     //--------------------------------------------------------------------------
@@ -418,9 +427,9 @@ class TutorialLevelOnlineElfo extends Phaser.Scene{
             char.body.setVelocityY(-400);
             
             setTimeout(()=>{
-                this.scene.start("GameOver",{pantalla: "TutorialLevelOnlineElfo"});
+                //this.scene.start("GameOver",{pantalla: "TutorialLevelOnlineElfo"});
                 
-             this.endGame();
+             this.resetGame();
             }, 200);
     
         }
@@ -429,13 +438,13 @@ class TutorialLevelOnlineElfo extends Phaser.Scene{
     
      //-----------------------------ELFO-GATO (NOT IMPLEMENTED)--------------------------------------
         pickPotion(){
-           // this.gnomo.hacerMetamorfosis();
+           	this.player.hacerMetamorfosis();
             this.pot.destroy();
             this.VivaElVino.play();      
         }
     
         destransformarseFunc(){
-            //this.gnomo.deshacerMetamorfosis();
+            this.player.deshacerMetamorfosis();
             this.desTransformarse.destroy();
             this.IaMariano.play();
         }

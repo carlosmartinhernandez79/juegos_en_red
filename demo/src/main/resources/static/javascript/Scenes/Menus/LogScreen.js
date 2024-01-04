@@ -21,22 +21,29 @@ class LogScreen extends Phaser.Scene{
          this.load.image("usuElim", "./ImagesJS/LogIn/texto_usuario_eliminado.png");
          this.load.image("usuRegis", "./ImagesJS/LogIn/texto_usuario_registrado.png");
          this.load.image("errorText", "./ImagesJS/LogIn/texto_error_operacion.png");
-
-         this.load.html('prueba', 'prueba.html');
+         
+		this.load.html('UsernameInput', 'UsernameInput.html');
+		this.load.html('PasswordInput', 'PasswordInput.html');
     }
     
     create(){
+		
+//TODO LO DEL HTML NUEVO
+ /*	var username = this.add.dom(600, 200).createFromCache('UsernameInput');
+ 	var password = this.add.dom(600, 280).createFromCache('PasswordInput');
+ //const inputText = this.getChildByName('nameField)
+        var username = username.getChildByName("utext") //me dice que no existe elbyname
+        //this.username.style.display = "block"
 
-        const element = this.add.dom(400, 300).createFromCache('prueba');
-
-        const inputText = this.getChildByName('buttonPrueba');
-
-        inputText.addEventListener("click")
-        inputText.on("click", function(event){
-            alert("HAS CLICKAO")
-        })
-
-		var myIP;
+        var password = password.getChildByName("ptext")
+        //this.password.style.display = "block"
+        
+ */
+ 
+ 
+ 
+/////////////////////////////////////////////////////////////////////////////////////////////
+	var myIP;
 
 		fetch('/Usuarios/getServerIp')
                 .then(response => response.text())
@@ -62,7 +69,7 @@ class LogScreen extends Phaser.Scene{
         this.usuRegis = this.add.image(100,30,"usuRegis").setScale(0.4).setVisible(false);
         this.errorText = this.add.image(140,30,"errorText").setScale(0.4).setVisible(false);
 
-        this.LogThings = document.getElementById("LogThings")
+     	 this.LogThings = document.getElementById("LogThings")
         this.LogThings.style.display = "block"
 
         var username = document.getElementById("utext")

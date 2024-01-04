@@ -6,6 +6,9 @@ class PauseMenu extends Phaser.Scene{
         if(data){
             this.sonido = data.sonido;
             this.pantalla = data.pantalla;
+            if(data.username){
+				this.username = data.username
+			}
             console.log(this.pantalla)
         }
     }
@@ -38,18 +41,43 @@ class PauseMenu extends Phaser.Scene{
             this.menuOn.setVisible(true);
         })
         
-        this.menu.on('pointerout',()=>{
+        this.menu.on('pointerout',()=>{ //PONER QUE SI ESTÁ ABIERTO EL SOCKET, AL OTRO USUARIO LE MANDE UN MENSAJE DE QUE TE HAS SALIDO Y CERRAR LA CONEXIÓN CON EL SOCKET
             this.menuOff.setVisible(true);
             this.menuOn.setVisible(false);
         })
 
         this.menu.on('pointerdown', function () { //HACER QUE CUANDO UNO LE DE A MENU, SE PIERDA LA CONEXIÓN DEL SOCKET
-            this.scene.start('StartScreen',{sonido: this.scene.get("TutorialLevel").getSound()});
+        
+            
+			if(webSocketOpen){ //si el websocket its open, haz esto
+				stompClient.send("/game/desconectarUsuario",  //envia un mensaje al servidor de que han reiniciado
+	 			{},
+				true
+	 			)
+	 			  this.scene.start('StartScreen',{sonido: this.scene.get(this.pantalla).getSound(),username:this.username});
+	 			  
+	 			  stompClient.send("/game/setUser", //ACTUALIZO LA POS DE LOS PERSONAJES CONSNTANTEMENTE, HAYA CAMBIO O NO
+	 					{},
+						JSON.stringify({player:PlayerChamp1[0], champ: ""})
+	 				)
+	 				stompClient.send("/game/setUser", //ACTUALIZO LA POS DE LOS PERSONAJES CONSNTANTEMENTE, HAYA CAMBIO O NO
+	 					{},
+						JSON.stringify({player:PlayerChamp2[0], champ: ""})
+	 				)
+			}
+			else{
+				  this.scene.start('StartScreen',{sonido: this.scene.get(this.pantalla).getSound()});
+			}
+        
+          
             this.scene.bringToTop('StartScreen');
             this.scene.sendToBack(this.pantalla);
             this.scene.sleep('PauseMenu');
             this.scene.sendToBack('OptionsFromPause');
             this.scene.sendToBack('Tiempo_Monedas');
+            
+
+            
         }, this);
 
 
@@ -102,7 +130,7 @@ class PauseMenu extends Phaser.Scene{
             this.scene.start(this.pantalla); //whoever le de, reinicia su pantalla
 
             if(webSocketOpen){ //si el websocket its open, haz esto
-			stompClient.send("/game/reiniciarGame",  //envia un mensaje al servidor de que han reiniciado
+				stompClient.send("/game/reiniciarGame",  //envia un mensaje al servidor de que han reiniciado
 	 			{},
 				true
 	 		)

@@ -116,17 +116,18 @@ class ElfoOnline extends Phaser.GameObjects.Sprite{
                 this.SonidoSalto.play();
                 
                 this.elfo.anims.play('elfa_jump', true);
-
+					
+				stompClient.send("/game/setDoubleJump", //llamar a un método con parámetros (es una string basic)
+	 					{},
+						true
+	 				)
                
                if(this.canDoubleJump==1){
 					
                     this.body.setVelocityY(-400);
                     this.elfo.anims.play('elfa_jump_doble', true);
                     ++this.canDoubleJump;
-                    stompClient.send("/game/setDoubleJump", //llamar a un método con parámetros (es una string basic)
-	 					{},
-						true
-	 				)
+                    
                 }    
                 
                  else if(this.canDoubleJump==0){
@@ -142,7 +143,6 @@ class ElfoOnline extends Phaser.GameObjects.Sprite{
             }
         
         if(this.metamorfosis && this.cat){
-            console.log("moving")
             this.cat.move();
         }   
     }
@@ -178,57 +178,35 @@ class ElfoOnline extends Phaser.GameObjects.Sprite{
 	}
 	
 	
-	/*if (this.elfo.y > newY && this.elfo.body.blocked.down) //PRUEVAS QUE ESTABA HACIENDO
+	if (canDoubleJumpServer) //PRUEVAS QUE ESTABA HACIENDO
     { 
          this.SonidoSalto.play();
                 
          this.elfo.anims.play('elfa_jump', true);
                 
-         this.body.setVelocityY(-600); 
-    	 ++this.canDoubleJump;
-    	 canDoubleJump = false;
-               
-    }  
-    
-   /*if(canDoubleJump){
-		 //PROBLEMA, ENTRA AQUÍ DE UNA, TENGO QUE BUSCAR UNA FORMA DE QUE NO, ASI PUEDA VERSE EL DOULE JUMP
-          this.body.setVelocityY(-400);
-          this.elfo.anims.play('elfa_jump_doble', true);
-          canDoubleJump = false;
-	}
-	
-	if(this.elfo.body.blocked.down){ //this.elfo.body.blocked.down funciona con los tiles. El isTouching no
-                this.canDoubleJump = 0;
-                console.log("Touching suelo")
-     }*/
-     
-     
-     if (this.elfo.y > newY+30&& (this.elfo.body.blocked.down || this.canDoubleJump<=1)) //
-            { 
-                this.SonidoSalto.play();
-                
-                this.elfo.anims.play('elfa_jump', true);
-
-               
-               if(this.canDoubleJump==1){
+         //this.body.setVelocityY(-600); 
+    	 this.canDoubleJump++;
+    	
+    	 
+    	if(this.canDoubleJump==2){
 					
-                    this.body.setVelocityY(-400);
-                    this.elfo.anims.play('elfa_jump_doble', true);
-                    ++this.canDoubleJump;
+        	this.body.setVelocityY(-400);
+          	this.elfo.anims.play('elfa_jump_doble', true);
+            this.canDoubleJump = 0;
+             canDoubleJumpServer = false;
 
-                }    
-                
-                else if(this.canDoubleJump==0){
-                this.body.setVelocityY(-900); 
-                ++this.canDoubleJump;
-                console.log(this.canDoubleJump)
-
-                }   
-            }  
-            else if(this.elfo.body.blocked.down){ //this.elfo.body.blocked.down funciona con los tiles. El isTouching no
-                this.canDoubleJump = 0;
-               
-            }
+         }    
+		else if(this.canDoubleJump==1){  //normal
+                this.body.setVelocityY(-600); 
+                 canDoubleJumpServer = false;
+        }               
+    } 
+    
+    
+    
+    if(this.metamorfosis && this.cat){
+        this.cat.moveServer(newX, newY);
+    }   
      
 }
     
@@ -238,7 +216,7 @@ class ElfoOnline extends Phaser.GameObjects.Sprite{
 
         this.metamorfosis = true;
 
-        this.cat = new Cat(this.scene, this.elfo.x,this.elfo.y+107)
+        this.cat = new CatOnline(this.scene, this.elfo.x,this.elfo.y+107)
         this.elfo.setVisible(false);
         this.elfo.setPosition(this.elfo.x,this.elfo.y-30); //subirle el tamaño del sprite
         this.body.setVelocity(0);

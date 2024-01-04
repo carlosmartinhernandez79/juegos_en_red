@@ -13,7 +13,7 @@ class TutorialLevelOnlineGnomo extends Phaser.Scene{
         //  CREACION CON MAPA DE TILES
         /////////////////////////////////////////////////////////////
         /// VARIABLE MAPA LE PASAMOS EL KEY AL ARCHIVO JSON
-        console.log(stompClient)
+
         var map = this.make.tilemap({ key: 'tilemapLvL1', tileWidth:32, tileHeight:32});
 
         /// VARIABLE TILESET LE PASAMOS EL NOMBRE DEL TILESET EN LILED Y EL KEY DEL TILESET EN ASSETS
@@ -164,7 +164,7 @@ class TutorialLevelOnlineGnomo extends Phaser.Scene{
     this.pinchos.create(650, 2040, 'pinchos'); //pincho incio
     this.pinchos.create(1315, 1610, 'pinchos');//pincho saltos
     this.pinchos.create(933, 1610, 'pinchos');//pincho saltos
-    this.pinchos.create(808, 1225, 'pinchos'); //pincho cerca de la plataforma movil
+    this.pinchos.create(800, 1225, 'pinchos'); //pincho cerca de la plataforma movil
     this.pinchos.create(1546, 1225, 'pinchos');//pincho cerca de la plataforma movil
     //--------------------------------- 
 
@@ -212,7 +212,7 @@ class TutorialLevelOnlineGnomo extends Phaser.Scene{
     this.physics.add.collider(this.cat,  this.generadorBarriles);
     this.physics.add.collider(this.cat, this.doors);
     //this.physics.add.overlap(this.cat, this.misMonedas, this.pickCoin, null, this);
-    this.physics.add.overlap(this.cat, this.pinchos, this.pinchosDeath, null, this);
+    //this.physics.add.overlap(this.cat, this.pinchos, this.pinchosDeath, null, this);
     this.physics.add.collider(this.cat, this.box);
     this.physics.add.overlap(this.cat, this.exitDoor, this.canExit, null, this);
     this.physics.add.overlap(this.cat, this.desTransformarse, this.destransformarseFunc, null, this); 
@@ -224,7 +224,7 @@ class TutorialLevelOnlineGnomo extends Phaser.Scene{
     this.physics.add.collider(this.elfo,  this.generadorBarriles);
     this.physics.add.collider(this.elfo, this.doors);
     //this.physics.add.overlap(this.elfo, this.misMonedas, this.pickCoin, null, this);
-    this.physics.add.overlap(this.elfo, this.pinchos, this.pinchosDeath, null, this);
+    //this.physics.add.overlap(this.elfo, this.pinchos, this.pinchosDeath, null, this);
     this.physics.add.overlap(this.elfo, this.pot, this.pickPotion, null, this);
     this.physics.add.collider(this.elfo, this.box);
     this.physics.add.overlap(this.elfo, this.exitDoor, this.canExit, null, this);
@@ -359,13 +359,23 @@ class TutorialLevelOnlineGnomo extends Phaser.Scene{
             
             
             if(reiniciar){
-				this.scene.start("TutorialLevelOnlineGnomo"); //whoever le de, reinicia su pantall
+				this.MiMusicaBase.pause();
+				this.scene.start("TutorialLevelOnlineGnomo");
 				reiniciar = false;
 			}
             
              if(gameOver){
 				 this.scene.start("GameOver",{pantalla: "TutorialLevelOnlineGnomo"});
 				 gameOver = false;
+			}
+			
+			if(connexionLost){
+				connexionLost = false;
+				this.MiMusicaBase.pause();
+				this.scene.pause("Tiempo_Monedas")
+				this.scene.sendToBack("Tiempo_Monedas")
+				this.scene.start("StartScreen",{sonido : this.sonido, username : this.username});
+				webSocketOpen = false;
 			}
             
             this.increment = this.increment - 32;
@@ -375,7 +385,7 @@ class TutorialLevelOnlineGnomo extends Phaser.Scene{
 
         pauseGame(){
             this.scene.bringToTop("PauseMenu") //mostramos sobre todas el menu de pausa
-            this.scene.run('PauseMenu', {sonido: this.sonido, pantalla: "TutorialLevelOnlineGnomo"}) //y lo ejecutamos
+            this.scene.run('PauseMenu', {sonido: this.sonido, pantalla: "TutorialLevelOnlineGnomo",username:this.username}) //y lo ejecutamos
             this.MiMusicaBase.pause();
         }
     
@@ -417,8 +427,9 @@ class TutorialLevelOnlineGnomo extends Phaser.Scene{
             char.body.setVelocityY(-400);
             
             setTimeout(()=>{
-                  this.scene.start("GameOver",{pantalla: "TutorialLevelOnlineGnomo"});
-                  
+                  //this.scene.start("GameOver",{pantalla: "TutorialLevelOnlineGnomo"});
+                   
+                  this.resetGame();
             }, 200);
     
         }
@@ -428,13 +439,13 @@ class TutorialLevelOnlineGnomo extends Phaser.Scene{
     
     //////////////!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1 REFERENCIA ELFO
         pickPotion(){
-           // this.elfo.hacerMetamorfosis();
+            this.elfo.hacerMetamorfosis();
             this.pot.destroy();
             this.VivaElVino.play();      
         }
     
         destransformarseFunc(){
-            //this.elfo.deshacerMetamorfosis();
+            this.elfo.deshacerMetamorfosis();
             this.desTransformarse.destroy();
             this.IaMariano.play();
         }

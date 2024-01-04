@@ -19,11 +19,11 @@ class LogIn extends Phaser.Scene{
         // Lógica de inicialización de la escena
         this.add.image(0,0, "FondoOscuroVacio").setOrigin(0,0);
 
-        this.add.image(600,70, "PersonajesText").setOrigin(0.5,0.5);
+        this.add.image(600,70, "InterfazPersonajes").setOrigin(0.5,0.5);
 
-        this.gnomo = this.add.image(300, 300, "GnomoPng").setScale(0.1);
+        this.gnomo = this.add.image(300, 350, "BotonTuk").setScale(0.65);
 
-        this.elfo=this.add.image(700, 300, "ElfaPng").setScale(0.15);
+        this.elfo=this.add.image(900, 350, "BotonLial").setScale(0.65);
 
         var Volver = this.add.image(30, 35, "Flecha").setScale(0.2)
         
@@ -31,7 +31,7 @@ class LogIn extends Phaser.Scene{
 		
         Volver.setInteractive()
             .on('pointerdown', function () {
-                this.scene.start('StartScreen');
+                this.scene.start('ModoDeJuego',{username:this.username});
             }, this);
             
         this.gnomo.setInteractive()
@@ -41,7 +41,7 @@ class LogIn extends Phaser.Scene{
 			 y cambio de pantalla a waiting for players que es un lobby
 			 */
 			this.playerSelected = "gnomo"
-            this.scene.start('waitingForPlayer',{username: this.username, playerSelected:  this.playerSelected});
+            this.scene.start('WaitingForElfo',{username: this.username, playerSelected:  this.playerSelected});
                 
             stompClient.send("/game/setUser", 
 	 			{},
@@ -55,9 +55,8 @@ class LogIn extends Phaser.Scene{
             .on('pointerdown', function () {
 				
 			this.playerSelected = "elfo"	
-           	this.scene.start('waitingForPlayer',{username: this.username, playerSelected:  this.playerSelected});
+           	this.scene.start('WaitingForGnomo',{username: this.username, playerSelected:  this.playerSelected});
                 
-
                 
             stompClient.send("/game/setUser", //ACTUALIZO LA POS DE LOS PERSONAJES CONSNTANTEMENTE, HAYA CAMBIO O NO
 	 			{},
@@ -69,25 +68,6 @@ class LogIn extends Phaser.Scene{
         this.data.set('NamePlayer1', "Player1");
         this.data.set('NamePlayer2', "Player2");
 
-
-        this.NivelesOff = this.add.image(600, 525,"BotonNivelesOff").setScale(0.75);
-        this.NivelesOn = this.add.image(600, 525,"BotonNivelesOn").setScale(0.85);
-        this.BotonNiveles = this.NivelesOff
-        this.NivelesOn.setVisible(false);
-        this.BotonNiveles.setInteractive()
-        
-        this.BotonNiveles.on('pointerover',()=>{
-            this.NivelesOn.setVisible(true);
-        })
-        
-        this.BotonNiveles.on('pointerout',()=>{
-            this.NivelesOff.setVisible(true);
-            this.NivelesOn.setVisible(false);
-        })
-        
-        this.BotonNiveles.on('pointerdown', function () {
-            this.scene.start("LevelSelector")
-        }, this);
     }
 
     update() {

@@ -28,28 +28,43 @@ class GameOver extends Phaser.Scene{
         graphics.fillRect(0, 0, 1200, 600);
 
         this.space = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
+        
 
-this.myIPDerrota= ""
+
+		this.myIPDerrota= ""
     }
 
     update() {
         if(this.space.isDown){
             this.scene.stop();
-           
+            
+           	this.scene.get(this.pantalla).MiMusicaBase.pause();
 			var sceneMain = this.scene.start(this.pantalla); //comienzo de nuevo esta pantalla
+
 			
-			if(webSocketOpen){ //si el websocket its open, haz esto
-			stompClient.send("/game/reiniciarGame",  //pone a ambos jugadores en la pantalla de gameOver, independientemente de quien pierda
+			if(webSocketOpen && this.pantalla == "TutorialLevelOnlineGnomo"){ //si el websocket its open, haz esto
+			stompClient.send("/game/reiniciarElfo",  //pone a ambos jugadores en la pantalla de gameOver, independientemente de quien pierda
 	 			{},
 				true
 	 		)
 	 		}
-			
-            this.scene.get(this.pantalla).MiMusicaBase.pause();
+	 		if(webSocketOpen && this.pantalla == "TutorialLevelOnlineElfo"){ //si el websocket its open, haz esto
+			stompClient.send("/game/reiniciarGnomo",  //pone a ambos jugadores en la pantalla de gameOver, independientemente de quien pierda
+	 			{},
+				true
+	 		)
+	 		}
+	 		
+	 		if(webSocketOpen){ //si el websocket its open, haz esto
+			stompClient.send("/game/reiniciarGame",  //pone a ambos jugadores en la pantalla de gameOver, independientemente de quien pierda
+	 			{},
+				true
+	 		)
         }
-        
-        
-        if(reiniciar){ //como quiero que se reinicien a la vez
+   	}
+   	
+   	
+   	if(reiniciar){ //como quiero que se reinicien a la vez
         
         /*Esto es complejo, muere el elfo, y aquí llegan el elfo y el gnomo. 
         Aqui llegará el elfo o el gnomo, dependiendo de quien le haya dado antes al espacio. En caso de darle el gnomo, 
@@ -61,14 +76,38 @@ this.myIPDerrota= ""
 				this.scene.start("TutorialLevelOnlineElfo"); 
 			}
 				reiniciar = false;
+	}
+        
+       /* if(reiniciarElfo){ //como quiero que se reinicien a la vez
+        
+        /*Esto es complejo, muere el elfo, y aquí llegan el elfo y el gnomo. 
+        Aqui llegará el elfo o el gnomo, dependiendo de quien le haya dado antes al espacio. En caso de darle el gnomo, 
+        se reinicia arriba, manda una señal de reinciair al servidor e instantaneamente, se reinicia el elfo
+         
+			if(this.pantalla == "TutorialLevelOnlineElfo"){
+				this.scene.get(this.pantalla).MiMusicaBase.pause();
+				this.scene.start("TutorialLevelOnlineElfo");
+				reiniciarElfo = false;		
+								//this.scene.get("TutorialLevelOnlineGnomo").MiMusicaBase.pause();
 			}
+		}
+
+		if(reiniciarGnomo){ //como quiero que se reinicien a la vez
+        
+			if(this.pantalla == "TutorialLevelOnlineGnomo"){
+				this.scene.get(this.pantalla).MiMusicaBase.pause();
+				this.scene.start("TutorialLevelOnlineGnomo");
+								//this.scene.get("TutorialLevelOnlineGnomo").MiMusicaBase.pause();
+				reiniciarGnomo = false;	
+			}
+		}*/
         
           if (!this.dataSended) {
             this.sendData(); // Llamar al método que envía los datos
          }
     }
     
-        setIPDerrota(ip){
+    setIPDerrota(ip){
 		this.myIPDerrota = ip;
 	}
     

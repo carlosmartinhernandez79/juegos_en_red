@@ -23,10 +23,6 @@ var config  = {
         }
     },
 
-    dom: {
-        createContainer: true
-    },
-
     scene:[
         SceneBootLoader, 
         StartScreen, 
@@ -46,7 +42,11 @@ var config  = {
         Records,
         TutorialLevelOnlineElfo,
         TutorialLevelOnlineGnomo,
-        waitingForPlayer
+        waitingForPlayer,
+        ModoDeJuego,
+        WaitingForElfo,
+        WaitingForGnomo,
+        AmbosIguales
         ]
 }
 
