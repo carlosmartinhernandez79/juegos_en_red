@@ -1,5 +1,7 @@
 package com.example.demo;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.Payload;
@@ -49,6 +51,7 @@ public class gameState {
     private Vex posElfo;
     private Vex posGnomo;
    
+    private List<boolean[]> palancasActivas;
 
     private final SimpMessagingTemplate messagingTemplate;
 
@@ -79,5 +82,13 @@ public class gameState {
     	posGnomo.setX(v.getX());
     	posGnomo.setY(v.getY());
     	return v;
+    }
+
+    @MessageMapping("/setPalancasActivas")
+    @SendTo("/topic/getPalancasActivas")
+    public List<boolean[]> setPalancasActivas(@Payload List<boolean[]> l, SimpMessageHeaderAccessor HA) {
+    	
+    	palancasActivas = l;
+    	return l;
     }
 }
