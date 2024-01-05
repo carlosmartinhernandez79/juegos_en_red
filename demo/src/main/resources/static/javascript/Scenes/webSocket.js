@@ -34,6 +34,8 @@ for(let i = 0; i<2; i++){
 	PlayerChamp2[i]="";
 }
 
+//CHAT
+var messages = [];
 
 $(document).ready(function() {
     // Realiza una solicitud al servidor para obtener la IP
@@ -93,7 +95,10 @@ if(openSocket){
 	  
 	  //--------------USUARIO DESCONECTADO---------------------------------
 	  stompClient.subscribe("/topic/getDesconectarUsuario", getDesconectarUsuario)
-	  
+
+	 //-------------------CHAT-------------------------
+	 stompClient.subscribe('/topic/chatOnline', messageChat);
+	 
 	 webSocketOpen = true;
 	 
  }
@@ -102,6 +107,13 @@ if(openSocket){
 	 //alert("ERROR") //PONER LO DE QUE SE HA PERDIDO LA CONEXIÓN CON EL SERVIDOR Y QUE TE DEVUELVA AL MAIN
 	 connexionLost = true;
  }
+
+//CHAT
+function messageChat(payload){
+	messages = payload;
+	displayMessages(messages);
+}
+	
  //COSAS DE LOS PERSONAJES
  function getPosGnomo(payload){ //recibir la pos del gnomo del servidor
 	 posGnomo = JSON.parse(payload.body);
