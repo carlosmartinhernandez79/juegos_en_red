@@ -54,16 +54,9 @@ class PauseMenu extends Phaser.Scene{
 	 			{},
 				true
 	 			)
-	 			  this.scene.start('StartScreen',{sonido: this.scene.get(this.pantalla).getSound(),username:this.username});
-	 			  
-	 			  stompClient.send("/game/setUser", //ACTUALIZO LA POS DE LOS PERSONAJES CONSNTANTEMENTE, HAYA CAMBIO O NO
-	 					{},
-						JSON.stringify({player:PlayerChamp1[0], champ: ""})
-	 				)
-	 				stompClient.send("/game/setUser", //ACTUALIZO LA POS DE LOS PERSONAJES CONSNTANTEMENTE, HAYA CAMBIO O NO
-	 					{},
-						JSON.stringify({player:PlayerChamp2[0], champ: ""})
-	 				)
+	 			  this.scene.start('StartScreen',{sonido: this.scene.get(this.pantalla).getSound(),username:nombreDeUsuario});
+	 			  amigoDesconectado = false;
+	 			  socket.close();
 			}
 			else{
 				  this.scene.start('StartScreen',{sonido: this.scene.get(this.pantalla).getSound()});
@@ -106,6 +99,7 @@ class PauseMenu extends Phaser.Scene{
             this.scene.bringToTop('OptionsFromPause'); //mostramos sobre todas esta escena
             this.scene.pause('PauseMenu'); //dormimos la otra, porque no queremos perder lo que hagamos en el menu de pausa
             this.scene.sendToBack(this.pantalla); //enviamos al fondo la de tutorial
+             this.scene.stop(this.pantalla);
             //this.scene.sendToBack('Tiempo_Monedas');
         }, this);
 

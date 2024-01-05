@@ -7,7 +7,6 @@ var reiniciarElfo = false;
 var reiniciarGnomo = false;
 
 var gameOver = false;
-var webSocketOpen = false; //MANTENER A TRUE CUANDO SE ABRA EL SOCKET O ME CARGO MEDIO JUEGO 
 var victoryElfo = false;
 var victoryGnomo = false;
 
@@ -18,51 +17,55 @@ var monedaModificada = -1;
 
 var isDirty = false;
 
+var nombreDeUsuario;
+var playerSelected = "";
+var canChangeUsername = true;
+
 
 var PlayerChamp1 = [];
 var PlayerChamp2 = [];
 
-var openSocket = true;
+var webSocketOpen = false; //MANTENER A TRUE CUANDO SE ABRA EL SOCKET O ME CARGO MEDIO JUEGO 
+var openSocket = true; //variable para abrirlo una vez solo
+var isOpen = false; //para gestionar el tema de la conexión
 
 var socket;
 var stompClient;
 
-var connexionLost = false;
+var amigoDesconectado = false;
 
 for(let i = 0; i<2; i++){
 	PlayerChamp1[i]="";
 	PlayerChamp2[i]="";
 }
 
+var stopTrying = true;
 
-$(document).ready(function() {
-    // Realiza una solicitud al servidor para obtener la IP
-    $.get("/Usuarios/getServerIp", function(ip) {
-		//alert("La IP: " + ip)
-       // openSocket(ip);
-    });
-});
 
-setInterval(webSocketThings, 100);
+var myWebSocketInterval = setInterval(webSocketThings, 100);
 
 function webSocketThings(){
 	
-console.log("WEB SOCKET CLOSE")
+		$.get("/Usuarios/getServerIp").fail(function(data) {
+		
+		//alert("SERVIDOR CERRADO")
+		location.reload()
+        })
 	
-if(webSocketOpen){
+	
+	if(webSocketOpen){
 
-console.log("WEB SOCKET OPEN")
+	//console.log("WEB SOCKET OPEN")
 
-if(openSocket){
-	socket = new SockJS('/ws');
-	stompClient = Stomp.over(socket);
+		if(openSocket){
+				socket = new SockJS('/ws');
+				stompClient = Stomp.over(socket);
 
- stompClient.connect({}, onConnect,onError);
- openSocket = false
-}
+ 				stompClient.connect({}, onConnect, cerrarSocket);
 
- 
-
+ 				openSocket = false
+		}
+	 //socket.close(); -->llama a onError
  
  function onConnect(){
 	 //alert("Te has conectado bien")
@@ -95,12 +98,9 @@ if(openSocket){
 	  stompClient.subscribe("/topic/getDesconectarUsuario", getDesconectarUsuario)
 	  
 	 webSocketOpen = true;
+	 isOpen = true;
+	 //socket.close()//CIERRA EL SOCKET
 	 
- }
- 
- function onError(){
-	 //alert("ERROR") //PONER LO DE QUE SE HA PERDIDO LA CONEXIÓN CON EL SERVIDOR Y QUE TE DEVUELVA AL MAIN
-	 connexionLost = true;
  }
  //COSAS DE LOS PERSONAJES
  function getPosGnomo(payload){ //recibir la pos del gnomo del servidor
@@ -108,7 +108,7 @@ if(openSocket){
  }
  
   function getDesconectarUsuario(payload){ //recibir la pos del gnomo del servidor
-	 connexionLost = JSON.parse(payload.body);
+	 amigoDesconectado = JSON.parse(payload.body);
  }
  
  function getPosElfo(payload){ //recibir la pos del elfo del servidor
@@ -168,6 +168,7 @@ if(openSocket){
 		  PlayerChamp2[0]= array.player
  		 PlayerChamp2[1]= array.champ;
 	 }
+	 console.log("Player 1 name: " +  PlayerChamp1[0] + " Player 2 name: " + PlayerChamp2[0])
  }
  //---------------------PALANCAS---------------------------------	 
 	 function getPalancas(payload){				
@@ -179,8 +180,20 @@ if(openSocket){
 		   monedaModificada = JSON.parse(payload.body);
 		   isDirty = true;
 	  }
-	  
 } 
- 
- 
+
+} //end interval
+
+
+function cerrarSocket(){
+	//alert("WESOCKET CLOSED")
+	webSocketOpen = false; //MANTENER A TRUE CUANDO SE ABRA EL SOCKET O ME CARGO MEDIO JUEGO 
+	openSocket = true; //variable para abrirlo una vez solo
+	isOpen = false; //para gestionar el tema de la conexión
+
+	for(let i = 0; i<2; i++){
+	PlayerChamp1[i]="";
+	PlayerChamp2[i]="";
+}
+
 }

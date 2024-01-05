@@ -6,7 +6,6 @@ class TutorialLevelOnlineGnomo extends Phaser.Scene{
     }
     preload()
     {
-       
     }
     create(){
         //////////////////////////////////////////////////////////////////
@@ -44,6 +43,7 @@ class TutorialLevelOnlineGnomo extends Phaser.Scene{
         this.count = 0
 	    this.interface = this.scene.launch('Tiempo_Monedas',{pantalla: "TutorialLevelOnlineGnomo"})
         this.scene.bringToTop('Tiempo_Monedas') //la ponemos encima de todas
+        this.FriendLeaves=this.add.image(1050,50, "FriendLeaves").setOrigin(0.5,0.5).setScale(0.5).setVisible(false);
 
         //SONIDOS
         this.MiMusicaBase = this.sound.add("Musica_Base");
@@ -241,8 +241,6 @@ class TutorialLevelOnlineGnomo extends Phaser.Scene{
     //---------------------------------
 
     this.increment = 0;  
-    
-
  
     }
 
@@ -250,7 +248,9 @@ class TutorialLevelOnlineGnomo extends Phaser.Scene{
 
         //ACTUALIZACIÓN DE LA CAMARA
         //console.log("X: " + this.player.x + " Y: "+ this.player.y)
-    
+        
+     	
+     	
     	//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! NECESITO UNA REFERENCIA DEL ELFO AQUI
         var camaraPosX = (Math.abs(this.player.x+this.elfo.x)/2);
         var camaraPosY = (Math.abs(this.player.y+this.elfo.y)/2);
@@ -369,13 +369,18 @@ class TutorialLevelOnlineGnomo extends Phaser.Scene{
 				 gameOver = false;
 			}
 			
-			if(connexionLost){
-				connexionLost = false;
+			if(amigoDesconectado){
 				this.MiMusicaBase.pause();
 				this.scene.pause("Tiempo_Monedas")
 				this.scene.sendToBack("Tiempo_Monedas")
-				this.scene.start("StartScreen",{sonido : this.sonido, username : this.username});
-				webSocketOpen = false;
+				
+						
+				setTimeout(() => {
+					this.scene.stop("TutorialLevelOnlineGnomo");
+  				 	this.scene.bringToTop('StartScreen');
+  				 	 this.scene.start("StartScreen",{sonido : this.sonido, username : nombreDeUsuario});
+  				 	 socket.close();
+				}, 1000);
 			}
             
             this.increment = this.increment - 32;

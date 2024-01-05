@@ -5,18 +5,13 @@ class LogIn extends Phaser.Scene{
 
     preload() {
         // Puedes precargar recursos específicos de esta escena aquí
+
     }
-    
-     init(data){
-        if(data){
-           	this.username = data.username;
-        }
-    }
-    
-    
 
     create() {
         // Lógica de inicialización de la escena
+
+        
         this.add.image(0,0, "FondoOscuroVacio").setOrigin(0,0);
 
         this.add.image(600,70, "InterfazPersonajes").setOrigin(0.5,0.5);
@@ -25,13 +20,11 @@ class LogIn extends Phaser.Scene{
 
         this.elfo=this.add.image(900, 350, "BotonLial").setScale(0.65);
 
-        var Volver = this.add.image(30, 35, "Flecha").setScale(0.2)
-        
-		this.playerSelected;
+        var Volver = this.add.image(30, 35, "Flecha").setScale(0.2)  
 		
         Volver.setInteractive()
             .on('pointerdown', function () {
-                this.scene.start('ModoDeJuego',{username:this.username});
+                this.scene.start('ModoDeJuego');
             }, this);
             
         this.gnomo.setInteractive()
@@ -40,12 +33,12 @@ class LogIn extends Phaser.Scene{
 			/*Cuando selecciono un personaje, asocio en el servidor usuario y personaje
 			 y cambio de pantalla a waiting for players que es un lobby
 			 */
-			this.playerSelected = "gnomo"
-            this.scene.start('WaitingForElfo',{username: this.username, playerSelected:  this.playerSelected});
+			playerSelected = "gnomo"
+            this.scene.start('WaitingForElfo');
                 
             stompClient.send("/game/setUser", 
 	 			{},
-				 JSON.stringify({player:this.username, champ: "gnomo"})
+				 JSON.stringify({player:nombreDeUsuario, champ: "gnomo"})
 	 		)
                 
                 
@@ -54,13 +47,13 @@ class LogIn extends Phaser.Scene{
 		this.elfo.setInteractive()
             .on('pointerdown', function () {
 				
-			this.playerSelected = "elfo"	
-           	this.scene.start('WaitingForGnomo',{username: this.username, playerSelected:  this.playerSelected});
+			playerSelected = "elfo"	
+           	this.scene.start('WaitingForGnomo');
                 
                 
             stompClient.send("/game/setUser", //ACTUALIZO LA POS DE LOS PERSONAJES CONSNTANTEMENTE, HAYA CAMBIO O NO
 	 			{},
-				JSON.stringify({player:this.username, champ: "elfo"})
+				JSON.stringify({player:nombreDeUsuario, champ: "elfo"})
 	 		)
                 
             }, this);
@@ -73,10 +66,6 @@ class LogIn extends Phaser.Scene{
     update() {
         // Lógica de actualización de la escena (se llama en cada fotograma)
     }
-    
-    getPlayerSelected(){
-		return this.playerSelected;
-	}
 }
 
 //export default Escena2;

@@ -3,14 +3,6 @@ class waitingForPlayer extends Phaser.Scene{
         super({ key: 'waitingForPlayer' });
     }
     
-    init(data){
-        if(data){
-           	this.username = data.username;
-           	this.playerSelected = data.playerSelected
-        }
-     }
-
-
 
     create() {
         // Lógica de inicialización de la escena
@@ -31,14 +23,14 @@ class waitingForPlayer extends Phaser.Scene{
 
       Volver.setInteractive()
             .on('pointerdown', function () {
-                this.scene.start('LogIn',{username: this.username});
+                this.scene.start('LogIn');
                 
                 //En caso de que quieran cambiarse de personaje, llamo al mismo método de selección de persoanje, 
                 //lo hago con this.username, peusto que no sé si lo hará el player1 o el player2
              
             stompClient.send("/game/setUser", 
 	 			{},
-				JSON.stringify({player:this.username, champ: ""})
+				JSON.stringify({player:nombreDeUsuario, champ: ""})
 	 		)
             }, this);
 	}
@@ -62,10 +54,10 @@ class waitingForPlayer extends Phaser.Scene{
 			console.log("Player2 " + PlayerChamp2[0] + " playing as " + PlayerChamp2[1])
 			
 			
-			if(	this.playerSelected == "elfo"){
+			if(	playerSelected == "elfo"){
 				this.scene.start('TutorialLevelOnlineElfo')
 			}
-			if(	this.playerSelected == "gnomo" ){
+			if(	playerSelected == "gnomo" ){
 				this.scene.start('TutorialLevelOnlineGnomo')
 			}
 			

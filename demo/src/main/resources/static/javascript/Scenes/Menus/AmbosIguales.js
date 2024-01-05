@@ -3,13 +3,6 @@ class AmbosIguales extends Phaser.Scene{
         super({ key: 'AmbosIguales' });
     }
     
-    init(data){
-        if(data){
-           	this.username = data.username;
-           	this.playerSelected = data.playerSelected
-           	this.persoanje = data.persoanje
-        }
-     }
 
 
 
@@ -27,14 +20,14 @@ class AmbosIguales extends Phaser.Scene{
 
       Volver.setInteractive()
             .on('pointerdown', function () {
-                this.scene.start('LogIn',{username: this.username});
+                this.scene.start('LogIn');
                 
                 //En caso de que quieran cambiarse de personaje, llamo al mismo método de selección de persoanje, 
                 //lo hago con this.username, peusto que no sé si lo hará el player1 o el player2
              
             stompClient.send("/game/setUser", 
 	 			{},
-				JSON.stringify({player:this.username, champ: ""})
+				JSON.stringify({player:nombreDeUsuario, champ: ""})
 	 		)
             }, this);
 	}
@@ -56,20 +49,20 @@ class AmbosIguales extends Phaser.Scene{
 			
 			
 			//Se cambia el P1, P2 se queda con el Elfo y esto lo está leyendo P2
-			if(PlayerChamp1[1] == "" && PlayerChamp2[1] == "elfo" && PlayerChamp2[0]==this.username){
+			if(PlayerChamp1[1] == "" && PlayerChamp2[1] == "elfo" && PlayerChamp2[0]==nombreDeUsuario){
 				this.scene.start('WaitingForGnomo')
 			}
 			//Se cambia el P1, P2 se queda con el Gnomo y esto lo está leyendo P2
-			if(PlayerChamp1[1] == "" && PlayerChamp2[1] == "gnomo" && PlayerChamp2[0]==this.username){
+			if(PlayerChamp1[1] == "" && PlayerChamp2[1] == "gnomo" && PlayerChamp2[0]==nombreDeUsuario){
 				this.scene.start('WaitingForElfo')
 			}
 			
 			//Se cambia el P2, P1 se queda con el Elfo y esto lo está leyendo P1
-			if(PlayerChamp2[1] == "" && PlayerChamp1[1] == "elfo" && PlayerChamp1[0]==this.username){
+			if(PlayerChamp2[1] == "" && PlayerChamp1[1] == "elfo" && PlayerChamp1[0]==nombreDeUsuario){
 				this.scene.start('WaitingForGnomo')
 			}
 			//Se cambia el P2, P1 se queda con el Gnomo y esto lo está leyendo P1
-			if(PlayerChamp2[1] == "" && PlayerChamp1[1] == "gnomo" && PlayerChamp1[0]==this.username){
+			if(PlayerChamp2[1] == "" && PlayerChamp1[1] == "gnomo" && PlayerChamp1[0]==nombreDeUsuario){
 				this.scene.start('WaitingForElfo')
 			}
 			

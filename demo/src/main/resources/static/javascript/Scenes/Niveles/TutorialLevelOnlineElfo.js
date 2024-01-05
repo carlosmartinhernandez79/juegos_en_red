@@ -6,7 +6,6 @@ class TutorialLevelOnlineElfo extends Phaser.Scene{
     }
     preload()
     {
-       
     }
     create(){
         //////////////////////////////////////////////////////////////////
@@ -43,6 +42,8 @@ class TutorialLevelOnlineElfo extends Phaser.Scene{
         this.count = 0
 	    this.interface = this.scene.launch('Tiempo_Monedas', {pantalla: "TutorialLevelOnlineElfo"})
         this.scene.bringToTop('Tiempo_Monedas') //la ponemos encima de todas
+        
+       
 
         //SONIDOS
         this.MiMusicaBase = this.sound.add("Musica_Base");
@@ -244,9 +245,7 @@ class TutorialLevelOnlineElfo extends Phaser.Scene{
     //---------------------------------
 
     this.increment = 0;  
-    
-
- 
+  	
     }
 
     update(time, delta){
@@ -288,8 +287,8 @@ class TutorialLevelOnlineElfo extends Phaser.Scene{
                 var box = this.box.getChildren()[i];
                 box.stop();
     
-                if(this.isColliding(this.player, box, 50,110)){
-                    this.player.canJump = true;
+                if(this.isColliding(this.gnomo, box, 50,110)){
+                    this.gnomo.canJump = true;
                 }
             }
         //------------------------------------------------------------------------------------- 
@@ -370,13 +369,18 @@ class TutorialLevelOnlineElfo extends Phaser.Scene{
 				  gameOver = false;
 			}
 			
-			if(connexionLost){
-				connexionLost = false;
+			if(amigoDesconectado){
 				this.MiMusicaBase.pause();
 				this.scene.pause("Tiempo_Monedas")
 				this.scene.sendToBack("Tiempo_Monedas")
-				this.scene.start("StartScreen",{sonido : this.sonido, username : this.username});
-				webSocketOpen = false;
+				
+
+				setTimeout(() => {
+					this.scene.stop("TutorialLevelOnlineElfo");
+					this.scene.bringToTop('StartScreen');
+  				 	 this.scene.start("StartScreen",{sonido : this.sonido, username : nombreDeUsuario});
+  				 	 socket.close();
+				}, 1000);
 			}
             
             

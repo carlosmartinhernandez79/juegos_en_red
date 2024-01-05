@@ -90,7 +90,13 @@ class SceneBootLoader extends Phaser.Scene {
          this.load.image("PantallaModo", "./ImagesJS/WebSocketThings/Pantalla_Seleccion_Modo.png");
          this.load.image("AmbosIgualesTuk", "./ImagesJS/WebSocketThings/Pantalla_Ambos_Iguales_Tuk.png");
          this.load.image("AmbosIgualesLial", "./ImagesJS/WebSocketThings/Pantalla_Ambos_Iguales_Lial.png");
+         
+       	this.load.image("AmigoDesconectado", "./ImagesJS/WebSocketThings/texto_companero_abandonado.png");
+        this.load.image("ConexionPerdida", "./ImagesJS/WebSocketThings/texto_se_ha_perdido_conexion.png");
         
+		this.load.image("AbriendoSocket", "./ImagesJS/WebSocketThings/texto_abriendo_socket.png");
+        this.load.image("SocketAbierto", "./ImagesJS/WebSocketThings/texto_socket_abierto.png");
+
         
         
         //---------------------------------------------------------------------------------
