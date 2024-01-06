@@ -56,7 +56,6 @@
     <script type = "text/javascript" src="javascript/Scenes/Menus/ModoDeJuego.js"></script>
 
     <script type = "text/javascript" src="javascript/Scenes/game.js"></script>
-     <script type = "text/javascript" src="javascript/Scenes/chat.js"></script>
      
 		<!--WEBSOOOOOOOOOOOOOOOOOOOCKET-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
@@ -64,6 +63,9 @@
     
     <script type = "text/javascript" src="javascript/Scenes/webSocket.js"></script>
 
+	
+	<!--CHAT-->
+    <script type = "text/javascript" src="javascript/Scenes/chatOnline.js"></script>
 </head>
 <body>
 <!-- H1 -->
@@ -151,10 +153,10 @@
     </div>
 </div>
 
-<div id="chat-container" style="display:none">
+<div id="chat-container">
   <div id="chat-messages"></div>
   <div id="textBarr">   
-      <input type="text" id="input" placeholder="Enviar mensaje...">
+      <input type="text" id="chat-input" onclick="writingChat()" placeholder="Enviar mensaje...">
       <button onclick="sendMessage()">Enviar</button>
 
   </div>
