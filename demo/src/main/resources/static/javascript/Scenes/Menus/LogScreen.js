@@ -374,6 +374,7 @@ class LogScreen extends Phaser.Scene{
                 
                	myScene.get("Victory").setIPVictoria(myIP);
                 myScene.get("GameOver").setIPDerrota(myIP);
+                myScene.get("Records").setIPRecords(myIP);
 
 			}
 			

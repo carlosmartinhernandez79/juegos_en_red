@@ -23,9 +23,35 @@ class Records extends Phaser.Scene{
         var spacingY = 300
         var contextoPhaser = this;
         var nombreJ1 = user;
+        var myRecordsIP = "";
+        $.ajax({
+            url: this.myRecordsIP + '/api/records/top5ByPunctuation',
+            method: 'GET',
+            success: function (data) {
+                // Iterar sobre cada instancia de Record en el array
+                for (var i = 0; i < data.length; i++) {
+                    var record = data[i];
+                    // Acceder a las propiedades de cada instancia de Record y mostrar en la consola
+                    console.log('   Registro ' + (i + 1) + ':');
+                    console.log('   Jugador 1:', record.player1);
+                    console.log('   Jugador 2:', record.player2);
+                    console.log('   Tiempo:', record.timeInSeconds);
+                    console.log('   Nivel:', record.levelID);
+                    console.log('   Monedas:', record.coinsCollected);
+
+                    new RecordSlot(contextoPhaser, spacingX, spacingY, record);
+                    spacingY += 100;
+                }
+            },
+            error: function (error) {
+                console.error('Error al obtener registros:', error);
+            }
+        });
+        
+        /*
         console.log(nombreJ1);
             $.ajax({
-                url: 'http://localhost:8080/api/records/maxPuntuation/1',
+                url: this.myRecordsIP + '/api/records/maxPuntuation/1',
                 method: 'GET',
                 success: function (data) {
                       var textoAux = contextoPhaser.add.text(spacingX-150, spacingY, "Nivel "+data.levelID, { fontSize:30 , fill: 'white' })
@@ -36,10 +62,14 @@ class Records extends Phaser.Scene{
                     console.error('Error al obtener registros:', error);
                 }
             });
-       
+       */
     }
 
     update() {
         // Lógica de actualización de la escena (se llama en cada fotograma)
     }
+
+    setIPRecords(ip){
+		this.myRecordsIP = ip;
+	}
 }
