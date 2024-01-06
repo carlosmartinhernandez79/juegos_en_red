@@ -640,7 +640,7 @@ Ya se podrá disfrutar de Topwer.
 
 
 # CHAT
-Al igual que para la entrega anterior, se ha incluido un chat para poder comunicarse durante la partida. Ambos jugadores pueden escribir comentarios en una ventana fija en la parte inferior derecha y se actualizará en ambos equipos a la vez. Para ello se ha establecido una comunicación con websockets, de forma que ambos estén permanentemente actualizados de lo que se escribe. Al ser un chat de partida, no se ve el sentido de generar persistencia, puesto que al cerrar el servidor y levantarlo de nuevo, se presupone una partida nueva y por tanto una nueva conversación. No obstante, si durante la partida se conectase un nuevo jugador, verá descargada toda la conversación hasta ese momento con la primera actualización..
+Para el nuevo tipo de comunicación con el servidor, se ha actualizado el chat para utilizar websocket en lugar de una API rest. Ambos jugadores pueden escribir comentarios en una ventana fija en la parte inferior derecha y se actualizará en ambos equipos a la vez. Para ello se abre un websocket al iniciar la partida que mantiene la comunicación constante. También se ha establecido un bloqueo de teclas, para que durante el juego, si el jugador escribe utilizando las teclas de control, éstas se puedan utilizar normalmente para escribir sin afectar al personaje. Al ser un chat de partida, no se ve el sentido de generar persistencia, puesto que al cerrar el servidor y levantarlo de nuevo, se presupone una partida nueva y por tanto una nueva conversación. No obstante, si durante la partida se conectase un nuevo jugador, automáticamente verá descargada toda la conversación hasta ese momento.
  <p align="center">
   <img src="Imagenes/Chat.PNG" />
 <br>
