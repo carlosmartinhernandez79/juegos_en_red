@@ -1,8 +1,3 @@
-
-
-
-
-
 function sendMessage() {
     var chatInput = document.getElementById('chat-input').value;
     console.log("HAY ESCRITO: " + chatInput);
@@ -16,14 +11,6 @@ function sendMessage() {
     writingLine = false;
 }
 
-// Recogemos el evento cuando alguien escribe en el chat
-/*chatInput.addEventListener('keydown', function (event) {
-    if (event.key === 'Enter' && chatInput.value.trim() !== '') {
-        const message = chatInput.value;
-        stompClient.send("/game/sendMessage", {}, message);
-        chatInput.value = '';
-    }
-})*/
 
 function displayMessages(messages) {
     var chatMessagesDiv = document.getElementById('chat-messages');
