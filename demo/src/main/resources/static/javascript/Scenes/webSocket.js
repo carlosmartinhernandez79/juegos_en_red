@@ -51,7 +51,7 @@ function webSocketThings(){
 		$.get("/Usuarios/getServerIp").fail(function(data) {
 		
 		//alert("SERVIDOR CERRADO")
-		location.reload()
+		//location.reload()
         })
 	
 	

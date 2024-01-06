@@ -78,10 +78,15 @@ class LogScreen extends Phaser.Scene{
         var password = document.getElementById("ptext")
         //this.password.style.display = "block"
 
+        //////////////////////////////////////////////////////////////////////
+        //this.flecha = this.add.image(450,480,"flechaBack")// Usar este codigo
+        //this.aceptar = this.add.image(500,400, "logOn")
+
+
+        /////////////////////////////////////////////////////////////////////
         this.aceptar = document.getElementById("aceptar")
         //this.aceptar.style.display = "block"
-        
-        
+     
        this.registrarse = document.getElementById("registrarse")
        // this.registrarse.style.display = "block"
        
@@ -104,8 +109,9 @@ class LogScreen extends Phaser.Scene{
          
         username.value = null;
         password.value = null;
-        
-         this.aceptarBorrar.addEventListener("click", ()=>{
+
+         this.aceptarBorrar.setInteractive().
+         on('pointerdown', ()=> {
 			 
             this.registrarse.style.display = "none"
             this.aceptar.style.display = "block"
@@ -120,7 +126,8 @@ class LogScreen extends Phaser.Scene{
 		 })
 		 
 		 
-         this.deleteUser.addEventListener("click", ()=>{
+         this.deleteUser.setInteractive().
+         on('pointerdown', ()=> {
 
             this.registrarse.style.display = "block"
             this.aceptar.style.display = "none"
@@ -138,7 +145,8 @@ class LogScreen extends Phaser.Scene{
         })
         
 
-        this.goToRegister.addEventListener("click", ()=>{
+        this.goToRegister.setInteractive().
+        on('pointerdown', ()=> {
 
             this.registrarse.style.display = "block"
             this.aceptar.style.display = "none"
@@ -157,7 +165,8 @@ class LogScreen extends Phaser.Scene{
         
 
 
-        this.aceptar2.addEventListener("click", ()=>{
+        this.aceptar2.setInteractive().
+        on('pointerdown', ()=> {
 
             this.registrarse.style.display = "none"
             this.aceptar.style.display = "block"
@@ -174,7 +183,8 @@ class LogScreen extends Phaser.Scene{
             this.flecha.setVisible(false)
         })
         
-         this.forgetPassword.addEventListener("click", ()=>{
+         this.forgetPassword.setInteractive().
+         on('pointerdown', ()=> {
 
             this.registrarse.style.display = "none"
             this.aceptar.style.display = "none"
@@ -191,7 +201,8 @@ class LogScreen extends Phaser.Scene{
  			this.flecha.setVisible(true)
         })
         
-        this.changePassword.addEventListener("click", ()=>{
+        this.changePassword.setInteractive().
+        on('pointerdown', ()=> {
 
             this.registrarse.style.display = "none"
             this.aceptar.style.display = "block"

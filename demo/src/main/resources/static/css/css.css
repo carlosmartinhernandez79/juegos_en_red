@@ -1,6 +1,6 @@
+  body{
+    background-repeat: repeat;
 
-body {
-    background-color: rgb(91, 42, 42);
   }
   
   h1 {
@@ -15,6 +15,7 @@ body {
         font-size: 50px;
     }
 
+    
     canvas{
       padding-left: 0;
       padding-right: 0;
@@ -25,161 +26,192 @@ body {
       height: auto;*/
       border: 5px solid black;
     }
-  
+ 
   p {
     font-family: verdana;
     font-size: 100%,
-    
-  }
-
-  .historia{
-    margin-left: 5%;
-    text-align: justify;
-    margin-right: 5%;
-  }
-  .historiaHeader{
-
-    text-align: center;
-
+   
   }
   .historiaContainer{
-    background-color: brown;
     border-radius: 4%;
     margin-right: 50%;
+    margin-left: -1.5%;
     padding-bottom: 1%;
     padding-top: 1%;
+    position: relative;
+    display: inline-block;
   }
+
+
+  .historia{
+    color: rgb(255, 255, 255);
+    margin-left: 5%;
+    position: absolute;
+    top: 61%;
+    left: 35%;
+    transform: translate(-50%, -50%);
+  }
+  .historiaHeader{
+    color: rgb(255, 255, 255);
+    text-align: center;
+    position: relative;
+  }
+  .creditosHeader{
+    text-align: center;
+    position: relative;
+  }
+ 
+  .creditos{
+    color: rgb(255, 255, 255);
+    margin-left: 5%;
+    position: relative;
+    top: 70%;
+    left: 0%;
+  }
+
+
+
+
     .creditosContainer{
-    background-color: brown;
+    background-color: rgba(0, 0, 0, 0.5) ;
     border-radius: 4%;
     margin-left: 30%;
     padding-bottom: 1%;
     padding-top: 1%;
-	width: 40%;
-	length: 10%;
+  width: 40%;
+  length: 10%;
   }
+
 
   .topnav {
     overflow: hidden;
-    background-color: #240000;
     cursor: pointer;
+    text-align: center;
   }
-  
+ 
   .topnav a {
     float: left;
     color: #f2f2f2;
     text-align: center;
-    padding: 14px 16px;
+    padding: 8px 16px;
     text-decoration: none;
-    font-size: 17px;
+    font-size: 20px;
   }
-  
-  .topnav a:hover {
-    background-color: #e18d8d;
-    color: black;
-  }
-  
   .topnav a.active {
-    background-color: rgb(91, 42, 42);
-    color: white;
+
+
+    color: rgb(255, 255, 255);
   }
+
+
+  .topnav a:hover {
+    color: rgb(255, 255, 255);
+    background-color: rgba(0, 0, 0, 0.5) ;
+   
+    stop-opacity: 0;
+  }
+
 
   .Titulo{
-    background-color: brown;
-    border-radius: 5%;
-    margin-left: 40%;
-    margin-right: 40%
-  }
+    margin-left: 15%;
+    margin-right: 15%;
+   }
+
 
   #aceptar{
-    background: url(/ImagesJS/LogIn/Boton_Iniciar_Sesion_Off.png);
-    width: 200px; 
-    height: 48px; 
+    background: url("/ImagesJS/LogIn/Boton_Iniciar_Sesion_Off.png");
+    width: 200px;
+    height: 48px;
     border: none
   }
+
 
   #aceptar:hover {
-    background: url(/ImagesJS/LogIn/Boton_Iniciar_Sesion_On.png);
+    background: url("/ImagesJS/LogIn/Boton_Iniciar_Sesion_On.png");
   }
+
 
   #goToRegister{
-    background: url(/ImagesJS/LogIn/Boton_Registrar_Off.png);
-    width: 200px; 
-    height: 50px; 
+    background: url("/ImagesJS/LogIn/Boton_Registrar_Off.png");
+    width: 200px;
+    height: 50px;
     border: none
   }
+
 
   #goToRegister:hover {
-    background: url(/ImagesJS/LogIn/Boton_Registrar_On.png);
+    background: url("/ImagesJS/LogIn/Boton_Registrar_On.png");
   }
+
 
   #forgetPassword{
-    background: url(/ImagesJS/LogIn/Letras_HasOlvidadoLaContrasena.png);
-    width: 150px; 
-    height: 11px; 
+    background: url("/ImagesJS/LogIn/Letras_HasOlvidadoLaContrasena.png");
+    width: 150px;
+    height: 11px;
     border: none
   }
+
 
   #forgetPassword:hover {
-
     opacity: 0.6;
-
   }
-  
+
 
   #registrarse{
-    background: url(/ImagesJS/LogIn/Boton_Registrar_Off.png);
-    width: 200px; 
-    height: 48px; 
+    background: url("/ImagesJS/LogIn/Boton_Registrar_Off.png");
+    width: 200px;
+    height: 48px;
     border: none
   }
+
 
   #registrarse:hover {
-    background: url(/ImagesJS/LogIn/Boton_Registrar_On.png);
+    background: url("/ImagesJS/LogIn/Boton_Registrar_On.png");
   }
 
+
    #changePassword{
-    background: url(/ImagesJS/LogIn/Boton_Aceptar_Off.png);
-    width: 200px; 
-    height: 48px; 
+    background: url("/ImagesJS/LogIn/Boton_Aceptar_Off.png");
+    width: 200px;
+    height: 48px;
     border: none
   }
 
+
   #changePassword:hover {
-    background: url(/ImagesJS/LogIn/Boton_Aceptar_On.png);
+    background: url("/ImagesJS/LogIn/Boton_Aceptar_On.png");
   }
-  
+ 
   #deleteUser{
-	    background: url(/ImagesJS/LogIn/Boton_Borrar_Off.png);
-	    width: 200px; 
-    	height:50px; 
-	    border: none
+      background: url("/ImagesJS/LogIn/Boton_Borrar_Off.png");
+      width: 200px;
+      height:50px;
+      border: none
   }
-  
+ 
   #deleteUser:hover {
-    background: url(/ImagesJS/LogIn/Boton_Borrar_On.png);
+    background: url("/ImagesJS/LogIn/Boton_Borrar_On.png");
   }
-  
+ 
   #aceptar2{
-	   background: url(/ImagesJS/LogIn/Boton_Aceptar_Off.png);
-	    width: 200px; 
-    	height:50px; 
-	    border: none
+     background: url("/ImagesJS/LogIn/Boton_Aceptar_Off.png");
+      width: 200px;
+      height:50px;
+      border: none
   }
-  
+ 
   #aceptar2:hover {
-    background: url(/ImagesJS/LogIn/Boton_Aceptar_On.png);
+    background: url("/ImagesJS/LogIn/Boton_Aceptar_On.png");
   }
-  
-  
+ 
+ 
     #aceptarBorrar{
-	   background: url(/ImagesJS/LogIn/Boton_Aceptar_Off.png);
-	    width: 200px; 
-    	height:50px; 
-	    border: none
+     background: url("/ImagesJS/LogIn/Boton_Aceptar_Off.png");
+      width: 200px;
+      height:50px;
+      border: none
   }
-  
+ 
   #aceptarBorrar:hover {
-    background: url(/ImagesJS/LogIn/Boton_Aceptar_On.png);
+    background: url("/ImagesJS/LogIn/Boton_Aceptar_On.png");
   }
-  
