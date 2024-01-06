@@ -110,8 +110,7 @@ class LogScreen extends Phaser.Scene{
         username.value = null;
         password.value = null;
 
-         this.aceptarBorrar.setInteractive().
-         on('pointerdown', ()=> {
+         this.aceptarBorrar.addEventListener("click", ()=> {
 			 
             this.registrarse.style.display = "none"
             this.aceptar.style.display = "block"
@@ -126,8 +125,7 @@ class LogScreen extends Phaser.Scene{
 		 })
 		 
 		 
-         this.deleteUser.setInteractive().
-         on('pointerdown', ()=> {
+         this.deleteUser.addEventListener("click", ()=> {
 
             this.registrarse.style.display = "block"
             this.aceptar.style.display = "none"
@@ -145,8 +143,7 @@ class LogScreen extends Phaser.Scene{
         })
         
 
-        this.goToRegister.setInteractive().
-        on('pointerdown', ()=> {
+        this.goToRegister.addEventListener("click", ()=> {
 
             this.registrarse.style.display = "block"
             this.aceptar.style.display = "none"
@@ -165,8 +162,7 @@ class LogScreen extends Phaser.Scene{
         
 
 
-        this.aceptar2.setInteractive().
-        on('pointerdown', ()=> {
+        this.aceptar2.addEventListener("click", ()=> {
 
             this.registrarse.style.display = "none"
             this.aceptar.style.display = "block"
@@ -183,8 +179,7 @@ class LogScreen extends Phaser.Scene{
             this.flecha.setVisible(false)
         })
         
-         this.forgetPassword.setInteractive().
-         on('pointerdown', ()=> {
+         this.forgetPassword.addEventListener("click", ()=> {
 
             this.registrarse.style.display = "none"
             this.aceptar.style.display = "none"
@@ -201,8 +196,7 @@ class LogScreen extends Phaser.Scene{
  			this.flecha.setVisible(true)
         })
         
-        this.changePassword.setInteractive().
-        on('pointerdown', ()=> {
+        this.changePassword.addEventListener("click", ()=> {
 
             this.registrarse.style.display = "none"
             this.aceptar.style.display = "block"
@@ -377,7 +371,7 @@ class LogScreen extends Phaser.Scene{
                	myScene.get("SceneBootLoader").MiMusicaBase.play();
                 
                 LogThings.style.display = "none"
-                document.getElementById("chat-container").style.display = "block";
+                //document.getElementById("chat-container").style.display = "block";
                 user = username.value;
                 myIPchat = myIP;
                   

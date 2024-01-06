@@ -21,6 +21,8 @@ class LogIn extends Phaser.Scene{
         this.elfo=this.add.image(900, 350, "BotonLial").setScale(0.65);
 
         var Volver = this.add.image(30, 35, "Flecha").setScale(0.2)  
+        
+        document.getElementById("chat-container").style.display = "block";
 		
         Volver.setInteractive()
             .on('pointerdown', function () {

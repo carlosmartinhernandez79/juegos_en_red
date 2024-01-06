@@ -103,7 +103,7 @@ class GameOver extends Phaser.Scene{
 		}*/
         
           if (!this.dataSended) {
-            this.sendData(); // Llamar al método que envía los datos
+            //this.sendData(); // Llamar al método que envía los datos
          }
     }
     

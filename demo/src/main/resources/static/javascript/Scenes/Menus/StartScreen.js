@@ -17,7 +17,7 @@ class StartScreen extends Phaser.Scene{
         this.add.text(600, 20, "StartScreen", {font: "25px Arial", fill: "black"})
         this.add.image(0,0, "PantallaInicial").setOrigin(0,0);
 
-		
+		 document.getElementById("chat-container").style.display = "none";
 
         this.opcionesClickado = false;
         

@@ -2,7 +2,7 @@ function sendMessage() {
     var chatInput = document.getElementById('chat-input').value;
     console.log("HAY ESCRITO: " + chatInput);
     if(chatInput !== ''){
-        stompClient.send("/game/setChat", {}, chatInput);
+        stompClient.send("/game/setChat", {}, nombreDeUsuario +": " + chatInput);
     }else{
         console.log("ESTA VACIO");
     }

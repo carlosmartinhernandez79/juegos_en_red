@@ -152,10 +152,12 @@ class PauseMenu extends Phaser.Scene{
         })
 
         this.niveles.on('pointerdown', function () {
-            this.scene.start('LevelSelector');
+			if(!webSocketOpen){
+			this.scene.start('LevelSelector');
             this.scene.bringToTop('LevelSelector');
             this.scene.sendToBack(this.pantalla);
             this.scene.sendToBack('Tiempo_Monedas');
+			}
         }, this);
     }
 
