@@ -41,6 +41,8 @@ for(let i = 0; i<2; i++){
 
 var stopTrying = true;
 
+//CHAT
+var messages = [];
 
 var myWebSocketInterval = setInterval(webSocketThings, 100);
 
@@ -96,12 +98,22 @@ function webSocketThings(){
 	  
 	  //--------------USUARIO DESCONECTADO---------------------------------
 	  stompClient.subscribe("/topic/getDesconectarUsuario", getDesconectarUsuario)
+
+	 //-------------------CHAT-------------------------
+	 stompClient.subscribe('/topic/chatOnline', messageChat);
 	  
 	 webSocketOpen = true;
 	 isOpen = true;
 	 //socket.close()//CIERRA EL SOCKET
 	 
  }
+
+//CHAT
+function messageChat(payload){
+	messages = payload;
+	displayMessages(messages);
+}
+		
  //COSAS DE LOS PERSONAJES
  function getPosGnomo(payload){ //recibir la pos del gnomo del servidor
 	 posGnomo = JSON.parse(payload.body);
