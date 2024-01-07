@@ -48,7 +48,7 @@ Encargado del diseño de personajes, elementos y escenarios. Apoyo en animación
 ### Luis:
 Encargado de la programación.
 <p align="center">
-  <img src="Imagenes/Logo_Equipo.png" />
+  <img src="demo/src/main/resources/static/Imagenes/Logo_Equipo.png" />
 <br>
 	LOGO EQUIPO
 <br>
@@ -63,7 +63,7 @@ El diseño será sencillo, colores pastel con una temática medieval.
 
 
 <p align="center">
-  <img src="ImagesJS/Pantallas/Fondo_Pantalla_Principal_nublado.jpg" />
+  <img src="demo/src/main/resources/static/ImagesJS/Pantallas/Fondo_Pantalla_Principal_nublado.jpg" />
 <br>
 	PANTALLA PRINCIPAL
 <br>
@@ -231,7 +231,7 @@ Las principales trampas que implementaremos en el jugo serán:
 
 
 <p align="center">
-  <img src="Imagenes/Balas.jpg" />
+  <img src="demo/src/main/resources/static/Imagenes/Balas.jpg" />
 <br>
 	Balas de referencia
 <br>
@@ -271,7 +271,7 @@ A parte de las trampas a lo largo del nivel habrá diversos objetos con los que 
 **-Cajas:** Diseño de una caja que se podrá mover para ayudar a los jugadores a avanzar o resolver puzzles. 
 
  <p align="center">
-  <img src="ImagesJS/caja.png" />
+  <img src="demo/src/main/resources/static/ImagesJS/caja.png" />
 <br>
 	Caja de referencia
 <br>
@@ -282,7 +282,7 @@ A parte de las trampas a lo largo del nivel habrá diversos objetos con los que 
 ## TUK
 Como teníamos previsto hemos usado una paleta de colores pasteles y un diseño más cartoon y familiar.
  <p align="center">
-  <img src="Imagenes/GnomoEvolution.png" />
+  <img src="demo/src/main/resources/static/Imagenes/GnomoEvolution.png" />
 <br>
 	 Evolución del diseño de Tuk
 <br>
@@ -291,7 +291,7 @@ Como teníamos previsto hemos usado una paleta de colores pasteles y un diseño 
 ## LIAL
 Por otra parte el diseño de Lial se ve algo más realista, pero se mantiene esa estética familiar y colores pasteles al igual que en su compañero.
  <p align="center">
-  <img src="Imagenes/evolucion elfa.jpg" />
+  <img src="demo/src/main/resources/static/Imagenes/evolucion elfa.jpg" />
 <br>
 	 Evolución del diseño de Lial
 <br>
@@ -303,7 +303,7 @@ Los botones han sido desarrollados vectorialmente para poder modificar su tamañ
 ## FONDO PANTALLA INICIO
 Pantalla de inicio con el nombre del juego a la izquierda y espacio a la derecha irán los botones de esta primera pantalla.
 <p align="center">
-  <img src="ImagesJS/Pantallas/Fondo_Pantalla_Principal_nublado.jpg" />
+  <img src="demo/src/main/resources/static/ImagesJS/Pantallas/Fondo_Pantalla_Principal_nublado.jpg" />
 <br>
 	Fondo de pantalla del incio
 <br>
@@ -312,7 +312,7 @@ Pantalla de inicio con el nombre del juego a la izquierda y espacio a la derecha
 ## TILES 
 Esta paleta de tiles está cogida de Itch.io, y es de dominio público. Por ello, y para adaptarlo mejor a nuestro juego, la hemos retocado, de tal forma que tenga mayor apariencia de mazmorra.
 <p align="center">
-  <img src="assets/tilesets/Tiles/tiles.jpg" />
+  <img src="demo/src/main/resources/static/assets/tilesets/Tiles/tiles.jpg" />
 <br>
 	Tiles modificados
 <br>
@@ -325,14 +325,14 @@ Por el logo del juego, se ha optado por una torre de un castillo, puesto que es 
 Por otro lado, encontramos el logo del equipo, que basado en la misma dinámica vertical que el anterior, y jugando con el nombre (UpDown Games), se ha dividido en dos colores, uno por palabra, con unas flechas apuntando hacia la dirección de las propias palabras: Up, con su flecha hacia arriba y Down, con su flecha hacia abajo.
 
 <p align="center">
-  <img src="Imagenes/Logo_Equipo.png" />
+  <img src="demo/src/main/resources/static/Imagenes/Logo_Equipo.png" />
 <br>
 Logo del equipo
 <br>
 </p>
 
 <p align="center">
-  <img src="Imagenes/Logo_Topwer.png" />
+  <img src="demo/src/main/resources/static/Imagenes/Logo_Topwer.png" />
 <br>
 	Logo del juego
 <br>
@@ -341,19 +341,19 @@ Logo del equipo
 ## OBJETOS
 Los principales objetos interactuables que se implementaran en el juego y se han diseñado han sido las monedas del juego, las palancas para interactuar con el entorno y el temporizador.
 <p align="center">
-  <img src="ImagesJS/palanca.png" />
+  <img src="demo/src/main/resources/static/ImagesJS/palanca.png" />
 <br>
 	Palanca
 <br>
 </p>
 <p align="center">
-  <img src="ImagesJS/Moneda.png" />
+  <img src="demo/src/main/resources/static/ImagesJS/Moneda.png" />
 <br>
 	Moneda
 <br>
 </p>
 <p align="center">
-  <img src="ImagesJS/reloj.png" />
+  <img src="demo/src/main/resources/static/ImagesJS/reloj.png" />
 <br>
 	Reloj
 <br>
@@ -362,7 +362,7 @@ Los principales objetos interactuables que se implementaran en el juego y se han
 ## ANIMACIONES
 Para las animaciones de esta utilizando una técnica 2D de estilo tradicional.  Para la caminata de Tuk se han realizado 59 sprites para conseguir una animación fluida 
 <p align="center">
-  <img src="ImagesJS/enano_Spritesheet_3.png" />
+  <img src="demo/src/main/resources/static/ImagesJS/enano_Spritesheet_3.png" />
 
 <br>
 	Spritesheet de Tuk
@@ -372,7 +372,7 @@ Para las animaciones de esta utilizando una técnica 2D de estilo tradicional.  
 Sin embargo,  en el caso de Lial, aunque el movimiento no es una caminata al uso, se han necesitado hasta 63 sprites, de forma que el movimiento sea más fluido. 
 
 <p align="center">
-  <img src="ImagesJS/elfa_spritesheet_2.png" />
+  <img src="demo/src/main/resources/static/ImagesJS/elfa_spritesheet_2.png" />
 <br>
 	Spritesheet de Lial
 <br>
@@ -383,7 +383,7 @@ Además de esta ampliación de movimientos y animaciones, se han implementado en
 También se ha incluido una animación de las monedas:
 
 <p align="center">
-  <img src="ImagesJS/moneda_Spritesheet.png" />
+  <img src="demo/src/main/resources/static/ImagesJS/moneda_Spritesheet.png" />
 <br>
 	Spritesheet de las monedas
 <br>
@@ -392,13 +392,13 @@ También se ha incluido una animación de las monedas:
 Por último, se han generado sprites para la puerta de salida y las palancas, que se intentarán implementar en la última iteración como mejora.
 
 <p align="center">
-  <img src="ImagesJS/palanca_Spritesheet.png" />
+  <img src="demo/src/main/resources/static/ImagesJS/palanca_Spritesheet.png" />
 <br>
 	Spritesheet de la palanca
 <br>
 </p>
 <p align="center">
-  <img src="ImagesJS/puerta_Spritesheet.png" />
+  <img src="demo/src/main/resources/static/ImagesJS/puerta_Spritesheet.png" />
 <br>
 	Spritesheet de la puerta de salida
 <br>
@@ -436,7 +436,7 @@ Como se ha mencionado anteriormente, una de las condiciones de victoria es super
 </p>
 
  <p align="center">
-  <img src="Imagenes/interfaz tiempo.jpg" />
+  <img src="demo/src/main/resources/static/Imagenes/interfaz tiempo.jpg" />
 <br>
 	 Diseño inicial del temporizador
 <br>
@@ -449,7 +449,7 @@ In-game, nos encontraremos con un contador de las monedas que vayamos recolectan
 
 
  <p align="center">
-  <img src="Imagenes/interfaz pantalla inicial.jpg" />
+  <img src="demo/src/main/resources/static/Imagenes/interfaz pantalla inicial.jpg" />
 <br>
 	 Interfaz pantalla inicial
 <br>
@@ -457,7 +457,7 @@ In-game, nos encontraremos con un contador de las monedas que vayamos recolectan
 
 
  <p align="center">
-  <img src="Imagenes/interfaz seleccion personaje.jpg" />
+  <img src="demo/src/main/resources/static/Imagenes/interfaz seleccion personaje.jpg" />
 <br>
 	 Interfaz selección de personaje
 <br>
@@ -465,7 +465,7 @@ In-game, nos encontraremos con un contador de las monedas que vayamos recolectan
 
 
  <p align="center">
-  <img src="Imagenes/interfaz seleccion de nivel.jpg" />
+  <img src="demo/src/main/resources/static/Imagenes/interfaz seleccion de nivel.jpg" />
 <br>
 	 Interfaz selección de nivel
 <br>
@@ -473,7 +473,7 @@ In-game, nos encontraremos con un contador de las monedas que vayamos recolectan
 
 
  <p align="center">
-  <img src="Imagenes/interfaz pantalla de juego.jpg" />
+  <img src="demo/src/main/resources/static/Imagenes/interfaz pantalla de juego.jpg" />
 <br>
 	 Interfaz pantalla de juego
 <br>
@@ -481,7 +481,7 @@ In-game, nos encontraremos con un contador de las monedas que vayamos recolectan
 
 
  <p align="center">
-  <img src="Imagenes/interfaz pantalla de pausa.jpg" />
+  <img src="demo/src/main/resources/static/Imagenes/interfaz pantalla de pausa.jpg" />
 <br>
 	 Interfaz pantalla de pausa
 <br>
@@ -493,7 +493,7 @@ Por otra parte, se han realizado unos diseños generales para mejorar la calidad
 Se ha creado un botón con forma de flecha para implementar en las interfaces en las que se ofrezca la posibilidad de volver atrás. La evolución ha sido la siguiente:
 
  <p align="center">
-  <img src="Imagenes/Interfaz_Boton_Flecha.png" />
+  <img src="demo/src/main/resources/static/Imagenes/Interfaz_Boton_Flecha.png" />
 <br>
 	 Botón flecha volver
 <br>
@@ -503,7 +503,7 @@ Se ha creado un botón con forma de flecha para implementar en las interfaces en
 Otra implementación nueva tanto en términos de programación como de diseño desarrollados en esta entrega, es dar funcionalidad al apartado de ajustes, ofreciendo la posibilidad de desactivar o reactivar la música del juego. Para ello, se ha creado un botón que cambia entre dos estados dependiendo del estado de la música:
 
  <p align="center">
-  <img src="Imagenes/Boton_SinMute.png" />
+  <img src="demo/src/main/resources/static/Imagenes/Boton_SinMute.png" />
 	 <img src="Imagenes/Boton_ConMute.png" />
 <br>
 	 Botón activar y desactivar música
@@ -514,7 +514,7 @@ Otra implementación nueva tanto en términos de programación como de diseño d
 Otro aspecto que queríamos mejorar de nuestro juego, era dar consciencia al usuario en qué pantalla se encuentra en todo momento, para ello se ha diseñado un pequeño identificador acorde con la estética del juego para incluir en todas las posibles pantallas del flujograma de navegación:
 
  <p align="center">
-  <img src="Imagenes/Interfaz_Opciones.png" />
+  <img src="demo/src/main/resources/static/Imagenes/Interfaz_Opciones.png" />
 <br>
 	 Identificador de apartado opciones
 <br>
@@ -524,7 +524,7 @@ Otro aspecto que queríamos mejorar de nuestro juego, era dar consciencia al usu
 Por último, se ha desarrollado el diseño de un recuadro para implementar en el apartado del LogIn, ya que con las posibilidades que ofrecía el HTML no quedaba acorde con nuestra temática del juego, por ello, se han desarrollado varios recuadros para poder iniciar sesión en ellos:
 
  <p align="center">
-  <img src="Imagenes/Fondo login.png" />
+  <img src="demo/src/main/resources/static/Imagenes/Fondo login.png" />
 <br>
 	 Cuadro de iniciar sesión
 <br>
@@ -534,7 +534,7 @@ Por último, se ha desarrollado el diseño de un recuadro para implementar en el
 Por último comentar que fuera de la parte de diseño y creación de interfaces, se han creado distintos textos con una fuente mejor adaptada al juego para implementar tanto en el tutorial cómo en las pantallas de navegación:
 
  <p align="center">
-  <img src="Imagenes/texto_usuario_registrado.png" />
+  <img src="demo/src/main/resources/static/Imagenes/texto_usuario_registrado.png" />
 <br>
 	 Texto para informar del registro de un usuario
 <br>
@@ -579,21 +579,21 @@ La pipeline de trabajo ha sido:
 Diseño del nivel “A papel” > Implementación del diseño en Tiled > Cargar mapa en el juego
 
  <p align="center">
-  <img src="Imagenes/diseño del mapa.jpg" />
+  <img src="demo/src/main/resources/static/Imagenes/diseño del mapa.jpg" />
 <br>
 	 Diseño del mapa
 <br>
 </p>
 
  <p align="center">
-  <img src="Imagenes/implementacion en tiled.jpg" />
+  <img src="demo/src/main/resources/static/Imagenes/implementacion en tiled.jpg" />
 <br>
 	 Implementacion en tiled
 <br>
 </p>
 
  <p align="center">
-  <img src="Imagenes/resultado final.jpg" />
+  <img src="demo/src/main/resources/static/Imagenes/resultado final.jpg" />
 <br>
 	 Resultado final
 <br>
@@ -604,7 +604,7 @@ Desde el menú de inicio, el jugador podrá ver los créditos, meterse en opcion
 Independientemente de si está jugando en local o en online, podrá entrar en un menú de pausa. Aquí podrá reiniciar el nivel, entrar en opciones (un menú idéntico al que ya hemos mencionado), salir y volver al menú principal, que le llevará a la pantalla de inicio del juego. 
 
  <p align="center">
-  <img src="Imagenes/diagrama de flujo.jpg" />
+  <img src="demo/src/main/resources/static/Imagenes/diagrama de flujo.jpg" />
 <br>
 	 Diagrama de flujo
 <br>
@@ -615,7 +615,7 @@ Se empieza el juego en la pantalla principal, en la que tenemos las posibilidade
 Por último comentar que las pantallas de opciones, créditos, selección de personajes y niveles tienen la opción de volver a la pantalla anterior clicando en la flecha situada en la esquina superior izquierda.
 
  <p align="center">
-  <img src="Imagenes/diagrama de navegacion 2.jpg" />
+  <img src="demo/src/main/resources/static/Imagenes/diagrama de navegacion 2.jpg" />
 <br>
 	 Diagrama de navegacion
 <br>
@@ -625,7 +625,7 @@ Por último comentar que las pantallas de opciones, créditos, selección de per
 Para esta nueva iteraación se han generado 6 clases nuevas, 2 para el chat, 2 para usuarios y otras 2 para los records, sin independencias entre los pares. No obstante, cada uno se compone de una classe para cada objeto enviado y una clase @Controller para recibir y procesar los mensajes recibidos para cada parte.
 
  <p align="center">
-  <img src="Imagenes/UML_2.png" />
+  <img src="demo/src/main/resources/static/Imagenes/UML_2.png" />
 <br>
 	 Diagrama de clases
 <br>
@@ -642,7 +642,7 @@ Ya se podrá disfrutar de Topwer.
 # CHAT
 Para el nuevo tipo de comunicación con el servidor, se ha actualizado el chat para utilizar websocket en lugar de una API rest. Ambos jugadores pueden escribir comentarios en una ventana fija en la parte inferior derecha y se actualizará en ambos equipos a la vez. Para ello se abre un websocket al iniciar la partida que mantiene la comunicación constante. También se ha establecido un bloqueo de teclas, para que durante el juego, si el jugador escribe utilizando las teclas de control, éstas se puedan utilizar normalmente para escribir sin afectar al personaje. Al ser un chat de partida, no se ve el sentido de generar persistencia, puesto que al cerrar el servidor y levantarlo de nuevo, se presupone una partida nueva y por tanto una nueva conversación. No obstante, si durante la partida se conectase un nuevo jugador, automáticamente verá descargada toda la conversación hasta ese momento.
  <p align="center">
-  <img src="Imagenes/Chat.PNG" />
+  <img src="demo/src/main/resources/static/Imagenes/Chat.PNG" />
 <br>
 	 Ventana del chat durante la partida
 <br>
@@ -652,7 +652,7 @@ Para el nuevo tipo de comunicación con el servidor, se ha actualizado el chat p
 Como nueva funcionalidad y forma de implementar la API Rest en nuestro juego, se ha desarrollado una pantalla de login en la cual se podrá registrar un usuario en caso de que no se posea cuenta o se quiera crear una nueva (utilizando métodos post), en caso de ya tener un usuario creado, mediante el uso de métodos get, se ha creado la opción de iniciar sesión, destacar que la información de los usuarios persiste y se mantiene aun cerrando el servidor. Por otra parte se ha implementado un apartado para actualizar la contraseña en caso de que se te haya olvidado (utilizando métodos put). Por último se ha implementado la opción de eliminar usuario, para en caso de querer eliminar alguna cuenta que ya no se vaya a utilizar, sea posible (para ello se han utilizado métodos delete).
 
  <p align="center">
-  <img src="Imagenes/INTERFAZ LOGIN DENTRO DEL JUEGO.png" />
+  <img src="demo/src/main/resources/static/Imagenes/INTERFAZ LOGIN DENTRO DEL JUEGO.png" />
 <br>
 	 Pantalla login completa
 <br>
