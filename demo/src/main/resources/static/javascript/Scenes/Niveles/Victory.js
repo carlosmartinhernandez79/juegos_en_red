@@ -1,6 +1,7 @@
 class Victory extends Phaser.Scene{
     constructor() {
         super({ key: 'Victory' });
+        this.myIPVictory= "";
     }
 
 	init(data){
@@ -26,8 +27,6 @@ class Victory extends Phaser.Scene{
         this.add.text(520, 340, this.scene.get("Tiempo_Monedas").getMonedas()+ "/3", {font: "30px Arial", fill: "white"})
 
         this.space = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
-
-		this.myIPVictory= ""
     }
 
     update() {

@@ -1,4 +1,3 @@
-import { RecordSlot } from './ruta/a/tu/definicion/RecordSlot.js';
 class Records extends Phaser.Scene{
     constructor() {
         super({ key: 'Records' });
@@ -20,12 +19,12 @@ class Records extends Phaser.Scene{
                     this.scene.start('StartScreen');
                 }, this);
         var contextoPhaser = this;      
-        var Creditos = this.add.text( 520, 150, 'Top Players ', { fontSize:30 , fill: 'white' })
-        var spacingX = 200
-        var spacingY = 300
+        //var Creditos = this.add.text( 520, 150, 'Top Players ', { fontSize:30 , fill: 'white' })
+        var spacingX = 0
+        var spacingY = 200
         var contextoPhaser = this;
         var nombreJ1 = user;
-        var record = {
+        /*var record = {
             "id": 2,
             "levelID": 2,
             "player1": "Gerardo",
@@ -34,12 +33,9 @@ class Records extends Phaser.Scene{
             "coinsCollected": 75,
             "puntuation": 2125,
             "victoria": true
-        };
-        new RecordSlot(contextoPhaser, spacingX, spacingY, record);
-
-        //AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-        //AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-        //AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAaaaa
+        };*/
+        //var recordSlot = new RecordSlot(contextoPhaser, record);
+        //recordSlot.displaySlot(spacingX, spacingY);
         console.log("3 Tu IP es: " + this.myRecordsIP);
         $.ajax({
             url: this.myRecordsIP + 'api/records/top5ByPunctuation',
@@ -56,8 +52,10 @@ class Records extends Phaser.Scene{
                     console.log('   Nivel:', record.levelID);
                     console.log('   Monedas:', record.coinsCollected);
 
-                    new RecordSlot(contextoPhaser, spacingX, spacingY, record);
-                    spacingY += 100;
+                    //new RecordSlot(contextoPhaser, spacingX, spacingY, record);
+                    var recordSlot = new RecordSlot(contextoPhaser, record);
+                    recordSlot.displaySlot(spacingX, spacingY);
+                    spacingY += 125;
                 }
             },
             error: function (error) {

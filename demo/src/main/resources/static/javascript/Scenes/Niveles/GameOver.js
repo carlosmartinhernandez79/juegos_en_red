@@ -1,6 +1,7 @@
 class GameOver extends Phaser.Scene{
     constructor() {
         super({ key: 'GameOver' });
+        this.myIPDerrota= "";
     }
     
     
@@ -29,9 +30,6 @@ class GameOver extends Phaser.Scene{
 
         this.space = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
         
-
-
-		this.myIPDerrota= ""
     }
 
     update() {
