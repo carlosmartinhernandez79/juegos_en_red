@@ -9,9 +9,8 @@ class RecordSlot {
     }
 
     displaySlot() {
-
         // Crear un rectángulo de fondo rojo
-        var rectanguloFondo = this.scene.add.rectangle(x, y, 1000, 100, 0x4F0043);
+        var rectanguloFondo = this.scene.add.rectangle(this.x, this.y, 1000, 100, 0x4F0043);
         rectanguloFondo.setOrigin(0, 0);
 
         // Ajusta el formato según tus necesidades

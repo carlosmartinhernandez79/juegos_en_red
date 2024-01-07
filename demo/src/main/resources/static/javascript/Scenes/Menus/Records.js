@@ -1,6 +1,8 @@
+import { RecordSlot } from './ruta/a/tu/definicion/RecordSlot.js';
 class Records extends Phaser.Scene{
     constructor() {
         super({ key: 'Records' });
+        this.myRecordsIP = "";
     }
 
     preload() {
@@ -23,9 +25,24 @@ class Records extends Phaser.Scene{
         var spacingY = 300
         var contextoPhaser = this;
         var nombreJ1 = user;
-        var myRecordsIP = "";
+        var record = {
+            "id": 2,
+            "levelID": 2,
+            "player1": "Gerardo",
+            "player2": "Marcos",
+            "timeInSeconds": 500,
+            "coinsCollected": 75,
+            "puntuation": 2125,
+            "victoria": true
+        };
+        new RecordSlot(contextoPhaser, spacingX, spacingY, record);
+
+        //AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        //AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        //AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAaaaa
+        console.log("3 Tu IP es: " + this.myRecordsIP);
         $.ajax({
-            url: this.myRecordsIP + '/api/records/top5ByPunctuation',
+            url: this.myRecordsIP + 'api/records/top5ByPunctuation',
             method: 'GET',
             success: function (data) {
                 // Iterar sobre cada instancia de Record en el array
@@ -71,5 +88,6 @@ class Records extends Phaser.Scene{
 
     setIPRecords(ip){
 		this.myRecordsIP = ip;
+        console.log("IP de records: " + this.myRecordsIP);
 	}
 }

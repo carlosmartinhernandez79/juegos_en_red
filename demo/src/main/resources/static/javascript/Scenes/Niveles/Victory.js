@@ -47,6 +47,7 @@ class Victory extends Phaser.Scene{
     
     setIPVictoria(ip){
 		this.myIPVictory = ip;
+        console.log("IP de victoria: " + this.myIPVictory);
 	}
     
     sendData() {

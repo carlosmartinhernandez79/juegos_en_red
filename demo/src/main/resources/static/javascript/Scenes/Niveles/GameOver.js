@@ -109,6 +109,7 @@ class GameOver extends Phaser.Scene{
     
     setIPDerrota(ip){
 		this.myIPDerrota = ip;
+        console.log("IP de derrota: " + this.myIPDerrota);
 	}
     
      sendData() {
