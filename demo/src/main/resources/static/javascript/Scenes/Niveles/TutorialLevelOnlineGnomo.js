@@ -182,8 +182,8 @@ class TutorialLevelOnlineGnomo extends Phaser.Scene{
     //----------------------------------
     //---JUGADORES--
 
-    this.player = new GnomoOnline(this,  100, 2000); //100, 2000 para aparecer abajo izq la elfa aparece en 1970
-    this.elfo = new ElfoOnline(this,  100, 2000); //135, 600 en los barriless
+    this.player = new GnomoOnline(this,  135, 600); //100, 2000 para aparecer abajo izq la elfa aparece en 1970
+    this.elfo = new ElfoOnline(this,  135, 600); //135, 600 en los barriless
     //instancio a ambos, pero solo muevo mi player 
     this.cat  = this.physics.add.group();
   

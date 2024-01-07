@@ -26,7 +26,9 @@ class StartScreen extends Phaser.Scene{
 					canChangeUsername = false;
 		}
 		
-
+		if(webSocketOpen){
+			cerrarSocket();
+		}
    
 
             // Botón Créditos

@@ -33,12 +33,21 @@ class Victory extends Phaser.Scene{
 
     update() {
         if(this.space.isDown){
-            this.scene.stop();
+			
+			this.scene.stop();
             this.scene.stop("Tiempo_Monedas");
+			
+			if(!webSocketOpen){
             var sceneMain = this.scene.start("LevelSelector");
             this.scene.bringToTop("LevelSelector");
             this.scene.get(this.pantalla).MiMusicaBase.pause();
-            
+			}
+			
+			else{
+			var sceneMain = this.scene.start("StartScreen");
+            this.scene.bringToTop("StartScreen");
+            this.scene.get(this.pantalla).MiMusicaBase.pause();
+			}
              // Verificar si los datos ya se han enviado antes de actualizar
         if (!this.dataSended) {
             this.sendData(); // Llamar al método que envía los datos
