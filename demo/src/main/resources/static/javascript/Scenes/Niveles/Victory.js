@@ -27,6 +27,8 @@ class Victory extends Phaser.Scene{
         this.add.text(520, 340, this.scene.get("Tiempo_Monedas").getMonedas()+ "/3", {font: "30px Arial", fill: "white"})
 
         this.space = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
+        
+        this.dataSended = false;
     }
 
     update() {
@@ -52,15 +54,26 @@ class Victory extends Phaser.Scene{
     sendData() {
 
         // Crear un objeto con los datos del registro
-
+	if(webSocketOpen){
         var recordData = {
             levelID: 1,
-            player1: user,
-            player2: user,
+            player1: PlayerChamp1[0],
+            player2: PlayerChamp2[0],
             timeInSeconds: this.scene.get("Tiempo_Monedas").getTimeInSeconds(),
             coinsCollected: this.scene.get("Tiempo_Monedas").getMonedas(),
             victoria:true
         };
+	}
+	else{
+		var recordData = {
+            levelID: 1,
+            player1: nombreDeUsuario,
+            player2: nombreDeUsuario,
+            timeInSeconds: this.scene.get("Tiempo_Monedas").getTimeInSeconds(),
+            coinsCollected: this.scene.get("Tiempo_Monedas").getMonedas(),
+            victoria:true
+            }
+	}
 
         // Realizar la solicitud POST
         $.ajax({

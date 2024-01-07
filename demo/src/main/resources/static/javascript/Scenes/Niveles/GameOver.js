@@ -30,6 +30,8 @@ class GameOver extends Phaser.Scene{
 
         this.space = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
         
+        this.dataSended = false;
+        
     }
 
     update() {
@@ -101,7 +103,7 @@ class GameOver extends Phaser.Scene{
 		}*/
         
           if (!this.dataSended) {
-            //this.sendData(); // Llamar al método que envía los datos
+            this.sendData(); // Llamar al método que envía los datos
          }
     }
     
@@ -113,15 +115,27 @@ class GameOver extends Phaser.Scene{
      sendData() {
 
         // Crear un objeto con los datos del registro
-
-        var recordData = {
+if(webSocketOpen){
+	 var recordData = {
             levelID: 1,
-            player1: user,
-            player2: user,
+            player1: PlayerChamp1[0],
+            player2:  PlayerChamp2[0],
             timeInSeconds: this.scene.get("Tiempo_Monedas").getTimeInSeconds(),
             coinsCollected: this.scene.get("Tiempo_Monedas").getMonedas(),
             victoria:false
         };
+}
+else{
+	var recordData = {
+            levelID: 1,
+            player1: nombreDeUsuario,
+            player2: nombreDeUsuario,
+            timeInSeconds: this.scene.get("Tiempo_Monedas").getTimeInSeconds(),
+            coinsCollected: this.scene.get("Tiempo_Monedas").getMonedas(),
+            victoria:false
+        };
+}
+       
 
         // Realizar la solicitud POST
         $.ajax({

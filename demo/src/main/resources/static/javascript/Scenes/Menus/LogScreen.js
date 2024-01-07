@@ -372,8 +372,8 @@ class LogScreen extends Phaser.Scene{
                 
                 LogThings.style.display = "none"
                 //document.getElementById("chat-container").style.display = "block";
-                user = username.value;
-                myIPchat = myIP;
+                nombreDeUsuario = username.value;
+                //myIPchat = myIP;
                   
                
                 

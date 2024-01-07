@@ -23,7 +23,7 @@ class Records extends Phaser.Scene{
         var spacingX = 0
         var spacingY = 200
         var contextoPhaser = this;
-        var nombreJ1 = user;
+        //var nombreJ1 = user;
         /*var record = {
             "id": 2,
             "levelID": 2,
@@ -42,7 +42,7 @@ class Records extends Phaser.Scene{
             method: 'GET',
             success: function (data) {
                 // Iterar sobre cada instancia de Record en el array
-                for (var i = 0; i < data.length; i++) {
+				for (var i = 0; i < data.length; i++) {
                     var record = data[i];
                     // Acceder a las propiedades de cada instancia de Record y mostrar en la consola
                     console.log('   Registro ' + (i + 1) + ':');
