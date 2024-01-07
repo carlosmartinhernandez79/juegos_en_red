@@ -6,6 +6,9 @@ class PauseMenu extends Phaser.Scene{
         if(data){
             this.sonido = data.sonido;
             this.pantalla = data.pantalla;
+            if(data.username){
+				this.username = data.username
+			}
             console.log(this.pantalla)
         }
     }
@@ -38,18 +41,36 @@ class PauseMenu extends Phaser.Scene{
             this.menuOn.setVisible(true);
         })
         
-        this.menu.on('pointerout',()=>{
+        this.menu.on('pointerout',()=>{ //PONER QUE SI ESTÁ ABIERTO EL SOCKET, AL OTRO USUARIO LE MANDE UN MENSAJE DE QUE TE HAS SALIDO Y CERRAR LA CONEXIÓN CON EL SOCKET
             this.menuOff.setVisible(true);
             this.menuOn.setVisible(false);
         })
 
-        this.menu.on('pointerdown', function () {
-            this.scene.start('StartScreen',{sonido: this.scene.get("TutorialLevel").getSound()});
+        this.menu.on('pointerdown', function () { //HACER QUE CUANDO UNO LE DE A MENU, SE PIERDA LA CONEXIÓN DEL SOCKET
+        
+            
+			if(webSocketOpen){ //si el websocket its open, haz esto
+				stompClient.send("/game/desconectarUsuario",  //envia un mensaje al servidor de que han reiniciado
+	 			{},
+				true
+	 			)
+	 			  this.scene.start('StartScreen',{sonido: this.scene.get(this.pantalla).getSound(),username:nombreDeUsuario});
+	 			  amigoDesconectado = false;
+	 			  socket.close();
+			}
+			else{
+				  this.scene.start('StartScreen',{sonido: this.scene.get(this.pantalla).getSound()});
+			}
+        
+          
             this.scene.bringToTop('StartScreen');
             this.scene.sendToBack(this.pantalla);
             this.scene.sleep('PauseMenu');
             this.scene.sendToBack('OptionsFromPause');
             this.scene.sendToBack('Tiempo_Monedas');
+            
+
+            
         }, this);
 
 
@@ -78,6 +99,7 @@ class PauseMenu extends Phaser.Scene{
             this.scene.bringToTop('OptionsFromPause'); //mostramos sobre todas esta escena
             this.scene.pause('PauseMenu'); //dormimos la otra, porque no queremos perder lo que hagamos en el menu de pausa
             this.scene.sendToBack(this.pantalla); //enviamos al fondo la de tutorial
+             this.scene.stop(this.pantalla);
             //this.scene.sendToBack('Tiempo_Monedas');
         }, this);
 
@@ -99,11 +121,10 @@ class PauseMenu extends Phaser.Scene{
         })
 
         this.reiniciar.on('pointerdown', function () {
-            this.scene.start(this.pantalla); //whoever le de, reinicia su pantall
-            
-            
+            this.scene.start(this.pantalla); //whoever le de, reinicia su pantalla
+
             if(webSocketOpen){ //si el websocket its open, haz esto
-			stompClient.send("/game/reiniciarGame",  //envia un mensaje al servidor de que han reiniciado
+				stompClient.send("/game/reiniciarGame",  //envia un mensaje al servidor de que han reiniciado
 	 			{},
 				true
 	 		)
@@ -131,10 +152,12 @@ class PauseMenu extends Phaser.Scene{
         })
 
         this.niveles.on('pointerdown', function () {
-            this.scene.start('LevelSelector');
+			if(!webSocketOpen){
+			this.scene.start('LevelSelector');
             this.scene.bringToTop('LevelSelector');
             this.scene.sendToBack(this.pantalla);
             this.scene.sendToBack('Tiempo_Monedas');
+			}
         }, this);
     }
 

@@ -21,13 +21,29 @@ class LogScreen extends Phaser.Scene{
          this.load.image("usuElim", "./ImagesJS/LogIn/texto_usuario_eliminado.png");
          this.load.image("usuRegis", "./ImagesJS/LogIn/texto_usuario_registrado.png");
          this.load.image("errorText", "./ImagesJS/LogIn/texto_error_operacion.png");
-
+         
+		this.load.html('UsernameInput', 'UsernameInput.html');
+		this.load.html('PasswordInput', 'PasswordInput.html');
     }
     
     create(){
+		
+//TODO LO DEL HTML NUEVO
+ /*	var username = this.add.dom(600, 200).createFromCache('UsernameInput');
+ 	var password = this.add.dom(600, 280).createFromCache('PasswordInput');
+ //const inputText = this.getChildByName('nameField)
+        var username = username.getChildByName("utext") //me dice que no existe elbyname
+        //this.username.style.display = "block"
 
-
-		var myIP;
+        var password = password.getChildByName("ptext")
+        //this.password.style.display = "block"
+        
+ */
+ 
+ 
+ 
+/////////////////////////////////////////////////////////////////////////////////////////////
+	var myIP;
 
 		fetch('/Usuarios/getServerIp')
                 .then(response => response.text())
@@ -53,7 +69,7 @@ class LogScreen extends Phaser.Scene{
         this.usuRegis = this.add.image(100,30,"usuRegis").setScale(0.4).setVisible(false);
         this.errorText = this.add.image(140,30,"errorText").setScale(0.4).setVisible(false);
 
-        this.LogThings = document.getElementById("LogThings")
+     	 this.LogThings = document.getElementById("LogThings")
         this.LogThings.style.display = "block"
 
         var username = document.getElementById("utext")
@@ -62,10 +78,15 @@ class LogScreen extends Phaser.Scene{
         var password = document.getElementById("ptext")
         //this.password.style.display = "block"
 
+        //////////////////////////////////////////////////////////////////////
+        //this.flecha = this.add.image(450,480,"flechaBack")// Usar este codigo
+        //this.aceptar = this.add.image(500,400, "logOn")
+
+
+        /////////////////////////////////////////////////////////////////////
         this.aceptar = document.getElementById("aceptar")
         //this.aceptar.style.display = "block"
-        
-        
+     
        this.registrarse = document.getElementById("registrarse")
        // this.registrarse.style.display = "block"
        
@@ -88,8 +109,8 @@ class LogScreen extends Phaser.Scene{
          
         username.value = null;
         password.value = null;
-        
-         this.aceptarBorrar.addEventListener("click", ()=>{
+
+         this.aceptarBorrar.addEventListener("click", ()=> {
 			 
             this.registrarse.style.display = "none"
             this.aceptar.style.display = "block"
@@ -104,7 +125,7 @@ class LogScreen extends Phaser.Scene{
 		 })
 		 
 		 
-         this.deleteUser.addEventListener("click", ()=>{
+         this.deleteUser.addEventListener("click", ()=> {
 
             this.registrarse.style.display = "block"
             this.aceptar.style.display = "none"
@@ -122,7 +143,7 @@ class LogScreen extends Phaser.Scene{
         })
         
 
-        this.goToRegister.addEventListener("click", ()=>{
+        this.goToRegister.addEventListener("click", ()=> {
 
             this.registrarse.style.display = "block"
             this.aceptar.style.display = "none"
@@ -141,7 +162,7 @@ class LogScreen extends Phaser.Scene{
         
 
 
-        this.aceptar2.addEventListener("click", ()=>{
+        this.aceptar2.addEventListener("click", ()=> {
 
             this.registrarse.style.display = "none"
             this.aceptar.style.display = "block"
@@ -158,7 +179,7 @@ class LogScreen extends Phaser.Scene{
             this.flecha.setVisible(false)
         })
         
-         this.forgetPassword.addEventListener("click", ()=>{
+         this.forgetPassword.addEventListener("click", ()=> {
 
             this.registrarse.style.display = "none"
             this.aceptar.style.display = "none"
@@ -175,7 +196,7 @@ class LogScreen extends Phaser.Scene{
  			this.flecha.setVisible(true)
         })
         
-        this.changePassword.addEventListener("click", ()=>{
+        this.changePassword.addEventListener("click", ()=> {
 
             this.registrarse.style.display = "none"
             this.aceptar.style.display = "block"
@@ -346,17 +367,19 @@ class LogScreen extends Phaser.Scene{
     		function myThings(myScene){
 				 
 				myScene.sendToBack("LogScreen");
-                myScene.start("StartScreen", {sonido: true});
+                myScene.start("StartScreen", {sonido: true, username:username.value});
                	myScene.get("SceneBootLoader").MiMusicaBase.play();
                 
                 LogThings.style.display = "none"
-                document.getElementById("chat-container").style.display = "block";
-                user = username.value;
-                myIPchat = myIP;
+                //document.getElementById("chat-container").style.display = "block";
+                nombreDeUsuario = username.value;
+                //myIPchat = myIP;
+                  
                
                 
                	myScene.get("Victory").setIPVictoria(myIP);
                 myScene.get("GameOver").setIPDerrota(myIP);
+                myScene.get("Records").setIPRecords(myIP);
 
 			}
 			

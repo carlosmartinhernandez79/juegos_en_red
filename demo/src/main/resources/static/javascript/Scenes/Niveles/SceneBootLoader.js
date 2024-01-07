@@ -76,6 +76,30 @@ class SceneBootLoader extends Phaser.Scene {
         //PANTALLA VICTORIA
         this.load.image("PantallaVictoria", "./ImagesJS/Pantallas/Pantalla_Victoria.jpg");
         //---------------------------------------------------------------------------------
+        //IMAGENES WEBSOCKET
+        
+         this.load.image("BotonLial", "./ImagesJS/WebSocketThings/Boton_Lial.png");
+         this.load.image("BotonTuk", "./ImagesJS/WebSocketThings/Boton_Tuk.png");
+         this.load.image("BotonLocalOff", "./ImagesJS/WebSocketThings/Boton_Local_Off.png");
+         this.load.image("BotonLocalOn", "./ImagesJS/WebSocketThings/Boton_Local_On.png");
+         this.load.image("BotonOnlineOff", "./ImagesJS/WebSocketThings/Boton_Online_Off.png");
+         this.load.image("BotonOnlineOn", "./ImagesJS/WebSocketThings/Boton_Online_On.png");
+         this.load.image("InterfazPersonajes", "./ImagesJS/WebSocketThings/Interfaz_Personajes.png");
+         this.load.image("EsperandoLial", "./ImagesJS/WebSocketThings/Pantalla_Esperando_Lial.png");
+         this.load.image("EsperandoTuk", "./ImagesJS/WebSocketThings/Pantalla_Esperando_Tuk.png");
+         this.load.image("PantallaModo", "./ImagesJS/WebSocketThings/Pantalla_Seleccion_Modo.png");
+         this.load.image("AmbosIgualesTuk", "./ImagesJS/WebSocketThings/Pantalla_Ambos_Iguales_Tuk.png");
+         this.load.image("AmbosIgualesLial", "./ImagesJS/WebSocketThings/Pantalla_Ambos_Iguales_Lial.png");
+         
+       	this.load.image("AmigoDesconectado", "./ImagesJS/WebSocketThings/texto_companero_abandonado.png");
+        this.load.image("ConexionPerdida", "./ImagesJS/WebSocketThings/texto_se_ha_perdido_conexion.png");
+        
+		this.load.image("AbriendoSocket", "./ImagesJS/WebSocketThings/texto_abriendo_socket.png");
+        this.load.image("SocketAbierto", "./ImagesJS/WebSocketThings/texto_socket_abierto.png");
+
+        
+        
+        //---------------------------------------------------------------------------------
         
         //IMAGENES IN GAME
     this.load.image("moneda", "./ImagesJS/Moneda.png");
@@ -211,8 +235,8 @@ class SceneBootLoader extends Phaser.Scene {
             percentText.destroy();
             
             
-            this.scene.start("LogIn");
-            //this.scene.start("LogScreen");
+           // this.scene.start("LogIn");
+            this.scene.start("LogScreen");
             /*this.scene.start("StartScreen", {sonido: true});
 
             this.MiMusicaBase = this.sound.add("Musica_Base");

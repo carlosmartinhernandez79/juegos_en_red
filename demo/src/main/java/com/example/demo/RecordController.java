@@ -88,7 +88,7 @@ public class RecordController {
         sortedRecords.sort(Comparator.comparingInt(Record::getPuntuation).reversed());
 
         return sortedRecords.stream()
-                .limit(5)
+                .limit(4)
                 .collect(Collectors.toList());
     }
     

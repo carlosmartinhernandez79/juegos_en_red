@@ -1,7 +1,15 @@
 class Victory extends Phaser.Scene{
     constructor() {
         super({ key: 'Victory' });
+        this.myIPVictory= "";
     }
+
+	init(data){
+        if(data){
+            this.pantalla = data.pantalla;
+        }
+    }
+
 
     preload() {
 
@@ -10,7 +18,7 @@ class Victory extends Phaser.Scene{
     create() {
         this.scene.bringToTop();
         const graphics = this.add.graphics();
-        this.scene.get("TutorialLevel").MiMusicaBase.pause();
+        this.scene.get(this.pantalla).MiMusicaBase.pause();
 
         this.add.image(0,0, "PantallaVictoria").setOrigin(0,0);
         
@@ -19,8 +27,8 @@ class Victory extends Phaser.Scene{
         this.add.text(520, 340, this.scene.get("Tiempo_Monedas").getMonedas()+ "/3", {font: "30px Arial", fill: "white"})
 
         this.space = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
-
-		this.myIPVictory= ""
+        
+        this.dataSended = false;
     }
 
     update() {
@@ -29,7 +37,7 @@ class Victory extends Phaser.Scene{
             this.scene.stop("Tiempo_Monedas");
             var sceneMain = this.scene.start("LevelSelector");
             this.scene.bringToTop("LevelSelector");
-            this.scene.get("TutorialLevel").MiMusicaBase.pause();
+            this.scene.get(this.pantalla).MiMusicaBase.pause();
             
              // Verificar si los datos ya se han enviado antes de actualizar
         if (!this.dataSended) {
@@ -40,20 +48,32 @@ class Victory extends Phaser.Scene{
     
     setIPVictoria(ip){
 		this.myIPVictory = ip;
+        console.log("IP de victoria: " + this.myIPVictory);
 	}
     
     sendData() {
 
         // Crear un objeto con los datos del registro
-
+	if(webSocketOpen){
         var recordData = {
             levelID: 1,
-            player1: user,
-            player2: user,
+            player1: PlayerChamp1[0],
+            player2: PlayerChamp2[0],
             timeInSeconds: this.scene.get("Tiempo_Monedas").getTimeInSeconds(),
             coinsCollected: this.scene.get("Tiempo_Monedas").getMonedas(),
             victoria:true
         };
+	}
+	else{
+		var recordData = {
+            levelID: 1,
+            player1: nombreDeUsuario,
+            player2: nombreDeUsuario,
+            timeInSeconds: this.scene.get("Tiempo_Monedas").getTimeInSeconds(),
+            coinsCollected: this.scene.get("Tiempo_Monedas").getMonedas(),
+            victoria:true
+            }
+	}
 
         // Realizar la solicitud POST
         $.ajax({

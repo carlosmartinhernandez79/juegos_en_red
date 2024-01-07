@@ -1,5 +1,8 @@
 package com.example.demo;
 
+import java.net.InetAddress;
+import java.net.UnknownHostException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.Payload;
@@ -10,6 +13,7 @@ import org.springframework.stereotype.Controller;
 
 @Controller
 public class gameState {
+  
     /*@MessageMapping("/prueba")
     @SendTo("/topic")
     public void prueba() {
@@ -48,6 +52,8 @@ public class gameState {
     private Vex posElfo;
     private Vex posGnomo;
     private int stateGnomo; //0 chikito 1 normal
+    private PlayerChamp PlayerChamp1 = new PlayerChamp();
+    private PlayerChamp PlayerChamp2 = new PlayerChamp();
 
     private final SimpMessagingTemplate messagingTemplate;
 
@@ -56,19 +62,24 @@ public class gameState {
         this.messagingTemplate = messagingTemplate;
         posElfo = new Vex(0,0);
         posGnomo = new Vex(0,0);
+ 
+        
     }
     
-    //SETTERS Y GETTERS DE LAS POSICIONES DE LOS PERSONAJES
+ 
+  
+    
+    //------------------SETTERS Y GETTERS DE LAS POSICIONES DE LOS PERSONAJES---------------------------
     //Basicamente, llega información actualizada y actualiza las posiciones
     @MessageMapping("/setPosElfo")
     @SendTo("/topic/getPosElfo")
     public Vex setPosElfo(@Payload Vex v, SimpMessageHeaderAccessor HA) {
-	    posElfo.setX(v.getX());
-	    posElfo.setY(v.getY());
-	    System.out.println("El mensaje ha llegado correctamente: x = " + v.getX() +  ", " + v.getY());
-	    return v;
+	   posElfo.setX(v.getX());
+	   posElfo.setY(v.getY());
+	   return v;
     }
     
+   
     @MessageMapping("/setPosGnomo")
     @SendTo("/topic/getPosGnomo")
     public Vex setPosGnomo(@Payload Vex v, SimpMessageHeaderAccessor HA) {
@@ -87,6 +98,32 @@ public class gameState {
     	return i;
     }
     
+    @MessageMapping("/setDoubleJump")
+    @SendTo("/topic/getDobuleJump")
+    public boolean setDoubleJump(@Payload boolean i, SimpMessageHeaderAccessor HA) {
+    	return i;
+    }
+    
+    
+    
+   //------------------------------------------------------------------------------
+  //------------------------REINCIAR JUEGO------------------------------------------
+    
+    @MessageMapping("/reiniciarElfo")
+    @SendTo("/topic/getReiniciarElfo")
+    public boolean reiniciarElfo(@Payload boolean reiniciar, SimpMessageHeaderAccessor HA) {
+    
+    	return reiniciar;
+    }
+    
+    
+    @MessageMapping("/reiniciarGnomo")
+    @SendTo("/topic/getReiniciarGnomo")
+    public boolean reiniciarGnomo(@Payload boolean reiniciar, SimpMessageHeaderAccessor HA) {
+    
+    	return reiniciar;
+    }
+    
     @MessageMapping("/reiniciarGame")
     @SendTo("/topic/getReiniciarGame")
     public boolean reiniciarGame(@Payload boolean reiniciar, SimpMessageHeaderAccessor HA) {
@@ -94,11 +131,95 @@ public class gameState {
     	return reiniciar;
     }
     
+  //------------------------------------------------------------------------------
+  //------------------------CASO DE DERROTA------------------------------------------
     @MessageMapping("/gameOver")
     @SendTo("/topic/getGameOver")
     public boolean gameOver(@Payload boolean gameOver, SimpMessageHeaderAccessor HA) {
-        return gameOver;
+    
+    	return gameOver;
     }
+    
+  //------------------------------------------------------------------------------ 
+  //------------------------CASO DE VICTORIA------------------------------------------
+    @MessageMapping("/victoryElfo")
+    @SendTo("/topic/getVictoryElfo")
+    public boolean victoryElfo(@Payload boolean v, SimpMessageHeaderAccessor HA) {
+    
+    	return v;
+    }
+    
+    @MessageMapping("/victoryGnomo")
+    @SendTo("/topic/getVictoryGnomo")
+    public boolean  victoryGnomo(@Payload boolean v, SimpMessageHeaderAccessor HA) {
+    
+    	return v;
+    }
+    
+    //------------------------------------------------------------------------------
+    //------------------------SELECCIÓN DE PERSONAJE/CAMBIAR DE PERSONAJE------------------------------------------
+    @MessageMapping("/setUser")
+    @SendTo("/topic/getUser")
+    public PlayerChamp setUser(@Payload PlayerChamp PC, SimpMessageHeaderAccessor HA) {
+    	
+    	if(PlayerChamp1.getPlayer().equals("")) { //el primero que se conecte al socket será player 1
+    		PlayerChamp1 = new PlayerChamp(PC.getPlayer(), PC.getChamp());
+    		
+    		System.out.println("FIRST TIME CHOSING PLAYER 1");
+    	}
+    	else if(!PlayerChamp1.getPlayer().equals(PC.getPlayer()) && PlayerChamp2.getPlayer().equals("")){ //el otro será player 2
+    		PlayerChamp2 = new PlayerChamp(PC.getPlayer(), PC.getChamp());
+    		System.out.println("FIRST TIME CHOSING PLAYER 2");
+    	}
+    	
+    	else if(PlayerChamp1.getPlayer().equals(PC.getPlayer())) { //si esto es así, es porque p1 quiere cambiarse de personaje
+    		PlayerChamp1.setChamp(PC.getChamp());
+    		System.out.println("switching name player 1");
+    	}
+    	
+    	else if(PlayerChamp2.getPlayer().equals(PC.getPlayer())) { //si esto es así, es porque p2 quiere cambiarse de personaje
+    		PlayerChamp2.setChamp(PC.getChamp());
+    		System.out.println("switching name player 2");
+    	}
+    	
+    	return PC;
+    	
+    }
+    
+  //------------------------------------------------------------------------------
+    //------------------------GESTOR DE PALANCAS------------------------------------------
+   
+    @MessageMapping("/actualizarPalancas")
+    @SendTo("/topic/getPalancas")
+    //o que reciba el int donde se encuentra el cambio y que luego se acceda a ese int para cambiarlo
+    
+    public int actualizarPalancas(@Payload int palancaModificada, SimpMessageHeaderAccessor HA) {
 
+    	return palancaModificada;
+    }
+    
+    //------------------------------------------------------------------------------
+    //------------------------GESTOR DE MONEDAS------------------------------------------
+   
+    @MessageMapping("/actualizarMonedas")
+    @SendTo("/topic/getMonedas")
+    //o que reciba el int donde se encuentra el cambio y que luego se acceda a ese int para cambiarlo
+    
+    public int actualizarMonedas(@Payload int monedaModificada, SimpMessageHeaderAccessor HA) {
+
+    	return monedaModificada;
+    }
+    
+  //------------------------------------------------------------------------------
+    //------------------------GESTOR DESCONEXIÓN------------------------------------------
+   
+    @MessageMapping("/desconectarUsuario")
+    @SendTo("/topic/getDesconectarUsuario")
+    //o que reciba el int donde se encuentra el cambio y que luego se acceda a ese int para cambiarlo
+    
+    public boolean desconectarUsuario(@Payload boolean desc, SimpMessageHeaderAccessor HA) {
+
+    	return desc;
+    }
     
 }

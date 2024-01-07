@@ -6,7 +6,8 @@ class StartScreen extends Phaser.Scene{
     init(data){
         if(data){
             this.sonido = data.sonido;
-           
+           	this.username = data.username;
+           	//alert("USERNAME " + this.username + " FROM START SCREEN")
             this.checkSound(data.sonido, true);
         }
     }
@@ -16,9 +17,15 @@ class StartScreen extends Phaser.Scene{
         this.add.text(600, 20, "StartScreen", {font: "25px Arial", fill: "black"})
         this.add.image(0,0, "PantallaInicial").setOrigin(0,0);
 
-        this.opcionesClickado = false;
+		 document.getElementById("chat-container").style.display = "none";
 
-        //PRUEVA
+        this.opcionesClickado = false;
+        
+        if(canChangeUsername){
+					nombreDeUsuario = this.username;
+					canChangeUsername = false;
+		}
+		
 
    
 
@@ -41,7 +48,7 @@ class StartScreen extends Phaser.Scene{
                 })
                 
                 this.BotonJugar.on('pointerdown', function () {
-                    this.scene.start('LogIn');
+                    this.scene.start('ModoDeJuego');
                 }, this);
                 //////////////////////////////////////////////////////////////////////////
                 this.OpcionesOff = this.add.image(1000, 250,"BotonOpcionesOff").setScale(0.75);
@@ -98,7 +105,25 @@ class StartScreen extends Phaser.Scene{
     }
 
     update(delta, time) {
-        
+		
+     if(amigoDesconectado){
+		 this.desconectado = this.add.image(550,300, "AmigoDesconectado").setOrigin(0.5,0.5).setScale(0.8)
+		setTimeout(() => {
+  			this.desconectado.setVisible(false)
+  			amigoDesconectado = false;
+		}, 2000);
+		
+		
+		stompClient.send("/game/setUser", //RESETEO ESTO
+	 			{},
+				JSON.stringify({player:"", champ: ""})
+	 	)
+	 	stompClient.send("/game/setUser", //RESETEO ESTO
+	 			{},
+				JSON.stringify({player:"", champ: ""})
+	 	)
+		
+		}
     }
 
     checkSound(sound, startMusic){

@@ -33,6 +33,7 @@ this.anims.create({
     frames: [ { key: 'cat', frame: 5 } ],
     frameRate: 20
 });
+
     }
 
     move(){
@@ -64,6 +65,8 @@ this.anims.create({
             this.body.setVelocityY(-600);
         }
     }
+    
+   
 }
  
  

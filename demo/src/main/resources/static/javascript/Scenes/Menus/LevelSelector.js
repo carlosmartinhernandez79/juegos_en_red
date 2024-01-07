@@ -2,6 +2,7 @@ class LevelSelector extends Phaser.Scene{
     constructor() {
         super({ key: 'LevelSelector' });
     }
+    
 
     preload() {
         // Puedes precargar recursos específicos de esta escena aquí
@@ -56,7 +57,7 @@ class LevelSelector extends Phaser.Scene{
 
         Volver.setInteractive()
                 .on('pointerdown', function () {
-                    this.scene.start('LogIn');
+                    this.scene.start('ModoDeJuego');
                 }, this);     
     }
 
