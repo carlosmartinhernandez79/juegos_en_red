@@ -54,7 +54,7 @@ class Victory extends Phaser.Scene{
     sendData() {
 
         // Crear un objeto con los datos del registro
-	if(webSocketOpen){
+	if(webSocketOpen && PlayerChamp1[0] == nombreDeUsuario){
         var recordData = {
             levelID: 1,
             player1: PlayerChamp1[0],

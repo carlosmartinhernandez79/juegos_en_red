@@ -98,9 +98,13 @@ class PauseMenu extends Phaser.Scene{
             this.scene.start('OptionsFromPause', {sonido: this.scene.get("StartScreen").isMusicOn(), pantalla: this.pantalla});
             this.scene.bringToTop('OptionsFromPause'); //mostramos sobre todas esta escena
             this.scene.pause('PauseMenu'); //dormimos la otra, porque no queremos perder lo que hagamos en el menu de pausa
-            this.scene.sendToBack(this.pantalla); //enviamos al fondo la de tutorial
-             this.scene.stop(this.pantalla);
-            //this.scene.sendToBack('Tiempo_Monedas');
+            //this.scene.sendToBack(this.pantalla); //enviamos al fondo la de tutorial
+            
+            if(!webSocketOpen){
+				this.scene.pause(this.pantalla);
+			}
+           
+			//this.scene.sendToBack('Tiempo_Monedas');
         }, this);
 
         //----------------------------------------------
