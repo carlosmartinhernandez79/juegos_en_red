@@ -14,7 +14,7 @@ Carlos Martín Hernández (c.martinh.2019@alumnos.urjc.es - carlosmartinhernande
 
 
 <p align="center">
-  <img src="Imagenes/Logo_Topwer.png" />
+  <img src="demo/src/main/resources/static/Imagenes/Logo_Topwer.png" />
 </p>
 
 
