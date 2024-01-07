@@ -38,6 +38,8 @@ class Victory extends Phaser.Scene{
             this.scene.stop("Tiempo_Monedas");
 			
 			if(!webSocketOpen){
+				
+			
             var sceneMain = this.scene.start("LevelSelector");
             this.scene.bringToTop("LevelSelector");
             this.scene.get(this.pantalla).MiMusicaBase.pause();
@@ -47,6 +49,16 @@ class Victory extends Phaser.Scene{
 			var sceneMain = this.scene.start("StartScreen");
             this.scene.bringToTop("StartScreen");
             this.scene.get(this.pantalla).MiMusicaBase.pause();
+            
+            stompClient.send("/game/victoryElfo", //llamar a un método con parámetros (es una string basic)
+	 			{},
+	 			false
+	 		)
+	 		stompClient.send("/game/victoryGnomo", //llamar a un método con parámetros (es una string basic)
+	 			{},
+	 			false
+	 		)
+            
 			}
              // Verificar si los datos ya se han enviado antes de actualizar
         if (!this.dataSended) {
